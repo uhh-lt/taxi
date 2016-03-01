@@ -19,7 +19,20 @@
     </section>
 
     <section class="main-content">
-      <h3>
+      <p>This page contains implementation of a method for taxonomy induction that reached the first place in the <a href="http://alt.qcri.org/semeval2016/task13/">SemEval 2016 challenge on  taxonomy extraction evaluation</a>. The method builds a taxonomy from a domain vocabulary. It extracts hypernyms from substrings and large domain-specific corpora bootstrapped from the input vocabulary. Multiple evaluations based on the SemEval taxonomy extraction datasets of four languages and three domains show state-of-the-art performance of our approach. This page contains implementations of the method including all resources needed to reporoduce experiment described in:</p>
+
+<pre><code>@inproceedings{panchenko2016taxi,
+  title={TAXI: a Taxonomy Induction Method based on Lexico-Syntactic Patterns,  Substrings and Focused Crawling},
+  author={Panchenko, Alexander Faralli, Stefano Ruppert, Eugen Remus, Steffen Naets, Hubert Fairon, Cedrick Ponzetto, Simone Paolo and Biemann, Chris},
+  booktitle={Proceedings of the 10th International Workshop on Semantic Evaluation},
+  year={2016},
+  organization={Association for Computational Linguistics}
+}
+</code></pre>
+
+<p>If you would like to refer to the system please use this citation. </p>
+
+<h3>
 <a id="introduction" class="anchor" href="#introduction" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Introduction</h3>
 
 <p>We present a system for taxonomy construction that got the first place in all subtasks of the SemEval 2016 challenge on Taxonomy Extraction Evaluation. Our simple yet efficient approach is based on ISA relations extracted with Hearst-style lexico-syntactic patterns from large corpora and substring inclusion. We rely on focused crawling to create custom corpora of each domain. F-measure of the golden standard evaluation of our method achieves up to 0.39 on golden standard evaluation and precision up to 0.90 on the on manual evaluation. Our experiments show that the method performs well across different domains and languages. Only a small manual labour is needed to adapt it to a new domain or language.</p>
