@@ -8,7 +8,7 @@ from pandas import read_csv, Series, merge, concat
 
 from jnt.common import exists
 from jnt.isas.isas import ISAs
-from jnt.utils.freq import FreqDictionary
+from jnt.freq import FreqDictionary
 from jnt.isas.taxo import TaxonomyResources
 
 MAX_PROXY_ISAS = 10

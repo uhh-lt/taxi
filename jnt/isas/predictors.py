@@ -1,11 +1,9 @@
-from traceback import format_exc
 import matplotlib.pyplot as plt
 from sklearn.metrics import classification_report, precision_recall_curve, average_precision_score
 from random import random
 import numpy as np
 from pandas import Series
-from traceback import format_exc
-from jnt.isas.supervised import SuperTaxi 
+from jnt.isas.supervised import SuperTaxi
 
 
 class TaxonomyPredictor():

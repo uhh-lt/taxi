@@ -13,8 +13,6 @@ import numpy as np
 from collections import defaultdict
 import traceback
 from jnt.common import ensure_dir, exists
-from sys import stderr
-import os
 from os.path import join
 import json
 import codecs

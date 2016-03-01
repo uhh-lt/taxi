@@ -1,10 +1,7 @@
 import argparse
 import codecs
 from pandas import read_csv
-from collections import defaultdict
 from traceback import format_exc
-import operator
-import re
 from os.path import splitext
 from jnt.common import load_voc
 

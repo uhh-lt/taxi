@@ -3,9 +3,8 @@ from re import split
 from jnt.common import try_remove, exists
 from collections import defaultdict
 import codecs
-from jnt.common import fpath2filename
 from jnt.isas.isas import ISAs
-from jnt.utils.freq import FreqDictionary
+from jnt.freq import FreqDictionary
 from jnt.common import fpath2filename
 from jnt.isas.predictors import *
 from time import time
