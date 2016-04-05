@@ -19,11 +19,11 @@
     </section>
 
     <section class="main-content">
-      <p>This page contains implementation of a method for taxonomy induction that reached the first place in the <a href="http://alt.qcri.org/semeval2016/task13/">SemEval 2016 challenge on  taxonomy extraction evaluation</a>. The method builds a taxonomy from a domain vocabulary. It extracts hypernyms from substrings and large domain-specific corpora bootstrapped from the input vocabulary. Multiple evaluations based on the SemEval taxonomy extraction datasets of four languages and three domains show state-of-the-art performance of our approach. This page contains implementations of the method including all resources needed to reporoduce experiment described in:</p>
+      <p>This page contains implementation of a method for taxonomy induction that reached the first place in the <a href="http://alt.qcri.org/semeval2016/task13/">SemEval 2016 challenge on  taxonomy extraction evaluation</a>. The method builds a taxonomy from a domain vocabulary. It extracts hypernyms from substrings and large domain-specific corpora bootstrapped from the input vocabulary. Multiple evaluations based on the SemEval taxonomy extraction datasets of four languages and three domains show state-of-the-art performance of our approach. This page contains implementations of the method including all resources needed to reproduce experiment described in: </p>
 
 <pre><code>@inproceedings{panchenko2016taxi,
   title={TAXI: a Taxonomy Induction Method based on Lexico-Syntactic Patterns,  Substrings and Focused Crawling},
-  author={Panchenko, Alexander Faralli, Stefano Ruppert, Eugen Remus, Steffen Naets, Hubert Fairon, Cedrick Ponzetto, Simone Paolo and Biemann, Chris},
+  author={Panchenko, Alexander and Faralli, Stefano and  Ruppert, Eugen and  Remus, Steffen and  Naets, Hubert and  Fairon, Cedrick and Ponzetto, Simone Paolo and Biemann, Chris},
   booktitle={Proceedings of the 10th International Workshop on Semantic Evaluation},
   year={2016},
   organization={Association for Computational Linguistics}
@@ -36,6 +36,8 @@
 <a id="motivation" class="anchor" href="#motivation" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Motivation</h3>
 
 <p>TAXI is a taxonomy induction method first presented at the SemEval 2016 challenge on Taxonomy Extraction Evaluation. We consider taxonomy induction as a process that should -- as much as possible -- be driven solely on the basis of raw text processing. While some labeled examples might be utilized to tune the extraction and induction process, we avoid relying on structured lexical resources such as WordNet or BabelNet. We rather envision a situation where a taxonomy shall be induced in a new domain or a new language for which such resources do not exist. Otherwise, there is little need for induction,  and in application-based scenarios it is still possible to merge induced and existing taxonomies. In this paper, we demonstrate our methodology by executing hyponymy pattern extraction on general-domain and domain-specific corpora for four languages.</p>
+
+<p><img src="https://www.lt.informatik.tu-darmstadt.de/fileadmin/_processed_/csm_taxi_662272e466.jpg" alt="TAXI"></p>
 
 <h3>
 <a id="taxonomy-induction-method" class="anchor" href="#taxonomy-induction-method" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Taxonomy Induction Method</h3>
@@ -51,9 +53,30 @@
 <li>
 <a href="http://panchenko.me/data/joint/taxi/release-final/">Output of the TAXI</a>: taxonomies of the three domains submitted to SemEval 2016 Task 13</li>
 <li>
-<a href="http://panchenko.me/data/joint/taxi/res/resources/">Resources used by TAXI</a>: collections of extracted hypernyms for English, French, Italian and Dutch for the three domains (Food, Science and Environment)</li>
-<li>
-<a href="http://panchenko.me/data/joint/taxi/corpora/">Corpora used to extract hypernyms used by TAXI</a>: general collections and those gathered with the focused crawler.</li>
+<p><a href="http://panchenko.me/data/joint/taxi/res/resources/">Resources used by TAXI</a>: collections of extracted hypernyms for English, French, Italian and Dutch for the three domains (Food, Science and Environment):</p>
+
+<ul>
+<li><a href="http://panchenko.me/data/joint/taxi/res/resources/en_cc.csv.gz">English General Domain Hypernyms (WebISA)</a></li>
+<li><a href="http://panchenko.me/data/joint/taxi/res/resources/en_cc.csv.gz">English General Domain Hypernyms (PattenSim)</a></li>
+<li><a href="http://panchenko.me/data/joint/taxi/res/resources/en_cc.csv.gz">English General Domain Hypernyms (PattaMaika)</a></li>
+<li><a href="http://panchenko.me/data/joint/taxi/res/resources/en_cc.csv.gz">English Environment Hypernyms (PatternSim)</a></li>
+<li><a href="http://panchenko.me/data/joint/taxi/res/resources/en_cc.csv.gz">English Food Hypernyms (PatternSim)</a></li>
+<li><a href="http://panchenko.me/data/joint/taxi/res/resources/en_cc.csv.gz">English Science Hypernyms (PatternSim)</a></li>
+<li><a href="http://panchenko.me/data/joint/taxi/res/resources/en_cc.csv.gz">English General Domain Hypernyms (PattaMaika)</a></li>
+<li><a href="http://panchenko.me/data/joint/taxi/res/resources/en_cc.csv.gz">English Environment Hypernyms (PatternSim)</a></li>
+<li><a href="http://panchenko.me/data/joint/taxi/res/resources/en_cc.csv.gz">English Food Hypernyms (PatternSim)</a></li>
+<li><a href="http://panchenko.me/data/joint/taxi/res/resources/en_cc.csv.gz">English Science Hypernyms (PatternSim)</a></li>
+<li><a href="http://panchenko.me/data/joint/taxi/res/resources/en_cc.csv.gz">English General Domain Hypernyms (PattaMaika)</a></li>
+<li><a href="http://panchenko.me/data/joint/taxi/res/resources/en_cc.csv.gz">English Environment Hypernyms (PatternSim)</a></li>
+<li><a href="http://panchenko.me/data/joint/taxi/res/resources/en_cc.csv.gz">English Food Hypernyms (PatternSim)</a></li>
+<li><a href="http://panchenko.me/data/joint/taxi/res/resources/en_cc.csv.gz">English Science Hypernyms (PatternSim)</a></li>
+<li><a href="http://panchenko.me/data/joint/taxi/res/resources/en_cc.csv.gz">English General Domain Hypernyms (PattaMaika)</a></li>
+<li><a href="http://panchenko.me/data/joint/taxi/res/resources/en_cc.csv.gz">English Environment Hypernyms (PatternSim)</a></li>
+<li><a href="http://panchenko.me/data/joint/taxi/res/resources/en_cc.csv.gz">English Food Hypernyms (PatternSim)</a></li>
+<li><a href="http://panchenko.me/data/joint/taxi/res/resources/en_cc.csv.gz">English Science Hypernyms (PatternSim)</a></li>
+</ul>
+</li>
+<li><p><a href="http://panchenko.me/data/joint/taxi/corpora/">Corpora used to extract hypernyms used by TAXI</a>: general collections and those gathered with the focused crawler.</p></li>
 </ul>
 
 <h3>
