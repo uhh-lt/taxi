@@ -10,11 +10,11 @@ TAXI: a Taxonomy Induction Method based on Lexico-Syntactic Patterns, Substrings
   git clone git@github.com:tudarmstadt-lt/taxi.git
   ```
 
-2. Download resources into the repository:
+2. Download resources into the repository (4.4G compressed by gzip):
 
   ```
   cd taxi
-  wget http://panchenko.me/data/joint/taxi/res/resources.tgz && gunzip resources.tgz
+  wget http://panchenko.me/data/joint/taxi/res/resources.gz && gunzip resources.gz
   ```
 
 3. Install dependencies:
