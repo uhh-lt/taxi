@@ -6,16 +6,16 @@ from traceback import format_exc
 
 DEBUG = False
 CHUNK_SIZE=1000000
+
 re_opening_brace = re.compile(ur"^([^(]*)\(.*", re.U|re.I)
 re_closing_brace = re.compile(ur"^([^)]*)\).*", re.U|re.I)
 
 
 def clean_term(term):
     cterm = unicode(term)
-    cterm = re_opening_brace.sub(ur"\1", term)
+    cterm = re_opening_brace.sub(ur"\1", cterm)
     cterm = re_closing_brace.sub(ur"\1", cterm)
     cterm = cterm.strip()
-    if  DEBUG and cterm != term.strip(): print term.strip(), ">>>", cterm
     return cterm
 
 
@@ -42,8 +42,6 @@ def clean_isas(cc_fpath, output_fpath, filtered_fpath):
                     output.write(field + "\t")
                 output.write("\n")
             chunk.fillna('')
-
-            # if num > 1000: break
 
             # print rows
             for j, row in chunk.iterrows():

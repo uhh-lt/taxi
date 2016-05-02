@@ -97,7 +97,8 @@ def patternsim2isas_hh(hh_fpath, output_fpath):
 
 
 def main():
-    parser = argparse.ArgumentParser(description="Transforms PatternSim output pairs.csv to 'hyponym<TAB>hypernym<TAB>freq'.")
+    parser = argparse.ArgumentParser(description="Transforms PatternSim output pairs.csv to a CSV file "
+                                                 "'hyponym<TAB>hypernym<TAB>freq' with a header.")
     parser.add_argument('inp', help='Path to an input file.')
     parser.add_argument('-o', help='Output file. Default -- next to input file.', default="")
     args = parser.parse_args()

@@ -28,10 +28,12 @@ def filter_by_voc(hh_fpath, voc_fpath, output_fpath, both_in_voc=False):
 
 
 def main():
-    parser = argparse.ArgumentParser(description="Filters file 'hyponym<TAB>hypernym<TAB>freq' so that it contains words from the vocabulary.")
-    parser.add_argument('inp', help='Path to an input file.')
-    parser.add_argument('voc', help='Path to a voc file in the format "word".')
-    parser.add_argument('--both_in_voc', action='store_true', help='Both hyper and hypo are in voc. Default -- false.')
+    parser = argparse.ArgumentParser(description="Filters file 'hyponym<TAB>hypernym<TAB>freq' with header so that it "
+                                                 "contains only words from the input vocabulary.")
+    parser.add_argument('inp', help="Path to an input file.")
+    parser.add_argument('voc', help="Path to a voc file in the format 'word' with header.")
+    parser.add_argument('--both_in_voc', action='store_true', help='Both hyper and hypo are in voc. Default -- false i.e.'
+                                                                   'only hyper should be in the voc.')
     parser.add_argument('-o', help='Output file. Default -- next to input file.', default="")
     args = parser.parse_args()
 

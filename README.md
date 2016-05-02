@@ -1,6 +1,7 @@
-# taxi
+# TAXI
 TAXI: a Taxonomy Induction Method based on Lexico-Syntactic Patterns, Substrings and Focused Crawling
 
+More information about the approach can be found at [the TAXI web site](http://tudarmstadt-lt.github.io/taxi).
 
 # Installation 
 
@@ -14,7 +15,7 @@ TAXI: a Taxonomy Induction Method based on Lexico-Syntactic Patterns, Substrings
 
   ```
   cd taxi
-  wget http://panchenko.me/data/joint/taxi/res/resources.gz && gunzip resources.gz
+  wget http://panchenko.me/data/joint/taxi/res/resources.tgz && tar xzf resources.tgz
   ```
 
 3. Install dependencies:
