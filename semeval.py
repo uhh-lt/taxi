@@ -10,6 +10,7 @@ RES_DIR = "./resources"
 CLASSIFIERS_DIR = join(RES_DIR,"models/release/2features-new/*")
 TEST_EN = False
 
+
 def load_res(language, mode):
 
     if language == "en":
@@ -149,6 +150,7 @@ def extract_semeval_taxo(input_voc_pattern, language, mode, classifiers_pattern)
                         taxo_predict.save(taxo_fpath + "-" + method + "-conf.csv", conf=True)
                     except:
                         print format_exc()
+
 
 def main():
     parser = argparse.ArgumentParser(description="Apply classifiers to the trial data.")
