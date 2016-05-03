@@ -32,8 +32,8 @@ def main():
                                                  "contains only words from the input vocabulary.")
     parser.add_argument('inp', help="Path to an input file.")
     parser.add_argument('voc', help="Path to a voc file in the format 'word' with header.")
-    parser.add_argument('--both_in_voc', action='store_true', help='Both hyper and hypo are in voc. Default -- false i.e.'
-                                                                   'only hyper should be in the voc.')
+    parser.add_argument('--both_in_voc', action='store_true', help='Both hyper and hypo are in voc, otherwise hyper or hypo'
+                                                                   'should be in the input vocabulary. Default -- false')
     parser.add_argument('-o', help='Output file. Default -- next to input file.', default="")
     args = parser.parse_args()
 
