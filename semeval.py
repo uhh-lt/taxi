@@ -12,7 +12,6 @@ TEST_EN = False
 
 
 def load_res(language, mode):
-
     if language == "en":
         if mode == "simple": freq_fpaths=[""]
         else: freq_fpaths = [join(RES_DIR,"en_freq-59g-mwe62m.csv.gz")]
@@ -111,7 +110,7 @@ def extract_semeval_taxo(input_voc_pattern, language, mode, classifiers_pattern)
     taxo_res_common, taxo_res_domain = load_res(language, mode) 
         
     for voc_fpath in sorted(glob(input_voc_pattern)):
-        for space in [False]: #, True]:
+        for space in [False, True]:
             s = "-space" if space else ""
             relations_fpath = voc_fpath + s + "-relations.csv"
             taxo_fpath = relations_fpath + "-taxo.csv"
@@ -173,5 +172,4 @@ def main():
 
 if __name__ == '__main__':
     main()
-
 
