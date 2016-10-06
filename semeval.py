@@ -22,9 +22,9 @@ def load_res(language, mode):
             isa_common_fpaths = [
                    join(RES_DIR,"en_ma.csv.gz"),
                    join(RES_DIR,"en_pm.csv.gz"),
-                   join(RES_DIR,"en_ps.csv.gz"),
-                   join(RES_DIR,"en_cc.csv.gz"),
-                   join(RES_DIR,"en_ps59g.csv.gz")]
+                   join(RES_DIR,"en_ps.csv.gz")]  #,
+                   #join(RES_DIR,"en_cc.csv.gz"),
+                   #join(RES_DIR,"en_ps59g.csv.gz")]
 
         isa_domain_fpaths = {
             "food": [join(RES_DIR,"en_food.csv.gz")],
