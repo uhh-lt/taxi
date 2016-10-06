@@ -3,7 +3,7 @@ TAXI: a Taxonomy Induction Method based on Lexico-Syntactic Patterns, Substrings
 
 More information about the approach can be found at [the TAXI web site](http://tudarmstadt-lt.github.io/taxi).
 
-# System requirements
+# System Requirements
 
 The system was tested on Debian/Ubuntu Linux and Mac OS X. To load all resources in memory you need about 64 Gb of RAM. 
 
