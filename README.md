@@ -28,6 +28,7 @@ The system was tested on Debian/Ubuntu Linux and Mac OS X. To load all resources
   ```
 
 4. Run the ```semeval.py``` to reproduce experimental results, e.g.:
+
     For a test run (few resources loaded, quick):
     ```
     python semeval.py vocabularies/science_en.csv en simple --test
