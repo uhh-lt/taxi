@@ -8,23 +8,22 @@ from os.path import join
 
 RES_DIR = "./resources"
 CLASSIFIERS_DIR = join(RES_DIR,"models/release/2features-new/*")
-TEST_EN = False
 
 
-def load_res(language, mode):
+def load_res(language, mode, test_en=False):
     if language == "en":
         if mode == "simple": freq_fpaths=[""]
         else: freq_fpaths = [join(RES_DIR,"en_freq-59g-mwe62m.csv.gz")]
         
-        if TEST_EN:
+        if test_en:
             isa_common_fpaths = [join(RES_DIR,"en_ps.csv.gz")]
         else:
             isa_common_fpaths = [
                    join(RES_DIR,"en_ma.csv.gz"),
                    join(RES_DIR,"en_pm.csv.gz"),
-                   join(RES_DIR,"en_ps.csv.gz")]  #,
-                   #join(RES_DIR,"en_cc.csv.gz"),
-                   #join(RES_DIR,"en_ps59g.csv.gz")]
+                   join(RES_DIR,"en_ps.csv.gz"),
+                   join(RES_DIR,"en_cc.csv.gz"),
+                   join(RES_DIR,"en_ps59g.csv.gz")]
 
         isa_domain_fpaths = {
             "food": [join(RES_DIR,"en_food.csv.gz")],
@@ -106,8 +105,8 @@ def evaluate_on_trial_taxo():
         taxo_predict.evaluate(field="correct_predict")       
     
 
-def extract_semeval_taxo(input_voc_pattern, language, mode, classifiers_pattern):
-    taxo_res_common, taxo_res_domain = load_res(language, mode) 
+def extract_semeval_taxo(input_voc_pattern, language, mode, classifiers_pattern, test_en):
+    taxo_res_common, taxo_res_domain = load_res(language, mode, test_en) 
         
     for voc_fpath in sorted(glob(input_voc_pattern)):
         for space in [False, True]:
@@ -155,7 +154,8 @@ def main():
     parser = argparse.ArgumentParser(description="Apply classifiers to the trial data.")
     parser.add_argument('input', help='Input vocabulary pattern e.g. "/home/en/*_en.csv"')
     parser.add_argument('language', type=str, default='en', choices=['en', 'fr', 'nl', 'it'], help='Path to an input file.')
-    parser.add_argument('mode', type=str, default='simple', choices=['simple', 'super', 'test'], help="Mode of the taxonomy induction system.")
+    parser.add_argument('mode', type=str, default='simple', choices=['simple', 'super'], help="Mode of the taxonomy induction system. Use 'simple' for the unsupervised method, 'super' for supervised method and 'test' for a quick test.")
+    parser.add_argument('--test', action='store_true', help="Load only few resouses, but do it quickly (works only for English).")
     parser.add_argument('-c', help='Path to the classifier or a pattern to the classifiers e.g. "/home/*".', default=CLASSIFIERS_DIR)
     args = parser.parse_args()
      
@@ -163,12 +163,12 @@ def main():
     print "Language: ", args.language
     print "Mode: ", args.mode
     print "Classifiers: ", args.c
-    
+    print "Test model: ", args.test
+
     if args.mode in ["simple", "super"]:
-        extract_semeval_taxo(args.input, args.language, args.mode, args.c)
+        extract_semeval_taxo(args.input, args.language, args.mode, args.c, args.test)
     else:
         evaluate_on_trial_taxo()
-
 
 if __name__ == '__main__':
     main()
