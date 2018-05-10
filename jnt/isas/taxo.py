@@ -10,6 +10,7 @@ from jnt.isas.predictors import *
 from time import time
 import numpy as np
 from pandas import read_csv, Series, merge, concat
+from traceback import format_exc
 from numpy import mean
 import operator
 from jnt.morph import lemmatize

@@ -19,6 +19,9 @@ lib/
 lib64/
 parts/
 sdist/
+vocabularies/
+resources/
+resources.tgz
 var/
 *.egg-info/
 .installed.cfg

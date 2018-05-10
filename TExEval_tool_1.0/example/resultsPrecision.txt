@@ -1,0 +1,2 @@
+Taxonomy relation evaluation file	./example/sys1.taxo.eval
+Precision from relation evaluation	0.8
