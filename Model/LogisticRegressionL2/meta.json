@@ -1,1 +1,1 @@
-{"k": 100, "method": "LogisticRegressionL2", "features": ["hyper_in_hypo_i", "hypo2hyper_substract"]}
+{"k": 100, "method": "LogisticRegressionL2", "features": ["hypo2hyper_substract"]}
