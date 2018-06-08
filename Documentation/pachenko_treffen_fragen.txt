@@ -1,0 +1,11 @@
+Question to Pachenko
+---------------------------
+
+1) Combination von neuem Paper mit substring und/oder patternbased for maximal value?
+2) Bleiben bei taXi, ignorieren den distributional semantic ansatz
+3) Hypernym extraction LSTM nutzen, isas commoncrawl, oder direkt am input
+4) Evaluationstool, speicher?
+5) Does the isas dataset even has all the relations in the testset, or missing, where is the limitation?
+6) Embeddings nutzen, sinnvoll?
+
+14:15 Monday, Alexander 

@@ -67,3 +67,5 @@ target/
 #TestData (Rami)
 Data_R/
 
+#Rami_Gitignore
+isas-commoncrawl.csv
