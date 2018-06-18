@@ -292,9 +292,11 @@
 155364	quantum physics	physics
 78394	race and ethnicity	sociology
 8489	regional sociology	sociology
+170909	religion	humanities
 122203	robotics	computer science
 122194	robotics	engineering
 167692	rural sociology	sociology
+38712	science	religion
 71693	scientific computing	mathematics
 63124	set theory	mathematics
 157834	signal processing	mathematics
@@ -333,28 +335,3 @@
 151624	united states history	history
 175978	women’s history	history
 152523	wood science	science
-248	humanities	science
-249	genetics	science
-250	botany	science
-251	physics	science
-252	economic theory	science
-253	geography	science
-254	zoology	science
-255	engineering	science
-256	logic and foundations	science
-257	psychology	science
-258	chemistry	science
-259	mathematics	science
-260	public health	science
-261	pathology	science
-262	sociology	science
-263	ecology	science
-264	cell biology	science
-265	applied statistics	science
-266	religion	science
-267	epidemiology	science
-268	toxicology	science
-269	literature in english, north america	science
-270	genomics	science
-271	oceanography	science
-272	methodologies	science
