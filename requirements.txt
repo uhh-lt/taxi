@@ -5,4 +5,6 @@ numpy
 scikit-learn
 scipy
 pandas
-spacy1.9.0
+spacy==1.9.0
+stop-words
+plumbum

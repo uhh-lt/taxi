@@ -61,7 +61,7 @@ def all_parent_rel(element, list_data):
 
 
 list_data = []
-with open(os.path.join(os.path.dirname(__file__), '../../', 'vocabularies', 'science_en.csv-space-relations.csv-taxo.csv-LinearSVC.csv'), 'rb') as f:
+with open(os.path.join(os.path.dirname(__file__), '../../', 'vocabularies', 'science_en.csv-relations.csv-taxo.csv-SVC.csv'), 'rb') as f:
     reader = csv.reader(f, delimiter = '\t')
     for i, line in enumerate(reader):
         list_data.append((line[0], line[1], line[2]))
@@ -86,10 +86,10 @@ elements_connected = set([])
 for element in elements:
     ele_root = connected_to_root(element, list_data, ROOT)
     if not ele_root[0]:
-        list_data.append((iter, ele_root[1], ROOT))
-        iter+=1
+       list_data.append((iter, ele_root[1], ROOT))
+       iter+=1
 
-with open(os.path.join(os.path.dirname(__file__), '../../', 'vocabularies', 'science_en.taxo'), 'wb') as f:
+with open(os.path.join(os.path.dirname(__file__), '../../', 'eval','taxi_eval_archive', 'input', 'system.taxo'), 'wb') as f:
     for element in list_data:
         print element
         f.write(str(element[0]) + '\t' + element[1] + '\t' + element[2]  + '\n')
