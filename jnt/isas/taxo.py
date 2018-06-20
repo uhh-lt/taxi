@@ -14,6 +14,7 @@ from numpy import mean
 import operator
 from jnt.morph import lemmatize
 import re
+from traceback import format_exc
 
 
 MAX_PROXY_ISAS = 10
@@ -568,7 +569,7 @@ class TaxonomyFeatures():
             print >> out, "hyponym\thypernym\tfreq"
             for hypo, hyper in hypo2hyper_iavg: print >> out, "%s\t%s\t%.3f" % (hypo, hyper, hypo2hyper_iavg[(hypo, hyper)])
         df = read_csv(tmp_fpath, encoding='utf-8', delimiter="\t", error_bad_lines=False)
-        df = df.sort(["hyponym","freq"], ascending=[1,0])
+        df = df.sort_values(["hyponym","freq"], ascending=[1,0])
         df.to_csv(debug_fpath, sep="\t", encoding="utf-8", float_format='%.3f', index=False)
         try_remove(tmp_fpath)
         print "Direct hypernyms:", debug_fpath

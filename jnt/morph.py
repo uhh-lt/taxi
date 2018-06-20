@@ -1,5 +1,5 @@
 from treetagger import TreeTagger
-from spacy.en import English
+from spacy.lang.en import English
 from stop_words import get_stop_words
 from pandas import read_csv
 from os.path import join
