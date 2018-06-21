@@ -60,23 +60,43 @@ def all_parent_rel(element, list_data):
     return remove_relations
 
 
+
+filename_in = None
+filename_out = None
+
+if len(sys.argv) >= 2:
+    filename_in = sys.argv[1]
+
+if len(sys.argv) >= 3:
+    filename_out = sys.argv[2]
+
+if len(sys.argv) >= 4:
+    delimiter = sys.argv[3]
+
+
+if filename_in is None:
+    raise Exception("No CSV-file provided")
+
+if filename_out is None:
+    raise Exception("No output provided")
+
 list_data = []
-with open(os.path.join(os.path.dirname(__file__), '../../', 'vocabularies', 'science_en.csv-space-relations.csv-taxo.csv-LinearSVC.csv'), 'rb') as f:
+with open(filename_in, 'rb') as f:
     reader = csv.reader(f, delimiter = '\t')
     for i, line in enumerate(reader):
         list_data.append((line[0], line[1], line[2]))
+
+# dict = remove_cycles(list_data)
+# list_data = []
+# iter = 1
+# for key, value in dict.iteritems():
+#     list_data.append((iter, key, value))
+#     iter+=1
+
 ROOT = "science"
 all_parent_root = all_parent_rel(ROOT, list_data)
 for el in all_parent_root:
     list_data.remove(el)
-
-dict = remove_cycles(list_data)
-
-list_data = []
-iter = 1
-for key, value in dict.iteritems():
-    list_data.append((iter, key, value))
-    iter+=1
 
 elements = set([])
 for relation in list_data:
@@ -89,7 +109,7 @@ for element in elements:
         list_data.append((iter, ele_root[1], ROOT))
         iter+=1
 
-with open(os.path.join(os.path.dirname(__file__), '../../', 'vocabularies', 'science_en.taxo'), 'wb') as f:
+with open(os.path.join(os.path.dirname(filename_out, 'w') as f:
     for element in list_data:
         print element
         f.write(str(element[0]) + '\t' + element[1] + '\t' + element[2]  + '\n')
