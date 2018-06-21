@@ -1,3 +1,7 @@
+# Custom Files
+resources/
+resources.tgz
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
@@ -8,6 +12,7 @@ __pycache__/
 
 # Distribution / packaging
 .Python
+.idea/
 env/
 build/
 develop-eggs/
