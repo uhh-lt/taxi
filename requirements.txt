@@ -1,7 +1,10 @@
+treetaggerwrapper
 matplotlib
 nltk
 numpy
 scikit-learn
 scipy
 pandas
-spacy
+spacy==1.9.0
+stop-words
+plumbum

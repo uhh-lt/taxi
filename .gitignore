@@ -69,3 +69,13 @@ Data_R/
 
 #Rami_Gitignore
 isas-commoncrawl.csv
+
+eval/taxi_eval_archive/input/.nfs000000007c4c200100000001
+eval/taxi_eval_archive/input/.~lock.system.taxo#
+eval/taxi_eval_archive/input/.~lock.system_or.taxo#
+eval/taxi_eval_archive/input/system2.taxo
+eval/taxi_eval_archive/input/system_from_local.taxo
+resources.tgz.1
+resources.tgz.2
+wget-log
+

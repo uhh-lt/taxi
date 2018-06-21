@@ -63,6 +63,7 @@ def all_parent_rel(element, list_data):
 
 filename_in = None
 filename_out = None
+ROOT = None
 
 if len(sys.argv) >= 2:
     filename_in = sys.argv[1]
@@ -71,7 +72,7 @@ if len(sys.argv) >= 3:
     filename_out = sys.argv[2]
 
 if len(sys.argv) >= 4:
-    delimiter = sys.argv[3]
+    ROOT = sys.argv[3]
 
 
 if filename_in is None:
@@ -93,7 +94,6 @@ with open(filename_in, 'rb') as f:
 #     list_data.append((iter, key, value))
 #     iter+=1
 
-ROOT = "science"
 all_parent_root = all_parent_rel(ROOT, list_data)
 for el in all_parent_root:
     list_data.remove(el)
@@ -106,8 +106,8 @@ elements_connected = set([])
 for element in elements:
     ele_root = connected_to_root(element, list_data, ROOT)
     if not ele_root[0]:
-        list_data.append((iter, ele_root[1], ROOT))
-        iter+=1
+       list_data.append((iter, ele_root[1], ROOT))
+       iter+=1
 
 with open(os.path.join(os.path.dirname(filename_out, 'w') as f:
     for element in list_data:
