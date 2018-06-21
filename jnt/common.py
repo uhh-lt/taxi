@@ -42,7 +42,7 @@ def dt_scientific2fixed(dt_fpath, output_fpath):
     """ Convert similarity from scientific to normal format. """
 
     dt = read_csv(dt_fpath, "\t", encoding='utf8', error_bad_lines=False)
-    dt = dt.sort(["sim"], ascending=[0])
+    dt = dt.sort_values(["sim"], ascending=[0])
     dt.to_csv(output_fpath, sep="\t", encoding="utf-8", float_format='%.12f', index=False)
 
 

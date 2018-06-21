@@ -226,7 +226,7 @@ class TaxonomyFeatures():
         debug_fpath = self._relations_fpath + "-substrings.csv"
         df = self._relations.copy() 
         df = df[(df.hyper_in_hypo != 0) | (df.hypo_in_hyper != 0)]
-        df = df.sort(["hyponym", "hypo_in_hyper"], ascending=[1,0])
+        df = df.sort_values(["hyponym", "hypo_in_hyper"], ascending=[1,0])
         df.to_csv(debug_fpath, sep="\t", encoding="utf-8", float_format='%.3f', index=False)
         print "Substrings:", debug_fpath
 
@@ -467,7 +467,7 @@ class TaxonomyFeatures():
         relations_fpath = self._relations_fpath + postfix + "-hypo2hyper.csv"
         df = self._relations.copy()
         df = df[(df["hypo2hyper" + p] != 0) | (df["hypo2hyper" + p] != 0)]
-        df = df.sort(["hyponym", "hypo2hyper" + p], ascending=[1,0])
+        df = df.sort_values(["hyponym", "hypo2hyper" + p], ascending=[1,0])
         df.to_csv(relations_fpath, sep="\t", encoding="utf-8", float_format='%.5f', index=False)
         print "Proxy relations:", relations_fpath
         
