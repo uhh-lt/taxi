@@ -1,7 +1,7 @@
 import os
 import csv
 import random
-
+import sys
 
 def remove_cycles(list_data):
     hypo_to_hyper = {}
@@ -57,7 +57,7 @@ def all_parent_rel(element, list_data):
             remove_relations.append(relation)
     for ele in remove_relations:
         remove_relations += all_parent_rel(ele[2], list_data)
-    return remove_relations
+    return set(remove_relations)
 
 
 
@@ -89,7 +89,7 @@ with open(filename_in, 'rb') as f:
 
 # dict = remove_cycles(list_data)
 # list_data = []
-# iter = 1
+iter = 1
 # for key, value in dict.iteritems():
 #     list_data.append((iter, key, value))
 #     iter+=1
@@ -109,7 +109,7 @@ for element in elements:
        list_data.append((iter, ele_root[1], ROOT))
        iter+=1
 
-with open(os.path.join(os.path.dirname(filename_out, 'w') as f:
+with open(filename_out, 'w') as f:
     for element in list_data:
         print element
         f.write(str(element[0]) + '\t' + element[1] + '\t' + element[2]  + '\n')

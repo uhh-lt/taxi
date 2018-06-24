@@ -2,7 +2,7 @@
 
 CYCLE_REMOVING_TOOL="graph_pruning/graph_pruning.py"
 
-CLEANING_TOOL="jnt/isas/cleaning.py"
+CLEANING_TOOL="graph_pruning/cleaning.py"
 
 EVAL_TOOL="eval/taxi_eval_archive/TExEval.jar"
 EVAL_GOLD_STANDARD="eval/taxi_eval_archive/input/gold.taxo"
