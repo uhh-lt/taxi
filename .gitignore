@@ -80,4 +80,6 @@ resources.tgz.2
 wget-log
 
 distributed_semantics/GoogleNews-vectors-negative300.bin
+other/
 distributed_semantics/
+Documentation/
