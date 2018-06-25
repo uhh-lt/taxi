@@ -83,3 +83,6 @@ distributed_semantics/GoogleNews-vectors-negative300.bin
 other/
 distributed_semantics/
 Documentation/
+.idea/
+Model/
+TExEval_trialdata_1.2
