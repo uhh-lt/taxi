@@ -41,7 +41,7 @@ For a normal run (all resources are loaded, requires 64Gb of RAM):
 python semeval.py vocabularies/science_en.csv en simple
 
 ```
-Afterwards a noisy graph is being created. Clean the output by executing(this example uses outputfile science_en.csv-relations.csv-taxo-knn1.csv): 
+Afterwards a noisy graph is being created. Clean the output by executing(this example uses the inputfile science_en.csv-relations.csv-taxo-knn1.csv): 
 ```
 ./run.sh taxi_output/simple_full/science_en.csv-relations.csv-taxo-knn1.csv
 
