@@ -82,17 +82,13 @@ if filename_out is None:
     raise Exception("No output provided")
 
 list_data = []
+iter = 1
 with open(filename_in, 'rb') as f:
     reader = csv.reader(f, delimiter = '\t')
     for i, line in enumerate(reader):
         list_data.append((line[0], line[1], line[2]))
+        iter +=1
 
-# dict = remove_cycles(list_data)
-# list_data = []
-iter = 1
-# for key, value in dict.iteritems():
-#     list_data.append((iter, key, value))
-#     iter+=1
 
 all_parent_root = all_parent_rel(ROOT, list_data)
 for el in all_parent_root:

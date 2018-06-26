@@ -71,7 +71,7 @@ def add_line(node):
     hypo = node[1]
     hyper = node[2]
 
-    print("Read line with ID '%s': %s --> %s" % (id, hypo, hyper))
+    #print("Read line with ID '%s': %s --> %s" % (id, hypo, hyper))
 
     if hypo not in hypo_to_hyper:
         hypo_to_hyper[hypo] = hyper
@@ -97,7 +97,7 @@ supported_modes = ["tarjan", "old"]
 
 if len(sys.argv) >= 2:
     filename_in = sys.argv[1]
-    
+
 if len(sys.argv) >= 3:
     filename_out = sys.argv[2]
 
@@ -151,7 +151,7 @@ if mode == "old":
         for hypo in hypo_to_hyper:
             row = [id, hypo, hypo_to_hyper[hypo]]
 
-            print("   %s" % row)
+            #print("   %s" % row)
             writer.writerow(row)
 
             id += 1
