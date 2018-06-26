@@ -61,7 +61,7 @@ def add_inverse_relations(relations):
     for i, row in relations.iterrows():
         if row.correct == 1:  # invert only positive relations
             relations.loc[len(relations)] = [len(relations), row.hypernym, row.hyponym, 0,  row.source]
-        relations = relations.sort(["hyponym", "correct"], ascending=[1,0])
+        relations = relations.sort_values(["hyponym", "correct"], ascending=[1,0])
     
     return relations
 
@@ -81,7 +81,7 @@ def add_cohypo_negatives(relations, isa_fpath):
                     if hypo1 == hypo2: continue
                     relations.loc[len(relations)] = [len(relations), hypo1, hypo2, 0,  "negative co-hypo"]
                     neg_num += 1
-    relations = relations.sort(["hyponym", "correct"], ascending=[1,0])
+    relations = relations.sort_values(["hyponym", "correct"], ascending=[1,0])
     print "Added %d negative co-hypo relations" % neg_num
     return relations
 
@@ -416,7 +416,7 @@ def load_relations(relations_fpath, taxo_en_plants_fpath="", taxo_en_vehicles_fp
 
         relations = remove_underscores(relations)
         relations = add_inverse_relations(relations)
-        relations = relations.sort(["hyponym", "correct"], ascending=[1,0])
+        relations = relations.sort_values(["hyponym", "correct"], ascending=[1,0])
         relations.to_csv(relations_fpath, sep="\t", encoding="utf-8", float_format='%.0f', index=False)
         relations = read_csv(relations_fpath, encoding='utf-8', delimiter="\t", error_bad_lines=False)
         print "Dataset:", relations_fpath

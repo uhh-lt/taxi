@@ -60,11 +60,11 @@ class TaxonomyPredictor():
 
         if conf:
             df = df[["hyponym","hypernym","correct_predict_conf"]]
-            df = df.sort("correct_predict_conf", ascending=0)
+            df = df.sort_values("correct_predict_conf", ascending=0)
             df.to_csv(taxonomy_fpath, sep="\t", encoding="utf-8", float_format='%.5f', index=True, header=False)
         else:
             df = df[["hyponym","hypernym"]]
-            df = df.sort("hyponym", ascending=1)
+            df = df.sort_values("hyponym", ascending=1)
             df.to_csv(taxonomy_fpath, sep="\t", encoding="utf-8", float_format='%.5f', index=True, header=False)
 
         print "Taxonomy:", taxonomy_fpath
@@ -79,7 +79,7 @@ class TaxonomyPredictor():
 
         prev_hypo = ""
         k = 0
-        df = self._relations.sort(["hyponym",field], ascending=[1,0])
+        df = self._relations.sort_values(["hyponym",field], ascending=[1,0])
         for i, row in df.iterrows():
             score = row[field]
             if prev_hypo != row.hyponym: k = 0

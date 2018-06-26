@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 treetaggerwrapper
 matplotlib
 nltk
@@ -8,3 +9,15 @@ pandas
 spacy==1.9.0
 stop-words
 plumbum
+=======
+matplotlib==2.2.2
+nltk==3.3
+numpy==1.14.5
+pandas==0.23.1
+plumbum==1.6.6
+scikit-learn==0.19.1
+scipy==1.1.0
+spacy==2.0.11
+stop-words==2015.2.23.1
+treetagger==1.0.1
+>>>>>>> upstream/master
