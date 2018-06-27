@@ -1,4 +1,3 @@
-from treetagger import TreeTagger
 from spacy.lang.en import English
 from spacy.lang.fr import French
 from spacy.lang.it import Italian
@@ -46,38 +45,11 @@ _spacy_fr = French()
 _spacy_nl = Dutch()
 _spacy_it = Italian()
 
-# try:
-#     _treetagger_fr = TreeTagger(encoding='utf-8',language='french')
-#     _treetagger_nl = TreeTagger(encoding='utf-8',language='dutch')
-#     _treetagger_it = TreeTagger(encoding='utf-8',language='italian')
-# except:
-#     print "Error: cannot create TreeTagger"
-#     print format_exc()
-
 def get_stoplist():
     return _stop_words
 
-# def lemmatize_tt(text, lang="fr"):
-#     if lang == "fr": treetagger = _treetagger_fr
-#     elif lang == "nl": treetagger = _treetagger_nl
-#     elif lang == "it": treetagger = _treetagger_it
-#
-#     lemmas = []
-#     for surface, pos, lemma in treetagger.tag(text):
-#         if lemma == "<unknown>" or "@" in lemma:
-#             lemmas.append(surface)
-#         else:
-#             lemmas.append(lemma)
-#     return " ".join(lemmas)
-
 def lemmatize(text, lowercase=True, lang="en"):
     """ Return lemmatized text """
-    
-    # if lang in ["fr", "nl", "it"]:
-    #     text_lemmatized = lemmatize_tt(text, lang=lang)
-    # else:
-    #     tokens = _spacy(text)
-    #     text_lemmatized = " ".join(t.lemma_ for t in tokens)
 
     if lang == "en":
         tokens = _spacy(text)
