@@ -44,9 +44,11 @@ echo "Result of eval-tool written to: $OUTPUT_DIR/$FILE_EVAL_TOOL_RESULT"
 echo
 
 L_GOLD="$(wc -l $EVAL_GOLD_STANDARD | grep -o -E '^[0-9]+').0"
-L_INPUT="$(wc -l $1 | grep -o -E '^[0-9]+').0"
+L_INPUT="$(wc -l $OUTPUT_DIR/$FILE_CLEANED_OUT | grep -o -E '^[0-9]+').0"
 RECALL="$(tail -n 1 $OUTPUT_DIR/$FILE_EVAL_TOOL_RESULT | grep -o -E '[0-9]+[\.]?[0-9]*')"
 
+echo $L_INPUT
+echo $L_GOLD
 
 PRECISION=$(echo "print $RECALL * $L_GOLD / $L_INPUT" | python)
 F1=$(echo "print 2 * $RECALL * $PRECISION / ($PRECISION + $RECALL)" | python)

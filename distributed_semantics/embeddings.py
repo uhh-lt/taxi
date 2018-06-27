@@ -6,6 +6,7 @@ from sklearn.manifold import TSNE
 import matplotlib.pyplot as plt
 import os
 from scipy import spatial
+import sense2vec
 
 
 def read_embeddings(embedding_path):
@@ -169,7 +170,7 @@ def read_trial_data():
     return [correct_relations, wrong_relations]
 
 
-def taxonomy_eval(filename_in, word_embeddings, filename_out, mode = 'k-nearest'):
+def taxonomy_eval(filename_in, filename_gold, word_embeddings, filename_out, mode = 'k-nearest'):
     list_data_o = []
     list_data = []
     with open(filename_in, 'rb') as f:
@@ -200,7 +201,8 @@ def taxonomy_eval(filename_in, word_embeddings, filename_out, mode = 'k-nearest'
         hypernyms = co_hypernymy(list_data)
         #outliers = k_closest_words(200, taxonomy_embedding,co_hypernyms_relations(hypernyms), "Taxonomy")
         outliers = k_closest_words(200, taxonomy_embedding, list_data, "Taxonomy")
-        remove_outliers_and_write(filename_out,list_data_o,outliers, 0.0)
+        remove_outliers_and_compare(filename_gold,list_data_o,outliers, 0.0)
+        #remove_outliers_and_write(filename_out,list_data_o,outliers, 0.0)
 
     elif mode =='visualize':
         # hypernyms = co_hypernymy(list_data)
@@ -217,6 +219,34 @@ def taxonomy_eval(filename_in, word_embeddings, filename_out, mode = 'k-nearest'
         visualize_taxonomy(vectors, taxonomy_embedding.keys())
 
 
+def remove_outliers_and_compare(filename_gold, taxonomy, outliers,fraction):
+    gold = []
+    with open(filename_gold, 'rb') as f:
+        reader = csv.reader(f, delimiter = '\t')
+        for i, line in enumerate(reader):
+            gold.append((line[0], line[1], line[2]))
+    removed_outliers = []
+    for element in taxonomy:
+        # if element[1].replace(' ', '_') in outliers:
+        #     print "skip: " + element[1] + " " + element[2]
+        #     continue
+        removed_outliers.append(element)
+
+    correct = 0
+    for element in removed_outliers:
+        for ele_g in gold:
+            if element[1] == ele_g[1] and element[2] == ele_g[2]:
+                correct+=1
+    precision = correct / float(len(removed_outliers))
+    recall = correct / float(len(gold))
+    print float(len(removed_outliers))
+    print float(len(gold))
+    print "Correct: " + str(correct)
+    print "Precision: " + str(precision)
+    print "Recall: " + str(recall)
+    print "F1: " + str(2*precision *recall / (precision + recall))
+
+
 def remove_outliers_and_write(filename_out, taxonomy, outliers,fraction):
     outliers = outliers[int(len(outliers) * fraction):]
     print outliers
@@ -226,7 +256,7 @@ def remove_outliers_and_write(filename_out, taxonomy, outliers,fraction):
             if element[1].replace(' ', '_') in outliers:
                 print "skip: " + element[1] + " " + element[2]
                 continue
-            f.write(str(element[0]) + '\t' + element[1] + '\t' + element[2]  + '\n')
+            f.write(element[0] + '\t' + element[1] + '\t' + element[2]  + '\n')
     f.close()
 
 def trial_eval(word_embeddings, mode):
@@ -270,7 +300,7 @@ def trial_eval(word_embeddings, mode):
 def main(word_embeddings, filename_in = None, filename_gold = None, filename_out = None,  mode = 'k-nearest'):
 
     if filename_in != "None":
-         taxonomy_eval(filename_in, word_embeddings, filename_out,  mode)
+         taxonomy_eval(filename_in, filename_gold, word_embeddings, filename_out,  mode)
 
 
     # if filename_gold != "None":
@@ -294,6 +324,60 @@ def visualize_taxonomy(taxonomy_vectors, taxonomy_names):
 def cossine_matrix(taxonomy_vectors):
     return cosine_similarity(taxonomy_vectors, taxonomy_vectors)
 
+def find_matches(taxonomy, s2v):
+    words = set([])
+    for relation in taxonomy:
+        words.add(relation[1])
+        words.add(relation[2])
+    pairs = []
+    for word in words:
+        for word2 in words:
+            if not (word, word2) in pairs:
+                pairs.append((word, word2))
+    for element in  pairs:
+        if element[0].decode('unicode-escape') + '|NOUN' in s2v:
+            freq, vector = s2v[element[0].decode('unicode-escape') + '|NOUN']
+            most_similar, scores = s2v.most_similar(vector, n=2)
+            if (element[1].decode('unicode-escape') + '|NOUN') in s2v and (element[1].decode('unicode-escape') + '|NOUN') in most_similar[0] and element[1] != element[0]:
+                index = most_similar[0].index(element[1].decode('unicode-escape') + '|NOUN')
+                print element[0] +  " " + element[1] + " "  + str(scores[index])
+
+def testing_sv2(filename_in, s2v):
+    list_data = []
+    list_data_o = []
+    with open(filename_in, 'rb') as f:
+        reader = csv.reader(f, delimiter = '\t')
+        for i, line in enumerate(reader):
+            list_data.append((line[0], line[1], line[2]))
+            list_data_o.append((line[0], line[1], line[2]))
+
+    for i in range(len(list_data)):
+        list_data[i] = (list_data[i][0], list_data[i][1].replace(" ", "_"), list_data[i][2].replace(" ", "_"))
+
+    find_matches(list_data, s2v)
+
+    hypernyms = co_hypernymy(list_data)
+    outliers = {}
+    for element in  co_hypernyms_relations(hypernyms):
+        if element[1].decode('unicode-escape') + '|NOUN' in s2v:
+            freq, vector = s2v[element[1].decode('unicode-escape') + '|NOUN']
+            most_similar = s2v.most_similar(vector, n=10000)
+            if (element[2].decode('unicode-escape') + '|NOUN') in s2v and not (element[2].decode('unicode-escape') + '|NOUN') in most_similar[0]:
+                if element[2] in outliers:
+                    outliers[element[2]]+=1
+                else:
+                    outliers[element[2]] = 1
+                if element[1] in outliers:
+                    outliers[element[1]]+=1
+                else:
+                    outliers[element[1]] = 1
+
+                #print element[1] + " " + element[2]
+            #else:
+                #print "YAAY"
+    outliers = sorted(outliers.items(), key=lambda x: x[1])
+    print outliers
+    outliers = [element[0] for element in outliers if element[1] > 20]
 
 filename_in = None
 filename_gold = None
@@ -316,8 +400,30 @@ if len(sys.argv) >= 5:
 
 if len(sys.argv) >= 6:
     mode = sys.argv[5]
+#
+
+#s2v = sense2vec.load('reddit_vectors-1.1.0')
+
+list_data_o = []
+outliers = []
+with open(filename_in, 'rb') as f:
+    reader = csv.reader(f, delimiter = '\t')
+    for i, line in enumerate(reader):
+        list_data_o.append((line[0], line[1], line[2]))
+
+
+remove_outliers_and_compare(filename_gold, list_data_o, outliers,0.0)
 
 
 
-embeddings = read_embeddings(word_embeddings)
-main(embeddings, filename_in, filename_gold, filename_out, mode)
+
+    # else:
+    #     print element[1] + " not in s2v"
+
+
+
+# embeddings = read_embeddings(word_embeddings)
+# main(embeddings, filename_in, filename_gold, filename_out, mode)
+
+
+# COMMAND : python embeddings.py ../out/science_en.csv-relations.csv-taxo-knn1.csv-pruned.csv-cleaned.csv ../eval/taxi_eval_archive/input/gold.taxo GoogleNews-vectors-negative300.bin k-nearest
