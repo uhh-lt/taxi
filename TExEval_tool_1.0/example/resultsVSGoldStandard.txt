@@ -1,0 +1,10 @@
+Taxonomy file	./example/sys1.taxo
+Gold Standard file	./example/gold1.taxo
+Root	entity
+level	B	Weight	BxWeight
+0	0.18257418583505536	1.0	0.18257418583505536
+1	0.18257418583505536	0.5	0.09128709291752768
+2	0.18257418583505536	0.3333333333333333	0.06085806194501845
+3	0.0	0.25	0.0
+Cumulative Measure	0.16066528353484874
+Recall from relation overlap	0.625
