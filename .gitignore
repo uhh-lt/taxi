@@ -81,3 +81,5 @@ wget-log
 
 distributed_semantics/GoogleNews-vectors-negative300.bin
 distributed_semantics/reddit_vectors-1.1.0/
+distributed_semantics/wiki-news-300d-1M-subword.vec
+
