@@ -2,12 +2,13 @@ from sklearn.feature_selection import SelectKBest, chi2
 from sklearn.naive_bayes import MultinomialNB
 from sklearn.linear_model import LogisticRegression
 from sklearn.svm import SVC
-from sklearn.ensemble import RandomForestClassifier, GradientBoostingClassifier, AdaBoostClassifier, RandomTreesEmbedding, BaggingClassifier  
+from sklearn.ensemble import RandomForestClassifier, GradientBoostingClassifier, AdaBoostClassifier, RandomTreesEmbedding, BaggingClassifier
 from sklearn.dummy import DummyClassifier
 from sklearn.neighbors import RadiusNeighborsClassifier
 from sklearn.externals import joblib
 from sklearn.cross_validation import train_test_split, cross_val_score
 from sklearn.metrics import classification_report
+from sklearn.neural_network import MLPClassifier
 from sklearn.svm import LinearSVC
 import numpy as np
 from collections import defaultdict
@@ -23,9 +24,9 @@ from sklearn.grid_search import GridSearchCV
 
 
 CV_NUM = 5
-FEATURES = ["hyper_in_hypo_i","hypo2hyper_substract"] 
-METHODS = ["LogisticRegressionL2","SVCLinear","LinearSVC","SVC","GradientBoosting","Bagging","RandomForest",
-            "MultinomialNB", "Dummy","AdaBoost","LogisticRegressionL1"]
+FEATURES = ["hyper_in_hypo_i","hypo2hyper_substract"]
+METHODS = ["MLP"]
+ #"LogisticRegressionL2","SVCLinear","LinearSVC""GradientBoosting","Bagging","RandomForest", "MultinomialNB", "Dummy","AdaBoost","LogisticRegressionL1"]
 
 
 class SuperTaxi:
@@ -39,7 +40,7 @@ class SuperTaxi:
         kbest_fpath = join(model_dir, self.KBEST_FILE)
         self._model_dir = model_dir
         self._meta_fpath = join(model_dir, self.META_FILE)
-        
+
         self._meta = {}
         self._meta["method"] = method
         self._meta["k"] = k
@@ -54,13 +55,13 @@ class SuperTaxi:
             # model doesn't exist, or must be overwritten create a new one
             ensure_dir(model_dir)
             self.save_meta()
-          
+
     @property
     def meta(self):
         return self._meta
-    
+
     def __str__(self):
-        
+
         try: params = self._clf.get_params()
         except: params = ""
         return "Classifier:" + str(self._meta) + "\n" + unicode(params)
@@ -137,15 +138,15 @@ class SuperTaxi:
         for scoring in ["precision", "recall", "f1", "accuracy"]:
             s = cross_val_score(clf, X, y, cv=CV_NUM, scoring=scoring, n_jobs=CV_NUM)
             print"\t%s: %.2f +- %.2f" % (scoring, s.mean(), s.std())
-    
+
     def train(self, relations):
         self.X, self.y, self.X_names, self.y_name = self._relations2features(relations)
         self._clf = self._train_classifier(self.X, self.y)
-        joblib.dump(self._clf, self.classifier_fpath) 
-        print "Saved classifier to:", self.classifier_fpath  
-        
+        joblib.dump(self._clf, self.classifier_fpath)
+        print "Saved classifier to:", self.classifier_fpath
+
         return self._clf
- 
+
     def _train_classifier(self, X, y):
         print "Training classifier..."
         tic=time()
@@ -156,7 +157,7 @@ class SuperTaxi:
         toc=time()
         print "Traning classifier: %d sec." % (toc-tic)
         return c
-  
+
     def grid_search_svc(self, relations, test=False):
         if test:
             param_grid = [
@@ -168,46 +169,46 @@ class SuperTaxi:
               {'C': [0.1, 1, 10, 50, 100, 1000, 10000], 'kernel': ['linear']},
               {'C': [0.1, 1, 10, 50, 100, 1000, 10000], 'gamma': [1, 0.1, 0.01, 0.001, 0.0001], 'kernel': ['rbf']},
             ]
-        
+
         e = SVC(C=1, kernel='linear', probability=False)
         clf = GridSearchCV(estimator=e, param_grid=param_grid, scoring=None,
                      fit_params=None, n_jobs=16, iid=True, refit=True, cv=CV_NUM,
                      verbose=0, pre_dispatch='2*n_jobs', error_score='raise')
-        
+
         X, y, X_names, y_name = self._relations2features(relations)
-        
+
         #if test:
         #    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.1, random_state=42)
         #    X = X_test
         #    y = y_test
-        
+
         self._clf = clf.fit(X, y)
-        
+
         print "Best score:", self._clf.best_score_
         print "Best classifier:", self._clf.best_estimator_
-        joblib.dump(self._clf, self.classifier_fpath) 
-        print "Saved best classifier to:", self.classifier_fpath  
+        joblib.dump(self._clf, self.classifier_fpath)
+        print "Saved best classifier to:", self.classifier_fpath
 
-        return 
+        return
 
     def predict(self, relations):
-        if self._clf == None: 
+        if self._clf == None:
             print "Error: classifier is not loaded."
             return relations
-        
+
         X, y, X_names, y_name = self._relations2features(relations)
-        
+
         if hasattr(self._clf, 'predict_proba'):
             conf = self._clf.predict_proba(X)
         else:
             conf = np.ones([len(relations), 2])
-        
+
         y_predict = self._clf.predict(X)
         relations["correct_predict"] = Series(y_predict, index=relations.index, dtype=float)
         relations["correct_predict_conf"] = Series(np.max(conf, axis=1), index=relations.index, dtype=float)
 
         return relations
-        
+
     def _create_classifier(self):
         if self._meta["method"] == "LogisticRegressionL2": clf = LogisticRegression(penalty='l2', tol=0.0001, C=1.0)  #, class_weight='auto')
         elif self._meta["method"] == "LogisticRegressionL1": clf = LogisticRegression(penalty='l1', tol=0.0001, C=1.0)  #, class_weight='auto')
@@ -220,10 +221,11 @@ class SuperTaxi:
         elif self._meta["method"] == 'GradientBoosting': clf = GradientBoostingClassifier()
         elif self._meta["method"] == 'AdaBoost': clf = AdaBoostClassifier()
         elif self._meta["method"] == 'RandomTreesEmbedding': clf = RandomTreesEmbedding()
-        elif self._meta["method"] == 'Bagging': clf = BaggingClassifier()  
+        elif self._meta["method"] == 'Bagging': clf = BaggingClassifier()
+        elif self._meta["method"] == 'MLP': clf = MLPClassifier(alpha=1)
         else: clf = LogisticRegression(penalty='l2', tol=0.0001, C=1.0)  # , class_weight='auto')
-        return clf 
-    
+        return clf
+
     def _print_clf_info(self):
         try:
             print "parameters:", self._clf.get_params()

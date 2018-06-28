@@ -1,0 +1,114 @@
+[33mcommit 2e2bb1719a0c34ad6b0b85ac6abe30c8cc6faef8[m
+Author: Raldir <rami.dragneel@outlook.com>
+Date:   Thu Apr 26 11:21:16 2018 +0200
+
+    added Doc and Data
+
+[33mcommit 6e5ac7a5717db17823c4b1d9141472983f72dc11[m
+Author: Alexander Panchenko <panchenko.alexander@gmail.com>
+Date:   Thu Dec 22 15:25:54 2016 +0100
+
+    add semeval 2015 domain vocabularies
+
+[33mcommit fb0f30450f0d5f07ed837cd1dfd61d7123676c2b[m
+Author: Alexander Panchenko <panchenko.alexander@gmail.com>
+Date:   Thu Oct 6 19:25:09 2016 +0200
+
+    Update README.md
+
+[33mcommit 6e648c4e988bad48418852065af1c3eb7c33cf10[m
+Author: Alexander Panchenko <panchenko.alexander@gmail.com>
+Date:   Thu Oct 6 19:24:42 2016 +0200
+
+    Update README.md
+
+[33mcommit 60797f1d736fdd89305dc1d7d9a107e42d807727[m
+Author: Alexander Panchenko <panchenko.alexander@gmail.com>
+Date:   Thu Oct 6 19:24:04 2016 +0200
+
+    Update README.md
+
+[33mcommit 79561ea55e39b89f18f13e23ecb0e3fa16956d1a[m
+Author: Alexander Panchenko <panchenko.alexander@gmail.com>
+Date:   Thu Oct 6 19:21:52 2016 +0200
+
+    Update README.md
+
+[33mcommit b3ee4c3543f6d1d3909ede736ac061f7d0984b66[m
+Author: Alexander Panchenko <panchenko.alexander@gmail.com>
+Date:   Thu Oct 6 19:21:07 2016 +0200
+
+    test in the readme
+
+[33mcommit e42cadf75d4edce81ce037650bd7b7ea35ede78e[m
+Author: Alexander Panchenko <panchenko.alexander@gmail.com>
+Date:   Thu Oct 6 19:19:06 2016 +0200
+
+    test flag
+
+[33mcommit d723c6efc88b9780c0c4531b650b41a8215300b8[m
+Author: Alexander Panchenko <panchenko.alexander@gmail.com>
+Date:   Thu Oct 6 18:38:09 2016 +0200
+
+    vocabularies added
+
+[33mcommit 038726135ed9fb4285ffee19e04c9c1c6cc28b5d[m
+Author: Alexander Panchenko <panchenko.alexander@gmail.com>
+Date:   Thu Oct 6 18:00:59 2016 +0200
+
+    readme fix
+
+[33mcommit 6563e329e38317d70365f27930e47bf4491ba183[m
+Merge: 3c86d92 a926405
+Author: Alexander Panchenko <panchenko.alexander@gmail.com>
+Date:   Tue May 3 21:54:07 2016 +0200
+
+    Merge branch 'master' of github.com:tudarmstadt-lt/taxi
+
+[33mcommit 3c86d927220ced641b34fd85b5b242ce5aefcda0[m
+Author: Alexander Panchenko <panchenko.alexander@gmail.com>
+Date:   Tue May 3 21:54:03 2016 +0200
+
+    ipynb
+
+[33mcommit a9264050b86eb693beec10ed3169f4ced88e0a51[m
+Author: Alexander Panchenko <panchenko.alexander@gmail.com>
+Date:   Tue May 3 21:53:11 2016 +0200
+
+    random sample added
+
+[33mcommit b5fea2fe95a1fcb752ed83784392829744a21e1c[m
+Author: Alexander Panchenko <panchenko.alexander@gmail.com>
+Date:   Mon May 2 10:41:25 2016 +0200
+
+    add missing dependencies
+
+[33mcommit ad6946713e41e95f187a3e8972340ee87228cab0[m
+Author: Alexander Panchenko <panchenko.alexander@gmail.com>
+Date:   Sun May 1 16:29:55 2016 +0200
+
+    add missing dependencies
+
+[33mcommit f1789d38a71e5a45ac0f06eb0da97b4f00728b99[m
+Author: Alexander Panchenko <panchenko.alexander@gmail.com>
+Date:   Wed Mar 9 20:48:12 2016 +0100
+
+    Update README.md
+
+[33mcommit df55448ca87892f1ebe9367cf1a2937d7db97933[m
+Author: Alexander Panchenko <panchenko.alexander@gmail.com>
+Date:   Tue Mar 1 23:05:05 2016 +0100
+
+    remove irrelevant, some minor fixes
+
+[33mcommit 24cf39cc3f9dc2a81eafed72662282e71916381c[m
+Author: Alexander Panchenko <panchenko.alexander@gmail.com>
+Date:   Tue Mar 1 22:59:28 2016 +0100
+
+    initial commit
+
+[33mcommit 985443a93971fc22aa2a66e676687edc2c4c4de4[m
+Author: Alexander Panchenko <panchenko.alexander@gmail.com>
+Date:   Wed Feb 17 18:03:16 2016 +0100
+
+    Initial commit

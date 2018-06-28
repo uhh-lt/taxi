@@ -14,37 +14,40 @@ class TaxonomyPredictor():
     def evaluate(self, field=""):
         accuracy(self._relations, field)
 
+    def get_relations():
+        return self._relations
+        
     def predict_and_evaluate(self):
         self.predict_by_global_threshold(threshold=0.0, field="hyper_in_hypo_i")
         self.evaluate("hyper_in_hypo_i")
-        
+
         self.predict_by_global_threshold(threshold=0.0, field="hypo2hyper_substract")
         self.evaluate("hypo2hyper_substract")
 
         for p in ["", "2", "3", "_s", "2_s", "3_s", "_max2", "_mean2"]:
             r = predict_by_isas(self._relations, p)
             accuracy(r, "hypo2hyper" + p)
-        
+
         for isa_name in self._features._isas:
             p = "_" + isa_name
             r = predict_by_isas(self._relations, p)
             accuracy(r, "hypo2hyper" + p)
-            
+
             r = predict_by_out_degrees(self._relations, p, weight=False)
             accuracy(r, "out degrees num" + p)
-            
+
             r = predict_by_out_degrees(self._relations, p, weight=True)
             accuracy(r, "out degrees weight" + p)
-            
+
             r = predict_by_in_degrees(self._relations, p, weight=False)
             accuracy(r, "in degrees num" + p)
-            
+
             r = predict_by_in_degrees(self._relations, p, weight=True)
             accuracy(r, "in degrees weight" + p)
 
         r = predict_by_length(self._relations)
         accuracy(r, "length")
-    
+
         r = predict_by_random(self._relations)
         accuracy(r, "random")
 
@@ -73,15 +76,15 @@ class TaxonomyPredictor():
 
     def predict_by_local_threshold(self, max_knn=3, threshold=0.0, field="", or_correct_predict=False):
         predict = np.zeros(len(self._relations))
-       
+
         prev_hypo = ""
         k = 0
         df = self._relations.sort_values(["hyponym",field], ascending=[1,0])
         for i, row in df.iterrows():
-            score = row[field] 
+            score = row[field]
             if prev_hypo != row.hyponym: k = 0
             if k < max_knn and score > threshold: predict[i] = 1
-            
+
             k += 1
             prev_hypo = row.hyponym
             #if score > 0:
@@ -91,16 +94,16 @@ class TaxonomyPredictor():
         if or_correct_predict and "correct_predict" in self._relations:
             self._relations["correct_predict"] = self._relations[["tmp","correct_predict"]].max(axis=1)
         else:
-            self._relations["correct_predict"] = self._relations["tmp"] 
-        
+            self._relations["correct_predict"] = self._relations["tmp"]
+
         self._relations = self._relations.drop('tmp', 1)
 
     def predict_by_global_threshold(self, threshold=0.0, field="", or_correct_predict=False):
         predict = np.zeros(len(self._relations))
-        
+
         for i, row in self._relations.iterrows():
-            score = row[field] 
-            if score <= threshold: 
+            score = row[field]
+            if score <= threshold:
                 predict[i] = 0
             else:
                 predict[i] = 1
@@ -109,8 +112,8 @@ class TaxonomyPredictor():
         if or_correct_predict and "correct_predict" in self._relations:
             self._relations["correct_predict"] = self._relations[["tmp","correct_predict"]].max(axis=1)
         else:
-            self._relations["correct_predict"] = self._relations["tmp"] 
-        
+            self._relations["correct_predict"] = self._relations["tmp"]
+
         self._relations = self._relations.drop('tmp', 1)
 
 
@@ -146,11 +149,11 @@ def predict_by_word_freq(relations, comparable_freqs_heuristic=False, field_name
 
 def predict_by_isas(relations, p=""):
     predict = np.zeros(len(relations))
-    
+
     for i, row in relations.iterrows():
-        hypo2hyper = row["hypo2hyper" + p] 
-        hyper2hypo = row["hyper2hypo" + p] 
-        if hypo2hyper == 0 and hyper2hypo == 0: 
+        hypo2hyper = row["hypo2hyper" + p]
+        hyper2hypo = row["hyper2hypo" + p]
+        if hypo2hyper == 0 and hyper2hypo == 0:
             predict[i] = 0
         else:
             predict[i] = hypo2hyper > hyper2hypo
@@ -171,9 +174,9 @@ def predict_by_random(relations):
 def predict_by_substrings(relations):
     predict = np.zeros(len(relations))
     for i, row in relations.iterrows():
-        hypo_in_hyper = row["hypo_in_hyper"] 
-        hyper_in_hypo = row["hyper_in_hypo"] 
-        if hypo_in_hyper == 0 and hyper_in_hypo == 0: 
+        hypo_in_hyper = row["hypo_in_hyper"]
+        hyper_in_hypo = row["hyper_in_hypo"]
+        if hypo_in_hyper == 0 and hyper_in_hypo == 0:
             predict[i] = 0
         else:
             predict[i] = hypo_in_hyper == 0 and hyper_in_hypo > 0
