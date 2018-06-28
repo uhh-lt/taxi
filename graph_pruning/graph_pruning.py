@@ -13,7 +13,7 @@ def prepare_tarjan(node):
     hypo = node[1]
     hyper = node[2]
 
-    print("Read line with ID '%s': %s --> %s" % (id, hypo, hyper))
+    #print("Read line with ID '%s': %s --> %s" % (id, hypo, hyper))
 
     if hyper not in hyper_to_hypo:
         hyper_to_hypo[hyper] = []
@@ -71,7 +71,7 @@ def add_line(node):
     hypo = node[1]
     hyper = node[2]
 
-    print("Read line with ID '%s': %s --> %s" % (id, hypo, hyper))
+    #print("Read line with ID '%s': %s --> %s" % (id, hypo, hyper))
 
     if hypo not in hypo_to_hyper:
         hypo_to_hyper[hypo] = hyper
@@ -97,7 +97,7 @@ supported_modes = ["tarjan", "old"]
 
 if len(sys.argv) >= 2:
     filename_in = sys.argv[1]
-    
+
 if len(sys.argv) >= 3:
     filename_out = sys.argv[2]
 
@@ -158,7 +158,7 @@ if mode == "old":
 elif mode == "tarjan":
     result = do_tarjan()
 
-    print("Relations created (tarjan):")
+    #print("Relations created (tarjan):")
     print(result)
 
     print("Write result.")
@@ -185,7 +185,7 @@ elif mode == "tarjan":
                 else:
                     row = [id, hypo, hyper]
 
-                    print("   %s" % row)
+                    #print("   %s" % row)
                     writer.writerow(row)
 
                     graphviz += "\"%s\" -> \"%s\"\n" % (hyper, hypo)
@@ -201,7 +201,7 @@ elif mode == "tarjan":
     graphviz += "}"
 
 
-    print(graphviz)
+    #print(graphviz)
 
     with open(filename_out + "_gephi.csv", "w+") as f:
         writer = csv.writer(f, delimiter=delimiter)
@@ -218,7 +218,7 @@ elif mode == "tarjan":
                 else:
                     row = [id, hypo, hyper]
 
-                    print("   %s" % row)
+                    #print("   %s" % row)
                     writer.writerow(row)
 
                     graphviz += "\"%s\" -> \"%s\"\n" % (hyper, hypo)

@@ -1,0 +1,244 @@
+ecology climate
+0.3906108908464701
+
+0.23345903165182488
+
+Uppercase in Model: Chemical_Engineering
+['thermodynamics']
+chemical_engineering thermodynamics
+0.29949264199328546
+
+0.29949264199328546
+
+['graphics', 'music', 'networks', 'os', 'syntax']
+communication networks
+0.28504012569533743
+
+0.24660530910784464
+
+['analytical_chemistry', 'biochemistry', 'biogeochemistry', 'composition', 'geochemistry', 'inorganic_chemistry', 'medicinal_chemistry', 'pharmacology', 'polymer_chemistry']
+chemistry composition
+0.3138873813299064
+
+0.20064439900425218
+
+['aerodynamics', 'aquatic_ecology', 'biomaterials', 'biomedical', 'cognitive_psychology', 'communication', 'ecology', 'electrical_engineering', 'ergonomics', 'geotechnical_engineering', 'instrumentation', 'kinesiology', 'manufacturing', 'mechanical_engineering', 'oceanography', 'robotics']
+engineering communication
+0.1993595890263264
+
+0.1210307866157664
+
+['meteorology']
+oceanography meteorology
+0.5372204052130773
+
+0.43210113526349375
+
+['cognitive_neuroscience', 'computational_neuroscience', 'epidemiology', 'molecular_neuroscience']
+neuroscience epidemiology
+0.5087710147080388
+
+0.3870129904473165
+
+['endocrinology', 'paleontology', 'parasitology']
+zoology paleontology
+0.555093369798117
+
+0.45853788597095063
+
+Uppercase in Model: Public_Policy
+['immunopathology']
+pathology immunopathology
+0.4059956575968568
+
+0.35135740156611256
+
+['epistemology']
+metaphysics epistemology
+0.6720131439611167
+
+0.48651281385662715
+
+['entomology']
+horticulture entomology
+0.5944964547417182
+
+0.45319540402886954
+
+['computational_linguistics', 'morphology', 'phonology', 'psycholinguistics', 'sociolinguistics']
+linguistics morphology
+0.22072648411159732
+
+0.1737258468376688
+
+['criminology']
+sociology criminology
+0.7448034629391963
+
+0.5276875559186291
+
+['botany', 'molecular_biology', 'molecular_genetics']
+genetics botany
+0.430952542896692
+
+0.255424382997022
+
+['cognitive_psychology', 'developmental_psychology']
+psychology cognitive_psychology
+0.5752881602856804
+
+0.5028874596143216
+
+['classics', 'cultural_anthropology', 'geography', 'history', 'linguistics', 'musicology', 'philosophy', 'psychology', 'religion', 'sociology', 'theology']
+humanities classics
+0.25102138116271877
+
+0.12558793503196308
+
+['ethics', 'metaphysics']
+religion metaphysics
+0.46920684848256494
+
+0.355190731330147
+
+['biogeochemistry']
+geochemistry biogeochemistry
+0.6447575321440839
+
+0.6510309083934049
+
+['biomechanics']
+mechanical_engineering biomechanics
+0.34796520037629086
+
+0.3270107727668224
+
+['ethnomusicology', 'playwriting']
+music ethnomusicology
+0.51807452266325
+
+0.4127166149086096
+
+Uppercase in Model: Physical_Chemistry
+Uppercase in Model: Computer_Science
+['algorithms', 'artificial_intelligence', 'computational_biology', 'networking', 'semantics']
+computer_science networking
+0.22405656676102592
+
+0.22405656676102592
+
+['circuits']
+electrical_engineering circuits
+0.19796222573247715
+
+0.1958028056667391
+
+['ethnomusicology']
+musicology ethnomusicology
+0.699829824180774
+
+0.4580901069460445
+
+Uppercase in Model: Theatre
+['nutrition']
+instrumentation nutrition
+0.06199561406080053
+
+0.008537344240611608
+
+Uppercase in Model: Organic_Chemistry
+['inorganic_chemistry', 'microbial_ecology']
+organic_chemistry inorganic_chemistry
+0.5572057848086875
+
+0.5572057848086875
+
+Uppercase in Model: Social_Psychology
+Uppercase in Model: Public_Affairs
+Uppercase in Model: Political_Science
+['cultural_anthropology', 'linguistic_anthropology']
+anthropology cultural_anthropology
+0.7074336886302272
+
+0.5086672528363153
+
+['biostatistics', 'nutritional_epidemiology']
+epidemiology nutritional_epidemiology
+0.6445506735880071
+
+0.4776920597684049
+
+['algebra', 'algebraic_geometry', 'analysis', 'chemistry', 'dynamical_systems', 'fluid_dynamics', 'ordinary_differential_equations', 'partial_differential_equations', 'physics', 'probability', 'quantum_physics']
+mathematics analysis
+0.12939704669521057
+
+0.0735505890276634
+
+Uppercase in Model: Cell_Biology
+['biochemistry', 'developmental_biology']
+cell_biology biochemistry
+0.5365240279201972
+
+0.5365240279201972
+
+['biophysics', 'cosmology', 'geophysics', 'metaphysics', 'optics', 'quantum_physics']
+physics geophysics
+0.39972555791511216
+
+0.3759257478973523
+
+['comparative_physiology', 'exercise_physiology', 'molecular_physiology']
+physiology molecular_physiology
+0.5160356579549974
+
+0.48405213217823967
+
+['atmospheric_sciences', 'cognitive_neuroscience', 'computational_neuroscience', 'electromagnetics', 'geology', 'geophysics', 'metallurgy', 'microbiology', 'molecular_neuroscience', 'neuroscience', 'physiology', 'engineering', 'humanities', 'mathematics', 'zoology', 'methodologies']
+science methodologies
+0.2291663715931292
+
+0.09929921194726067
+
+['macroeconomics']
+economics macroeconomics
+0.6962902722906239
+
+0.4878886055060016
+
+['pathology', 'phonetics', 'toxicology', 'virology']
+analysis phonetics
+0.12734675170495122
+
+0.04534477521303953
+
+['biophysics', 'genetics', 'immunology']
+biochemistry genetics
+0.555833043382366
+
+0.42413700437364715
+
+['pragmatics']
+computational_linguistics pragmatics
+0.2798576625995788
+
+0.24879823863417375
+
+Uppercase in Model: Applied_Mechanics
+['tribology']
+applied_mechanics tribology
+0.48896496668555245
+
+0.48896496668555245
+
+['comparative_literature']
+classics comparative_literature
+0.30464390433967375
+
+0.2955590558426812
+
+['archaeological']
+history archaeological
+0.2736466939282833
+
+0.2604884078421961
+

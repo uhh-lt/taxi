@@ -1,0 +1,17 @@
+[('physical_science', 1), ('geology', 1), ('number_theory', 1), ('animal_science', 1), ('criminology', 1), ('geochemistry', 1), ('plant_science', 1), ('fluid_mechanics', 1), ('electromagnetics', 1), ('zoology', 1), ('numerical_analysis', 1), ('biochemistry', 1), ('life_science', 1), ('social_history', 1), ('earth_science', 1), ('ethics', 1), ('set_theory', 1), ('algebraic_geometry', 2), ('medicinal_chemistry', 2), ('computational_biology', 2), ('analytical_chemistry', 2), ('metallurgy', 2), ('control_theory', 2), ('pharmacology', 2), ('environmental_health', 2), ('programming_languages', 2), ('physical_chemistry', 2), ('soil_science', 2), ('cosmology', 2), ('cultural_history', 2), ('organic_chemistry', 2), ('biophysics', 2), ('algorithms', 2), ('sociology', 3), ('partial_differential_equations', 3), ('dynamical_systems', 3), ('geophysics', 3), ('information_systems', 3), ('philosophy', 3), ('fluid_dynamics', 4), ('linguistics', 4), ('networking', 4), ('virology', 4), ('cultural_anthropology', 4), ('international_relations', 4), ('toxicology', 4), ('artificial_intelligence', 4), ('applied_mathematics', 4), ('pathology', 4), ('metaphysics', 4), ('computer_science', 4), ('algebra', 4), ('physics', 4), ('geography', 5), ('quantum_physics', 5), ('human_geography', 5), ('psychology', 5), ('robotics', 6), ('musicology', 6), ('history', 6), ('theology', 6), ('chemistry', 6), ('scientific_computing', 8), ('materials_science', 8), ('structural_engineering', 8), ('energy_systems', 8), ('environmental_sciences', 8), ('phonetics', 9), ('biomaterials', 10), ('ecology', 10), ('biological_engineering', 10), ('civil_engineering', 10), ('industrial_engineering', 10), ('environmental_engineering', 11), ('oceanography', 11), ('systems_engineering', 11), ('methodologies', 11), ('chemical_engineering', 12), ('aerospace_engineering', 12), ('cognitive_psychology', 12), ('mechanical_engineering', 12), ('semantics', 12), ('petroleum_engineering', 12), ('computer_engineering', 12), ('composition', 12), ('electrical_engineering', 12), ('software_engineering', 13), ('signal_processing', 13), ('public_affairs', 14), ('nuclear_physics', 14), ('kinesiology', 14), ('optics', 15), ('engineering_physics', 15), ('social_science', 16), ('analysis', 16), ('air_traffic_control', 18), ('networks', 18), ('public_policy', 18), ('music', 20), ('theatre', 20), ('syntax', 22), ('religion', 22), ('motor_control', 22), ('os', 22), ('graphics', 22), ('mass_communication', 23), ('probability', 26), ('classics', 28), ('manufacturing', 34), ('aerodynamics', 48), ('communication', 56), ('ergonomics', 56), ('instrumentation', 56), ('digital_communications', 65)]
+skip: digital communications communication
+skip: graphics communication
+skip: mass communication communication
+skip: motor control communication
+skip: os communication
+skip: syntax communication
+skip: aerodynamics engineering
+skip: communication engineering
+skip: digital communications engineering
+skip: ergonomics engineering
+skip: instrumentation engineering
+skip: manufacturing engineering
+skip: classics humanities
+skip: mass communication humanities
+skip: religion humanities
+

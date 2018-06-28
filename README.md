@@ -39,6 +39,12 @@ python semeval.py vocabularies/science_en.csv en simple --test
 For a normal run (all resources are loaded, requires 64Gb of RAM):
 ```
 python semeval.py vocabularies/science_en.csv en simple
+
+```
+Afterwards a noisy graph is being created. Clean the output by executing(this example uses the inputfile science_en.csv-relations.csv-taxo-knn1.csv): 
+```
+./run.sh taxi_output/simple_full/science_en.csv-relations.csv-taxo-knn1.csv
+
 ```
    
 The ```vocabularies``` directory contains input terms for different domains and languages. The script lets you reproduce results in the SemEval 2016 Task 13 [Taxonomy Extraction Evaluation](http://alt.qcri.org/semeval2016/task13/) described in the [our paper](https://pdfs.semanticscholar.org/5719/932d8c194439dd08403bdb9df5ee30826e87.pdf). This script load hypernyms from the downloaded resources and constructs a taxonomy for every input vocabulary of the SemEval datasets, e.g. English Food domain. Generally, the TAXI approach takes as input a vocabulary and outputs a taxonomy for a linked subset of the terms from this vocabulary. Currently the main purpose of this repository is to ensure reproducibility of the SemEval results. The results taxonomies will be generated next to the corresponding input vocabulary file. If you need to adapt the script for your needs and require help do not hesitate to contact us.  
