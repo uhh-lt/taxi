@@ -1,0 +1,314 @@
+5aly@ltgpu1:~/taxi$ python3 learn_embeddings.py 0 test
+['cosmology,-relativity,-and-gravity']
+cosmology cosmology,-relativity,-and-gravity
+0.7285245208668392
+
+['human-geography']
+geography human-geography
+0.6165625064976243
+
+['cultural-history', 'environmental-health']
+public-health environmental-health
+0.7160779393088658
+
+['biochemistry', 'developmental-biology']
+cell-biology developmental-biology
+0.7540296333313165
+
+['cellular-physiology', 'comparative-physiology', 'evolutionary-physiology', 'exercise-physiology', 'microbial-physiology', 'molecular-physiology']
+physiology comparative-physiology
+0.8035666380860228
+
+['atmospheric-sciences', 'human-nutrition', 'paleobiology']
+environmental-sciences human-nutrition
+0.5326745948100492
+
+['history-of-religion']
+theology history-of-religion
+0.5253284586958773
+
+['ancient-philosophy', 'continental-philosophy', 'feminist-philosophy', 'philosophy-of-language', 'philosophy-of-mind', 'philosophy-of-religion', 'philosophy-of-science']
+philosophy philosophy-of-language
+0.7380411572856947
+
+['animal-science', 'atmospheric-sciences', 'behavioral-economics', 'cellular-neuroscience', 'cognitive-neuroscience', 'computational-neuroscience', 'computer-science', 'crop-sciences', 'dairy-science', 'developmental-neuroscience', 'earth-science', 'electromagnetics', 'engineering-science', 'environmental-sciences', 'food-science', 'forest-sciences', 'geographic-information-sciences', 'geology', 'geophysics', 'life-science', 'materials-science', 'membrane-science', 'metallurgy', 'microbiology', 'molecular-neuroscience', 'neuroscience', 'physical-science', 'physiology', 'plant-science', 'political-science', 'poultry-science', 'social-science', 'soil-science', 'systems-neuroscience', 'wood-science', 'engineering', 'humanities', 'mathematics', 'logic-and-foundations', 'zoology', 'cell-biology', 'applied-mechanics', 'literature-in-english,-north-america', 'methodologies']
+science literature-in-english,-north-america
+0.3682662811123374
+
+['energy-systems', 'information-systems', 'numerical-analysis', 'pathology', 'phonetics', 'race-and-ethnicity', 'sociology-of-culture', 'toxicology', 'virology']
+analysis race-and-ethnicity
+0.174477073988029
+
+analysis energy-systems
+0.2713717349732651
+
+analysis information-systems
+0.39338574883312094
+
+['genomics', 'horticulture', 'plant-breeding']
+plant-science plant-breeding
+0.4795478565411203
+
+['theatre-history']
+theatre theatre-history
+0.655594103749266
+
+['behavioral-ecology', 'ethics', 'metaphysics', 'philosophy-of-religion', 'philosophy-of-science', 'physical-science']
+religion physical-science
+0.31624084926156437
+
+religion behavioral-ecology
+0.3161259167541428
+
+religion philosophy-of-religion
+0.7577118164225548
+
+['meteorology']
+oceanography meteorology
+0.6939437352052952
+
+['history-of-philosophy']
+intellectual-history history-of-philosophy
+0.7178328425631602
+
+['cultural-anthropology', 'linguistic-anthropology', 'social-anthropology']
+anthropology social-anthropology
+0.8767128891862527
+
+['biophysics', 'genetics', 'immunology', 'organic-chemistry', 'structural-biology']
+biochemistry organic-chemistry
+0.7858898284123881
+
+['digital-circuits']
+circuits digital-circuits
+0.6950847153830559
+
+['cellular-neuroscience', 'cognitive-neuroscience', 'computational-neuroscience', 'developmental-neuroscience', 'epidemiology', 'molecular-neuroscience', 'population-biology', 'systems-neuroscience']
+neuroscience population-biology
+0.5832594413583042
+
+['african-history', 'ancient-history', 'archaeological', 'asian-history', 'contemporary-art-history', 'cultural-history', 'diplomatic-history', 'economic-history', 'european-history', 'gender-history', 'history-of-philosophy', 'history-of-religion', 'history-of-religions-of-eastern-origins', 'history-of-religions-of-western-origin', 'history-of-science,-technology,-and-medicine', 'intellectual-history', 'islamic-world/near-east-history', 'latin-american-history', 'medieval-history', 'military-history', 'political-history', 'social-history', 'theatre-history', 'united-states-history', 'women’s-history']
+history latin-american-history
+0.4594350808983587
+
+['ethnomusicology']
+musicology ethnomusicology
+0.849228285407834
+
+['algebra', 'algebraic-geometry', 'analysis', 'applied-mathematics', 'chemistry', 'computer-science', 'control-theory', 'dynamical-systems', 'fluid-dynamics', 'geometry-and-topology', 'multidisciplinary-design-optimization', 'non-linear-dynamics', 'number-theory', 'numerical-analysis', 'operational-research', 'ordinary-differential-equations', 'partial-differential-equations', 'physics', 'probability', 'quantum-physics', 'scientific-computing', 'set-theory', 'statistics-and-probability']
+mathematics operational-research
+0.29286153902810663
+
+mathematics partial-differential-equations
+0.4325865729413806
+
+['analytical-chemistry', 'biochemistry', 'biogeochemistry', 'composition', 'cosmochemistry', 'environmental-chemistry', 'food-chemistry', 'geochemistry', 'inorganic-chemistry', 'materials-chemistry', 'medicinal-chemistry', 'medicinal-pharmaceutical-chemistry', 'organic-chemistry', 'pharmacology', 'physical-chemistry', 'polymer-chemistry']
+chemistry environmental-chemistry
+0.7003605213701614
+
+['environmental-microbiology']
+microbial-ecology environmental-microbiology
+0.8212778597771236
+
+['anthropology', 'economics', 'political-science']
+social-science political-science
+0.8650985756263408
+
+['transport-phenomena']
+physical-chemistry transport-phenomena
+0.49808868292645025
+
+['logic-and-foundations-of-mathematics']
+logic-and-foundations logic-and-foundations-of-mathematics
+0.8800316583133377
+
+['criminology', 'regional-sociology', 'rural-sociology', 'social-anthropology', 'social-history', 'sociology-of-culture']
+sociology social-history
+0.4436984883288488
+
+['dynamics/dynamical-systems']
+dynamical-systems dynamics/dynamical-systems
+0.9161137848009863
+
+['circuits', 'digital-circuits']
+electrical-engineering digital-circuits
+0.5622671023242134
+
+['biostatistics', 'nutritional-epidemiology']
+epidemiology nutritional-epidemiology
+0.8361994493809339
+
+['inorganic-chemistry', 'microbial-ecology']
+organic-chemistry microbial-ecology
+0.6942152226678623
+
+['biomechanical-engineering', 'biomechanics']
+mechanical-engineering biomechanical-engineering
+0.9183034745926747
+
+['air-traffic-control', 'communication-technology-and-new-media', 'digital-communications', 'graphics', 'health-communication', 'interpersonal/small-group-communication', 'mass-communication', 'motor-control', 'music', 'networks', 'organizational-communication', 'os', 'public-affairs', 'public-policy', 'syntax', 'theatre']
+communication public-affairs
+0.2791894625470225
+
+communication public-policy
+0.35857288368348483
+
+['american-politics', 'political-theory']
+political-science american-politics
+0.6590948156825016
+
+['behavioral-economics', 'international-economics', 'labor-economics', 'macroeconomics', 'public-economics']
+economics international-economics
+0.6262241558493102
+
+['astrophysics-and-astronomy', 'biophysics', 'condensed-matter-physics', 'cosmology', 'engineering-physics', 'fluid-mechanics', 'geophysics', 'metaphysics', 'mineral-physics', 'nuclear-physics', 'optics', 'quantum-physics']
+physics condensed-matter-physics
+0.699662479974084
+
+['ancient-history', 'ancient-philosophy', 'classical-archaeology-and-art-history', 'classical-literature-and-philology', 'comparative-literature']
+classics comparative-literature
+0.381673657065896
+
+['immunology-of-infectious-disease']
+immunology immunology-of-infectious-disease
+0.7652066793105402
+
+['food-processing']
+manufacturing food-processing
+0.49490944756424127
+
+['literature-in-english,-north-america,-ethnic-and-minority']
+literature-in-english,-north-america literature-in-english,-north-america,-ethnic-and-minority
+0.9078272123718766
+
+['biochemical-nutrition', 'clinical-nutrition', 'community-nutrition', 'comparative-nutrition', 'food-science', 'genetic-nutrition', 'human-nutrition', 'international-nutrition', 'molecular-nutrition']
+nutrition comparative-nutrition
+0.7566852428189483
+
+['aquatic-ecology', 'behavioral-ecology', 'climate', 'evolutionary-ecology', 'microbial-ecology', 'terrestrial-ecology']
+ecology terrestrial-ecology
+0.6431139681484017
+
+['public-administration']
+public-policy public-administration
+0.6678862072981745
+
+['classics', 'cultural-anthropology', 'english-language-and-literature', 'environmental-sciences', 'geography', 'history', 'human-geography', 'international-relations', 'linguistics', 'mass-communication', 'musicology', 'philosophy', 'psychology', 'religion', 'sociology', 'theology']
+humanities international-relations
+0.3242395347458092
+
+humanities mass-communication
+0.4194317145762467
+
+['botany', 'comparative-politics', 'molecular-biology', 'molecular-genetics', 'plant-genetics']
+genetics comparative-politics
+0.3826926549950326
+
+['environmental-microbiology', 'food-microbiology', 'pathogenic-microbiology']
+microbiology environmental-microbiology
+0.8553239512151003
+
+['thermodynamics']
+chemical-engineering thermodynamics
+0.5204866050217702
+
+['immunopathology', 'plant-pathology']
+pathology plant-pathology
+0.8662831963863837
+
+['statistical-methodology']
+methodologies statistical-methodology
+0.7381036148909452
+
+['ethics-and-political-philosophy']
+ethics ethics-and-political-philosophy
+0.6574986379208788
+
+['biological-psychology', 'clinical-psychology', 'cognitive-psychology', 'community-psychology', 'developmental-psychology', 'health-psychology', 'psychology-of-movement', 'social-psychology']
+psychology psychology-of-movement
+0.743677745180615
+
+['biogeochemistry']
+geochemistry biogeochemistry
+0.8804097690869314
+
+['public-health']
+public-affairs public-health
+0.6712313989006307
+
+['endocrinology', 'paleontology', 'parasitology']
+zoology paleontology
+0.7010751373749504
+
+['social-psychology-and-interaction']
+social-psychology social-psychology-and-interaction
+0.8727967428701282
+
+['nutrition']
+instrumentation nutrition
+0.18969335312327457
+
+['aerodynamics', 'aerospace-engineering', 'aquatic-ecology', 'biological-engineering', 'biomaterials', 'biomechanical-engineering', 'biomedical', 'chemical-engineering', 'civil-engineering', 'cognitive-psychology', 'communication', 'computer-engineering', 'condensed-matter-physics', 'digital-communications', 'ecology', 'electrical-and-electronics', 'electrical-engineering', 'engineering-physics', 'environmental-engineering', 'ergonomics', 'geotechnical-engineering', 'industrial-engineering', 'instrumentation', 'kinesiology', 'manufacturing', 'materials-science', 'mechanical-engineering', 'nuclear-physics', 'ocean-engineering', 'oceanography', 'petroleum-engineering', 'robotics', 'signal-processing', 'social-science', 'software-engineering', 'structural-engineering', 'systems-engineering']
+engineering condensed-matter-physics
+0.37455455433149665
+
+['epistemology', 'philosophy-of-mind']
+metaphysics philosophy-of-mind
+0.783091004693638
+
+['history-of-religions-of-eastern-origins', 'history-of-religions-of-western-origin']
+history-of-religion history-of-religions-of-eastern-origins
+0.8777363747483617
+
+['entomology', 'plant-pathology']
+horticulture plant-pathology
+0.5569594063362286
+
+['anthropological-linguistics', 'applied-linguistics', 'computational-linguistics', 'discourse-linguistics', 'french-linguistics', 'german-linguistics', 'morphology', 'neurolinguistics', 'phonology', 'psycholinguistics', 'sociolinguistics', 'spanish-linguistics', 'typological-linguistics']
+linguistics applied-linguistics
+0.8423803495989594
+
+['tribology']
+applied-mechanics tribology
+0.6348287450008434
+
+['compilers', 'computer-architecture']
+computer-engineering computer-architecture
+0.6840645122210416
+
+['astrodynamics', 'ethnomusicology', 'playwriting']
+music astrodynamics
+0.19998630979056795
+
+music ethnomusicology
+0.5782751958126108
+
+['algorithms', 'artificial-intelligence', 'computational-biology', 'networking', 'programming-languages', 'semantics', 'software-engineering']
+computer-science artificial-intelligence
+0.5637745335462506
+
+['cancer-biology']
+molecular-biology cancer-biology
+0.7764719391167278
+
+['pragmatics']
+computational-linguistics pragmatics
+0.7321922552597128
+
+[('race-and-ethnicity', 'analysis'), ('energy-systems', 'analysis'), ('physical-science', 'religion'), ('behavioral-ecology', 'religion'), ('operational-research', 'mathematics'), ('public-affairs', 'communication'), ('international-relations', 'humanities'), ('nutrition', 'instrumentation'), ('astrodynamics', 'music')]
+skip: behavioral ecology religion
+skip: physical science religion
+skip: public affairs communication
+skip: astrodynamics music
+skip: nutrition instrumentation
+skip: international relations humanities
+skip: operational research mathematics
+skip: energy systems analysis
+skip: race and ethnicity analysis
+356.0
+465.0
+Correct: 152
+Precision: 0.42696629213483145
+Recall: 0.32688172043010755
+F1: 0.37028014616321564
+
