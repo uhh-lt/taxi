@@ -78,4 +78,6 @@ eval/taxi_eval_archive/input/system_from_local.taxo
 resources.tgz.1
 resources.tgz.2
 wget-log
+taxi_output/simple_test/output.txt
+
 
