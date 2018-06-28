@@ -2,3 +2,4 @@ Method	Recall	Precision	F1	F&M
 Original taxi	0.3484	0.3876	0.3669	0.3634
 Simple(substring + 1 pattern based)	0.3269	0.4164	0.3663	0.3939
 Simple + Embedding(Wikipedia 1M) + outlier_removal	0.3269	0.4282	0.3707	
+Simple + Embedding(Fasttext, Wikipedia 9GB) + outlier_removal + comp.oper.underscore	0.243	0.4595	0.3179	
