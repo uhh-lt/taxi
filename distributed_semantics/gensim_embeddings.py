@@ -4,7 +4,9 @@ import csv
 import io
 import sys
 import numpy as np
+import gzip
 import os
+import logging
 
 compound_operator = "-"
 
@@ -30,6 +32,8 @@ def compare_to_gold(gold, taxonomy, outliers, model, log = False, experiment_nam
                 if rank_root != "None" and rank_root < 100:
                     removed_outliers.append((element[0], element[1].replace(compound_operator, ' '), parent.replace(compound_operator, ' ')))
                     print("Added :" + str(element[0]) + " " + element[1].replace(compound_operator, ' ') + " " +  parent.replace(compound_operator, ' '))
+                    print("Best Word: " + best_word + ", Rank:" + str(rank) + " Rank_Inv: " + str(rank_inv) + ", Rank Parent: " + str(rank_root))
+
                 # elif rank_root == "None":
                 #     removed_outliers.append(element)
             continue
@@ -68,48 +72,14 @@ def compare_to_gold(gold, taxonomy, outliers, model, log = False, experiment_nam
         removed_outliers[i] = (removed_outliers[i][0], removed_outliers[i][1].replace(" ", compound_operator), removed_outliers[i][2].replace(" ", compound_operator))
     return removed_outliers
 
-def valid_words(relations, model):
-    global compound_operator
-    valid_words = set([])
-    compound_words = {}
-    for relation in relations:
-        issubset_1 = True
-        issubset_2 = True
-        for entry in relation[1].split(compound_operator):
-            if not entry in model.wv:
-                issubset_1 = False
-                break
-        if relation[1] in model.wv:
-            valid_words.add(relation[1])
-        elif issubset_1:
-            #print word
-            compound_word = create_compound_word(relation[1], model)
-            compound_words[relation[1]] = compound_word
-            valid_words.add(relation[1])
 
-        for entry in relation[2].split(compound_operator):
-            if not entry in model.wv:
-                issubset_2 = False
-                break
-
-        if relation[2] in model.wv:
-            valid_words.add(relation[2])
-        elif issubset_2:
-            #print word
-            compound_word = create_compound_word(relation[2], model)
-            compound_words[relation[2]] = compound_word
-            valid_words.add(relation[2])
-            #model.syn0.build_vocab([relation[2]], update=True)
-            model.syn0[relation[2]] = compound_word
-
-    return valid_words, compound_words
 
 
 
 
 def read_trial_data():
     all_info = []
-    trial_dataset_fpath = "relations.csv"
+    trial_dataset_fpath = os.path.join(os.path.dirname(os.path.abspath(__file__)),"relations.csv")
     with open(trial_dataset_fpath, 'r') as f:
         reader = csv.reader(f, delimiter = '\t')
         for i, line in enumerate(reader):
@@ -137,7 +107,7 @@ def read_trial_data():
 def read_all_data():
     global compound_operator
     # Load Google's pre-trained Word2Vec model.
-    filename_in = "science_en.csv-relations.csv-taxo-knn1.csv-pruned.csv-cleaned.csv"
+    filename_in = os.path.join(os.path.dirname(os.path.abspath(__file__)), "../out/science_en.csv-relations.csv-taxo-knn1.csv-pruned.csv-cleaned.csv")
     filename_gold = "gold.taxo"
     # Load Google's pre-trained Word2Vec model.
     relations = []
@@ -218,7 +188,33 @@ def connect_to_taxonomy(relations, current_word, model):
     #     else:
     #         continue
 
+def read_input(input_file, vocabulary):
+    logging.basicConfig(format='%(asctime)s : %(levelname)s : %(message)s', level=logging.INFO)
+    """This method reads the input file which is in gzip format"""
 
+    logging.info("reading file {0}...this may take a while".format(input_file))
+
+    with gzip.open(input_file, 'rb') as f:
+        for i, line in enumerate (f):
+            if (i%10000==0):
+                logging.info ("read {0} reviews".format (i))
+            # do some pre-processing and return a list of words for each review text
+            line = line.lower()
+            # for word_voc in vocabulary:
+            #     line.replace(str.encode(word_voc), str.encode(word_voc.replace(' ', compound_operator)))
+            cleared_line = gensim.utils.simple_preprocess (line)
+            yield cleared_line
+
+
+
+# def create_data_set_embedding(data_path):
+#     data_file = data_path
+#     with gzip.open ('reviews_data.txt.gz', 'rb') as f:
+#     for i,line in enumerate (f):
+#         print(line)
+#         break
+#
+# def train_embedding:
 
 
 
@@ -272,15 +268,15 @@ def calculate_outliers(relations, model, mode, threshhold = None):
     print(outliers)
     return outliers
 
-embedding = "0"
+embedding = None
 
-mode = "train"
-
-if len(sys.argv) >= 2:
-    embedding = sys.argv[1]
+mode = None
 
 if len(sys.argv) >= 2:
-    mode = sys.argv[2]
+    mode = sys.argv[1]
+
+if len(sys.argv) >= 3:
+    embedding = sys.argv[2]
 
 gold = []
 relations = []
@@ -315,6 +311,18 @@ elif mode =="train":
     outliers = calculate_outliers(relations, model, embedding)
     compare_to_gold(gold, taxonomy, outliers)
 
+elif mode =="train_embeddings":
+    model = gensim.models.FastText.load("trial_emb")
+    print(model.wv.similarity("dirty", "clean"))
+    # gold,relations,taxonomy = read_all_data()
+    # vocabulary = [relation[2] for relation in relations] + [relation[1] for relation in relations]
+    # documents = list(read_input(os.path.join(os.path.dirname(os.path.abspath(__file__)), "reviews_data.txt.gz" ),vocabulary))
+    # model = gensim.models.FastText(size= 300, min_count = 2, workers = 30)
+    # model.build_vocab(documents)
+    # #model.train(documents, total_examples = len(documents), epochs=10)
+    # model.train(documents, total_examples=model.corpus_count, epochs=2)
+    # model.save("trial_emb")
+
 elif mode =="plot_test":
     threshholds = range(2,8)
     threshholds = [float(value / 10) for value in threshholds]
@@ -339,3 +347,41 @@ elif mode =="gridsearch_test_iterative":
         for i in range(1,5):
             outliers = calculate_outliers(relations,model, embedding, value)
             relations = compare_to_gold(gold, relations, outliers, model, True, "logs/wikipedia_2M_outlier_removal_by_rank_adding_back__by_rank_iterative_5/", value)
+
+
+
+# def valid_words(relations, model):
+#     global compound_operator
+#     valid_words = set([])
+#     compound_words = {}
+#     for relation in relations:
+#         issubset_1 = True
+#         issubset_2 = True
+#         for entry in relation[1].split(compound_operator):
+#             if not entry in model.wv:
+#                 issubset_1 = False
+#                 break
+#         if relation[1] in model.wv:
+#             valid_words.add(relation[1])
+#         elif issubset_1:
+#             #print word
+#             compound_word = create_compound_word(relation[1], model)
+#             compound_words[relation[1]] = compound_word
+#             valid_words.add(relation[1])
+#
+#         for entry in relation[2].split(compound_operator):
+#             if not entry in model.wv:
+#                 issubset_2 = False
+#                 break
+#
+#         if relation[2] in model.wv:
+#             valid_words.add(relation[2])
+#         elif issubset_2:
+#             #print word
+#             compound_word = create_compound_word(relation[2], model)
+#             compound_words[relation[2]] = compound_word
+#             valid_words.add(relation[2])
+#             #model.syn0.build_vocab([relation[2]], update=True)
+#             model.syn0[relation[2]] = compound_word
+#
+#     return valid_words, compound_words

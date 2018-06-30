@@ -90,3 +90,14 @@ distributed_semantics/wiki-news-300d-1M.vec.zip
 distributed_semantics/wiki.en.bin
 distributed_semantics/wiki.en.vec
 
+distributed_semantics/reviews_data.txt
+distributed_semantics/reviews_data.txt.gz
+distributed_semantics/trial_emb
+distributed_semantics/trial_emb.trainables.syn1neg.npy
+distributed_semantics/trial_emb.trainables.vectors_ngrams_lockf.npy
+distributed_semantics/trial_emb.trainables.vectors_vocab_lockf.npy
+distributed_semantics/trial_emb.wv.vectors.npy
+distributed_semantics/trial_emb.wv.vectors_ngrams.npy
+distributed_semantics/trial_emb.wv.vectors_vocab.npy
+
+
