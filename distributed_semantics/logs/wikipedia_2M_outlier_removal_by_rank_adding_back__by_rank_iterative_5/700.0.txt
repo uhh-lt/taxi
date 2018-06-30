@@ -1,0 +1,6 @@
+economics	social-science
+Elements Taxonomy:331.0465.0
+Correct: 144
+Precision: 0.4350453172205438
+Recall: 0.3096774193548387
+F1: 0.3618090452261306

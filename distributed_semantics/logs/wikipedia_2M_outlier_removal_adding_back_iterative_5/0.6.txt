@@ -1,0 +1,11 @@
+humanities	social-science
+sociology	social-science
+international-relations	social-science
+cell-biology	biochemistry
+civil-engineering	engineering
+mechanical-engineering	engineering
+Elements Taxonomy:271.0465.0
+Correct: 134
+Precision: 0.4944649446494465
+Recall: 0.28817204301075267
+F1: 0.3641304347826087

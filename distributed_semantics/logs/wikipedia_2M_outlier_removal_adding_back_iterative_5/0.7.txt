@@ -1,0 +1,7 @@
+civil-engineering	engineering
+mechanical-engineering	engineering
+Elements Taxonomy:246.0465.0
+Correct: 123
+Precision: 0.5
+Recall: 0.2645161290322581
+F1: 0.3459915611814346

@@ -1,0 +1,9 @@
+international-relations	social-science
+microbiology	cell-biology
+civil-engineering	engineering
+mechanical-engineering	engineering
+Elements Taxonomy:267.0465.0
+Correct: 132
+Precision: 0.4943820224719101
+Recall: 0.2838709677419355
+F1: 0.3606557377049181
