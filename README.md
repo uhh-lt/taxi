@@ -40,10 +40,6 @@ The system was tested on Debian/Ubuntu Linux and Mac OS X. To load all resources
   $ python -m nltk.downloader stopwords
   ```
 
-6. Install treetagger and treetagger-python
-  - [http://www.cis.uni-muenchen.de/~schmid/tools/TreeTagger/](http://www.cis.uni-muenchen.de/~schmid/tools/TreeTagger/)
-  - [https://github.com/miotto/treetagger-python](https://github.com/miotto/treetagger-python)
-
 # Induction of SemEval Taxonomies
 
 Run the ```semeval.py``` to reproduce experimental results, e.g.:
