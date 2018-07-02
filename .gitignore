@@ -1,6 +1,7 @@
 # Custom Files
 resources/
 resources.tgz
+networkx_visualizations/*.png
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

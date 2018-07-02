@@ -19,18 +19,17 @@ df = pd.read_csv(
 
 # Generate a Directed Graph
 G = nx.DiGraph()
-for rel in zip(list(df['hyponym']), list(df['hypernym'])):
+for rel in zip(list(df['hypernym']), list(df['hyponym'])):
     G.add_edge(rel[0].decode('utf-8'), rel[1].decode('utf-8'))
 
 image_path = os.path.join('networkx_visualizations', os.path.splitext(sys.argv[1])[0].split('/')[-1])
 
 # Convert the graph into a tree structure
-pos = graphviz_layout(G, prog='dot')
+pos = graphviz_layout(G, prog='dot', args="-Grankdir=LR")
 
-# Save the graph with un-labelled nodes
-nx.draw(G, pos, with_labels=False, arrows=True)
-plt.savefig(image_path + '.png')
+# Increase the image size for better visualization
+plt.figure(3, figsize=(48, 144))
 
 # Save the graph with labelled nodes
 nx.draw(G, pos, with_labels=True, arrows=True)
-plt.savefig(image_path + '_labelled.png')
+plt.savefig(image_path + '.png')
