@@ -1,7 +1,7 @@
 import networkx as nx
 import numpy as np
-import util.write_graph as write_graph
-import util.util as util
+import methods.util.write_graph as write_graph
+import methods.util.util as util
 
 g = nx.DiGraph()
 

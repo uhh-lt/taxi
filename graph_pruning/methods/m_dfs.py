@@ -1,9 +1,8 @@
 import networkx as nx
-import argparse
 import numpy as np
 import sys
-import util.write_graph as write_graph
-import util.util as util
+import methods.util.write_graph as write_graph
+import methods.util.util as util
 
 sys.setrecursionlimit(5500000)
 

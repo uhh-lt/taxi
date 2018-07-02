@@ -1,5 +1,5 @@
 import random
-import util.write_graph
+import methods.util.write_graph
 from tarjan import tarjan
 
 hyper_to_hypo = {}
@@ -53,5 +53,5 @@ def do(filename_out, delimiter, mode, gephi_out):
                     break
 
     print("Removed %s cycles." % cycles_removed)
-    util.write_graph.hyper_to_hypo_graph(filename_out, hyper_to_hypo, gephi_out=gephi_out, delimiter=delimiter)
+    methods.util.write_graph.hyper_to_hypo_graph(filename_out, hyper_to_hypo, gephi_out=gephi_out, delimiter=delimiter)
 
