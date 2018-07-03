@@ -1,12 +1,10 @@
 import csv
 import sys
-<<<<<<< HEAD
 import methods.m_old as old
 import methods.m_tarjan as tarjan
 import methods.m_dfs as dfs
 import methods.m_mfas as mfas
 import methods.m_hierarchy as hierarchy
-=======
 import random
 from tarjan import tarjan
 
@@ -86,7 +84,6 @@ def add_line(node):
         hypo_to_hyper[hypo] = hyper
     else:
         print("Keep hypernym '%s' of hyponym '%s'." % (hypo_to_hyper[hypo], hypo))
->>>>>>> upstream/master
 
 ########################################################################################################################
 #
@@ -165,9 +162,7 @@ with open(filename_in, "r") as f:
     reader = csv.reader(f, delimiter=delimiter)
 
     for i, line in enumerate(reader):
-<<<<<<< HEAD
         method.prepare(line)
-=======
         if mode == "old":
             add_line(line)
         elif mode == "tarjan":
@@ -259,7 +254,6 @@ elif mode == "tarjan":
                     writer.writerow(row)
 
                     graphviz += "\"%s\" -> \"%s\"\n" % (hyper, hypo)
->>>>>>> upstream/master
 
 method.do(filename_out, delimiter, mode, gephi_out)
 print("Graph pruning finished.")
