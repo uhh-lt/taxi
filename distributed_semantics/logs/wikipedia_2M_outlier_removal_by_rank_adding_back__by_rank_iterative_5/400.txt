@@ -1,0 +1,6 @@
+philosophy	religion
+Elements Taxonomy:326.0465.0
+Correct: 144
+Precision: 0.44171779141104295
+Recall: 0.3096774193548387
+F1: 0.36409608091024026

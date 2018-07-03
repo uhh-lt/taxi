@@ -7,6 +7,7 @@ import numpy as np
 import gzip
 import os
 import logging
+import pandas
 
 compound_operator = "-"
 
@@ -21,23 +22,25 @@ def create_compound_word(compound, model):
     return compound_word
 
 
-def compare_to_gold(gold, taxonomy, outliers, model, log = False, experiment_name = "not_specified", threshhold = None):
+def compare_to_gold(gold, taxonomy_o, outliers, model, mode = "removal", log = False, threshhold = None, write_file = None):
+    taxonomy = taxonomy_o.copy()
     global compound_operator
     removed_outliers = []
     for element in taxonomy:
-        if (element[1], element[2]) in outliers:
+        if (element[1].replace(' ', compound_operator), element[2].replace(' ', compound_operator)) in outliers:
             #print("skip: " + element[1] + " " + element[2])
-            best_word, parent, rank, rank_inv, rank_root = connect_to_taxonomy(taxonomy.copy(),element[1].replace(' ', compound_operator), model)
-            if not rank > 100 and not rank_inv > 100:
-                if rank_root != "None" and rank_root < 100:
-                    removed_outliers.append((element[0], element[1].replace(compound_operator, ' '), parent.replace(compound_operator, ' ')))
-                    print("Added :" + str(element[0]) + " " + element[1].replace(compound_operator, ' ') + " " +  parent.replace(compound_operator, ' '))
-                    print("Best Word: " + best_word + ", Rank:" + str(rank) + " Rank_Inv: " + str(rank_inv) + ", Rank Parent: " + str(rank_root))
+            if mode == "removal_add":
+                best_word, parent, rank, rank_inv, rank_root = connect_to_taxonomy(taxonomy.copy(),element[1].replace(' ', compound_operator), model)
+                if not rank > 100 and not rank_inv > 100:
+                    if rank_root != "None" and rank_root < rank + rank_inv + 30:
+                        removed_outliers.append((element[0], element[1].replace(compound_operator, ' '), parent.replace(compound_operator, ' ')))
+                        print("Added :" + str(element[0]) + " " + element[1].replace(compound_operator, ' ') + " " +  parent.replace(compound_operator, ' '))
+                        print("Best Word: " + best_word + ", Rank:" + str(rank) + " Rank_Inv: " + str(rank_inv) + ", Rank Parent: " + str(rank_root))
 
                 # elif rank_root == "None":
                 #     removed_outliers.append(element)
             continue
-        removed_outliers.append((element[0], element[1].replace(compound_operator, ' '), element[2].replace(compound_operator, ' ')))
+        removed_outliers.append(element)
 
     correct = 0
     for element in removed_outliers:
@@ -47,14 +50,15 @@ def compare_to_gold(gold, taxonomy, outliers, model, log = False, experiment_nam
                 break
     precision = correct / float(len(removed_outliers))
     recall = correct / float(len(gold))
+    print(str(threshhold))
     print(float(len(removed_outliers)))
     print(float(len(gold)))
     print("Correct: " + str(correct))
     print("Precision: " + str(precision))
     print("Recall: " + str(recall))
     print("F1: " + str(2*precision *recall / (precision + recall)))
-    if log:
-        path = os.path.join(os.path.dirname(os.path.abspath(__file__)), experiment_name)
+    if log != None:
+        path = os.path.join(os.path.dirname(os.path.abspath(__file__)), log)
         if not os.path.exists(path):
                 os.makedirs(path)
         with open(os.path.join(path, str(threshhold) + ".txt"), 'w') as f:
@@ -67,12 +71,14 @@ def compare_to_gold(gold, taxonomy, outliers, model, log = False, experiment_nam
             f.write("Recall: " + str(recall) + '\n')
             f.write("F1: " + str(2*precision *recall / (precision + recall)) + '\n')
             f.close()
+    if write_file != None:
+        path =  os.path.join(os.path.dirname(os.path.abspath(__file__)), write_file + ".csv")
+        with open(path, 'w') as f:
+            for element in removed_outliers:
+                f.write(element[0] + '\t' + element[1] + '\t' + element[2]  + '\n')
+        f.close()
 
-    for i in range(len(removed_outliers)):
-        removed_outliers[i] = (removed_outliers[i][0], removed_outliers[i][1].replace(" ", compound_operator), removed_outliers[i][2].replace(" ", compound_operator))
     return removed_outliers
-
-
 
 
 
@@ -94,11 +100,9 @@ def read_trial_data():
             if entry[3] == "1":
                 correct_relations.append((entry[0], entry[1], entry[2]))
                 all_relations.append((entry[0], entry[1], entry[2]))
-                taxonomy.append((entry[0], entry[1], entry[2]))
             else:
                 wrong_relations.append((entry[0], entry[1], entry[2]))
                 all_relations.append((entry[0], entry[1], entry[2]))
-                taxonomy.append((entry[0], entry[1], entry[2]))
 
     for i in range(len(all_relations)):
         all_relations[i] = (all_relations[i][0], all_relations[i][1].replace(" ", compound_operator), all_relations[i][2].replace(" ", compound_operator))
@@ -111,23 +115,17 @@ def read_all_data():
     filename_gold = "gold.taxo"
     # Load Google's pre-trained Word2Vec model.
     relations = []
-    taxonomy = []
     with open(filename_in, 'r') as f:
         reader = csv.reader(f, delimiter = '\t')
         for i, line in enumerate(reader):
             relations.append((line[0], line[1], line[2]))
-            taxonomy.append((line[0], line[1], line[2]))
-
-    for i in range(len(relations)):
-        relations[i] = (relations[i][0], relations[i][1].replace(" ", compound_operator), relations[i][2].replace(" ", compound_operator))
-
 
     gold= []
     with open(filename_gold, 'r') as f:
         reader = csv.reader(f, delimiter = '\t')
         for i, line in enumerate(reader):
             gold.append((line[0], line[1], line[2]))
-    return [gold, relations, taxonomy]
+    return [gold, relations]
 
 def get_parent(relations,child):
     for relation in relations:
@@ -149,7 +147,8 @@ def get_rank(entity1, entity2, model, threshhold):
         #         print(selector)
     return rank_inv
 
-def connect_to_taxonomy(relations, current_word, model):
+def connect_to_taxonomy(relations_o, current_word, model):
+    relations = relations_o.copy()
     global compound_operator
     for i in range(len(relations)):
         relations[i] = (relations[i][0], relations[i][1].replace(" ", compound_operator), relations[i][2].replace(" ", compound_operator))
@@ -176,52 +175,61 @@ def connect_to_taxonomy(relations, current_word, model):
     #print("Rank :" + str(rank) + ", Rank_Iverse:"+ str(rank_inv) +  ", Rank root: " + str(rank_root) + ", highest similarity: " + best_word + " " + current_word + ", parent: " +  parent)
     return [best_word, parent, rank, rank_inv, rank_root]
 
-    # if element in similarities :
-    #     best_word = element
-    # for word_i in words_a:
-    #     print(word_i)
-    #     if word_i in model.wv and word_i != current_word:
-    #         #curr_rank = model.wv.rank(word_i, current_word)
-    #         if curr_rank < best_rank:
-    #             best_rank = curr_rank
-    #             best_word = word_i
-    #     else:
-    #         continue
+
+#since titles are just mashed into string consider in the future to find a way to detect the title
+def remove_title(text):
+    curr_title = ""
+    seperated_text = text.split(" ")
+    for i in range(len(seperated_text)):
+        word = seperated_text[i]
+        if word == curr_title.split(" ")[0]:
+            break
+        else:
+            curr_title = curr_title + word[i]
+    return text.remove(curr_title)
+
 
 def read_input(input_file, vocabulary):
     logging.basicConfig(format='%(asctime)s : %(levelname)s : %(message)s', level=logging.INFO)
     """This method reads the input file which is in gzip format"""
 
     logging.info("reading file {0}...this may take a while".format(input_file))
-
-    with gzip.open(input_file, 'rb') as f:
-        for i, line in enumerate (f):
-            if (i%10000==0):
-                logging.info ("read {0} reviews".format (i))
-            # do some pre-processing and return a list of words for each review text
-            line = line.lower()
-            # for word_voc in vocabulary:
-            #     line.replace(str.encode(word_voc), str.encode(word_voc.replace(' ', compound_operator)))
-            cleared_line = gensim.utils.simple_preprocess (line)
-            yield cleared_line
-
-
-
-# def create_data_set_embedding(data_path):
-#     data_file = data_path
-#     with gzip.open ('reviews_data.txt.gz', 'rb') as f:
-#     for i,line in enumerate (f):
-#         print(line)
-#         break
-#
-# def train_embedding:
+    colnames = ["id,", "text"]
+    data = pandas.read_csv(input_file, names= colnames)
+    text = data.text.tolist()
+    print("Number of Reviews: " + str(len(text)))
+    for i in range(len(text)):
+        line = text[i]
+        if (i%10000==0):
+            logging.info ("read {0} reviews".format (i))
+        # do some pre-processing and return a list of words for each review text
+        line = line.lower()
+        for word_voc in vocabulary:
+            line.replace(word_voc, word_voc.replace(' ', compound_operator))
+        cleared_line = gensim.utils.simple_preprocess (line)
+        yield cleared_line
 
 
+def visualize_taxonomy(taxonomy_vectors, taxonomy_names):
+    tsne = TSNE(n_components=2, random_state=0)
+    np.set_printoptions(suppress=True)
+    Y = tsne.fit_transform(taxonomy_vectors)
+
+    plt.scatter(Y[:, 0], Y[:, 1])
+    for label, x, y in zip(taxonomy_names, Y[:, 0], Y[:, 1]):
+        plt.annotate(label, xy=(x, y), xytext=(0, 0), textcoords='offset points')
+    plt.show()
 
 
-def calculate_outliers(relations, model, mode, threshhold = None):
+
+
+def calculate_outliers(relations_o, model, mode, embedding_type = None, threshhold = None):
+    relations = relations_o.copy()
     structure = {}
     outliers = []
+    for i in range(len(relations)):
+        relations[i] = (relations[i][0], relations[i][1].replace(" ", compound_operator), relations[i][2].replace(" ", compound_operator))
+
     for parent in [relation[2] for relation in relations]:
         structure[parent] = [relation[1] for relation in relations if relation[2] == parent]
 
@@ -248,15 +256,20 @@ def calculate_outliers(relations, model, mode, threshhold = None):
             sim = model.wv.similarity(data_base_word_name, outlier)
             #print(key + " " + outlier)
             if threshhold == None:
-                if mode == "0":
+                if embedding_type == "0":
                     threshhold = 0.35#0.51
-                elif mode == "1":
+                elif embedding_type == "1":
                     threshhold = 0.6 #0.20
                 else:
                     threshhold = 0.5
 
-            #if sim < threshhold:
-            if model.wv.rank(key, outlier) > threshhold:
+            #
+            threshhold_bool = False
+            if mode == "k_nearest":
+                threshhold_bool = model.wv.rank(key, outlier) > threshhold and model.wv.rank(outlier, key) > threshhold
+            if mode == "abs":
+                threshhold_bool = sim < threshhold
+            if threshhold_bool:
                 outliers.append((outlier, key))
                 cleaned_co_hyponyms.remove(outlier)
                 if len(cleaned_co_hyponyms) < 1:
@@ -285,68 +298,79 @@ model = None
 if embedding == "0":
     #model = gensim.models.KeyedVectors.load_word2vec_format('wiki-news-300d-1M-subword.vec', binary=False)
     model = gensim.models.FastText.load_fasttext_format('wiki.en.bin')
+    #model = gensim.models.FastText.load_fasttext_format('crawl-300d-2M.vec')
 elif embedding == "1":
     #model = gensim.models.FastText.load_fasttext_format('crawl-300d-2M.vec','vec')
     model = gensim.models.KeyedVectors.load_word2vec_format('crawl-300d-2M.vec', binary=False)
+    #model.save("crawl-300d-2M.bin")
 elif embedding == "2":
-    model = gensim.models.KeyedVectors.load_word2vec_format('crawl-300d-2M.vec', binary=False, limit = 50000)
-# test = ["computer-science", "computer_science", "Computer-Science", "computer science", "Computer_Science", "Computer Science"]
-# for n in test:
-#     if n in model.wv:
-#         print "Compound is being done by :" + n
+    model = gensim.models.KeyedVectors.load_word2vec_format('wiki-news-300d-1M-subword.vec', binary=False)
 
-# print model.wv.vocab
-# valid_words, compound_words = valid_words(relations, model)
-# print compound_words
+elif embedding == "3":
+    model = gensim.models.FastText.load("own.embeddings")
+
+elif embedding == "4":
+    model = gensim.models.KeyedVectors.load_word2vec_format('crawl-300d-2M.vec', binary=False, limit = 50000)
+
 outliers = []
 if mode == "test":
-    gold, relations, taxonomy = read_all_data()
+    gold, relations = read_all_data()
     for i in range(1,10):
         print(len(relations))
-        outliers = calculate_outliers(relations,model, embedding)
-        relations = compare_to_gold(gold, relations,  outliers, model)
+        outliers = calculate_outliers(relations, model, mode = "abs", embedding_type = embedding)
+        relations = compare_to_gold(gold, relations,  outliers, model, write_file = "out/test")
 
 elif mode =="train":
-    gold, relations, taxonomy = read_trial_data()
+    gold, relations = read_trial_data()
     outliers = calculate_outliers(relations, model, embedding)
     compare_to_gold(gold, taxonomy, outliers)
 
 elif mode =="train_embeddings":
-    model = gensim.models.FastText.load("trial_emb")
-    print(model.wv.similarity("dirty", "clean"))
-    # gold,relations,taxonomy = read_all_data()
-    # vocabulary = [relation[2] for relation in relations] + [relation[1] for relation in relations]
-    # documents = list(read_input(os.path.join(os.path.dirname(os.path.abspath(__file__)), "reviews_data.txt.gz" ),vocabulary))
-    # model = gensim.models.FastText(size= 300, min_count = 2, workers = 30)
-    # model.build_vocab(documents)
-    # #model.train(documents, total_examples = len(documents), epochs=10)
-    # model.train(documents, total_examples=model.corpus_count, epochs=2)
-    # model.save("trial_emb")
+    gold,relations = read_all_data()
+    vocabulary = [relation[2] for relation in relations] + [relation[1] for relation in relations]
+    documents = list(read_input(os.path.join(os.path.dirname(os.path.abspath(__file__)), "wikipedia_utf8_filtered_20pageviews.csv" ),vocabulary))
+    #documents = list(read_input(train_data_raw,vocabulary))
+    model = gensim.models.FastText(size= 300, window = 5, min_count = 5, workers = 30)
+    model.build_vocab(documents)
+    #model.train(documents, total_examples = len(documents), epochs=10)
+    model.train(documents, total_examples=model.corpus_count, epochs=6)
+    model.save("own_embeddings")
 
-elif mode =="plot_test":
+elif mode =="gridsearch_test_removal":
     threshholds = range(2,8)
     threshholds = [float(value / 10) for value in threshholds]
     for value in threshholds:
-        gold, relations, taxonomy = read_all_data()
-        outliers = calculate_outliers(relations,model, embedding, value)
-        compare_to_gold(gold, taxonomy, outliers, True, "outlier_removal_fasttext_check", value)
+        gold, relations = read_all_data()
+        outliers = calculate_outliers(relations,model, mode = "abs", embedding_type = embedding, threshhold=  value)
+        compare_to_gold(gold, relations, outliers, model, mode = "removal", log = True, experiment_name = "logs/wikipedia_2M_subword_outlier_removal_science/", threshhold= value)
 
-elif mode =="plot_trial":
+elif mode =="gridsearch_test_removal_add":
     threshholds = range(2,8)
     threshholds = [float(value / 10) for value in threshholds]
     for value in threshholds:
-        gold, relations, taxonomy = read_trial_data()
-        outliers = calculate_outliers(relations,model, embedding, value)
-        compare_to_gold(gold, taxonomy, outliers, True, "outlier_removal_fasttext_check", value)
+        gold, relations = read_all_data()
+        outliers = calculate_outliers(relations,model, mode = "abs", embedding_type = embedding, threshhold=  value)
+        compare_to_gold(gold, relations, outliers, model, mode = "removal_add", log = True, experiment_name = "logs/wikipedia_2M_outlier_removal_science/", threshhold = value)
 
-elif mode =="gridsearch_test_iterative":
-    threshholds = range(10000, 100000, 10000)
+
+elif mode =="gridsearch_trial":
+    threshholds = range(2,8)
     threshholds = [float(value / 10) for value in threshholds]
     for value in threshholds:
-        gold, relations, taxonomy = read_all_data()
-        for i in range(1,5):
-            outliers = calculate_outliers(relations,model, embedding, value)
-            relations = compare_to_gold(gold, relations, outliers, model, True, "logs/wikipedia_2M_outlier_removal_by_rank_adding_back__by_rank_iterative_5/", value)
+        gold, relations = read_trial_data()
+        outliers = calculate_outliers(relations,model, embedding, value)
+        compare_to_gold(gold, relations, outliers, True, "outlier_removal_fasttext_check", value)
+
+
+
+elif mode =="gridsearch_test_outlier_rem_add_back_iterative":
+    threshholds = range(100, 1000, 100)
+    #threshholds = [float(value / 10) for value in threshholds]
+    for value in threshholds:
+        gold, relations  = read_all_data()
+        for i in range(1,3):
+            outliers = calculate_outliers(relations,model, "k_nearest", embedding_type = embedding , threshhold = value)
+            relations = compare_to_gold(gold, relations, outliers, model, mode = "removal_add", log = True, experiment_name = "logs/wikipedia_2M_outlier_removal_by_rank_adding_back__by_rank_iterative_3/", threshhold = value)
 
 
 

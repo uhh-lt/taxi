@@ -56,6 +56,7 @@ def taxonomy_embeddings(taxonomy_vocabulary, word_embeddings):
     return taxonomy_embedding
 
 
+#Calculates average and tries to find upper and lower bounds for relations regarding their cos-distance or similarity
 def relation_distance(taxonomy_embedding, relations, text):
     distance_list = []
     distance_list_inv = {}

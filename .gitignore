@@ -100,4 +100,6 @@ distributed_semantics/trial_emb.wv.vectors.npy
 distributed_semantics/trial_emb.wv.vectors_ngrams.npy
 distributed_semantics/trial_emb.wv.vectors_vocab.npy
 
+distributed_semantics/enwiki-latest-pages-articles.xml
+distributed_semantics/wikipedia_utf8_filtered_20pageviews.csv
 
