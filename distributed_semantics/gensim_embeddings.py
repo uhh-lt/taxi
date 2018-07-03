@@ -6,6 +6,7 @@ import sys
 import numpy as np
 import gzip
 import os
+import argparse
 import logging
 import pandas
 
@@ -283,7 +284,6 @@ def calculate_outliers(relations_o, model, mode, embedding_type = None, threshho
 
 embedding = None
 
-mode = None
 
 if len(sys.argv) >= 2:
     mode = sys.argv[1]
@@ -291,87 +291,94 @@ if len(sys.argv) >= 2:
 if len(sys.argv) >= 3:
     embedding = sys.argv[2]
 
-gold = []
-relations = []
-taxonomy = []
-model = None
-if embedding == "0":
-    #model = gensim.models.KeyedVectors.load_word2vec_format('wiki-news-300d-1M-subword.vec', binary=False)
-    model = gensim.models.FastText.load_fasttext_format('wiki.en.bin')
-    #model = gensim.models.FastText.load_fasttext_format('crawl-300d-2M.vec')
-elif embedding == "1":
-    #model = gensim.models.FastText.load_fasttext_format('crawl-300d-2M.vec','vec')
-    model = gensim.models.KeyedVectors.load_word2vec_format('crawl-300d-2M.vec', binary=False)
-    #model.save("crawl-300d-2M.bin")
-elif embedding == "2":
-    model = gensim.models.KeyedVectors.load_word2vec_format('wiki-news-300d-1M-subword.vec', binary=False)
-
-elif embedding == "3":
-    model = gensim.models.FastText.load("own.embeddings")
-
-elif embedding == "4":
-    model = gensim.models.KeyedVectors.load_word2vec_format('crawl-300d-2M.vec', binary=False, limit = 50000)
-
-outliers = []
-if mode == "test":
-    gold, relations = read_all_data()
-    for i in range(1,10):
-        print(len(relations))
-        outliers = calculate_outliers(relations, model, mode = "abs", embedding_type = embedding)
-        relations = compare_to_gold(gold, relations,  outliers, model, write_file = "out/test")
-
-elif mode =="train":
-    gold, relations = read_trial_data()
-    outliers = calculate_outliers(relations, model, embedding)
-    compare_to_gold(gold, taxonomy, outliers)
-
-elif mode =="train_embeddings":
-    gold,relations = read_all_data()
-    vocabulary = [relation[2] for relation in relations] + [relation[1] for relation in relations]
-    documents = list(read_input(os.path.join(os.path.dirname(os.path.abspath(__file__)), "wikipedia_utf8_filtered_20pageviews.csv" ),vocabulary))
-    #documents = list(read_input(train_data_raw,vocabulary))
-    model = gensim.models.FastText(size= 300, window = 5, min_count = 5, workers = 30)
-    model.build_vocab(documents)
-    #model.train(documents, total_examples = len(documents), epochs=10)
-    model.train(documents, total_examples=model.corpus_count, epochs=6)
-    model.save("own_embeddings")
-
-elif mode =="gridsearch_test_removal":
-    threshholds = range(2,8)
-    threshholds = [float(value / 10) for value in threshholds]
-    for value in threshholds:
-        gold, relations = read_all_data()
-        outliers = calculate_outliers(relations,model, mode = "abs", embedding_type = embedding, threshhold=  value)
-        compare_to_gold(gold, relations, outliers, model, mode = "removal", log = True, experiment_name = "logs/wikipedia_2M_subword_outlier_removal_science/", threshhold= value)
-
-elif mode =="gridsearch_test_removal_add":
-    threshholds = range(2,8)
-    threshholds = [float(value / 10) for value in threshholds]
-    for value in threshholds:
-        gold, relations = read_all_data()
-        outliers = calculate_outliers(relations,model, mode = "abs", embedding_type = embedding, threshhold=  value)
-        compare_to_gold(gold, relations, outliers, model, mode = "removal_add", log = True, experiment_name = "logs/wikipedia_2M_outlier_removal_science/", threshhold = value)
-
-
-elif mode =="gridsearch_trial":
-    threshholds = range(2,8)
-    threshholds = [float(value / 10) for value in threshholds]
-    for value in threshholds:
-        gold, relations = read_trial_data()
-        outliers = calculate_outliers(relations,model, embedding, value)
-        compare_to_gold(gold, relations, outliers, True, "outlier_removal_fasttext_check", value)
 
 
 
-elif mode =="gridsearch_test_outlier_rem_add_back_iterative":
-    threshholds = range(100, 1000, 100)
-    #threshholds = [float(value / 10) for value in threshholds]
-    for value in threshholds:
-        gold, relations  = read_all_data()
-        for i in range(1,3):
-            outliers = calculate_outliers(relations,model, "k_nearest", embedding_type = embedding , threshhold = value)
-            relations = compare_to_gold(gold, relations, outliers, model, mode = "removal_add", log = True, experiment_name = "logs/wikipedia_2M_outlier_removal_by_rank_adding_back__by_rank_iterative_3/", threshhold = value)
+def main():
+    parser = argparse.ArgumentParser(description="Embeddings for Taxonomy")
+    parser.add_argument('mode', type=str, default='preload', choices=["normal", "train_embeddings", "gridsearch_removal", "gridsearch_removal_add", "gridsearch_removal_add_iterative"], help="Mode of the system.")
+    parser.add_argument('embedding', type=str, default='quick', choices=["fasttext_ref", "wiki2M", "wiki1M_subword", "own", "quick"], help="Classifier architecture of the system.")
+    parser.add_argument('experiment_name', type=str, default=None, help="Name of the Experiment"))
+    parser.add_argument('--log', action='store_true', help="Logs taxonomy and results")
+    parser.add_argument('--trial', action='store_true', help="Uses trial dataset")
+    args = parser.parse_args()
+    print("Mode: ", args.mode)
+    run(args.mode, args.embedding, args.log, args.trial)
 
+
+def run(mode, embedding, log = False, trial = False):
+    if embedding == "fasttext_ref":
+        #model = gensim.models.KeyedVectors.load_word2vec_format('wiki-news-300d-1M-subword.vec', binary=False)
+        model = gensim.models.FastText.load_fasttext_format('wiki.en.bin')
+        #model = gensim.models.FastText.load_fasttext_format('crawl-300d-2M.vec')
+    elif embedding == "wiki2M":
+        #model = gensim.models.FastText.load_fasttext_format('crawl-300d-2M.vec','vec')
+        model = gensim.models.KeyedVectors.load_word2vec_format('crawl-300d-2M.vec', binary=False)
+        #model.save("crawl-300d-2M.bin")
+    elif embedding == "wiki1M_subword":
+        model = gensim.models.KeyedVectors.load_word2vec_format('wiki-news-300d-1M-subword.vec', binary=False)
+
+    elif embedding == "own":
+        model = gensim.models.FastText.load("own.embeddings")
+
+    elif embedding == "quick":
+        model = gensim.models.KeyedVectors.load_word2vec_format('crawl-300d-2M.vec', binary=False, limit = 50000)
+
+    gold = []
+    relations = []
+    taxonomy = []
+    outliers = []
+    if mode =="train_embeddings":
+        gold,relations = read_all_data()
+        vocabulary = [relation[2] for relation in relations] + [relation[1] for relation in relations]
+        documents = list(read_input(os.path.join(os.path.dirname(os.path.abspath(__file__)), "wikipedia_utf8_filtered_20pageviews.csv" ),vocabulary))
+        #documents = list(read_input(train_data_raw,vocabulary))
+        model = gensim.models.FastText(size= 300, window = 5, min_count = 5, workers = 30)
+        model.build_vocab(documents)
+        #model.train(documents, total_examples = len(documents), epochs=10)
+        model.train(documents, total_examples=model.corpus_count, epochs=6)
+        model.save("own_embeddings")
+
+    if not trial:
+        if mode == "normal":
+            gold, relations = read_all_data()
+            for i in range(1,10):
+                print(len(relations))
+                outliers = calculate_outliers(relations, model, mode = "abs", embedding_type = embedding)
+                relations = compare_to_gold(gold, relations,  outliers, model, write_file = "out/test")
+
+
+
+        elif mode =="gridsearch_removal":
+            threshholds = range(2,8)
+            threshholds = [float(value / 10) for value in threshholds]
+            for value in threshholds:
+                gold, relations = read_all_data()
+                outliers = calculate_outliers(relations,model, mode = "abs", embedding_type = embedding, threshhold=  value)
+                compare_to_gold(gold, relations, outliers, model, mode = "removal", log  = "logs/wikipedia_2M_subword_outlier_removal_science/",threshhold = value, write_file = "out/wikipedia_2M_subword_outlier_removal_science_" + str(value))
+
+        elif mode =="gridsearch_removal_add":
+            threshholds = range(2,8)
+            threshholds = [float(value / 10) for value in threshholds]
+            for value in threshholds:
+                gold, relations = read_all_data()
+                outliers = calculate_outliers(relations,model, mode = "abs", embedding_type = embedding, threshhold=  value)
+                compare_to_gold(gold, relations, outliers, model, mode = "removal_add", log = True, experiment_name = "logs/wikipedia_2M_outlier_removal_science/", threshhold = value)
+
+
+
+        elif mode =="gridsearch_removal_add_iterative":
+            threshholds = range(100, 1000, 100)
+            #threshholds = [float(value / 10) for value in threshholds]
+            for value in threshholds:
+                gold, relations  = read_all_data()
+                for i in range(1,3):
+                    outliers = calculate_outliers(relations,model, "k_nearest", embedding_type = embedding , threshhold = value)
+                    relations = compare_to_gold(gold, relations, outliers, model, mode = "removal_add", log = True, experiment_name = "logs/wikipedia_2M_outlier_removal_by_rank_adding_back__by_rank_iterative_3/", threshhold = value)
+
+
+if __name__ == '__main__':
+    main()
 
 
 # def valid_words(relations, model):
