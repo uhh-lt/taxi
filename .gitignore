@@ -1,3 +1,8 @@
+# Custom Files
+resources/
+resources.tgz
+networkx_visualizations/*.png
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
@@ -8,6 +13,7 @@ __pycache__/
 
 # Distribution / packaging
 .Python
+.idea/
 env/
 build/
 develop-eggs/
@@ -82,6 +88,7 @@ taxi_output/simple_test/output.txt
 
 
 distributed_semantics/GoogleNews-vectors-negative300.bin
+<<<<<<< HEAD
 distributed_semantics/reddit_vectors-1.1.0/
 distributed_semantics/wiki-news-300d-1M-subword.vec
 
@@ -102,4 +109,11 @@ distributed_semantics/trial_emb.wv.vectors_vocab.npy
 
 distributed_semantics/enwiki-latest-pages-articles.xml
 distributed_semantics/wikipedia_utf8_filtered_20pageviews.csv
+
+other/
+Documentation/
+.idea/
+Model/
+TExEval_trialdata_1.2
+property_analysis/
 

@@ -4,7 +4,7 @@ fpath_relations = "/home/panchenko/joint/data/isas/semeval/super/new-relations-e
 
 pd.set_option('display.max_rows', 9999)
 df = taxo_features.relations.copy()
-df = df.sort("hypo2hyper_substract",ascending=0)
+df = df.sort_values("hypo2hyper_substract",ascending=0)
 df = df[["hyponym","hypernym","correct","hypo2hyper"]]
 df = df[df["correct"]== 0]
 for correct_index in [71237, 13854, 67805, 32292, 55046, 12818, 5686, 112564, 54934, 16617,

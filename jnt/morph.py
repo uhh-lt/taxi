@@ -1,5 +1,7 @@
-from treetagger import TreeTagger
-from spacy.en import English
+from spacy.lang.en import English
+from spacy.lang.fr import French
+from spacy.lang.it import Italian
+from spacy.lang.nl import Dutch
 from stop_words import get_stop_words
 from pandas import read_csv
 from os.path import join
@@ -39,39 +41,26 @@ def load_stoplist(topic_words=False, lang="en"):
 _stop_words = load_stoplist()
 print "Loading spacy model..."
 _spacy = English()
-
-try:
-    _treetagger_fr = TreeTagger(encoding='utf-8',language='french')
-    _treetagger_nl = TreeTagger(encoding='utf-8',language='dutch')
-    _treetagger_it = TreeTagger(encoding='utf-8',language='italian')
-except:
-    print "Error: cannot create TreeTagger"
-    print format_exc()
+_spacy_fr = French()
+_spacy_nl = Dutch()
+_spacy_it = Italian()
 
 def get_stoplist():
     return _stop_words
 
-def lemmatize_tt(text, lang="fr"):
-    if lang == "fr": treetagger = _treetagger_fr
-    elif lang == "nl": treetagger = _treetagger_nl
-    elif lang == "it": treetagger = _treetagger_it
-
-    lemmas = []
-    for surface, pos, lemma in treetagger.tag(text):
-        if lemma == "<unknown>" or "@" in lemma:
-            lemmas.append(surface)
-        else:
-            lemmas.append(lemma)
-    return " ".join(lemmas)
-
 def lemmatize(text, lowercase=True, lang="en"):
     """ Return lemmatized text """
-    
-    if lang in ["fr", "nl", "it"]:
-        text_lemmatized = lemmatize_tt(text, lang=lang)
-    else:
-        tokens = _spacy(text, tag=True, parse=False, entity=True)
-        text_lemmatized = " ".join(t.lemma_ for t in tokens)
+
+    if lang == "en":
+        tokens = _spacy(text)
+    elif lang == "fr":
+        tokens = _spacy_fr(text)
+    elif lang == "nl":
+        tokens = _spacy_nl(text)
+    elif lang == "it":
+        tokens = _spacy_it(text)
+
+    text_lemmatized = " ".join(t.lemma_ for t in tokens)
     
     if lowercase:
         text_lemmatized = text_lemmatized.lower()
@@ -81,12 +70,12 @@ def lemmatize(text, lowercase=True, lang="en"):
 
 def add_pos(text):
     """ Add POS tags to input text e.g. 'Car#NOUN is#VERB blue#ADJ.' """
-    tokens = _spacy(text, tag=True, parse=False, entity=True)
+    tokens = _spacy(text)
     return " ".join(t.orth_ + "#" + t.pos_ for t in tokens)
 
 
 def tokenize(text, pos_filter=False, lowercase=True, remove_stopwords=True, return_pos=False):
-    tokens = _spacy(text, tag=True, parse=False, entity=False)
+    tokens = _spacy(text)
     lemmas = [t.lemma_ for t in tokens if not pos_filter or t.pos_ in GO_POS]
     if remove_stopwords: lemmas = filter(lambda l: l not in _stop_words and l.lower() not in _stop_words, lemmas)
     if lowercase: lemmas = [l.lower() for l in lemmas]
@@ -102,7 +91,7 @@ def tokenize(text, pos_filter=False, lowercase=True, remove_stopwords=True, retu
 def lemmatize_word(word, lowercase=True):
     try:
         if len(word) == 0: return word
-        tokens = _spacy(word, tag=True, parse=False, entity=False)
+        tokens = _spacy(word)
         if len(tokens) == 0: return word
         lemma = tokens[0].lemma_
         if lowercase: lemma = lemma.lower()
@@ -115,14 +104,14 @@ def lemmatize_word(word, lowercase=True):
         return word
 
 def analyze_word(word, lowercase=True):
-    tokens = _spacy(word, tag=True, parse=False, entity=False)
+    tokens = _spacy(word)
     lemma = tokens[0].lemma_
     if lowercase: lemma = lemma.lower()
     return lemma, tokens[0].pos_
 
 
 def parse(text, pos_filter=False, lowercase=True, remove_stopwords=False):
-    tokens = _spacy(text, tag=True, parse=True, entity=False)
+    tokens = _spacy(text)
     lemmas = [t.lemma_ for t in tokens if not pos_filter or t.pos_ in GO_POS]
     if remove_stopwords: lemmas = filter(lambda l: l not in _stop_words, lemmas)
     if lowercase: lemmas = [l.lower() for l in lemmas]
