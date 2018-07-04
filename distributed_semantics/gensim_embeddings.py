@@ -8,6 +8,8 @@ import gzip
 import os
 import argparse
 import logging
+# from spacy.en import English
+# parser = spacy.load('en_core_web_md')
 import pandas
 
 compound_operator = "-"
@@ -201,23 +203,32 @@ def read_input(input_file, vocabulary):
     colnames = ["id,", "text"]
     data = pandas.read_csv(input_file, names= colnames)
     text = data.text.tolist()
+    freq = {}
     print("Number of Reviews: " + str(len(text)))
     for i in range(len(text)):
         line = text[i]
         if (i%10000==0):
             logging.info ("read {0} reviews".format (i))
             print(line)
-        # do some pre-processing and return a list of words for each review text
+
         line = line.lower()
         for word_voc in vocabulary:
-            if word_voc in line:
-                if i == 40038:
-                    print(word_voc + " " + str(i))
-                    line = line.replace(word_voc, word_voc.replace(' ', compound_operator))
-                    print(line)
-
-        cleared_line = gensim.utils.simple_preprocess (line)
+            if word_voc in line and word_voc != word_voc.replace(' ', compound_operator):
+                print(word_voc + " " + str(i))
+                # if word_voc in freq:
+                #     freq[word_voc]+=1
+                # else:
+                #     freq[word_voc] = 1
+                line = line.replace(word_voc, word_voc.replace(' ', compound_operator))
+                # print(freq)
+                #print(line)
+        cleared_line = gensim.utils.simple_preprocess (line, max_len = 30)
+        # if not isa:
+        #     for entry in cleared_line:
+        #         if entry in [word_voc.replace(' ', compound_operator) for word_voc in vocabulary]:
+        #             print(entry)
         yield cleared_line
+    print(freq)
 
 
 def visualize_taxonomy(taxonomy_vectors, taxonomy_names):
@@ -305,7 +316,7 @@ if len(sys.argv) >= 3:
 
 def main():
     parser = argparse.ArgumentParser(description="Embeddings for Taxonomy")
-    parser.add_argument('mode', type=str, default='preload', choices=["normal", "train_embeddings", "gridsearch_removal", "gridsearch_removal_add", "gridsearch_removal_add_iterative"], help="Mode of the system.")
+    parser.add_argument('mode', type=str, default='preload', choices=["analysis", "normal", "train_embeddings", "gridsearch_removal", "gridsearch_removal_add", "gridsearch_removal_add_iterative"], help="Mode of the system.")
     parser.add_argument('embedding', type=str, default='quick', choices=["fasttext_ref", "wiki2M", "wiki1M_subword", "own_fasttext","own_w2v", "quick"], help="Classifier architecture of the system.")
     parser.add_argument('experiment_name', type=str, default=None, help="Name of the Experiment")
     parser.add_argument('--log', action='store_true', help="Logs taxonomy and results")
@@ -340,7 +351,7 @@ def run(mode, embedding, experiment_name, log = False, trial = False):
         model = gensim.models.KeyedVectors.load('own_embeddings_w2v')
         print(model.wv.similarity("dog", "cat"))
         print(model.wv.similarity("clean", "dirty"))
-        print(model.wv.similarity("signal-processing", "dog"))
+        #print(model.wv.similarity("signal-processing", "dog"))
         #print(model.wv.similarity("computer-science", "science"))
         #print(model.wv.similarity("signal-processing", "electrical-engineering"))
         #print(model.wv.similarity("plant-breeding", "plant-science"))
@@ -363,6 +374,13 @@ def run(mode, embedding, experiment_name, log = False, trial = False):
         #model.train(documents, total_examples = len(documents), epochs=10)
         model.train(documents, total_examples=model.corpus_count, epochs=6)
         model.save("own_embeddings_w2v")
+
+    elif mode == "analysis":
+        print("hello")
+        gold, relations = read_all_data()
+        voc_rel = set([relation[1] for relation in relations] + [relation[2] for relation in relations])
+        voc_gold = set([relation[1] for relation in gold] + [relation[2] for relation in gold])
+        print("Vokabeln in Gold: " + str(len(voc_gold)) + "Vokabeln in Taxonomy: " + str(len(voc_rel)))
 
     if not trial:
         if mode == "normal":
