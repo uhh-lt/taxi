@@ -85,5 +85,6 @@ with open(filename_in, "r") as f:
     for i, line in enumerate(reader):
         method.prepare(line)
 
-method.do(filename_out, delimiter, mode, gephi_out)
+cycles_removed = method.do(filename_out, delimiter, mode, gephi_out)
 print("Graph pruning finished.")
+print("Removed: %s" % cycles_removed)

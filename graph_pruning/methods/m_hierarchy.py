@@ -51,9 +51,9 @@ def do(filename_out, delimiter, mode, gephi_out):
 
     # e1, e2, e3, e4 = remove_cycle_edges_by_hierarchy(filename_out, players_score_dict, players_score_name)
 
-    util.remove_edges_from_network_graph(g, edges_to_remove)
+    cycles_removed = util.remove_edges_from_network_graph(g, edges_to_remove)
     write_graph.network_graph(filename_out, g, gephi_out=gephi_out, delimiter=delimiter)
-
+    return cycles_removed
 
 
 def dir_tail_name(file_name):

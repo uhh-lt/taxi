@@ -54,4 +54,5 @@ def do(filename_out, delimiter, mode, gephi_out):
 
     print("Removed %s cycles." % cycles_removed)
     methods.util.write_graph.hyper_to_hypo_graph(filename_out, hyper_to_hypo, gephi_out=gephi_out, delimiter=delimiter)
+    return cycles_removed
 

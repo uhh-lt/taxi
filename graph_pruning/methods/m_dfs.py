@@ -16,9 +16,10 @@ def prepare(line):
 def do(filename_out, delimiter, mode, gephi_out):
     edges_to_be_removed = dfs_remove_back_edges()
 
-    util.remove_edges_from_network_graph(g, edges_to_be_removed)
+    cycles_removed = util.remove_edges_from_network_graph(g, edges_to_be_removed)
     write_graph.network_graph(filename_out, g, gephi_out=gephi_out, delimiter=delimiter)
 
+    return cycles_removed
 
 def dfs_remove_back_edges():
     '''
