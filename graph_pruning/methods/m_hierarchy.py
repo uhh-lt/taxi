@@ -5,6 +5,7 @@ from zhenv5.remove_cycle_edges_by_hierarchy_greedy import scc_based_to_remove_cy
 from zhenv5.remove_cycle_edges_by_hierarchy_BF import remove_cycle_edges_BF_iterately
 from zhenv5.remove_cycle_edges_by_hierarchy_voting import remove_cycle_edges_heuristic
 
+SUPPORTED_SCORE_METHODS = ["pagerank", "socialagony", "trueskill"]
 SUPPORTED_RANKING_METHODS = ["greedy", "forward", "backward", "voting"]
 
 g = nx.DiGraph()
@@ -16,38 +17,55 @@ def prepare(line):
 
 def do(filename_out, delimiter, mode, gephi_out):
     inputs = mode.split("_")
+    edges_to_remove = None
+    e1, e2, e3, e4, e5, e6, e7, e8 = None, None, None, None, None, None, None, None
 
-    if len(inputs) < 2:
-        raise Exception(
-            "No score method provided (e.g. 'hierarchy_pagerank_voting'). Supported: pagerank, socialagony, trueskill")
+    if len(inputs) == 2 and inputs[1] == "ensemble":
+        players_score_dict_socialagony = computing_hierarchy(filename_out, "socialagony")
+        e1, e2, e3, e4 = remove_cycle_edges_by_hierarchy(players_score_dict_socialagony, "socialagony")
 
-    if len(inputs) < 3 or inputs[2] not in SUPPORTED_RANKING_METHODS:
-        raise Exception("Ranking method '%s' not supported. Supported: %s" % (inputs[2], SUPPORTED_RANKING_METHODS))
+        players_score_dict_trueskill = computing_hierarchy(filename_out, "trueskill")
+        e5, e6, e7, e8 = remove_cycle_edges_by_hierarchy(filename_out, players_score_dict_trueskill, "trueskill")
 
-    score_name = inputs[1]
-    ranking = inputs[2]
+        edges_to_remove = remove_cycle_edges_by_voting([set(e1), set(e2), set(e3), set(e5), set(e6), set(e7)])
+    else:
+        if len(inputs) < 2:
+            raise Exception(
+                "No score method provided (e.g. 'hierarchy_pagerank_voting'). Supported: pagerank, socialagony, trueskill")
 
-    print("Score method: %s" % score_name)
-    print("Ranking method: %s" % ranking)
+        if len(inputs) == 2 and inputs[1] != "ensemble":
+            raise Exception(
+                "Score method '%s' not supported."
+                "Supported: 'ensemble' or use combined method (e.g. 'hierarchy_pagerank_voting')" %
+                inputs[1])
 
-    players_score_dict = computing_hierarchy(filename_out, score_name)
-    edges_to_remove, e1, e2, e3, e4 = None, None, None, None, None
+        if len(inputs) != 2 and (len(inputs) < 3 or inputs[2] not in SUPPORTED_RANKING_METHODS):
+            raise Exception("Ranking method '%s' not supported. Supported: %s" % (inputs[2], SUPPORTED_RANKING_METHODS))
 
-    if ranking == "voting" or ranking == "greedy":
-        e1 = scc_based_to_remove_cycle_edges_iterately(g.copy(), players_score_dict)
-        edges_to_remove = e1
+        score_name = inputs[1]
+        ranking = inputs[2]
 
-    if ranking == "voting" or ranking == "forward":
-        e2 = remove_cycle_edges_BF_iterately(g.copy(), players_score_dict, is_Forward=True, score_name=score_name)
-        edges_to_remove = e2
+        print("Score method: %s" % score_name)
+        print("Ranking method: %s" % ranking)
 
-    if ranking == "voting" or ranking == "backward":
-        e3 = remove_cycle_edges_BF_iterately(g.copy(), players_score_dict, is_Forward=False, score_name=score_name)
-        edges_to_remove = e3
+        players_score_dict = computing_hierarchy(filename_out, score_name)
+        edges_to_remove, e1, e2, e3, e4 = None, None, None, None, None
 
-    if ranking == "voting":
-        e4 = remove_cycle_edges_by_voting([set(e1), set(e2), set(e3)])
-        edges_to_remove = e4
+        if ranking == "voting" or ranking == "greedy":
+            e1 = scc_based_to_remove_cycle_edges_iterately(g.copy(), players_score_dict)
+            edges_to_remove = e1
+
+        if ranking == "voting" or ranking == "forward":
+            e2 = remove_cycle_edges_BF_iterately(g.copy(), players_score_dict, is_Forward=True, score_name=score_name)
+            edges_to_remove = e2
+
+        if ranking == "voting" or ranking == "backward":
+            e3 = remove_cycle_edges_BF_iterately(g.copy(), players_score_dict, is_Forward=False, score_name=score_name)
+            edges_to_remove = e3
+
+        if ranking == "voting":
+            e4 = remove_cycle_edges_by_voting([set(e1), set(e2), set(e3)])
+            edges_to_remove = e4
 
     # e1, e2, e3, e4 = remove_cycle_edges_by_hierarchy(filename_out, players_score_dict, players_score_name)
 
@@ -105,6 +123,7 @@ def remove_cycle_edges_by_hierarchy(graph_file, nodes_score_dict, score_name="so
 def computing_hierarchy(graph_file, players_score_func_name, nodetype=int):
     import os.path
     if players_score_func_name == "socialagony":
+        from zhenv5.helper_funs import dir_tail_name
         dir_name, tail = dir_tail_name(graph_file)
         agony_file = os.path.join(dir_name, tail.split(".")[0] + "_socialagony.txt")
         # agony_file = graph_file[:len(graph_file)-6] + "_socialagony.txt"
@@ -116,13 +135,14 @@ def computing_hierarchy(graph_file, players_score_func_name, nodetype=int):
             players = read_dict_from_file(agony_file)
         else:
             print("start computing socialagony...")
-            # from compute_social_agony import compute_social_agony
-            # players = compute_social_agony(graph_file, agony_path="agony/agony ")
+            from zhenv5.compute_social_agony import compute_social_agony
+            players = compute_social_agony(graph_file, agony_path="agony/agony ")
             print("write socialagony to file: %s" % agony_file)
         return players
+
     if players_score_func_name == "pagerank":
-        print("computing pagerank...")
-        players = nx.pagerank(g, alpha=0.85)
+        # print("computing pagerank...")
+        players = nx.pagerank(g.copy(), alpha=0.85)
         return players
     elif players_score_func_name == "trueskill":
         output_file = graph_file[:len(graph_file) - 6] + "_trueskill.txt"
@@ -143,6 +163,6 @@ def computing_hierarchy(graph_file, players_score_func_name, nodetype=int):
         if True:
             print("start computing trueskill...")
             from zhenv5.true_skill import graphbased_trueskill
-            players = graphbased_trueskill(g)
+            players = graphbased_trueskill(g.copy())
 
         return players

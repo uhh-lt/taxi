@@ -19,6 +19,7 @@ FILE_EVAL_TOOL_RESULT=${FILE_CLEANED_OUT}-evalresul.txt
 
 
 
+DOMAIN=$EVAL_ROOT
 if [ -n "$2" ]; then
 	CYCLE_REMOVING_METHOD=$2
 fi
@@ -27,6 +28,7 @@ echo Reading input: $1
 echo Reading file: $FILE_INPUT
 echo Output directory: $OUTPUT_DIR
 echo Cycle removing method: $CYCLE_REMOVING_METHOD
+echo Domain: $DOMAIN
 
 echo
 
@@ -35,7 +37,7 @@ if [[ ! -e $OUTPUT_DIR ]]; then
 fi
 
 echo "======================================================================================================================"
-echo "Cycle removing: python $CYCLE_REMOVING_TOOL $1 $OUTPUT_DIR/$FILE_PRUNED_OUT tarjan"
+echo "Cycle removing: python $CYCLE_REMOVING_TOOL $1 $OUTPUT_DIR/$FILE_PRUNED_OUT $CYCLE_REMOVING_METHOD"
 CYCLES=$(python $CYCLE_REMOVING_TOOL $1 $OUTPUT_DIR/$FILE_PRUNED_OUT $CYCLE_REMOVING_METHOD | tee /dev/tty)
 echo "Cycle removing finished. Written to: $OUTPUT_DIR/$FILE_PRUNED_OUT"
 echo
@@ -70,7 +72,7 @@ echo "F1: $F1"
 echo "F&M: $F_M"
 echo
 echo "Copy to https://docs.google.com/spreadsheets/d/1cTUfm97m3vhnOOzYvbqzhJhFQSyWySszLcA6PYf8wFY/edit?usp=sharing"
-echo -e "$(date +%F)\t$(whoami)\ttaxi\t$1\t$CYCLE_REMOVING_METHOD\t$CYCLES_REMOVED\t$RECALL\t$PRECISION\t$F1\t$F_M"
+echo -e "$(date +%F)\t$(whoami)\ttaxi\t$1\t$DOMAIN\t$CYCLE_REMOVING_METHOD\t$CYCLES_REMOVED\t$RECALL\t$PRECISION\t$F1\t$F_M"
 echo
 echo "Script finished."
 

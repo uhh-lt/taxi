@@ -16,6 +16,8 @@ methods = {
     "tarjan": tarjan,
     "dfs": dfs,
     "mfas": mfas,
+    "hierarchy_ensemble": hierarchy,
+
     "hierarchy_pagerank_greedy": hierarchy,
     "hierarchy_pagerank_forward": hierarchy,
     "hierarchy_pagerank_backward": hierarchy,
