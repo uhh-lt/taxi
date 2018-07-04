@@ -73,6 +73,6 @@ $ conda install -c anaconda pygraphviz
 ``` 
 
 To construct a hierarchical taxonomy structure:  
-`$ ./visualize.sh <csv filename>`
+`$ python visualize_taxonomy.py --file <csv filename>`
 
 The images generated will be very large, so alternatively, the graph can be constructed inside the notebook **networkx_graph.ipynb**
