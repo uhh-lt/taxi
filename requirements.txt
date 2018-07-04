@@ -8,3 +8,4 @@ scipy==1.1.0
 spacy==2.0.11
 stop-words==2015.2.23.1
 tarjan==0.2.3.2
+networkx

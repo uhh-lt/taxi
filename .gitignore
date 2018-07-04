@@ -110,8 +110,7 @@ distributed_semantics/trial_emb.wv.vectors_vocab.npy
 distributed_semantics/enwiki-latest-pages-articles.xml
 distributed_semantics/wikipedia_utf8_filtered_20pageviews.csv
 
-other/
-Documentation/
+other
 .idea/
 Model/
 TExEval_trialdata_1.2
