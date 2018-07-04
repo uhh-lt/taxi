@@ -1,0 +1,344 @@
+rami@rami-HP-ProBook-440:~$ ssh 5aly@ccblade14.informatik.uni-hamburg.de
+5aly@ccblade14.informatik.uni-hamburg.de's password: 
+Welcome to Ubuntu 16.04.4 LTS (GNU/Linux 4.13.0-45-generic x86_64)
+
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/advantage
+
+  System information as of Mon Jun 18 13:01:21 CEST 2018
+
+  System load:  0.08                Processes:           446
+  Usage of /:   21.5% of 120.03GB   Users logged in:     1
+  Memory usage: 0%                  IP address for eno1: 134.100.9.214
+  Swap usage:   0%
+
+  Graph this data and manage this system at:
+    https://landscape.canonical.com/
+
+0 packages can be updated.
+0 updates are security updates.
+
+###
+### ccblade11 is reserved for Team Robocup on 20.-21.06.2018
+### ccblade11 is reserved for Team Robocup on 27.-28.06.2018
+### ccblade12 is reserved for Team Robocup on 20.-21.06.2018
+### ccblade12 is reserved for Team Robocup on 27.-28.06.2018
+### ccblade13 is reserved for Mirela-Stefania Duma on 15.-19.06.2018
+### ccblade13 is reserved for Team Robocup on 20.-21.06.2018
+### ccblade13 is reserved for Mirela-Stefania Duma on 22.-26.06.2018
+### ccblade13 is reserved for Team Robocup on 27.-28.06.2018
+### ccblade13 is reserved for Mirela-Stefania Duma on 29.-30.06.2018
+### ccblade14 is reserved for Christoph Stanik on 18.05.-18.06.2018
+### ccblade15 is reserved for Mirela-Stefania Duma on 23.04.-15.06.2018
+### ccblade16 is reserved for Christoph Stanik on 03.06.-01.07.2018
+###
+### The ccblades can be reserved at least a week in advance or if they
+### are not busy. Other users' jobs still running when a reservation period
+### begins will be halted. They may be canceled if free memory is needed.
+###
+Last login: Mon Jun 18 08:59:25 2018 from 134.100.4.29
+5aly@ccblade14:~$ cd taxi/
+5aly@ccblade14:~/taxi$ python semeval.py vocabularies/science_en.csv en super
+Loading spacy model...
+Error: cannot create TreeTagger
+Traceback (most recent call last):
+  File "/informatik2/students/home/5aly/taxi/jnt/morph.py", line 44, in <module>
+    _treetagger_fr = TreeTagger(encoding='utf-8',language='french')
+TypeError: __init__() got an unexpected keyword argument 'encoding'
+
+/usr/local/lib/python2.7/dist-packages/sklearn/cross_validation.py:44: DeprecationWarning: This module was deprecated in version 0.18 in favor of the model_selection module into which all the refactored classes and functions are moved. Also note that the interface of the new CV iterators are different from that of this module. This module will be removed in 0.20.
+  "This module will be removed in 0.20.", DeprecationWarning)
+/usr/local/lib/python2.7/dist-packages/sklearn/grid_search.py:43: DeprecationWarning: This module was deprecated in version 0.18 in favor of the model_selection module into which all the refactored classes and functions are moved. This module will be removed in 0.20.
+  DeprecationWarning)
+Input:  vocabularies/science_en.csv
+Language:  en
+Mode:  super
+Classifiers:  ./resources/models/release/2features-new/*
+Test model:  False
+Loaded 1339 words from: ./resources/en_food.csv.gz.pkl
+Loaded isa dictionary (1339 words) 'en_food': ./resources/en_food.csv.gz
+Loaded resources in 0 sec.
+Loaded 413 words from: ./resources/en_science.csv.gz.pkl
+Loaded isa dictionary (413 words) 'en_science': ./resources/en_science.csv.gz
+Loaded resources in 0 sec.
+Loaded 124 words from: ./resources/en_environment.csv.gz.pkl
+Loaded isa dictionary (124 words) 'en_environment': ./resources/en_environment.csv.gz
+Loaded resources in 0 sec.
+Loaded 40163785 words from: ./resources/en_freq-59g-mwe62m.csv.gz.pkl
+Loaded freq dictionary 'en_freq-59g-mwe62m': ./resources/en_freq-59g-mwe62m.csv.gz
+Loaded 296438 words from: ./resources/en_ma.csv.gz.pkl
+Loaded isa dictionary (296438 words) 'en_ma': ./resources/en_ma.csv.gz
+Loaded 991330 words from: ./resources/en_pm.csv.gz.pkl
+Loaded isa dictionary (991330 words) 'en_pm': ./resources/en_pm.csv.gz
+Loaded 451306 words from: ./resources/en_ps.csv.gz.pkl
+Loaded isa dictionary (451306 words) 'en_ps': ./resources/en_ps.csv.gz
+Loaded 20319197 words from: ./resources/en_cc.csv.gz.pkl
+Loaded isa dictionary (20319197 words) 'en_cc': ./resources/en_cc.csv.gz
+Loaded 5255492 words from: ./resources/en_ps59g.csv.gz.pkl
+Loaded isa dictionary (5255492 words) 'en_ps59g': ./resources/en_ps59g.csv.gz
+Loaded resources in 594 sec.
+
+vocabularies/science_en.csv 
+==================================================
+Relations: vocabularies/science_en.csv-relations.csv
+Unpruned taxonomy: vocabularies/science_en.csv-relations.csv-taxo.csv
+vocabularies/science_en.csv is science
+Loaded resources in 0 sec.
+Loaded 452 words vocabulary
+Generating new relations file: vocabularies/science_en.csv-relations.csv
+Generated 203853 relations out of 452 words: vocabularies/science_en.csv-relations.csv
+en_science 413
+en_cc 20319197
+en_pm 991330
+en_ps 451306
+en_ps59g 5255492
+en_ma 296438
+100000
+200000
+Relations updated: vocabularies/science_en.csv-relations.csv
+/informatik2/students/home/5aly/taxi/jnt/isas/taxo.py:572: FutureWarning: sort(columns=....) is deprecated, use sort_values(by=.....)
+  df = df.sort(["hyponym","freq"], ascending=[1,0])
+Direct hypernyms: vocabularies/science_en.csv-relations.csv-direct-hypo2hyper.csv
+100000
+200000
+Relations updated: vocabularies/science_en.csv-relations.csv
+/informatik2/students/home/5aly/taxi/jnt/isas/taxo.py:229: FutureWarning: sort(columns=....) is deprecated, use sort_values(by=.....)
+  df = df.sort(["hyponym", "hypo_in_hyper"], ascending=[1,0])
+Substrings: vocabularies/science_en.csv-relations.csv-substrings.csv
+Relations updated: vocabularies/science_en.csv-relations.csv
+Relations updated: vocabularies/science_en.csv-relations.csv
+100000
+200000
+Relations updated: vocabularies/science_en.csv-relations.csv
+en_science
+1000 2000 3000 4000 5000 6000 7000 8000 9000 10000 11000 12000 13000 14000 15000 16000 17000 18000 19000 20000 21000 22000 23000 24000 25000 26000 27000 28000 29000 30000 31000 32000 33000 34000 35000 36000 37000 38000 39000 40000 41000 42000 43000 44000 45000 46000 47000 48000 49000 50000 51000 52000 53000 54000 55000 56000 57000 58000 59000 60000 61000 62000 63000 64000 65000 66000 67000 68000 69000 70000 71000 72000 73000 74000 75000 76000 77000 78000 79000 80000 81000 82000 83000 84000 85000 86000 87000 88000 89000 90000 91000 92000 93000 94000 95000 96000 97000 98000 99000 100000 101000 102000 103000 104000 105000 106000 107000 108000 109000 110000 111000 112000 113000 114000 115000 116000 117000 118000 119000 120000 121000 122000 123000 124000 125000 126000 127000 128000 129000 130000 131000 132000 133000 134000 135000 136000 137000 138000 139000 140000 141000 142000 143000 144000 145000 146000 147000 148000 149000 150000 151000 152000 153000 154000 155000 156000 157000 158000 159000 160000 161000 162000 163000 164000 165000 166000 167000 168000 169000 170000 171000 172000 173000 174000 175000 176000 177000 178000 179000 180000 181000 182000 183000 184000 185000 186000 187000 188000 189000 190000 191000 192000 193000 194000 195000 196000 197000 198000 199000 200000 201000 202000 203000 en_cc
+1000 2000 3000 4000 5000 6000 7000 8000 9000 10000 11000 12000 13000 14000 15000 16000 17000 18000 19000 20000 21000 22000 23000 24000 25000 26000 27000 28000 29000 30000 31000 32000 33000 34000 35000 36000 37000 38000 39000 40000 41000 42000 43000 44000 45000 46000 47000 48000 49000 50000 51000 52000 53000 54000 55000 56000 57000 58000 59000 60000 61000 62000 63000 64000 65000 66000 67000 68000 69000 70000 71000 72000 73000 74000 75000 76000 77000 78000 79000 80000 81000 82000 83000 84000 85000 86000 87000 88000 89000 90000 91000 92000 93000 94000 95000 96000 97000 98000 99000 100000 101000 102000 103000 104000 105000 106000 107000 108000 109000 110000 111000 112000 113000 114000 115000 116000 117000 118000 119000 120000 121000 122000 123000 124000 125000 126000 127000 128000 129000 130000 131000 132000 133000 134000 135000 136000 137000 138000 139000 140000 141000 142000 143000 144000 145000 146000 147000 148000 149000 150000 151000 152000 153000 154000 155000 156000 157000 158000 159000 160000 161000 162000 163000 164000 165000 166000 167000 168000 169000 170000 171000 172000 173000 174000 175000 176000 177000 178000 179000 180000 181000 182000 183000 184000 185000 186000 187000 188000 189000 190000 191000 192000 193000 194000 195000 196000 197000 198000 199000 200000 201000 202000 203000 en_pm
+1000 2000 3000 4000 5000 6000 7000 8000 9000 10000 11000 12000 13000 14000 15000 16000 17000 18000 19000 20000 21000 22000 23000 24000 25000 26000 27000 28000 29000 30000 31000 32000 33000 34000 35000 36000 37000 38000 39000 40000 41000 42000 43000 44000 45000 46000 47000 48000 49000 50000 51000 52000 53000 54000 55000 56000 57000 58000 59000 60000 61000 62000 63000 64000 65000 66000 67000 68000 69000 70000 71000 72000 73000 74000 75000 76000 77000 78000 79000 80000 81000 82000 83000 84000 85000 86000 87000 88000 89000 90000 91000 92000 93000 94000 95000 96000 97000 98000 99000 100000 101000 102000 103000 104000 105000 106000 107000 108000 109000 110000 111000 112000 113000 114000 115000 116000 117000 118000 119000 120000 121000 122000 123000 124000 125000 126000 127000 128000 129000 130000 131000 132000 133000 134000 135000 136000 137000 138000 139000 140000 141000 142000 143000 144000 145000 146000 147000 148000 149000 150000 151000 152000 153000 154000 155000 156000 157000 158000 159000 160000 161000 162000 163000 164000 165000 166000 167000 168000 169000 170000 171000 172000 173000 174000 175000 176000 177000 178000 179000 180000 181000 182000 183000 184000 185000 186000 187000 188000 189000 190000 191000 192000 193000 194000 195000 196000 197000 198000 199000 200000 201000 202000 203000 en_ps
+1000 2000 3000 4000 5000 6000 7000 8000 9000 10000 11000 12000 13000 14000 15000 16000 17000 18000 19000 20000 21000 22000 23000 24000 25000 26000 27000 28000 29000 30000 31000 32000 33000 34000 35000 36000 37000 38000 39000 40000 41000 42000 43000 44000 45000 46000 47000 48000 49000 50000 51000 52000 53000 54000 55000 56000 57000 58000 59000 60000 61000 62000 63000 64000 65000 66000 67000 68000 69000 70000 71000 72000 73000 74000 75000 76000 77000 78000 79000 80000 81000 82000 83000 84000 85000 86000 87000 88000 89000 90000 91000 92000 93000 94000 95000 96000 97000 98000 99000 100000 101000 102000 103000 104000 105000 106000 107000 108000 109000 110000 111000 112000 113000 114000 115000 116000 117000 118000 119000 120000 121000 122000 123000 124000 125000 126000 127000 128000 129000 130000 131000 132000 133000 134000 135000 136000 137000 138000 139000 140000 141000 142000 143000 144000 145000 146000 147000 148000 149000 150000 151000 152000 153000 154000 155000 156000 157000 158000 159000 160000 161000 162000 163000 164000 165000 166000 167000 168000 169000 170000 171000 172000 173000 174000 175000 176000 177000 178000 179000 180000 181000 182000 183000 184000 185000 186000 187000 188000 189000 190000 191000 192000 193000 194000 195000 196000 197000 198000 199000 200000 201000 202000 203000 en_ps59g
+1000 2000 3000 4000 5000 6000 7000 8000 9000 10000 11000 12000 13000 14000 15000 16000 17000 18000 19000 20000 21000 22000 23000 24000 25000 26000 27000 28000 29000 30000 31000 32000 33000 34000 35000 36000 37000 38000 39000 40000 41000 42000 43000 44000 45000 46000 47000 48000 49000 50000 51000 52000 53000 54000 55000 56000 57000 58000 59000 60000 61000 62000 63000 64000 65000 66000 67000 68000 69000 70000 71000 72000 73000 74000 75000 76000 77000 78000 79000 80000 81000 82000 83000 84000 85000 86000 87000 88000 89000 90000 91000 92000 93000 94000 95000 96000 97000 98000 99000 100000 101000 102000 103000 104000 105000 106000 107000 108000 109000 110000 111000 112000 113000 114000 115000 116000 117000 118000 119000 120000 121000 122000 123000 124000 125000 126000 127000 128000 129000 130000 131000 132000 133000 134000 135000 136000 137000 138000 139000 140000 141000 142000 143000 144000 145000 146000 147000 148000 149000 150000 151000 152000 153000 154000 155000 156000 157000 158000 159000 160000 161000 162000 163000 164000 165000 166000 167000 168000 169000 170000 171000 172000 173000 174000 175000 176000 177000 178000 179000 180000 181000 182000 183000 184000 185000 186000 187000 188000 189000 190000 191000 192000 193000 194000 195000 196000 197000 198000 199000 200000 201000 202000 203000 en_ma
+1000 2000 3000 4000 5000 6000 7000 8000 9000 10000 11000 12000 13000 14000 15000 16000 17000 18000 19000 20000 21000 22000 23000 24000 25000 26000 27000 28000 29000 30000 31000 32000 33000 34000 35000 36000 37000 38000 39000 40000 41000 42000 43000 44000 45000 46000 47000 48000 49000 50000 51000 52000 53000 54000 55000 56000 57000 58000 59000 60000 61000 62000 63000 64000 65000 66000 67000 68000 69000 70000 71000 72000 73000 74000 75000 76000 77000 78000 79000 80000 81000 82000 83000 84000 85000 86000 87000 88000 89000 90000 91000 92000 93000 94000 95000 96000 97000 98000 99000 100000 101000 102000 103000 104000 105000 106000 107000 108000 109000 110000 111000 112000 113000 114000 115000 116000 117000 118000 119000 120000 121000 122000 123000 124000 125000 126000 127000 128000 129000 130000 131000 132000 133000 134000 135000 136000 137000 138000 139000 140000 141000 142000 143000 144000 145000 146000 147000 148000 149000 150000 151000 152000 153000 154000 155000 156000 157000 158000 159000 160000 161000 162000 163000 164000 165000 166000 167000 168000 169000 170000 171000 172000 173000 174000 175000 176000 177000 178000 179000 180000 181000 182000 183000 184000 185000 186000 187000 188000 189000 190000 191000 192000 193000 194000 195000 196000 197000 198000 199000 200000 201000 202000 203000 Relations updated: vocabularies/science_en.csv-relations.csv
+100000
+200000
+Relations updated: vocabularies/science_en.csv-relations.csv
+100000
+200000
+Relations updated: vocabularies/science_en.csv-relations.csv
+100000
+200000
+Relations updated: vocabularies/science_en.csv-relations.csv
+en_science 413
+en_cc 20319197
+en_pm 991330
+en_ps 451306
+en_ps59g 5255492
+en_ma 296438
+100000
+200000
+Relations updated: vocabularies/science_en.csv-relations.csv
+Direct hypernyms: vocabularies/science_en.csv-relations.csv-direct-hypo2hyper_s.csv
+100000
+200000
+Relations updated: vocabularies/science_en.csv-relations.csv
+Calculating proxy isas from: en_science
+10000 20000 30000 40000 50000 60000 70000 80000 90000 100000 110000 120000 130000 140000 150000 160000 170000 180000 190000 200000 
+Calculating proxy isas from: en_cc
+^[10000 20000 30000 40000 50000 60000 70000 80000 90000 100000 110000 120000 130000 140000 150000 160000 170000 180000 190000 200000 
+Calculating proxy isas from: en_pm
+10000 20000 30000 40000 50000 60000 70000 80000 90000 100000 110000 120000 130000 140000 150000 160000 170000 180000 190000 200000 
+Calculating proxy isas from: en_ps
+10000 20000 30000 40000 50000 60000 70000 80000 90000 100000 110000 120000 130000 140000 150000 160000 170000 180000 190000 200000 
+Calculating proxy isas from: en_ps59g
+10000 20000 30000 40000 50000 60000 70000 80000 90000 100000 110000 120000 130000 140000 150000 160000 170000 180000 190000 200000 
+Calculating proxy isas from: en_ma
+10000 20000 30000 40000 50000 60000 70000 80000 90000 100000 110000 120000 130000 140000 150000 160000 170000 180000 190000 200000 
+Relations updated: vocabularies/science_en.csv-relations.csv
+/informatik2/students/home/5aly/taxi/jnt/isas/taxo.py:470: FutureWarning: sort(columns=....) is deprecated, use sort_values(by=.....)
+  df = df.sort(["hyponym", "hypo2hyper" + p], ascending=[1,0])
+Proxy relations: vocabularies/science_en.csv-relations.csv_en_ma_max2-hypo2hyper.csv
+100000
+200000
+Relations updated: vocabularies/science_en.csv-relations.csv
+Predicting with: ./resources/models/release/2features-new/AdaBoost
+Traceback (most recent call last):
+  File "semeval.py", line 151, in extract_semeval_taxo
+    method = taxo_predict.predict_by_classifier(classifier_dir)
+  File "/informatik2/students/home/5aly/taxi/jnt/isas/predictors.py", line 73, in predict_by_classifier
+  File "/informatik2/students/home/5aly/taxi/jnt/isas/supervised.py", line 51, in __init__
+    self._meta = json.load(open(self._meta_fpath, "r"))
+  File "/usr/local/lib/python2.7/dist-packages/sklearn/externals/joblib/numpy_pickle.py", line 575, in load
+    obj = _unpickle(fobj, filename, mmap_mode)
+  File "/usr/local/lib/python2.7/dist-packages/sklearn/externals/joblib/numpy_pickle.py", line 507, in _unpickle
+    obj = unpickler.load()
+  File "/usr/lib/python2.7/pickle.py", line 864, in load
+    dispatch[key](self)
+  File "/usr/local/lib/python2.7/dist-packages/sklearn/externals/joblib/numpy_pickle.py", line 327, in load_build
+    Unpickler.load_build(self)
+  File "/usr/lib/python2.7/pickle.py", line 1223, in load_build
+    setstate(state)
+  File "sklearn/tree/_tree.pyx", line 632, in sklearn.tree._tree.Tree.__setstate__ (sklearn/tree/_tree.c:8137)
+KeyError: 'max_depth'
+
+Predicting with: ./resources/models/release/2features-new/Bagging
+Traceback (most recent call last):
+  File "semeval.py", line 151, in extract_semeval_taxo
+    method = taxo_predict.predict_by_classifier(classifier_dir)
+  File "/informatik2/students/home/5aly/taxi/jnt/isas/predictors.py", line 73, in predict_by_classifier
+  File "/informatik2/students/home/5aly/taxi/jnt/isas/supervised.py", line 51, in __init__
+    self._meta = json.load(open(self._meta_fpath, "r"))
+  File "/usr/local/lib/python2.7/dist-packages/sklearn/externals/joblib/numpy_pickle.py", line 575, in load
+    obj = _unpickle(fobj, filename, mmap_mode)
+  File "/usr/local/lib/python2.7/dist-packages/sklearn/externals/joblib/numpy_pickle.py", line 507, in _unpickle
+    obj = unpickler.load()
+  File "/usr/lib/python2.7/pickle.py", line 864, in load
+    dispatch[key](self)
+  File "/usr/local/lib/python2.7/dist-packages/sklearn/externals/joblib/numpy_pickle.py", line 327, in load_build
+    Unpickler.load_build(self)
+  File "/usr/lib/python2.7/pickle.py", line 1223, in load_build
+    setstate(state)
+  File "sklearn/tree/_tree.pyx", line 632, in sklearn.tree._tree.Tree.__setstate__ (sklearn/tree/_tree.c:8137)
+KeyError: 'max_depth'
+
+Predicting with: ./resources/models/release/2features-new/Dummy
+/usr/local/lib/python2.7/dist-packages/sklearn/base.py:315: UserWarning: Trying to unpickle estimator DummyClassifier from version pre-0.18 when using version 0.18.2. This might lead to breaking code or invalid results. Use at your own risk.
+  UserWarning)
+Metadata were loaded from: ./resources/models/release/2features-new/Dummy/meta.json
+(203852, 2) (203852,)
+/informatik2/students/home/5aly/taxi/jnt/isas/predictors.py:67: FutureWarning: sort(columns=....) is deprecated, use sort_values(by=.....)
+  print "Taxonomy:", taxonomy_fpath
+Taxonomy: vocabularies/science_en.csv-relations.csv-taxo.csv-Dummy.csv
+/informatik2/students/home/5aly/taxi/jnt/isas/predictors.py:63: FutureWarning: sort(columns=....) is deprecated, use sort_values(by=.....)
+  df = df[["hyponym","hypernym"]]
+Taxonomy: vocabularies/science_en.csv-relations.csv-taxo.csv-Dummy-conf.csv
+Predicting with: ./resources/models/release/2features-new/GradientBoosting
+Traceback (most recent call last):
+  File "semeval.py", line 151, in extract_semeval_taxo
+    method = taxo_predict.predict_by_classifier(classifier_dir)
+  File "/informatik2/students/home/5aly/taxi/jnt/isas/predictors.py", line 73, in predict_by_classifier
+  File "/informatik2/students/home/5aly/taxi/jnt/isas/supervised.py", line 51, in __init__
+    self._meta = json.load(open(self._meta_fpath, "r"))
+  File "/usr/local/lib/python2.7/dist-packages/sklearn/externals/joblib/numpy_pickle.py", line 575, in load
+    obj = _unpickle(fobj, filename, mmap_mode)
+  File "/usr/local/lib/python2.7/dist-packages/sklearn/externals/joblib/numpy_pickle.py", line 507, in _unpickle
+    obj = unpickler.load()
+  File "/usr/lib/python2.7/pickle.py", line 864, in load
+    dispatch[key](self)
+  File "/usr/local/lib/python2.7/dist-packages/sklearn/externals/joblib/numpy_pickle.py", line 340, in load_build
+    self.stack.append(array_wrapper.read(self))
+  File "/usr/local/lib/python2.7/dist-packages/sklearn/externals/joblib/numpy_pickle_compat.py", line 101, in read
+    array = unpickler.np.load(filename, **memmap_kwargs)
+  File "/informatik2/students/home/5aly/.local/lib/python2.7/site-packages/numpy/lib/npyio.py", line 421, in load
+    pickle_kwargs=pickle_kwargs)
+  File "/informatik2/students/home/5aly/.local/lib/python2.7/site-packages/numpy/lib/format.py", line 650, in read_array
+    array = pickle.load(fp, **pickle_kwargs)
+AttributeError: 'module' object has no attribute 'PresortBestSplitter'
+
+Predicting with: ./resources/models/release/2features-new/LinearSVC
+/usr/local/lib/python2.7/dist-packages/sklearn/base.py:315: UserWarning: Trying to unpickle estimator LinearSVC from version pre-0.18 when using version 0.18.2. This might lead to breaking code or invalid results. Use at your own risk.
+  UserWarning)
+Metadata were loaded from: ./resources/models/release/2features-new/LinearSVC/meta.json
+(203852, 2) (203852,)
+Taxonomy: vocabularies/science_en.csv-relations.csv-taxo.csv-LinearSVC.csv
+Taxonomy: vocabularies/science_en.csv-relations.csv-taxo.csv-LinearSVC-conf.csv
+Predicting with: ./resources/models/release/2features-new/LogisticRegressionL1
+/usr/local/lib/python2.7/dist-packages/sklearn/base.py:315: UserWarning: Trying to unpickle estimator LogisticRegression from version pre-0.18 when using version 0.18.2. This might lead to breaking code or invalid results. Use at your own risk.
+  UserWarning)
+Metadata were loaded from: ./resources/models/release/2features-new/LogisticRegressionL1/meta.json
+(203852, 2) (203852,)
+Taxonomy: vocabularies/science_en.csv-relations.csv-taxo.csv-LogisticRegressionL1.csv
+Taxonomy: vocabularies/science_en.csv-relations.csv-taxo.csv-LogisticRegressionL1-conf.csv
+Predicting with: ./resources/models/release/2features-new/LogisticRegressionL2
+Metadata were loaded from: ./resources/models/release/2features-new/LogisticRegressionL2/meta.json
+(203852, 2) (203852,)
+Taxonomy: vocabularies/science_en.csv-relations.csv-taxo.csv-LogisticRegressionL2.csv
+Taxonomy: vocabularies/science_en.csv-relations.csv-taxo.csv-LogisticRegressionL2-conf.csv
+Predicting with: ./resources/models/release/2features-new/MLP
+/usr/local/lib/python2.7/dist-packages/sklearn/base.py:315: UserWarning: Trying to unpickle estimator LabelBinarizer from version 0.19.1 when using version 0.18.2. This might lead to breaking code or invalid results. Use at your own risk.
+  UserWarning)
+/usr/local/lib/python2.7/dist-packages/sklearn/base.py:315: UserWarning: Trying to unpickle estimator MLPClassifier from version 0.19.1 when using version 0.18.2. This might lead to breaking code or invalid results. Use at your own risk.
+  UserWarning)
+Metadata were loaded from: ./resources/models/release/2features-new/MLP/meta.json
+(203852, 2) (203852,)
+Taxonomy: vocabularies/science_en.csv-relations.csv-taxo.csv-MLP.csv
+Taxonomy: vocabularies/science_en.csv-relations.csv-taxo.csv-MLP-conf.csv
+Predicting with: ./resources/models/release/2features-new/MultinomialNB
+Meta file saved to: ./resources/models/release/2features-new/MultinomialNB/meta.json
+Traceback (most recent call last):
+  File "semeval.py", line 151, in extract_semeval_taxo
+    method = taxo_predict.predict_by_classifier(classifier_dir)
+  File "/informatik2/students/home/5aly/taxi/jnt/isas/predictors.py", line 74, in predict_by_classifier
+    def predict_by_local_threshold(self, max_knn=3, threshold=0.0, field="", or_correct_predict=False):
+  File "/informatik2/students/home/5aly/taxi/jnt/isas/supervised.py", line 195, in predict
+    print "Error: classifier is not loaded."
+AttributeError: SuperTaxi instance has no attribute '_clf'
+
+Predicting with: ./resources/models/release/2features-new/RandomForest
+/usr/local/lib/python2.7/dist-packages/sklearn/base.py:315: UserWarning: Trying to unpickle estimator DecisionTreeClassifier from version pre-0.18 when using version 0.18.2. This might lead to breaking code or invalid results. Use at your own risk.
+  UserWarning)
+Traceback (most recent call last):
+  File "semeval.py", line 151, in extract_semeval_taxo
+    method = taxo_predict.predict_by_classifier(classifier_dir)
+  File "/informatik2/students/home/5aly/taxi/jnt/isas/predictors.py", line 73, in predict_by_classifier
+  File "/informatik2/students/home/5aly/taxi/jnt/isas/supervised.py", line 51, in __init__
+    self._meta = json.load(open(self._meta_fpath, "r"))
+  File "/usr/local/lib/python2.7/dist-packages/sklearn/externals/joblib/numpy_pickle.py", line 575, in load
+    obj = _unpickle(fobj, filename, mmap_mode)
+  File "/usr/local/lib/python2.7/dist-packages/sklearn/externals/joblib/numpy_pickle.py", line 507, in _unpickle
+    obj = unpickler.load()
+  File "/usr/lib/python2.7/pickle.py", line 864, in load
+    dispatch[key](self)
+  File "/usr/local/lib/python2.7/dist-packages/sklearn/externals/joblib/numpy_pickle.py", line 327, in load_build
+    Unpickler.load_build(self)
+  File "/usr/lib/python2.7/pickle.py", line 1223, in load_build
+    setstate(state)
+  File "sklearn/tree/_tree.pyx", line 632, in sklearn.tree._tree.Tree.__setstate__ (sklearn/tree/_tree.c:8137)
+KeyError: 'max_depth'
+
+Predicting with: ./resources/models/release/2features-new/SVC
+/usr/local/lib/python2.7/dist-packages/sklearn/base.py:315: UserWarning: Trying to unpickle estimator SVC from version pre-0.18 when using version 0.18.2. This might lead to breaking code or invalid results. Use at your own risk.
+  UserWarning)
+Metadata were loaded from: ./resources/models/release/2features-new/SVC/meta.json
+(203852, 2) (203852,)
+Taxonomy: vocabularies/science_en.csv-relations.csv-taxo.csv-SVC.csv
+Taxonomy: vocabularies/science_en.csv-relations.csv-taxo.csv-SVC-conf.csv
+Predicting with: ./resources/models/release/2features-new/SVC-GS2
+Metadata were loaded from: ./resources/models/release/2features-new/SVC-GS2/meta.json
+(203852, 2) (203852,)
+Taxonomy: vocabularies/science_en.csv-relations.csv-taxo.csv-SVC-GS2.csv
+Taxonomy: vocabularies/science_en.csv-relations.csv-taxo.csv-SVC-GS2-conf.csv
+Predicting with: ./resources/models/release/2features-new/SVCLinear
+Metadata were loaded from: ./resources/models/release/2features-new/SVCLinear/meta.json
+(203852, 2) (203852,)
+Taxonomy: vocabularies/science_en.csv-relations.csv-taxo.csv-SVCLinear.csv
+Taxonomy: vocabularies/science_en.csv-relations.csv-taxo.csv-SVCLinear-conf.csv
+
+vocabularies/science_en.csv 
+==================================================
+Relations: vocabularies/science_en.csv-space-relations.csv
+Unpruned taxonomy: vocabularies/science_en.csv-space-relations.csv-taxo.csv
+vocabularies/science_en.csv is science
+Loaded resources in 0 sec.
+Loaded 452 words vocabulary
+Generating new relations file: vocabularies/science_en.csv-relations.csv
+Generated 203853 relations out of 452 words: vocabularies/science_en.csv-relations.csv
+en_science 413
+en_cc 20319197
+en_pm 991330
+en_ps 451306
+en_ps59g 5255492
+en_ma 296438
+100000
+200000
+Relations updated: vocabularies/science_en.csv-relations.csv
+Direct hypernyms: vocabularies/science_en.csv-relations.csv-direct-hypo2hyper.csv
+100000
+200000
+Relations updated: vocabularies/science_en.csv-relations.csv
+Substrings: vocabularies/science_en.csv-relations.csv-substrings.csv
+Relations updated: vocabularies/science_en.csv-relations.csv
+Relations updated: vocabularies/science_en.csv-relations.csv
+100000
+200000
+Relations updated: vocabularies/science_en.csv-relations.csv
+en_science
+1000 2000 3000 4000 5000 6000 7000 8000 9000 10000 11000 12000 13000 14000 15000 16000 17000 18000 19000 20000 21000 22000 23000 24000 25000 26000 27000 28000 29000 30000 31000 32000 33000 34000 35000 36000 37000 38000 39000 40000 41000 42000 43000 44000 45000 46000 47000 48000 49000 50000 51000 52000 53000 54000 55000 56000 57000 58000 59000 60000 61000 62000 63000 64000 65000 66000 67000 68000 69000 70000 71000 72000 73000 74000 75000 76000 77000 78000 79000 80000 81000 82000 83000 84000 85000 86000 87000 88000 89000 90000 91000 92000 93000 94000 95000 96000 97000 98000 99000 100000 101000 102000 103000 104000 105000 106000 107000 108000 109000 110000 111000 112000 113000 114000 115000 116000 117000 118000 119000 120000 121000 122000 123000 124000 125000 126000 127000 128000 129000 130000 131000 132000 133000 134000 135000 136000 137000 138000 139000 140000 141000 142000 143000 144000 145000 146000 147000 148000 149000 150000 151000 152000 153000 154000 155000 156000 157000 158000 159000 160000 161000 162000 163000 164000 165000 166000 167000 168000 169000 170000 171000 172000 173000 174000 175000 176000 177000 178000 179000 180000 181000 182000 183000 184000 185000 186000 187000 188000 189000 190000 191000 192000 193000 194000 195000 196000 197000 198000 199000 200000 201000 202000 203000 en_cc

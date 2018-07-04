@@ -1,0 +1,8 @@
+nutrition	instrumentation
+astrodynamics	music
+os	communication
+Elements Taxonomy:362.0465.0
+Correct: 152
+Precision: 0.4198895027624309
+Recall: 0.32688172043010755
+F1: 0.3675937122128174

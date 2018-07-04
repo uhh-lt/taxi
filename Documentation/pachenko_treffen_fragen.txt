@@ -1,0 +1,13 @@
+Question to Pachenko
+---------------------------
+
+1) Combination von neuem Paper mit substring und/oder patternbased for maximal value?
+2) Bleiben bei taXi, ignorieren den distributional semantic ansatz
+3) Hypernym extraction LSTM nutzen, isas commoncrawl, oder direkt am input. - Gute Idee sagt er!
+4) Evaluationstool, speicher?
+5) Does the isas dataset even has all the relations in the testset, or missing, where is the limitation?
+6) Embeddings nutzen, sinnvol
+
+The dist. semantics before cycle removing or after, he says before would maek sense.
+So his idea is to look on one level and see whether on word embediggs if cohypernyms are and remove if they are outlyers and maybe add other values of nodes that are not connected to the graph
+14:15 Monday, Alexander 

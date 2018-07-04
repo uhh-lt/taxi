@@ -116,3 +116,15 @@ Model/
 TExEval_trialdata_1.2
 property_analysis/
 
+distributed_semantics/own_embeddings
+distributed_semantics/own_embeddings.trainables.syn1neg.npy
+distributed_semantics/own_embeddings.trainables.vectors_ngrams_lockf.npy
+distributed_semantics/own_embeddings.trainables.vectors_vocab_lockf.npy
+distributed_semantics/own_embeddings.wv.vectors.npy
+distributed_semantics/own_embeddings.wv.vectors_ngrams.npy
+distributed_semantics/own_embeddings.wv.vectors_vocab.npy
+distributed_semantics/own_embeddings_w2v
+distributed_semantics/own_embeddings_w2v.trainables.syn1neg.npy
+distributed_semantics/own_embeddings_w2v.wv.vectors.npy
+
+

@@ -1,0 +1,16 @@
+nutrition	instrumentation
+circuits	electrical-engineering
+archaeological	history
+ergonomics	engineering
+astrodynamics	music
+os	communication
+syntax	communication
+theatre	communication
+graphics	communication
+music	communication
+methodologies	science
+Elements Taxonomy:361.0465.0
+Correct: 152
+Precision: 0.42105263157894735
+Recall: 0.32688172043010755
+F1: 0.36803874092009686
