@@ -107,5 +107,5 @@ for element in elements:
 
 with open(filename_out, 'w') as f:
     for element in list_data:
-        print element
+        print(element)
         f.write(str(element[0]) + '\t' + element[1] + '\t' + element[2]  + '\n')
