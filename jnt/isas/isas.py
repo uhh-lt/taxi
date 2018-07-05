@@ -39,10 +39,10 @@ class ISAs(object):
             if preprocess:
                 isas_cln_fpath = isas_fpath + ".cleaned"
                 preprocess_pandas_csv(isas_fpath, isas_cln_fpath)
-                isas_df = read_csv(isas_cln_fpath, sep, encoding='utf8', error_bad_lines=False)
+                isas_df = read_csv(isas_cln_fpath, sep, encoding='utf-8', error_bad_lines=False)
                 try_remove(isas_cln_fpath)
             else:
-                isas_df = read_csv(isas_fpath, sep, encoding='utf8', error_bad_lines=False)
+                isas_df = read_csv(isas_fpath, sep, encoding='utf-8', error_bad_lines=False)
 
             isas_df = isas_df.drop(isas_df[isas_df["freq"] < min_freq].index)
             hypo2hyper = defaultdict(dict)
