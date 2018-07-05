@@ -10,22 +10,22 @@ from os.path import splitext
 
 DEBUG = False
 CHUNK_SIZE=1000000
-re_comma = re.compile(ur"^([^,]*),.*", re.U|re.I)
+re_comma = re.compile(r"^([^,]*),.*", re.U|re.I)
 
 
 def clean_patternsim_term(term):
-    cterm = unicode(term)
-    cterm = re_comma.sub(ur"\1", cterm)
+    cterm = str(term)
+    cterm = re_comma.sub(r"\1", cterm)
     return cterm
 
 def patternsim2isas(patternsim_fpath, output_fpath):
     patternsim_df = read_csv(patternsim_fpath, encoding='utf-8', delimiter=";", error_bad_lines=False, low_memory=True)
-    print "Loaded %d pairs" % len(patternsim_df)
+    print("Loaded %d pairs" % len(patternsim_df))
     isas = defaultdict(dict)
     
     for i, row in patternsim_df.iterrows():
         try:
-            if i % 100000 == 0: print i
+            if i % 100000 == 0: print(i)
             
             word1 = clean_patternsim_term(row.form)
             word2 = clean_patternsim_term(row.related)
@@ -44,18 +44,18 @@ def patternsim2isas(patternsim_fpath, output_fpath):
         except:
             pass
             #print "Bad row:", row
-            print format_exc()
+            print(format_exc())
 
     with codecs.open(output_fpath, "w", "utf-8") as out:
-        print >> out, "hyponym\thypernym\tfreq"
+        print("hyponym\thypernym\tfreq", file=out)
         for hypo in isas:
-            for hyper, freq in sorted(isas[hypo].items(), key=operator.itemgetter(1), reverse=True):
+            for hyper, freq in sorted(list(isas[hypo].items()), key=operator.itemgetter(1), reverse=True):
                 if isas[hypo][hyper] <= 0:
-                    print "Skipping '%s' --(%d)--> '%s'" % (hypo, isas[hypo][hyper], hyper)
+                    print("Skipping '%s' --(%d)--> '%s'" % (hypo, isas[hypo][hyper], hyper))
                     continue
-                print >> out, "%s\t%s\t%d" % (hypo, hyper, freq)
+                print("%s\t%s\t%d" % (hypo, hyper, freq), file=out)
 
-    print "Output:", output_fpath
+    print("Output:", output_fpath)
 
 
 
@@ -67,7 +67,7 @@ def patternsim2isas_hh(hh_fpath, output_fpath):
     for i, row in hh_df.iterrows():
         try:
             #if i > 100000: break
-            if i % 100000 == 0: print i
+            if i % 100000 == 0: print(i)
             word1 = clean_patternsim_term(row.word1)
             word2 = clean_patternsim_term(row.word2)
             word1_isa_word2 = int(row.word1_isa_word2)
@@ -82,18 +82,18 @@ def patternsim2isas_hh(hh_fpath, output_fpath):
             else:
                 isas[word2][word1] += word2_isa_word1
         except:
-            print "Bad row:", row
-            print format_exc()
+            print("Bad row:", row)
+            print(format_exc())
 
     with codecs.open(output_fpath, "w", "utf-8") as out:
-        print >> out, "hyponym\thypernym\tfreq"
+        print("hyponym\thypernym\tfreq", file=out)
         for hypo in isas:
 
-            for hyper, freq in sorted(isas[hypo].items(), key=operator.itemgetter(1), reverse=True):
+            for hyper, freq in sorted(list(isas[hypo].items()), key=operator.itemgetter(1), reverse=True):
                 if isas[hypo][hyper] <= 0: continue
-                print >> out, "%s\t%s\t%d" % (hypo, hyper, freq)
+                print("%s\t%s\t%d" % (hypo, hyper, freq), file=out)
 
-    print "Output:", output_fpath
+    print("Output:", output_fpath)
 
 
 def main():
@@ -104,8 +104,8 @@ def main():
     args = parser.parse_args()
 
     output_fpath = splitext(args.inp)[0] + "-isas.csv" if args.o == "" else args.o
-    print "Input: ", args.inp
-    print "Output: ", output_fpath
+    print("Input: ", args.inp)
+    print("Output: ", output_fpath)
     patternsim2isas(args.inp, output_fpath)
 
 if __name__ == '__main__':

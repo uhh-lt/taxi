@@ -67,7 +67,7 @@ class TaxonomyPredictor():
             df = df.sort_values("hyponym", ascending=1)
             df.to_csv(taxonomy_fpath, sep="\t", encoding="utf-8", float_format='%.5f', index=True, header=False)
 
-        print "Taxonomy:", taxonomy_fpath
+        print("Taxonomy:", taxonomy_fpath)
 
     def predict_by_classifier(self, classifier_dir):
         st = SuperTaxi(classifier_dir)
@@ -214,11 +214,11 @@ def predict_by_in_degrees(relations, field_name_postfix="", weight=False):
 
 
 def accuracy(relations, name=""):
-    print "\n", name.upper(), "\n", "="*50
-    print "correct:", sum(relations.correct == relations.correct_predict)
-    print "all:", len(relations)
-    print "accuracy: %.3f" % (sum(relations.correct == relations.correct_predict)/float(len(relations)))
-    print classification_report(relations.correct, relations.correct_predict)
+    print("\n", name.upper(), "\n", "="*50)
+    print("correct:", sum(relations.correct == relations.correct_predict))
+    print("all:", len(relations))
+    print("accuracy: %.3f" % (sum(relations.correct == relations.correct_predict)/float(len(relations))))
+    print(classification_report(relations.correct, relations.correct_predict))
 
     try:
         precision, recall, thresholds = precision_recall_curve(relations.correct, relations[name])
@@ -232,5 +232,5 @@ def accuracy(relations, name=""):
         plt.legend(loc="lower left")
         plt.show()
     except:
-        print "Warning: cannot make plot."
+        print("Warning: cannot make plot.")
         # print format_exc()

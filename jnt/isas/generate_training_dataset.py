@@ -11,4 +11,4 @@ relations = load_relations(relations_fpath, taxo_en_plants_fpath, taxo_en_vehicl
                taxo_en_ai_fpath, taxo_eval_en_ai_fpath)
 relations = add_cohypo_negatives(relations, isa_fpath)
 relations.to_csv(relations_fpath, sep="\t", encoding="utf-8", float_format='%.0f', index=False)
-print "Dataset:", relations_fpath
+print("Dataset:", relations_fpath)

@@ -11,13 +11,14 @@ import plumbum.cmd as cmd
 import pprint
 from os.path import splitext, join
 import codecs
-from patterns import re_escape, re_amp, re_quote_escape
 from pandas import read_csv
 from itertools import islice
 import _pickle as pickle
 from os.path import join, abspath
 import gzip
 from ntpath import basename
+
+from patterns import re_escape, re_amp, re_quote_escape
 
 """ This namespace contains a set of small common purpose functions and constants. """
 

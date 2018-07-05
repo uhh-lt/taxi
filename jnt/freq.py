@@ -2,8 +2,8 @@ from pandas import read_csv
 import _pickle as pickle
 from traceback import format_exc
 
-from common import exists, preprocess_pandas_csv
-from common import try_remove
+from .common import exists, preprocess_pandas_csv
+from .common import try_remove
 
 
 DEFAULT_FREQ = 1
