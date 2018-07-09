@@ -9,7 +9,7 @@ from traceback import format_exc
 import sys
 from nltk.corpus import stopwords
 
-from common import preprocess_pandas_csv, get_data_dir
+from .common import preprocess_pandas_csv, get_data_dir
 
 GO_POS = ["NOUN", "VERB", "ADJ"]
 STOP_LIST = [str(w) for w in

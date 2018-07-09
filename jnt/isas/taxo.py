@@ -10,8 +10,8 @@ import operator
 import re
 from traceback import format_exc
 
-from isas import ISAs
-from predictors import *
+from .isas import ISAs
+from .predictors import *
 from jnt.freq import FreqDictionary
 from jnt.common import fpath2filename, try_remove, exists
 from jnt.morph import lemmatize, load_stoplist

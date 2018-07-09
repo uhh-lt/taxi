@@ -18,7 +18,7 @@ from os.path import join, abspath
 import gzip
 from ntpath import basename
 
-from patterns import re_escape, re_amp, re_quote_escape
+from .patterns import re_escape, re_amp, re_quote_escape
 
 """ This namespace contains a set of small common purpose functions and constants. """
 
@@ -147,16 +147,16 @@ def random_ints():
     return str(int(math.floor(random.random() * 100000)))
 
 
-from patterns import re_newlines
+from .patterns import re_newlines
 def strip_newlines(input):
     return re_newlines.sub(" ", input)
 
 
-from patterns import re_whitespaces
+from .patterns import re_whitespaces
 def normalize_whitespaces(input):
     return re_whitespaces.sub(" ", input)
 
-from patterns import re_url
+from .patterns import re_url
 def get_urls(input):
     matches = re_url.findall(input)
     return matches
