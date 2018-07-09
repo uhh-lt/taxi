@@ -83,7 +83,7 @@ if filename_out is None:
 
 list_data = []
 iter = 1
-with open(filename_in, 'rb') as f:
+with open(filename_in, 'r') as f:
     reader = csv.reader(f, delimiter = '\t')
     for i, line in enumerate(reader):
         list_data.append((line[0], line[1], line[2]))
