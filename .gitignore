@@ -112,8 +112,7 @@ other
 .idea/
 Model/
 TExEval_trialdata_1.2
-property_analysis/
-
+property_analysis/isas-commoncrawl.csv 
 distributed_semantics/own_embeddings
 distributed_semantics/own_embeddings.trainables.syn1neg.npy
 distributed_semantics/own_embeddings.trainables.vectors_ngrams_lockf.npy
