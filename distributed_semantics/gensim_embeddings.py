@@ -12,7 +12,7 @@ import logging
 # parser = spacy.load('en_core_web_md')
 import pandas
 
-compound_operator = "-"
+compound_operator = "_"
 
 def create_compound_word(compound, model):
     global compound_operator
@@ -40,7 +40,7 @@ def compare_to_gold(gold, taxonomy_o, outliers, model, mode = "removal", log = F
                         if rank_root != None and rank_root in range(rank_ref -20, rank_ref + 20):
                         #and rank_root in range(rank_ref -20, rank_ref + 20):
                             removed_outliers.append((element[0], element[1], parent.replace(compound_operator, ' ')))
-                            print("Added :" + str(element[0]) + " " + element[1].replace(compound_operator, ' ') + " " +  parent.replace(compound_operator, ' '))
+                            print("Added :" + str(element[0]) + " " + element[1] + " " +  parent.replace(compound_operator, ' '))
                             print("Best Word: " + best_word + ", Rank:" + str(rank) + " Rank_Inv: " + str(rank_inv) + ", Rank Parent: " + str(rank_root))
 
                 # elif rank_root == "None":
@@ -215,13 +215,11 @@ def read_input(input_file, vocabulary):
         for word_voc in vocabulary:
             if word_voc in line and word_voc != word_voc.replace(' ', compound_operator):
                 print(word_voc + " " + str(i))
-                # if word_voc in freq:
-                #     freq[word_voc]+=1
-                # else:
-                #     freq[word_voc] = 1
                 line = line.replace(word_voc, word_voc.replace(' ', compound_operator))
                 # print(freq)
                 #print(line)
+            if word_voc.replace(' ', "-") in line:
+                line = line.replace(word_voc.replace(' ', '-'), word_voc.replace(' ', compound_operator))
         cleared_line = gensim.utils.simple_preprocess (line, max_len = 30)
         # if not isa:
         #     for entry in cleared_line:
@@ -351,11 +349,11 @@ def run(mode, embedding, experiment_name, log = False, trial = False):
         model = gensim.models.KeyedVectors.load('own_embeddings_w2v')
         print(model.wv.similarity("dog", "cat"))
         print(model.wv.similarity("clean", "dirty"))
-        #print(model.wv.similarity("signal-processing", "dog"))
-        #print(model.wv.similarity("computer-science", "science"))
-        #print(model.wv.similarity("signal-processing", "electrical-engineering"))
-        #print(model.wv.similarity("plant-breeding", "plant-science"))
-        #print(model.wv.similarity('digital-circuits', 'electrical-engineering'))
+        print(model.wv.similarity("signal_processing", "dog"))
+        print(model.wv.similarity("computer_science", "science"))
+        print(model.wv.similarity("signal_processing", "electrical_engineering"))
+        print(model.wv.similarity("plant_breeding", "plant_science"))
+        print(model.wv.similarity('digital_circuits', 'electrical_engineering'))
         print(len(model.wv.vocab))
     elif embedding == "quick":
         model = gensim.models.KeyedVectors.load_word2vec_format('crawl-300d-2M.vec', binary=False, limit = 50000)
@@ -395,7 +393,7 @@ def run(mode, embedding, experiment_name, log = False, trial = False):
         elif mode =="gridsearch_removal":
             threshholds = range(2,8, 1)
             threshholds = [float(value / 10) for value in threshholds]
-            #threshholds = [0.6, 0.62, 0.63, 0.7, 0.95]
+            threshholds = [0.3, 0.32, 0.33, 0.35, 0.37,0.4]
             for value in threshholds:
                 gold, relations = read_all_data()
                 outliers = calculate_outliers(relations,model, mode = "abs", embedding_type = embedding, threshhold=  value)
@@ -404,7 +402,7 @@ def run(mode, embedding, experiment_name, log = False, trial = False):
         elif mode =="gridsearch_removal_add":
             threshholds = range(2,8)
             threshholds = [float(value / 10) for value in threshholds]
-            #threshholds = [0.7, 0.74, 0.75, 0.8]
+            threshholds = [0.3, 0.32, 0.33, 0.35, 0.37, 0.4]
             for value in threshholds:
                 gold, relations = read_all_data()
                 outliers = calculate_outliers(relations,model, mode = "abs", embedding_type = embedding, threshhold=  value)
@@ -413,13 +411,13 @@ def run(mode, embedding, experiment_name, log = False, trial = False):
 
 
         elif mode =="gridsearch_removal_add_iterative":
-            threshholds = range(100, 1000, 100)
-            #threshholds = [float(value / 10) for value in threshholds]
+            threshholds = range(2, 5)
+            threshholds = [float(value / 10) for value in threshholds]
             for value in threshholds:
                 gold, relations  = read_all_data()
-                for i in range(1,3):
-                    outliers = calculate_outliers(relations,model, "k_nearest", embedding_type = embedding , threshhold = value)
-                    relations = compare_to_gold(gold, relations, outliers, model, mode = "removal_add", log = True, experiment_name = "logs/wikipedia_2M_outlier_removal_by_rank_adding_back__by_rank_iterative_3/", threshhold = value)
+                for i in range(3):
+                    outliers = calculate_outliers(relations,model, "abs", embedding_type = embedding , threshhold = value)
+                    relations = compare_to_gold(gold, relations, outliers, model, mode = "removal_add", log  = "logs/" + experiment_name + "_" + str(value), write_file = "out/" + experiment_name + "_" + str(value))
 
 
 if __name__ == '__main__':

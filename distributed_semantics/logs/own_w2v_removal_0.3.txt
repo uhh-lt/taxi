@@ -1,0 +1,11 @@
+methodologies	science
+probability	mathematics
+astrodynamics	music
+theatre	communication
+music	communication
+nutrition	instrumentation
+Elements Taxonomy:359.0465.0
+Correct: 152
+Precision: 0.4233983286908078
+Recall: 0.32688172043010755
+F1: 0.36893203883495146

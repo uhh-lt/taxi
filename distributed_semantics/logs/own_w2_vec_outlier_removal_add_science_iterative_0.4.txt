@@ -1,0 +1,6 @@
+cellular_neuroscience	biochemistry
+Elements Taxonomy:309.0465.0
+Correct: 135
+Precision: 0.4368932038834951
+Recall: 0.2903225806451613
+F1: 0.3488372093023256
