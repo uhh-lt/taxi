@@ -171,7 +171,7 @@ def read_trial_data():
     return [correct_relations, wrong_relations]
 
 
-def taxonomy_eval(filename_in, filename_gold, word_embeddings, filename_out, mode = 'k-nearest'):
+def taxonomy_eval(filename_in, filename_gold, word_embeddings, filename_out, mode = 'visualize'):
     list_data_o = []
     list_data = []
     with open(filename_in, 'rb') as f:
@@ -206,18 +206,19 @@ def taxonomy_eval(filename_in, filename_gold, word_embeddings, filename_out, mod
         #remove_outliers_and_write(filename_out,list_data_o,outliers, 0.0)
 
     elif mode =='visualize':
-        # hypernyms = co_hypernymy(list_data)
-        # science_hypo = hypernyms["science"]
-        # print science_hypo
-        # science_embedding = taxonomy_embeddings(science_hypo, word_embeddings)
-        # science_hypos = []
-        # for word, value in science_embedding.iteritems():
-        #     science_hypos.append(value)
-        # visualize_taxonomy(science_hypos, science_embedding.keys())
-        vectors= []
-        for key, value in taxonomy_embedding.iteritems():
-            vectors.append(value)
-        visualize_taxonomy(vectors, taxonomy_embedding.keys())
+        hypernyms = co_hypernymy(list_data)
+        science_hypo = hypernyms["science"]
+        science_hypo.append("science")
+        print science_hypo
+        science_embedding = taxonomy_embeddings(science_hypo, word_embeddings)
+        science_hypos = []
+        for word, value in science_embedding.iteritems():
+            science_hypos.append(value)
+        visualize_taxonomy(science_hypos, science_embedding.keys())
+        # vectors= []
+        # for key, value in taxonomy_embedding.iteritems():
+        #     vectors.append(value)
+        # visualize_taxonomy(vectors, taxonomy_embedding.keys())
 
 
 def remove_outliers_and_compare(filename_gold, taxonomy, outliers,fraction):
@@ -298,7 +299,7 @@ def trial_eval(word_embeddings, mode):
         relation_distance(taxonomy_embedding_false, wrong_relations, "Wrong")
 
 
-def main(word_embeddings, filename_in = None, filename_gold = None, filename_out = None,  mode = 'k-nearest'):
+def main(word_embeddings, filename_in = None, filename_gold = None, filename_out = None,  mode = 'visualize'):
 
     if filename_in != "None":
          taxonomy_eval(filename_in, filename_gold, word_embeddings, filename_out,  mode)
@@ -392,15 +393,16 @@ if len(sys.argv) >= 2:
 if len(sys.argv) >= 3:
     filename_gold = sys.argv[2]
 
+# if len(sys.argv) >= 4:
+#     filename_out = sys.argv[3]
+
 if len(sys.argv) >= 4:
-    filename_out = sys.argv[3]
+    word_embeddings = sys.argv[3]
+
 
 if len(sys.argv) >= 5:
-    word_embeddings = sys.argv[4]
-
-
-if len(sys.argv) >= 6:
-    mode = sys.argv[5]
+    mode = sys.argv[4]
+print mode
 #
 
 #s2v = sense2vec.load('reddit_vectors-1.1.0')
@@ -412,19 +414,13 @@ with open(filename_in, 'rb') as f:
     for i, line in enumerate(reader):
         list_data_o.append((line[0], line[1], line[2]))
 
+#taxonomy_eval(filename_in, )
 
-remove_outliers_and_compare(filename_gold, list_data_o, outliers,0.0)
-
-
-
-
-    # else:
-    #     print element[1] + " not in s2v"
+# remove_outliers_and_compare(filename_gold, list_data_o, outliers,0.0)
 
 
-
-# embeddings = read_embeddings(word_embeddings)
-# main(embeddings, filename_in, filename_gold, filename_out, mode)
+embeddings = read_embeddings(word_embeddings)
+main(embeddings, filename_in, filename_gold, mode)
 
 
 # COMMAND : python embeddings.py ../out/science_en.csv-relations.csv-taxo-knn1.csv-pruned.csv-cleaned.csv ../eval/taxi_eval_archive/input/gold.taxo GoogleNews-vectors-negative300.bin k-nearest
