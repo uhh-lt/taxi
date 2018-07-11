@@ -1,28 +1,34 @@
-import sys
 import os
+import argparse
 import pandas as pd
 import networkx as nx
 import matplotlib.pyplot as plt
 
-from networkx.drawing.nx_agraph import write_dot, graphviz_layout
+from networkx.drawing.nx_agraph import graphviz_layout
+
+
+ap = argparse.ArgumentParser()
+ap.add_argument('-t', '--taxonomy', required=True, help='Taxonomy file path')
+args = vars(ap.parse_args())
 
 
 # Read the CSV (Tab separated) file
 df = pd.read_csv(
-    sys.argv[1],
+    args['taxonomy'],
     sep='\t',
     header=None,
     names=['hyponym', 'hypernym'],
-    usecols=[1, 2]
+    usecols=[1, 2],
+    encoding='utf-8'
 )
 
 
 # Generate a Directed Graph
 G = nx.DiGraph()
 for rel in zip(list(df['hypernym']), list(df['hyponym'])):
-    G.add_edge(rel[0].decode('utf-8'), rel[1].decode('utf-8'))
+    G.add_edge(rel[0], rel[1])
 
-image_path = os.path.join('networkx_visualizations', os.path.splitext(sys.argv[1])[0].split('/')[-1])
+image_path = os.path.join(os.getcwd(), os.path.splitext(args['taxonomy'])[0].split('/')[-1])
 
 # Convert the graph into a tree structure
 pos = graphviz_layout(G, prog='dot', args="-Grankdir=LR")

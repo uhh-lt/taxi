@@ -21,13 +21,18 @@ The system was tested on Debian/Ubuntu Linux and Mac OS X. To load all resources
   cd taxi && wget http://panchenko.me/data/joint/taxi/res/resources.tgz && tar xzf resources.tgz
   ```
 
-3. Install dependencies:
+3. Install dependencies for using **pygraphviz**:  
+  ```
+  $ sudo apt-get install python-dev graphviz libgraphviz-dev pkg-config
+  ```
+
+4. Install project dependencies:
 
   ```
   pip install -r requirements.txt
   ```
 
-4. Setup spaCy. Download the language models for English, Dutch, French and Italian
+5. Setup spaCy. Download the language models for English, Dutch, French and Italian
   ```
   $ python -m spacy download en
   $ python -m spacy download nl
@@ -35,7 +40,7 @@ The system was tested on Debian/Ubuntu Linux and Mac OS X. To load all resources
   $ python -m spacy download it
   ```
 
-5. Setup NLTK
+6. Setup NLTK
   ```
   $ python -m nltk.downloader stopwords
   ```
@@ -66,13 +71,7 @@ The ```vocabularies``` directory contains input terms for different domains and 
 # Visualizing taxonomies
 To visualize the taxonomy structures in a **.csv** file, you must have **Networkx** and **Pygraphviz** setup in your environment.  
 
-If you are using anaconda, run the following commands
-```bash
-$ conda install -c anaconda networkx
-$ conda install -c anaconda pygraphviz
-``` 
-
 To construct a hierarchical taxonomy structure:  
-`$ ./visualize.sh <csv filename>`
+`$ python visualize_taxonomy.py --file <csv filename>`
 
 The images generated will be very large, so alternatively, the graph can be constructed inside the notebook **networkx_graph.ipynb**
