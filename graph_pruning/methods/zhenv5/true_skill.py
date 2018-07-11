@@ -51,9 +51,9 @@ def graphbased_trueskill(g,iter_times = 15,n_sigma = 3,threshold = 0.95):
 	
 	relative_scores = trueskill_ratings(list(g.edges()),iter_times = iter_times,n_sigma = n_sigma,threshold = threshold)
 	scc_nodes,scc_edges,nonscc_nodes,nonscc_edges = scc_nodes_edges(g)
-	print("----scc-------")
+	print("scc")
 	scc_accu = measure_pairs_agreement(scc_edges,relative_scores)
-	print("----non-scc---")
+	print("non-scc")
 	nonscc_accu = measure_pairs_agreement(nonscc_edges,relative_scores)
 	print("scc accu: %0.4f, nonscc accu: %0.4f" % (scc_accu,nonscc_accu))
 	return relative_scores

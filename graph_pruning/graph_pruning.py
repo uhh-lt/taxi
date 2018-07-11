@@ -16,6 +16,12 @@ methods = {
     "tarjan": tarjan,
     "dfs": dfs,
     "mfas": mfas,
+
+    "hierarchy_ensemble_greedy":  hierarchy,
+    "hierarchy_ensemble_forward": hierarchy,
+    "hierarchy_ensemble_backward": hierarchy,
+    "hierarchy_ensemble_voting":  hierarchy,
+
     "hierarchy_pagerank_greedy": hierarchy,
     "hierarchy_pagerank_forward": hierarchy,
     "hierarchy_pagerank_backward": hierarchy,
@@ -42,6 +48,13 @@ filename_out = None
 gephi_out = None
 delimiter = '\t'
 mode = "old"
+
+if len(sys.argv) == 1:
+    print("graph_pruning.py input_csv output_csv [mode] [gephi_output_file] [csv_delimeter]")
+    print("   mode              : Supported: %s. Default=%s" % (sorted(methods.keys()), mode))
+    print("   gephi_output_file : Output file for easier import to gephi; not supported by all modes. Default no file.")
+    print("   csv_delimeter     : Delimiter of CSV-files. Default=%s" % delimiter)
+    exit(1)
 
 if len(sys.argv) >= 2:
     filename_in = sys.argv[1]
@@ -85,6 +98,6 @@ with open(filename_in, "r") as f:
     for i, line in enumerate(reader):
         method.prepare(line)
 
-cycles_removed = method.do(filename_out, delimiter, mode, gephi_out)
+cycles_removed = method.do(filename_out, delimiter, mode, gephi_out, filename_in=filename_in)
 print("Graph pruning finished.")
 print("Removed: %s" % cycles_removed)

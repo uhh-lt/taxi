@@ -19,6 +19,7 @@ FILE_EVAL_TOOL_RESULT=${FILE_CLEANED_OUT}-evalresul.txt
 
 
 
+DOMAIN=$EVAL_ROOT
 if [ -n "$2" ]; then
 	CYCLE_REMOVING_METHOD=$2
 fi
@@ -27,6 +28,7 @@ echo Reading input: $1
 echo Reading file: $FILE_INPUT
 echo Output directory: $OUTPUT_DIR
 echo Cycle removing method: $CYCLE_REMOVING_METHOD
+echo Domain: $DOMAIN
 
 echo
 
@@ -35,7 +37,7 @@ if [[ ! -e $OUTPUT_DIR ]]; then
 fi
 
 echo "======================================================================================================================"
-echo "Cycle removing: python $CYCLE_REMOVING_TOOL $1 $OUTPUT_DIR/$FILE_PRUNED_OUT tarjan"
+echo "Cycle removing: python $CYCLE_REMOVING_TOOL $1 $OUTPUT_DIR/$FILE_PRUNED_OUT $CYCLE_REMOVING_METHOD"
 CYCLES=$(python $CYCLE_REMOVING_TOOL $1 $OUTPUT_DIR/$FILE_PRUNED_OUT $CYCLE_REMOVING_METHOD | tee /dev/tty)
 echo "Cycle removing finished. Written to: $OUTPUT_DIR/$FILE_PRUNED_OUT"
 echo
@@ -61,15 +63,16 @@ L_INPUT="$(wc -l $OUTPUT_DIR/$FILE_CLEANED_OUT | grep -o -E '^[0-9]+').0"
 RECALL="$(tail -n 1 $OUTPUT_DIR/$FILE_EVAL_TOOL_RESULT | grep -o -E '[0-9]+[\.]?[0-9]*')"
 PRECISION=$(echo "print $RECALL * $L_GOLD / $L_INPUT" | python)
 F1=$(echo "print 2 * $RECALL * $PRECISION / ($PRECISION + $RECALL)" | python)
+F_M=$(cat $OUTPUT_DIR/$FILE_EVAL_TOOL_RESULT | grep -o -E 'Cumulative Measure.*' | grep -o -E '0\.[0-9]+')
 CYCLES_REMOVED=$(echo $CYCLES | grep -o -E 'Removed: [0-9]+' | grep -o -E '[0-9]+') # Really dirty: First get the part with the cycle output and then parse the actual cycles
 
-
-echo "Recall: $RECALL"
+echo "Recall:    $RECALL"
 echo "Precision: $PRECISION"
-echo "F1: $F1"
+echo "F1:        $F1"
+echo "F&M:       $F_M"
 echo
 echo "Copy to https://docs.google.com/spreadsheets/d/1cTUfm97m3vhnOOzYvbqzhJhFQSyWySszLcA6PYf8wFY/edit?usp=sharing"
-echo -e "$(date +%F)\t$(whoami)\t$1\t$CYCLE_REMOVING_METHOD\t$CYCLES_REMOVED\t$RECALL\t$PRECISION\t$F1"
+echo -e "$(date +%F)\t$(whoami)\ttaxi\t$1\t$DOMAIN\t$CYCLE_REMOVING_METHOD\t$CYCLES_REMOVED\t$RECALL\t$PRECISION\t$F1\t$F_M"
 echo
 echo "Script finished."
 
