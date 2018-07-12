@@ -18,8 +18,7 @@ df = pd.read_csv(
     sep='\t',
     header=None,
     names=['hyponym', 'hypernym'],
-    usecols=[1, 2],
-    encoding='utf-8'
+    usecols=[1, 2]
 )
 
 
