@@ -1,0 +1,320 @@
+0	anthropology	social science
+1	economics	social science
+2	political science	social science
+3	human geography	geography
+4	anthropological linguistics	linguistics
+5	applied linguistics	linguistics
+6	computational linguistics	linguistics
+7	discourse linguistics	linguistics
+8	french linguistics	linguistics
+9	german linguistics	linguistics
+11	neurolinguistics	linguistics
+12	phonology	linguistics
+13	psycholinguistics	linguistics
+14	sociolinguistics	linguistics
+15	spanish linguistics	linguistics
+16	typological linguistics	linguistics
+17	public health	public affairs
+18	biogeochemistry	geochemistry
+19	transport phenomena	physical chemistry
+20	cultural history	public health
+21	environmental health	public health
+23	plant pathology	pathology
+24	social psychology and interaction	social psychology
+25	immunology of infectious disease	immunology
+26	compilers	computer engineering
+27	computer architecture	computer engineering
+29	aquatic ecology	ecology
+30	behavioral ecology	ecology
+32	evolutionary ecology	ecology
+33	microbial ecology	ecology
+34	terrestrial ecology	ecology
+35	atmospheric sciences	environmental sciences
+36	human nutrition	environmental sciences
+37	paleobiology	environmental sciences
+38	environmental microbiology	microbial ecology
+39	public administration	public policy
+40	criminology	sociology
+41	regional sociology	sociology
+42	rural sociology	sociology
+43	social anthropology	sociology
+44	social history	sociology
+45	sociology of culture	sociology
+47	comparative politics	genetics
+48	molecular biology	genetics
+49	molecular genetics	genetics
+50	plant genetics	genetics
+51	biochemistry	cell biology
+52	developmental biology	cell biology
+53	history of religions of eastern origins	history of religion
+54	history of religions of western origin	history of religion
+55	environmental microbiology	microbiology
+56	food microbiology	microbiology
+57	pathogenic microbiology	microbiology
+58	behavioral ecology	religion
+60	metaphysics	religion
+61	philosophy of religion	religion
+62	philosophy of science	religion
+63	physical science	religion
+64	logic and foundations of mathematics	logic and foundations
+65	cultural anthropology	anthropology
+66	linguistic anthropology	anthropology
+67	social anthropology	anthropology
+68	biostatistics	epidemiology
+69	nutritional epidemiology	epidemiology
+70	genomics	plant science
+71	horticulture	plant science
+72	plant breeding	plant science
+73	food processing	manufacturing
+74	cellular physiology	physiology
+75	comparative physiology	physiology
+76	evolutionary physiology	physiology
+77	exercise physiology	physiology
+78	microbial physiology	physiology
+79	molecular physiology	physiology
+80	inorganic chemistry	organic chemistry
+81	microbial ecology	organic chemistry
+82	pragmatics	computational linguistics
+83	behavioral economics	economics
+84	international economics	economics
+85	labor economics	economics
+86	macroeconomics	economics
+87	public economics	economics
+88	ancient history	classics
+89	ancient philosophy	classics
+90	classical archaeology and art history	classics
+91	classical literature and philology	classics
+92	comparative literature	classics
+93	air traffic control	communication
+94	communication technology and new media	communication
+95	digital communications	communication
+97	health communication	communication
+98	interpersonal/small group communication	communication
+99	mass communication	communication
+100	motor control	communication
+103	organizational communication	communication
+105	public affairs	communication
+106	public policy	communication
+109	endocrinology	zoology
+110	paleontology	zoology
+111	parasitology	zoology
+112	entomology	horticulture
+113	plant pathology	horticulture
+114	meteorology	oceanography
+115	biomechanical engineering	mechanical engineering
+116	biomechanics	mechanical engineering
+120	biochemical nutrition	nutrition
+121	clinical nutrition	nutrition
+122	community nutrition	nutrition
+123	comparative nutrition	nutrition
+124	food science	nutrition
+125	genetic nutrition	nutrition
+126	human nutrition	nutrition
+127	international nutrition	nutrition
+128	molecular nutrition	nutrition
+129	literature in english, north america, ethnic and minority	literature in english, north america
+130	ethnomusicology	musicology
+131	cancer biology	molecular biology
+132	thermodynamics	chemical engineering
+133	digital circuits	circuits
+134	animal science	science
+135	atmospheric sciences	science
+136	behavioral economics	science
+137	cellular neuroscience	science
+138	cognitive neuroscience	science
+139	computational neuroscience	science
+140	computer science	science
+141	crop sciences	science
+142	dairy science	science
+143	developmental neuroscience	science
+144	earth science	science
+145	electromagnetics	science
+146	engineering science	science
+147	environmental sciences	science
+148	food science	science
+149	forest sciences	science
+150	geographic information sciences	science
+152	geophysics	science
+153	life science	science
+154	materials science	science
+155	membrane science	science
+157	microbiology	science
+158	molecular neuroscience	science
+159	neuroscience	science
+160	physical science	science
+162	plant science	science
+163	political science	science
+164	poultry science	science
+165	social science	science
+166	soil science	science
+167	systems neuroscience	science
+168	wood science	science
+169	circuits	electrical engineering
+170	digital circuits	electrical engineering
+171	tribology	applied mechanics
+172	african history	history
+173	ancient history	history
+175	asian history	history
+176	contemporary art history	history
+177	cultural history	history
+178	diplomatic history	history
+179	economic history	history
+180	european history	history
+181	gender history	history
+182	history of philosophy	history
+183	history of religion	history
+184	history of religions of eastern origins	history
+185	history of religions of western origin	history
+186	history of science, technology, and medicine	history
+187	intellectual history	history
+188	islamic world/near east history	history
+189	latin american history	history
+190	medieval history	history
+191	military history	history
+192	political history	history
+193	social history	history
+194	theatre history	history
+195	united states history	history
+196	women’s history	history
+197	history of philosophy	intellectual history
+198	dynamics/dynamical systems	dynamical systems
+200	aerospace engineering	engineering
+201	aquatic ecology	engineering
+202	biological engineering	engineering
+204	biomechanical engineering	engineering
+205	biomedical	engineering
+206	chemical engineering	engineering
+207	civil engineering	engineering
+208	cognitive psychology	engineering
+210	computer engineering	engineering
+211	condensed matter physics	engineering
+212	digital communications	engineering
+214	electrical and electronics	engineering
+215	electrical engineering	engineering
+216	engineering physics	engineering
+217	environmental engineering	engineering
+219	geotechnical engineering	engineering
+220	industrial engineering	engineering
+224	materials science	engineering
+225	mechanical engineering	engineering
+226	nuclear physics	engineering
+227	ocean engineering	engineering
+229	petroleum engineering	engineering
+232	signal processing	engineering
+233	social science	engineering
+234	software engineering	engineering
+235	structural engineering	engineering
+236	systems engineering	engineering
+237	theatre history	theatre
+238	history of religion	theology
+241	cultural anthropology	humanities
+242	english language and literature	humanities
+243	environmental sciences	humanities
+246	human geography	humanities
+247	international relations	humanities
+248	linguistics	humanities
+249	mass communication	humanities
+250	musicology	humanities
+251	philosophy	humanities
+252	psychology	humanities
+254	sociology	humanities
+256	biophysics	biochemistry
+257	genetics	biochemistry
+258	immunology	biochemistry
+259	organic chemistry	biochemistry
+260	structural biology	biochemistry
+261	epistemology	metaphysics
+262	philosophy of mind	metaphysics
+263	algorithms	computer science
+264	artificial intelligence	computer science
+265	computational biology	computer science
+266	networking	computer science
+267	programming languages	computer science
+268	semantics	computer science
+269	software engineering	computer science
+270	algebra	mathematics
+271	algebraic geometry	mathematics
+273	applied mathematics	mathematics
+274	chemistry	mathematics
+275	computer science	mathematics
+276	control theory	mathematics
+277	dynamical systems	mathematics
+278	fluid dynamics	mathematics
+279	geometry and topology	mathematics
+280	multidisciplinary design optimization	mathematics
+281	non-linear dynamics	mathematics
+282	number theory	mathematics
+283	numerical analysis	mathematics
+284	operational research	mathematics
+285	ordinary differential equations	mathematics
+286	partial differential equations	mathematics
+287	physics	mathematics
+289	quantum physics	mathematics
+290	scientific computing	mathematics
+291	set theory	mathematics
+292	statistics and probability	mathematics
+293	ancient philosophy	philosophy
+294	continental philosophy	philosophy
+295	feminist philosophy	philosophy
+296	philosophy of language	philosophy
+297	philosophy of mind	philosophy
+298	philosophy of religion	philosophy
+299	philosophy of science	philosophy
+300	american politics	political science
+301	political theory	political science
+302	cellular neuroscience	neuroscience
+303	cognitive neuroscience	neuroscience
+304	computational neuroscience	neuroscience
+305	developmental neuroscience	neuroscience
+307	molecular neuroscience	neuroscience
+308	population biology	neuroscience
+309	systems neuroscience	neuroscience
+310	ethics and political philosophy	ethics
+311	biological psychology	psychology
+312	clinical psychology	psychology
+313	cognitive psychology	psychology
+314	community psychology	psychology
+315	developmental psychology	psychology
+316	health psychology	psychology
+317	psychology of movement	psychology
+318	social psychology	psychology
+320	statistical methodology	methodologies
+321	energy systems	analysis
+322	information systems	analysis
+323	numerical analysis	analysis
+326	race and ethnicity	analysis
+327	sociology of culture	analysis
+330	cosmology, relativity, and gravity	cosmology
+331	analytical chemistry	chemistry
+332	biochemistry	chemistry
+333	biogeochemistry	chemistry
+335	cosmochemistry	chemistry
+336	environmental chemistry	chemistry
+337	food chemistry	chemistry
+338	geochemistry	chemistry
+339	inorganic chemistry	chemistry
+340	materials chemistry	chemistry
+341	medicinal chemistry	chemistry
+342	medicinal-pharmaceutical chemistry	chemistry
+343	organic chemistry	chemistry
+344	pharmacology	chemistry
+345	physical chemistry	chemistry
+346	polymer chemistry	chemistry
+347	astrophysics and astronomy	physics
+348	biophysics	physics
+349	condensed matter physics	physics
+350	cosmology	physics
+351	engineering physics	physics
+352	fluid mechanics	physics
+353	geophysics	physics
+355	mineral physics	physics
+356	nuclear physics	physics
+357	optics	physics
+358	quantum physics	physics
+361	humanities	science
+362	mathematics	science
+363	logic and foundations	science
+364	zoology	science
+365	cell biology	science
+366	applied mechanics	science
+367	literature in english, north america	science

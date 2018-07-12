@@ -1,0 +1,17 @@
+Method	Recall	Precision	F1	F&M
+Original taxi	0.3484	0.3876	0.3669	0.3634
+Simple(substring + 1 pattern based)	0.3269	0.4164	0.3663	0.3939
+Simple + Embedding(Subword,Wikipedia 1M) + outlier_removal_dist	0.3269	0.4282	0.3707	
+Simple + Embedding(Fasttext, Wikipedia 9GB) + outlier_removal_dist + comp.oper.underscore	0.243	0.4595	0.3179	
+Simple + Embedding(Subword, Wikipedia 1M) + outlier_removal_dist +adding_back_rank TH = 0.5{0.2,0.3,..0.7},	0.3097	0.466	0.3721	
+Simple + Embedding(Subword, Wikipedia 1M) + outlier_removal_dist +adding_back_rank TH = 0.6{0.2,0.3,..0.7}	0.303	0.4982	0.377	
+				
+				
+				
+				
+				
+				
+				
+Trial dataset properties	1	0.4705	0.64	
+Trial + Embedding(Fasttext, Wikipedia 9GB) + outlier_removal + comp.oper.underscore, TH = 0.2	0.9811	0.4742	0.6395	
+Trial + Embedding(Fasttext, Wikipedia 9GB) + outlier_removal + comp.oper.underscore, TH = 0.3	0			

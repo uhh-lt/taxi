@@ -1,0 +1,185 @@
+5aly@ltgpu1:~/taxi$ python learn_embeddings.py 
+['climate']
+ecology climate
+0.5895007458970849
+
+['air-traffic-control', 'graphics', 'mass-communication', 'motor-control', 'music', 'networks', 'os', 'public-affairs', 'public-policy', 'syntax', 'theatre']
+communication os
+0.1270815677220196
+
+communication syntax
+0.40308833435951996
+
+communication theatre
+0.43707216393266446
+
+communication graphics
+0.4797686615528089
+
+communication music
+0.47040074145566396
+
+communication networks
+0.5340146622139362
+
+['anthropology', 'economics', 'political-science']
+social-science anthropology
+0.6275908255022398
+
+['endocrinology', 'paleontology', 'parasitology']
+zoology paleontology
+0.738763399773134
+
+['epidemiology']
+neuroscience epidemiology
+0.5686884713318487
+
+['immunopathology']
+pathology immunopathology
+0.6367159460096314
+
+['epistemology']
+metaphysics epistemology
+0.7872088292806423
+
+['entomology']
+horticulture entomology
+0.5855223688595169
+
+['morphology', 'neurolinguistics', 'phonology', 'psycholinguistics', 'sociolinguistics']
+linguistics morphology
+0.5888295455691929
+
+['criminology']
+sociology criminology
+0.7502788888532931
+
+['botany']
+genetics botany
+0.5003650702067239
+
+['circuits']
+electrical-engineering circuits
+0.41790372342504145
+
+['classics', 'geography', 'history', 'international-relations', 'linguistics', 'mass-communication', 'musicology', 'philosophy', 'psychology', 'religion', 'sociology', 'theology']
+humanities international-relations
+0.5008601337365465
+
+humanities mass-communication
+0.4177191198919737
+
+humanities classics
+0.5151392828557098
+
+['biophysics', 'genetics', 'immunology']
+biochemistry genetics
+0.6698971528808207
+
+['algebra', 'analysis', 'chemistry', 'computer-science', 'fluid-dynamics', 'physics', 'probability', 'set-theory']
+mathematics probability
+0.5322871640364544
+
+['ethics', 'metaphysics']
+religion ethics
+0.5611765230972435
+
+['biogeochemistry']
+geochemistry biogeochemistry
+0.837885906482308
+
+['public-health']
+public-affairs public-health
+0.5767199855096243
+
+['astrodynamics', 'ethnomusicology', 'playwriting']
+music astrodynamics
+0.3397214913143807
+
+music ethnomusicology
+0.6346625534234784
+
+['ethnomusicology']
+musicology ethnomusicology
+0.8424301399790626
+
+['nutrition']
+instrumentation nutrition
+0.33954390191765643
+
+['biomechanics']
+mechanical-engineering biomechanics
+0.5580702447745297
+
+['biostatistics']
+epidemiology biostatistics
+0.7154155904666955
+
+['meteorology']
+oceanography meteorology
+0.683901290392429
+
+['biochemistry', 'biogeochemistry', 'composition', 'cosmochemistry', 'geochemistry', 'pharmacology']
+chemistry composition
+0.5585169787149313
+
+['food-processing']
+manufacturing food-processing
+0.6064373084287359
+
+['computer-science', 'earth-science', 'electromagnetics', 'geology', 'geophysics', 'life-science', 'metallurgy', 'microbiology', 'neuroscience', 'physiology', 'political-science', 'social-science', 'engineering', 'humanities', 'mathematics', 'zoology', 'methodologies']
+science methodologies
+0.47922863096775525
+
+science metallurgy
+0.5472164965449654
+
+['macroeconomics']
+economics macroeconomics
+0.7894561635441325
+
+['aerodynamics', 'biomaterials', 'biomedical', 'civil-engineering', 'communication', 'ecology', 'electrical-engineering', 'ergonomics', 'instrumentation', 'kinesiology', 'manufacturing', 'mechanical-engineering', 'oceanography', 'robotics', 'signal-processing', 'social-science', 'software-engineering']
+engineering ergonomics
+0.4757856955133465
+
+engineering communication
+0.5261846189727377
+
+['information-systems', 'pathology', 'phonetics', 'toxicology', 'virology']
+analysis information-systems
+0.5591608575124246
+
+['algorithms', 'artificial-intelligence', 'networking', 'semantics', 'software-engineering']
+computer-science networking
+0.5380242536496583
+
+['biophysics', 'cosmology', 'geophysics', 'metaphysics', 'optics']
+physics optics
+0.6276118091786423
+
+['archaeological']
+history archaeological
+0.49069924529293724
+
+[('os', 'communication'), ('syntax', 'communication'), ('theatre', 'communication'), ('graphics', 'communication'), ('music', 'communication'), ('botany', 'genetics'), ('circuits', 'electrical-engineering'), ('international-relations', 'humanities'), ('mass-communication', 'humanities'), ('astrodynamics', 'music'), ('nutrition', 'instrumentation'), ('methodologies', 'science'), ('ergonomics', 'engineering'), ('archaeological', 'history')]
+skip: botany genetics
+skip: graphics communication
+skip: music communication
+skip: os communication
+skip: syntax communication
+skip: theatre communication
+skip: astrodynamics music
+skip: circuits electrical engineering
+skip: archaeological history
+skip: ergonomics engineering
+skip: nutrition instrumentation
+skip: international relations humanities
+skip: mass communication humanities
+skip: methodologies science
+351.0
+465.0
+Correct: 151
+Precision: 0.430199430199
+Recall: 0.324731182796
+F1: 0.370098039216
+

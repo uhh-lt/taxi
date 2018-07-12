@@ -1,0 +1,720 @@
+['atmospheric_sciences', 'human_nutrition', 'paleobiology']
+environmental_sciences human_nutrition
+0.6958096272631685
+
+['algorithms', 'artificial_intelligence', 'computational_biology', 'networking', 'programming_languages', 'semantics', 'software_engineering']
+computer_science computational_biology
+0.703259772023486
+
+['thermodynamics']
+chemical_engineering thermodynamics
+0.34611574152452035
+
+['epistemology', 'philosophy_of_mind']
+metaphysics philosophy_of_mind
+0.4317020482380508
+
+metaphysics epistemology
+0.8572117704454923
+
+['biophysics', 'genetics', 'immunology', 'organic_chemistry', 'structural_biology']
+biochemistry organic_chemistry
+0.6192970669745727
+
+['criminology', 'regional_sociology', 'rural_sociology', 'social_anthropology', 'social_history', 'sociology_of_culture']
+sociology social_anthropology
+0.5977980236633668
+
+['ancient_philosophy', 'continental_philosophy', 'feminist_philosophy', 'philosophy_of_language', 'philosophy_of_mind', 'philosophy_of_religion', 'philosophy_of_science']
+philosophy continental_philosophy
+0.5750646603004388
+
+['ethnomusicology']
+musicology ethnomusicology
+0.849228285407834
+
+['anthropology', 'economics', 'political_science']
+social_science political_science
+0.8573898562020772
+
+['aerodynamics', 'aerospace_engineering', 'aquatic_ecology', 'biological_engineering', 'biomaterials', 'biomechanical_engineering', 'biomedical', 'chemical_engineering', 'civil_engineering', 'cognitive_psychology', 'communication', 'computer_engineering', 'condensed_matter_physics', 'digital_communications', 'ecology', 'electrical_and_electronics', 'electrical_engineering', 'engineering_physics', 'environmental_engineering', 'ergonomics', 'geotechnical_engineering', 'industrial_engineering', 'instrumentation', 'kinesiology', 'manufacturing', 'materials_science', 'mechanical_engineering', 'nuclear_physics', 'ocean_engineering', 'oceanography', 'petroleum_engineering', 'robotics', 'signal_processing', 'social_science', 'software_engineering', 'structural_engineering', 'systems_engineering']
+engineering digital_communications
+0.3451483834856531
+
+engineering social_science
+0.23004916373421808
+
+engineering condensed_matter_physics
+0.3003872587009245
+
+engineering petroleum_engineering
+0.7003197510028537
+
+['botany', 'comparative_politics', 'molecular_biology', 'molecular_genetics', 'plant_genetics']
+genetics comparative_politics
+0.2989821478018633
+
+genetics molecular_genetics
+0.5475213026858298
+
+['algebra', 'algebraic_geometry', 'analysis', 'applied_mathematics', 'chemistry', 'computer_science', 'control_theory', 'dynamical_systems', 'fluid_dynamics', 'geometry_and_topology', 'multidisciplinary_design_optimization', 'non-linear_dynamics', 'number_theory', 'numerical_analysis', 'operational_research', 'ordinary_differential_equations', 'partial_differential_equations', 'physics', 'probability', 'quantum_physics', 'scientific_computing', 'set_theory', 'statistics_and_probability']
+mathematics operational_research
+0.1601107114118065
+
+mathematics ordinary_differential_equations
+0.2980522003535179
+
+mathematics multidisciplinary_design_optimization
+0.32864748240089087
+
+mathematics scientific_computing
+0.43367197319693435
+
+mathematics partial_differential_equations
+0.322212938452983
+
+mathematics dynamical_systems
+0.1784973183671651
+
+mathematics number_theory
+0.2619654514279115
+
+mathematics control_theory
+0.2763061352830431
+
+mathematics geometry_and_topology
+0.3894413732642622
+
+mathematics applied_mathematics
+0.6556329705842464
+
+['cellular_neuroscience', 'cognitive_neuroscience', 'computational_neuroscience', 'developmental_neuroscience', 'epidemiology', 'molecular_neuroscience', 'population_biology', 'systems_neuroscience']
+neuroscience population_biology
+0.32247224951631637
+
+neuroscience computational_neuroscience
+0.6509861837004398
+
+['human_geography']
+geography human_geography
+0.3250236184556094
+
+['public_administration']
+public_policy public_administration
+0.6195545665203361
+
+['american_politics', 'political_theory']
+political_science political_theory
+0.8547151367078679
+
+['statistical_methodology']
+methodologies statistical_methodology
+0.5640202534918525
+
+['biochemical_nutrition', 'clinical_nutrition', 'community_nutrition', 'comparative_nutrition', 'food_science', 'genetic_nutrition', 'human_nutrition', 'international_nutrition', 'molecular_nutrition']
+nutrition comparative_nutrition
+0.6179540960085149
+
+['endocrinology', 'paleontology', 'parasitology']
+zoology paleontology
+0.7010751373749504
+
+['aquatic_ecology', 'behavioral_ecology', 'climate', 'evolutionary_ecology', 'microbial_ecology', 'terrestrial_ecology']
+ecology terrestrial_ecology
+0.5744501337498163
+
+['biochemistry', 'developmental_biology']
+cell_biology developmental_biology
+0.8185772846043812
+
+['compilers', 'computer_architecture']
+computer_engineering computer_architecture
+0.7314103716685989
+
+['biogeochemistry']
+geochemistry biogeochemistry
+0.8804097690869314
+
+['astrophysics_and_astronomy', 'biophysics', 'condensed_matter_physics', 'cosmology', 'engineering_physics', 'fluid_mechanics', 'geophysics', 'metaphysics', 'mineral_physics', 'nuclear_physics', 'optics', 'quantum_physics']
+physics fluid_mechanics
+0.549215886424842
+
+['logic_and_foundations_of_mathematics']
+logic_and_foundations logic_and_foundations_of_mathematics
+0.934148673747565
+
+['inorganic_chemistry', 'microbial_ecology']
+organic_chemistry microbial_ecology
+0.7150981763356644
+
+['behavioral_economics', 'international_economics', 'labor_economics', 'macroeconomics', 'public_economics']
+economics international_economics
+0.46975472117619194
+
+economics labor_economics
+0.7000194633861527
+
+['digital_circuits']
+circuits digital_circuits
+0.5111086950408573
+
+['cellular_physiology', 'comparative_physiology', 'evolutionary_physiology', 'exercise_physiology', 'microbial_physiology', 'molecular_physiology']
+physiology comparative_physiology
+0.6903397891524103
+
+['energy_systems', 'information_systems', 'numerical_analysis', 'pathology', 'phonetics', 'race_and_ethnicity', 'sociology_of_culture', 'toxicology', 'virology']
+analysis race_and_ethnicity
+0.18758127140319017
+
+analysis information_systems
+0.12139358441236892
+
+analysis sociology_of_culture
+0.2376812806644086
+
+analysis energy_systems
+0.21649132052064918
+
+analysis numerical_analysis
+0.421442276687841
+
+analysis phonetics
+0.32266011473396056
+
+analysis toxicology
+0.4527755107426374
+
+analysis pathology
+0.3920044953369488
+
+analysis virology
+0.35309190484811703
+
+['tribology']
+applied_mechanics tribology
+0.4914661240074622
+
+['theatre_history']
+theatre theatre_history
+0.4096670052404208
+
+['cultural_history', 'environmental_health']
+public_health environmental_health
+0.7477032330617658
+
+['pragmatics']
+computational_linguistics pragmatics
+0.5414590201476274
+
+['animal_science', 'atmospheric_sciences', 'behavioral_economics', 'cellular_neuroscience', 'cognitive_neuroscience', 'computational_neuroscience', 'computer_science', 'crop_sciences', 'dairy_science', 'developmental_neuroscience', 'earth_science', 'electromagnetics', 'engineering_science', 'environmental_sciences', 'food_science', 'forest_sciences', 'geographic_information_sciences', 'geology', 'geophysics', 'life_science', 'materials_science', 'membrane_science', 'metallurgy', 'microbiology', 'molecular_neuroscience', 'neuroscience', 'physical_science', 'physiology', 'plant_science', 'political_science', 'poultry_science', 'social_science', 'soil_science', 'systems_neuroscience', 'wood_science', 'engineering', 'humanities', 'mathematics', 'logic_and_foundations', 'zoology', 'cell_biology', 'applied_mechanics', 'literature_in_english,_north_america', 'methodologies']
+science literature_in_english,_north_america
+0.1465439175549913
+
+science logic_and_foundations
+0.19424503218329187
+
+science geographic_information_sciences
+0.34380554691429166
+
+science applied_mechanics
+0.35541126870094053
+
+science developmental_neuroscience
+0.40545806397154127
+
+science computational_neuroscience
+0.39863969105669167
+
+science forest_sciences
+0.40973186917313437
+
+science crop_sciences
+0.4755478977767414
+
+science political_science
+0.347717176805057
+
+science membrane_science
+0.3418735985604988
+
+science atmospheric_sciences
+0.49567132466654495
+
+science life_science
+0.44818492128466686
+
+science poultry_science
+0.33351880751830604
+
+science environmental_sciences
+0.449184516096415
+
+science earth_science
+0.419234650385198
+
+science social_science
+0.3926256755781948
+
+science animal_science
+0.39286820869571404
+
+science materials_science
+0.47792897115608296
+
+science physical_science
+0.3773052409164728
+
+science food_science
+0.41576458613329853
+
+science dairy_science
+0.32463639183740695
+
+science cell_biology
+0.38983978805707337
+
+science plant_science
+0.37410870754363024
+
+science wood_science
+0.41796611036210224
+
+science soil_science
+0.4469686960487679
+
+science cellular_neuroscience
+0.4201137436283312
+
+science cognitive_neuroscience
+0.4657418566060773
+
+science systems_neuroscience
+0.46694296635687565
+
+science molecular_neuroscience
+0.46160482806018693
+
+science engineering_science
+0.50883264958882
+
+science behavioral_economics
+0.4201969504123259
+
+science computer_science
+0.4331629506221462
+
+science methodologies
+0.35761680948450925
+
+science electromagnetics
+0.38210168511695036
+
+science metallurgy
+0.4376084158644019
+
+science engineering
+0.536646668053767
+
+['history_of_philosophy']
+intellectual_history history_of_philosophy
+0.6163095338137727
+
+['cosmology,_relativity,_and_gravity']
+cosmology cosmology,_relativity,_and_gravity
+0.5475353928445286
+
+['public_health']
+public_affairs public_health
+0.7295370411602109
+
+['social_psychology_and_interaction']
+social_psychology social_psychology_and_interaction
+0.833385304691449
+
+['biological_psychology', 'clinical_psychology', 'cognitive_psychology', 'community_psychology', 'developmental_psychology', 'health_psychology', 'psychology_of_movement', 'social_psychology']
+psychology psychology_of_movement
+0.5191443130059978
+
+['astrodynamics', 'ethnomusicology', 'playwriting']
+music astrodynamics
+0.19998630979056795
+
+music ethnomusicology
+0.5782751958126108
+
+['cultural_anthropology', 'linguistic_anthropology', 'social_anthropology']
+anthropology linguistic_anthropology
+0.7896942089752623
+
+['meteorology']
+oceanography meteorology
+0.6939437352052952
+
+['genomics', 'horticulture', 'plant_breeding']
+plant_science plant_breeding
+0.7227611537853992
+
+['ancient_history', 'ancient_philosophy', 'classical_archaeology_and_art_history', 'classical_literature_and_philology', 'comparative_literature']
+classics comparative_literature
+0.33326995239695645
+
+classics classical_archaeology_and_art_history
+0.20145017403228568
+
+classics classical_literature_and_philology
+0.32552112855889925
+
+classics ancient_philosophy
+0.33762352700860687
+
+classics ancient_history
+0.2977814308357029
+
+['analytical_chemistry', 'biochemistry', 'biogeochemistry', 'composition', 'cosmochemistry', 'environmental_chemistry', 'food_chemistry', 'geochemistry', 'inorganic_chemistry', 'materials_chemistry', 'medicinal_chemistry', 'medicinal-pharmaceutical_chemistry', 'organic_chemistry', 'pharmacology', 'physical_chemistry', 'polymer_chemistry']
+chemistry materials_chemistry
+0.586543950411431
+
+['immunology_of_infectious_disease']
+immunology immunology_of_infectious_disease
+0.4987489509431711
+
+['environmental_microbiology', 'food_microbiology', 'pathogenic_microbiology']
+microbiology environmental_microbiology
+0.694999116403297
+
+['history_of_religion']
+theology history_of_religion
+0.2726557663481472
+
+['biomechanical_engineering', 'biomechanics']
+mechanical_engineering biomechanical_engineering
+0.9529728142298975
+
+['history_of_religions_of_eastern_origins', 'history_of_religions_of_western_origin']
+history_of_religion history_of_religions_of_western_origin
+0.9140496908438625
+
+['immunopathology', 'plant_pathology']
+pathology plant_pathology
+0.5958245925647209
+
+['behavioral_ecology', 'ethics', 'metaphysics', 'philosophy_of_religion', 'philosophy_of_science', 'physical_science']
+religion physical_science
+0.2539262933925776
+
+religion behavioral_ecology
+0.27873708203103664
+
+religion philosophy_of_religion
+0.47272747302482704
+
+religion philosophy_of_science
+0.3239815490929337
+
+religion metaphysics
+0.5341147232552188
+
+['food_processing']
+manufacturing food_processing
+0.3647798778897284
+
+['literature_in_english,_north_america,_ethnic_and_minority']
+literature_in_english,_north_america literature_in_english,_north_america,_ethnic_and_minority
+0.9701150108011839
+
+['air_traffic_control', 'communication_technology_and_new_media', 'digital_communications', 'graphics', 'health_communication', 'interpersonal/small_group_communication', 'mass_communication', 'motor_control', 'music', 'networks', 'organizational_communication', 'os', 'public_affairs', 'public_policy', 'syntax', 'theatre']
+communication health_communication
+0.5018770049278779
+
+communication public_affairs
+0.18814209387748376
+
+communication air_traffic_control
+0.20915815980329253
+
+communication interpersonal/small_group_communication
+0.49827646304337525
+
+communication mass_communication
+0.5363107067673147
+
+['environmental_microbiology']
+microbial_ecology environmental_microbiology
+0.8352231004324961
+
+['anthropological_linguistics', 'applied_linguistics', 'computational_linguistics', 'discourse_linguistics', 'french_linguistics', 'german_linguistics', 'morphology', 'neurolinguistics', 'phonology', 'psycholinguistics', 'sociolinguistics', 'spanish_linguistics', 'typological_linguistics']
+linguistics computational_linguistics
+0.609973683960958
+
+['entomology', 'plant_pathology']
+horticulture plant_pathology
+0.4190891426169299
+
+horticulture entomology
+0.5316903640489457
+
+['circuits', 'digital_circuits']
+electrical_engineering digital_circuits
+0.5960020622758828
+
+['nutrition']
+instrumentation nutrition
+0.18969335312327457
+
+['transport_phenomena']
+physical_chemistry transport_phenomena
+0.5716854842479269
+
+['ethics_and_political_philosophy']
+ethics ethics_and_political_philosophy
+0.3591505870641759
+
+['biostatistics', 'nutritional_epidemiology']
+epidemiology nutritional_epidemiology
+0.6783002080597296
+
+['african_history', 'ancient_history', 'archaeological', 'asian_history', 'contemporary_art_history', 'cultural_history', 'diplomatic_history', 'economic_history', 'european_history', 'gender_history', 'history_of_philosophy', 'history_of_religion', 'history_of_religions_of_eastern_origins', 'history_of_religions_of_western_origin', 'history_of_science,_technology,_and_medicine', 'intellectual_history', 'islamic_world/near_east_history', 'latin_american_history', 'medieval_history', 'military_history', 'political_history', 'social_history', 'theatre_history', 'united_states_history', 'women’s_history']
+history contemporary_art_history
+0.2372889137716527
+
+history economic_history
+0.4256058387864927
+
+history diplomatic_history
+0.402619940444586
+
+history european_history
+0.3843395140079765
+
+history islamic_world/near_east_history
+0.30419348101990346
+
+history intellectual_history
+0.3330886906330094
+
+history gender_history
+0.39451906277716275
+
+history women’s_history
+0.40100264244965933
+
+history african_history
+0.32226805196574476
+
+history latin_american_history
+0.2549459967385681
+
+history history_of_science,_technology,_and_medicine
+0.23800528518479305
+
+history asian_history
+0.3524779755406213
+
+history ancient_history
+0.40940782480645427
+
+history theatre_history
+0.34091525995175564
+
+history social_history
+0.3303693707007314
+
+history political_history
+0.29243640383923497
+
+history cultural_history
+0.34078137491997224
+
+history history_of_philosophy
+0.3333290216164236
+
+history history_of_religion
+0.3006275212682774
+
+history history_of_religions_of_western_origin
+0.26986701507936284
+
+history history_of_religions_of_eastern_origins
+0.2820336954736514
+
+history united_states_history
+0.24229900438134264
+
+history medieval_history
+0.31707031272196246
+
+history archaeological
+0.27976073474745095
+
+history military_history
+0.1465253522031321
+
+['classics', 'cultural_anthropology', 'english_language_and_literature', 'environmental_sciences', 'geography', 'history', 'human_geography', 'international_relations', 'linguistics', 'mass_communication', 'musicology', 'philosophy', 'psychology', 'religion', 'sociology', 'theology']
+humanities mass_communication
+0.2827476034043121
+
+humanities international_relations
+0.22319465380314774
+
+humanities environmental_sciences
+0.37916594856571884
+
+humanities english_language_and_literature
+0.29122506230671735
+
+humanities human_geography
+0.2732233907145273
+
+humanities cultural_anthropology
+0.5087048048733094
+
+humanities classics
+0.3722861801740409
+
+humanities history
+0.28866822373825723
+
+humanities geography
+0.4522043869517757
+
+humanities religion
+0.39877489691807594
+
+humanities theology
+0.5763882734805655
+
+['cancer_biology']
+molecular_biology cancer_biology
+0.8324576260660226
+
+['dynamics/dynamical_systems']
+dynamical_systems dynamics/dynamical_systems
+0.9341056505676796
+
+[('thermodynamics', 'chemical_engineering'), ('philosophy_of_mind', 'metaphysics'), ('digital_communications', 'engineering'), ('social_science', 'engineering'), ('condensed_matter_physics', 'engineering'), ('comparative_politics', 'genetics'), ('operational_research', 'mathematics'), ('ordinary_differential_equations', 'mathematics'), ('multidisciplinary_design_optimization', 'mathematics'), ('scientific_computing', 'mathematics'), ('partial_differential_equations', 'mathematics'), ('dynamical_systems', 'mathematics'), ('number_theory', 'mathematics'), ('control_theory', 'mathematics'), ('geometry_and_topology', 'mathematics'), ('population_biology', 'neuroscience'), ('human_geography', 'geography'), ('international_economics', 'economics'), ('race_and_ethnicity', 'analysis'), ('information_systems', 'analysis'), ('sociology_of_culture', 'analysis'), ('energy_systems', 'analysis'), ('numerical_analysis', 'analysis'), ('phonetics', 'analysis'), ('toxicology', 'analysis'), ('pathology', 'analysis'), ('virology', 'analysis'), ('tribology', 'applied_mechanics'), ('theatre_history', 'theatre'), ('literature_in_english,_north_america', 'science'), ('logic_and_foundations', 'science'), ('geographic_information_sciences', 'science'), ('applied_mechanics', 'science'), ('developmental_neuroscience', 'science'), ('computational_neuroscience', 'science'), ('forest_sciences', 'science'), ('crop_sciences', 'science'), ('political_science', 'science'), ('membrane_science', 'science'), ('atmospheric_sciences', 'science'), ('life_science', 'science'), ('poultry_science', 'science'), ('environmental_sciences', 'science'), ('earth_science', 'science'), ('social_science', 'science'), ('animal_science', 'science'), ('materials_science', 'science'), ('physical_science', 'science'), ('food_science', 'science'), ('dairy_science', 'science'), ('cell_biology', 'science'), ('plant_science', 'science'), ('wood_science', 'science'), ('soil_science', 'science'), ('cellular_neuroscience', 'science'), ('cognitive_neuroscience', 'science'), ('systems_neuroscience', 'science'), ('molecular_neuroscience', 'science'), ('engineering_science', 'science'), ('behavioral_economics', 'science'), ('computer_science', 'science'), ('methodologies', 'science'), ('electromagnetics', 'science'), ('metallurgy', 'science'), ('astrodynamics', 'music'), ('comparative_literature', 'classics'), ('classical_archaeology_and_art_history', 'classics'), ('classical_literature_and_philology', 'classics'), ('ancient_philosophy', 'classics'), ('ancient_history', 'classics'), ('immunology_of_infectious_disease', 'immunology'), ('history_of_religion', 'theology'), ('physical_science', 'religion'), ('behavioral_ecology', 'religion'), ('philosophy_of_religion', 'religion'), ('philosophy_of_science', 'religion'), ('food_processing', 'manufacturing'), ('health_communication', 'communication'), ('public_affairs', 'communication'), ('air_traffic_control', 'communication'), ('interpersonal/small_group_communication', 'communication'), ('plant_pathology', 'horticulture'), ('nutrition', 'instrumentation'), ('ethics_and_political_philosophy', 'ethics'), ('contemporary_art_history', 'history'), ('economic_history', 'history'), ('diplomatic_history', 'history'), ('european_history', 'history'), ('islamic_world/near_east_history', 'history'), ('intellectual_history', 'history'), ('gender_history', 'history'), ('women’s_history', 'history'), ('african_history', 'history'), ('latin_american_history', 'history'), ('history_of_science,_technology,_and_medicine', 'history'), ('asian_history', 'history'), ('ancient_history', 'history'), ('theatre_history', 'history'), ('social_history', 'history'), ('political_history', 'history'), ('cultural_history', 'history'), ('history_of_philosophy', 'history'), ('history_of_religion', 'history'), ('history_of_religions_of_western_origin', 'history'), ('history_of_religions_of_eastern_origins', 'history'), ('united_states_history', 'history'), ('medieval_history', 'history'), ('archaeological', 'history'), ('military_history', 'history'), ('mass_communication', 'humanities'), ('international_relations', 'humanities'), ('environmental_sciences', 'humanities'), ('english_language_and_literature', 'humanities'), ('human_geography', 'humanities'), ('cultural_anthropology', 'humanities'), ('classics', 'humanities'), ('history', 'humanities'), ('geography', 'humanities'), ('religion', 'humanities')]
+skip: human geography geography
+skip: immunology of infectious disease immunology
+skip: comparative politics genetics
+skip: behavioral ecology religion
+skip: philosophy of religion religion
+skip: philosophy of science religion
+skip: physical science religion
+skip: food processing manufacturing
+skip: international economics economics
+skip: ancient history classics
+skip: ancient philosophy classics
+skip: classical archaeology and art history classics
+skip: classical literature and philology classics
+skip: comparative literature classics
+skip: air traffic control communication
+skip: health communication communication
+skip: interpersonal/small group communication communication
+skip: public affairs communication
+skip: plant pathology horticulture
+skip: astrodynamics music
+skip: thermodynamics chemical engineering
+skip: animal science science
+skip: atmospheric sciences science
+skip: behavioral economics science
+skip: cellular neuroscience science
+skip: cognitive neuroscience science
+skip: computational neuroscience science
+skip: computer science science
+skip: crop sciences science
+skip: dairy science science
+skip: developmental neuroscience science
+skip: earth science science
+skip: electromagnetics science
+skip: engineering science science
+skip: environmental sciences science
+skip: food science science
+skip: forest sciences science
+skip: geographic information sciences science
+skip: life science science
+skip: materials science science
+skip: membrane science science
+skip: metallurgy science
+skip: molecular neuroscience science
+skip: physical science science
+skip: plant science science
+skip: political science science
+skip: poultry science science
+skip: social science science
+skip: soil science science
+skip: systems neuroscience science
+skip: wood science science
+skip: tribology applied mechanics
+skip: african history history
+skip: ancient history history
+skip: archaeological history
+skip: asian history history
+skip: contemporary art history history
+skip: cultural history history
+skip: diplomatic history history
+skip: economic history history
+skip: european history history
+skip: gender history history
+skip: history of philosophy history
+skip: history of religion history
+skip: history of religions of eastern origins history
+skip: history of religions of western origin history
+skip: history of science, technology, and medicine history
+skip: intellectual history history
+skip: islamic world/near east history history
+skip: latin american history history
+skip: medieval history history
+skip: military history history
+skip: political history history
+skip: social history history
+skip: theatre history history
+skip: united states history history
+skip: women’s history history
+skip: condensed matter physics engineering
+skip: digital communications engineering
+skip: social science engineering
+skip: theatre history theatre
+skip: history of religion theology
+skip: nutrition instrumentation
+skip: classics humanities
+skip: cultural anthropology humanities
+skip: english language and literature humanities
+skip: environmental sciences humanities
+skip: geography humanities
+skip: history humanities
+skip: human geography humanities
+skip: international relations humanities
+skip: mass communication humanities
+skip: religion humanities
+skip: philosophy of mind metaphysics
+skip: control theory mathematics
+skip: dynamical systems mathematics
+skip: geometry and topology mathematics
+skip: multidisciplinary design optimization mathematics
+skip: number theory mathematics
+skip: operational research mathematics
+skip: ordinary differential equations mathematics
+skip: partial differential equations mathematics
+skip: scientific computing mathematics
+skip: population biology neuroscience
+skip: ethics and political philosophy ethics
+skip: energy systems analysis
+skip: information systems analysis
+skip: numerical analysis analysis
+skip: pathology analysis
+skip: phonetics analysis
+skip: race and ethnicity analysis
+skip: sociology of culture analysis
+skip: toxicology analysis
+skip: virology analysis
+skip: logic and foundations science
+skip: cell biology science
+skip: applied mechanics science
+skip: literature in english, north america science
+skip: methodologies science
+246.0
+465.0
+Correct: 113
+Precision: 0.45934959349593496
+Recall: 0.24301075268817204
+F1: 0.31786216596343175
+

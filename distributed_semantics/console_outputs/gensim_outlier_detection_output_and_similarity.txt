@@ -1,0 +1,60 @@
+['aquatic_ecology', 'climate', 'microbial_ecology']
+ecology climate
+0.3906108908464701
+
+['graphics', 'music', 'networks', 'os', 'syntax']
+communication networks
+0.28504012569533743
+
+['analytical_chemistry', 'biochemistry', 'biogeochemistry', 'composition', 'geochemistry', 'inorganic_chemistry', 'medicinal_chemistry', 'pharmacology', 'polymer_chemistry']
+chemistry composition
+0.3138873813299064
+
+['aerodynamics', 'aquatic_ecology', 'biomaterials', 'biomedical', 'cognitive_psychology', 'communication', 'ecology', 'electrical_engineering', 'ergonomics', 'geotechnical_engineering', 'instrumentation', 'kinesiology', 'manufacturing', 'mechanical_engineering', 'oceanography', 'robotics']
+engineering communication
+0.1993595890263264
+
+['cognitive_neuroscience', 'computational_neuroscience', 'epidemiology', 'molecular_neuroscience']
+neuroscience epidemiology
+0.5087710147080388
+
+['endocrinology', 'paleontology', 'parasitology']
+zoology paleontology
+0.555093369798117
+
+['computational_linguistics', 'morphology', 'phonology', 'psycholinguistics', 'sociolinguistics']
+linguistics morphology
+0.22072648411159732
+
+['botany', 'molecular_biology', 'molecular_genetics']
+genetics botany
+0.430952542896692
+
+['classics', 'cultural_anthropology', 'geography', 'history', 'linguistics', 'musicology', 'philosophy', 'psychology', 'religion', 'sociology', 'theology']
+humanities classics
+0.25102138116271877
+
+['algebra', 'algebraic_geometry', 'analysis', 'chemistry', 'dynamical_systems', 'fluid_dynamics', 'ordinary_differential_equations', 'partial_differential_equations', 'physics', 'probability', 'quantum_physics']
+mathematics analysis
+0.12939704669521057
+
+['biophysics', 'cosmology', 'geophysics', 'metaphysics', 'optics', 'quantum_physics']
+physics geophysics
+0.39972555791511216
+
+['comparative_physiology', 'exercise_physiology', 'molecular_physiology']
+physiology molecular_physiology
+0.5160356579549974
+
+['atmospheric_sciences', 'cognitive_neuroscience', 'computational_neuroscience', 'electromagnetics', 'geology', 'geophysics', 'metallurgy', 'microbiology', 'molecular_neuroscience', 'neuroscience', 'physiology', 'engineering', 'humanities', 'mathematics', 'zoology', 'methodologies']
+science methodologies
+0.2291663715931292
+
+['pathology', 'phonetics', 'toxicology', 'virology']
+analysis phonetics
+0.12734675170495122
+
+['biophysics', 'genetics', 'immunology']
+biochemistry genetics
+0.555833043382366
+

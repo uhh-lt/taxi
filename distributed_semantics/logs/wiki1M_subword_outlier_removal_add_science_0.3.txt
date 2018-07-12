@@ -1,0 +1,6 @@
+os	communication
+Elements Taxonomy:364.0465.0
+Correct: 152
+Precision: 0.4175824175824176
+Recall: 0.32688172043010755
+F1: 0.36670687575392036

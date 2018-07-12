@@ -1,0 +1,10 @@
+Taxonomy file	out/science_en.csv-relations.csv-taxo-knn1.csv-pruned.csv-cleaned.csv-pruned.csv-cleaned.csv
+Gold Standard file	eval/taxi_eval_archive/input/gold.taxo
+Root	science
+level	B	Weight	BxWeight
+0	0.6099011257082495	1.0	0.6099011257082495
+1	0.25126109469720614	0.5	0.12563054734860307
+2	0.25527543761367494	0.3333333333333333	0.08509181253789164
+3	0.0	0.25	0.0
+Cumulative Measure	0.39389927308547734
+Recall from relation overlap	0.32688172043010755

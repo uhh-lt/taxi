@@ -1,0 +1,17 @@
+theatre	communication
+music	communication
+os	communication
+energy_systems	analysis
+cultural_history	public_health
+molecular_neuroscience	science
+systems_neuroscience	science
+nutrition	instrumentation
+behavioral_ecology	religion
+compilers	computer_engineering
+aquatic_ecology	engineering
+astrodynamics	music
+Elements Taxonomy:353.0465.0
+Correct: 152
+Precision: 0.43059490084985835
+Recall: 0.32688172043010755
+F1: 0.37163814180929094

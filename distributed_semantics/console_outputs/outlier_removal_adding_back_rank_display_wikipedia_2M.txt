@@ -1,0 +1,209 @@
+5aly@ltgpu1:~/taxi$ python3 learn_embeddings.py 1 test
+[('nutrition', 'instrumentation'), ('archaeological', 'history'), ('information-systems', 'analysis'), ('phonetics', 'analysis'), ('pathology', 'analysis'), ('toxicology', 'analysis'), ('virology', 'analysis'), ('botany', 'genetics'), ('networking', 'computer-science'), ('semantics', 'computer-science'), ('algorithms', 'computer-science'), ('artificial-intelligence', 'computer-science'), ('epidemiology', 'neuroscience'), ('food-science', 'nutrition'), ('morphology', 'linguistics'), ('composition', 'chemistry'), ('pharmacology', 'chemistry'), ('classics', 'humanities'), ('mass-communication', 'humanities'), ('international-relations', 'humanities'), ('history', 'humanities'), ('geography', 'humanities'), ('religion', 'humanities'), ('philosophy', 'humanities'), ('theology', 'humanities'), ('musicology', 'humanities'), ('methodologies', 'science'), ('metallurgy', 'science'), ('physiology', 'science'), ('electromagnetics', 'science'), ('food-science', 'science'), ('optics', 'physics'), ('geophysics', 'physics'), ('communication', 'engineering'), ('ergonomics', 'engineering'), ('aerodynamics', 'engineering'), ('kinesiology', 'engineering'), ('ecology', 'engineering'), ('biomechanics', 'mechanical-engineering'), ('climate', 'ecology'), ('analysis', 'mathematics'), ('probability', 'mathematics'), ('chemistry', 'mathematics'), ('computer-science', 'mathematics'), ('fluid-dynamics', 'mathematics'), ('public-health', 'public-affairs'), ('astrodynamics', 'music'), ('playwriting', 'music'), ('ethnomusicology', 'music'), ('os', 'communication'), ('graphics', 'communication'), ('syntax', 'communication'), ('motor-control', 'communication'), ('music', 'communication'), ('theatre', 'communication'), ('networks', 'communication'), ('mass-communication', 'communication'), ('air-traffic-control', 'communication'), ('public-policy', 'communication'), ('public-affairs', 'communication'), ('ethics', 'religion'), ('metaphysics', 'religion'), ('physical-science', 'religion'), ('food-processing', 'manufacturing')]
+morphology
+morphology phonology
+Rank :40, Rank_Iverse:164, Rank root: 6724, highest similarity: phonology morphology, parent: linguistics
+public-health
+public-health environmental-health
+Rank :3, Rank_Iverse:0, Rank root: None, highest similarity: environmental-health public-health, parent: public-health
+climate
+climate meteorology
+Rank :148, Rank_Iverse:277, Rank root: 1611, highest similarity: meteorology climate, parent: oceanography
+botany
+botany zoology
+Rank :2, Rank_Iverse:1, Rank root: 150, highest similarity: zoology botany, parent: science
+ethics
+ethics philosophy
+Rank :48, Rank_Iverse:57, Rank root: 270, highest similarity: philosophy ethics, parent: humanities
+metaphysics
+metaphysics epistemology
+Rank :3, Rank_Iverse:9, Rank root: None, highest similarity: epistemology metaphysics, parent: metaphysics
+physical-science
+physical-science earth-science
+Rank :7, Rank_Iverse:6, Rank root: 8, highest similarity: earth-science physical-science, parent: science
+Added :63 physical science science
+food-processing
+food-processing food-science
+Rank :101, Rank_Iverse:55, Rank root: 2964, highest similarity: food-science food-processing, parent: nutrition
+air-traffic-control
+air-traffic-control information-systems
+Rank :9, Rank_Iverse:166, Rank root: None, highest similarity: information-systems air-traffic-control, parent: analysis
+graphics
+graphics physics
+Rank :1302, Rank_Iverse:1278, Rank root: 20941, highest similarity: physics graphics, parent: mathematics
+mass-communication
+mass-communication sociology
+Rank :131, Rank_Iverse:499, Rank root: 6296, highest similarity: sociology mass-communication, parent: humanities
+motor-control
+motor-control signal-processing
+Rank :57, Rank_Iverse:415, Rank root: None, highest similarity: signal-processing motor-control, parent: engineering
+music
+music musicology
+Rank :106, Rank_Iverse:28, Rank root: 12550, highest similarity: musicology music, parent: humanities
+networks
+networks networking
+Rank :100, Rank_Iverse:34, Rank root: None, highest similarity: networking networks, parent: computer-science
+os
+os programming-languages
+Rank :47375, Rank_Iverse:None, Rank root: None, highest similarity: programming-languages os, parent: computer-science
+public-affairs
+public-affairs public-policy
+Rank :17, Rank_Iverse:28, Rank root: None, highest similarity: public-policy public-affairs, parent: communication
+public-policy
+public-policy public-health
+Rank :12, Rank_Iverse:26, Rank root: 28, highest similarity: public-health public-policy, parent: public-affairs
+Added :106 public policy public affairs
+syntax
+syntax semantics
+Rank :48, Rank_Iverse:8, Rank root: 75238, highest similarity: semantics syntax, parent: computer-science
+theatre
+theatre playwriting
+Rank :43, Rank_Iverse:36, Rank root: 815, highest similarity: playwriting theatre, parent: music
+biomechanics
+biomechanics physiology
+Rank :8, Rank_Iverse:8, Rank root: 3250, highest similarity: physiology biomechanics, parent: science
+astrodynamics
+astrodynamics cosmochemistry
+Rank :13, Rank_Iverse:221, Rank root: 69380, highest similarity: cosmochemistry astrodynamics, parent: chemistry
+ethnomusicology
+ethnomusicology musicology
+Rank :2, Rank_Iverse:0, Rank root: 369, highest similarity: musicology ethnomusicology, parent: humanities
+playwriting
+playwriting theatre
+Rank :36, Rank_Iverse:43, Rank root: None, highest similarity: theatre playwriting, parent: communication
+food-science
+food-science mechanical-engineering
+Rank :42, Rank_Iverse:55, Rank root: 1931, highest similarity: mechanical-engineering food-science, parent: engineering
+electromagnetics
+electromagnetics geophysics
+Rank :16, Rank_Iverse:39, Rank root: 7367, highest similarity: geophysics electromagnetics, parent: science
+food-science
+food-science mechanical-engineering
+Rank :42, Rank_Iverse:55, Rank root: 1931, highest similarity: mechanical-engineering food-science, parent: engineering
+metallurgy
+metallurgy engineering
+Rank :119, Rank_Iverse:79, Rank root: 1650, highest similarity: engineering metallurgy, parent: science
+physiology
+physiology biochemistry
+Rank :1, Rank_Iverse:3, Rank root: 292, highest similarity: biochemistry physiology, parent: cell-biology
+archaeological
+archaeological paleontology
+Rank :515, Rank_Iverse:861, Rank root: 24833, highest similarity: paleontology archaeological, parent: zoology
+aerodynamics
+aerodynamics fluid-dynamics
+Rank :24, Rank_Iverse:60, Rank root: 3918, highest similarity: fluid-dynamics aerodynamics, parent: mathematics
+communication
+communication networking
+Rank :233, Rank_Iverse:152, Rank root: None, highest similarity: networking communication, parent: computer-science
+ecology
+ecology zoology
+Rank :69, Rank_Iverse:65, Rank root: 460, highest similarity: zoology ecology, parent: science
+ergonomics
+ergonomics biomechanics
+Rank :100, Rank_Iverse:429, Rank root: 14362, highest similarity: biomechanics ergonomics, parent: mechanical-engineering
+kinesiology
+kinesiology biomechanics
+Rank :5, Rank_Iverse:19, Rank root: 1743, highest similarity: biomechanics kinesiology, parent: mechanical-engineering
+nutrition
+nutrition physiology
+Rank :63, Rank_Iverse:44, Rank root: 444, highest similarity: physiology nutrition, parent: science
+classics
+classics philosophy
+Rank :305, Rank_Iverse:625, Rank root: 4866, highest similarity: philosophy classics, parent: humanities
+geography
+geography geology
+Rank :7, Rank_Iverse:29, Rank root: 263, highest similarity: geology geography, parent: science
+history
+history geography
+Rank :191, Rank_Iverse:57, Rank root: 1780, highest similarity: geography history, parent: humanities
+international-relations
+international-relations political-science
+Rank :2, Rank_Iverse:3, Rank root: 30, highest similarity: political-science international-relations, parent: social-science
+Added :247 international relations social science
+mass-communication
+mass-communication sociology
+Rank :131, Rank_Iverse:499, Rank root: 6296, highest similarity: sociology mass-communication, parent: humanities
+musicology
+musicology ethnomusicology
+Rank :0, Rank_Iverse:2, Rank root: 28, highest similarity: ethnomusicology musicology, parent: music
+Added :250 musicology music
+philosophy
+philosophy metaphysics
+Rank :10, Rank_Iverse:37, Rank root: 81, highest similarity: metaphysics philosophy, parent: religion
+Added :251 philosophy religion
+religion
+religion theology
+Rank :58, Rank_Iverse:61, Rank root: 1957, highest similarity: theology religion, parent: humanities
+theology
+theology metaphysics
+Rank :26, Rank_Iverse:18, Rank root: 61, highest similarity: metaphysics theology, parent: religion
+Added :255 theology religion
+algorithms
+algorithms artificial-intelligence
+Rank :162, Rank_Iverse:121, Rank root: 5917, highest similarity: artificial-intelligence algorithms, parent: computer-science
+artificial-intelligence
+artificial-intelligence algorithms
+Rank :121, Rank_Iverse:162, Rank root: 127, highest similarity: algorithms artificial-intelligence, parent: computer-science
+networking
+networking networks
+Rank :34, Rank_Iverse:100, Rank root: 152, highest similarity: networks networking, parent: communication
+semantics
+semantics syntax
+Rank :8, Rank_Iverse:48, Rank root: 61390, highest similarity: syntax semantics, parent: communication
+analysis
+analysis methodologies
+Rank :198, Rank_Iverse:192, Rank root: 41070, highest similarity: methodologies analysis, parent: science
+chemistry
+chemistry biochemistry
+Rank :10, Rank_Iverse:16, Rank root: 206, highest similarity: biochemistry chemistry, parent: cell-biology
+computer-science
+computer-science software-engineering
+Rank :4, Rank_Iverse:2, Rank root: 343, highest similarity: software-engineering computer-science, parent: engineering
+fluid-dynamics
+fluid-dynamics aerodynamics
+Rank :60, Rank_Iverse:24, Rank root: 1093, highest similarity: aerodynamics fluid-dynamics, parent: engineering
+probability
+probability mathematics
+Rank :236, Rank_Iverse:1163, Rank root: 21283, highest similarity: mathematics probability, parent: science
+epidemiology
+epidemiology biostatistics
+Rank :8, Rank_Iverse:10, Rank root: None, highest similarity: biostatistics epidemiology, parent: epidemiology
+information-systems
+information-systems software-engineering
+Rank :19, Rank_Iverse:4, Rank root: 4826, highest similarity: software-engineering information-systems, parent: engineering
+pathology
+pathology immunopathology
+Rank :32, Rank_Iverse:235, Rank root: None, highest similarity: immunopathology pathology, parent: pathology
+phonetics
+phonetics phonology
+Rank :2, Rank_Iverse:3, Rank root: 6, highest similarity: phonology phonetics, parent: linguistics
+Added :325 phonetics linguistics
+toxicology
+toxicology pharmacology
+Rank :10, Rank_Iverse:10, Rank root: 257, highest similarity: pharmacology toxicology, parent: chemistry
+virology
+virology immunology
+Rank :2, Rank_Iverse:2, Rank root: 38, highest similarity: immunology virology, parent: biochemistry
+Added :329 virology biochemistry
+composition
+composition morphology
+Rank :80, Rank_Iverse:6164, Rank root: 31963, highest similarity: morphology composition, parent: linguistics
+pharmacology
+pharmacology biochemistry
+Rank :4, Rank_Iverse:8, Rank root: 241, highest similarity: biochemistry pharmacology, parent: cell-biology
+geophysics
+geophysics geology
+Rank :8, Rank_Iverse:8, Rank root: 1692, highest similarity: geology geophysics, parent: science
+optics
+optics physics
+Rank :573, Rank_Iverse:386, Rank root: 1733, highest similarity: physics optics, parent: mathematics
+methodologies
+methodologies algorithms
+Rank :122, Rank_Iverse:431, Rank root: None, highest similarity: algorithms methodologies, parent: computer-science
+309.0
+465.0
+Correct: 144
+Precision: 0.46601941747572817
+Recall: 0.3096774193548387
+F1: 0.372093023255814
+

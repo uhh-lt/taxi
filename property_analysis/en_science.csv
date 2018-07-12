@@ -1,0 +1,1514 @@
+hyponym	hypernym	freq
+mammalogy	zoology	2
+morphology	language	18
+morphology	linguistics	6
+morphology	biology	6
+morphology	grammar	6
+morphology	microorganism	2
+morphology	science	2
+behavioral economics	economic theory	4
+hydrogeology	science	4
+hydrogeology	environmental sciences	4
+therapeutics	biology	2
+therapeutics	toxicology	2
+therapeutics	science	2
+integral calculus	mathematics	4
+cognitive neuroscience	cognitive science	2
+cognitive neuroscience	psychology	2
+cognitive neuroscience	science	2
+metallurgy	materials science	4
+metallurgy	science	4
+metallurgy	natural science	2
+metallurgy	medicine	2
+metallurgy	physics	2
+environmental health	public health	2
+environmental health	toxicology	2
+performance studies	social sciences	2
+materials science	physical sciences	2
+materials science	engineering	2
+statics	engineering science	2
+statics	mechanics	2
+geology	science	70
+geology	natural science	20
+geology	physical sciences	12
+geology	earth sciences	8
+geology	environmental sciences	4
+geology	social science	2
+geology	space science	2
+geology	natural history	2
+geology	religion	2
+geology	information science	2
+geology	engineering	2
+geology	physics	2
+bilingualism	linguistics	2
+eugenics	philosophy	2
+eugenics	history	2
+microeconomics	economics	6
+microeconomics	economic theory	2
+philosophy of language	philosophy	14
+philosophy of language	epistemology	2
+digital circuits	electrical engineering	2
+phonology	language	16
+phonology	grammar	8
+phonology	linguistics	6
+civil engineering	engineering	2
+natural history	science	6
+natural history	medicine	2
+sociology of culture	analysis	2
+optics	science	18
+optics	physics	12
+optics	communication	2
+optics	instrumentation	2
+optics	magnetism	2
+optics	astronomy	2
+optics	fluid mechanics	2
+optics	electromagnetism	2
+optics	systematics	2
+optics	photonics	2
+optics	electrical engineering	2
+applied mathematics	mathematics	4
+applied mathematics	science	4
+applied mathematics	computer science	2
+aeronautics	science	2
+numerical analysis	statistics	2
+numerical analysis	applied statistics	2
+numerical analysis	computer science	2
+psycholinguistics	linguistics	6
+psycholinguistics	cognitive psychology	6
+psycholinguistics	natural science	2
+psycholinguistics	psychology	2
+psycholinguistics	language	2
+statistical mechanics	physics	8
+statistical mechanics	physical chemistry	4
+statistical mechanics	science	2
+statistical mechanics	thermodynamics	2
+statistical mechanics	quantum physics	2
+neuropsychiatry	neurology	2
+dynamics	mechanics	10
+dynamics	biology	4
+dynamics	ecology	2
+dynamics	engineering	2
+dynamics	mathematics	2
+dynamics	composition	2
+dynamics	chemistry	2
+crystallography	chemistry	4
+crystallography	physics	2
+economic history	social sciences	2
+microbiology	life sciences	10
+microbiology	science	10
+microbiology	biology	8
+microbiology	medicine	4
+microbiology	botany	2
+microbiology	food science	2
+microbiology	chemistry	2
+sexuality	politics	2
+sexuality	women’s history	2
+life science	science	2
+compilers	computer engineering	2
+pediatrics	anesthesiology	4
+pediatrics	medicine	2
+biosystematics	ichthyology	2
+anthropology	social sciences	46
+anthropology	science	16
+anthropology	social science	4
+anthropology	linguistics	2
+anthropology	religion	2
+anthropology	language	2
+anthropology	natural science	2
+anthropology	topography	2
+anthropology	performance studies	2
+anthropology	cognitive science	2
+anthropology	humanities	2
+anthropology	philosophy	2
+anthropology	behavioural sciences	2
+linguistic anthropology	anthropology	4
+comparative literature	classics	2
+motor control	algorithms	2
+physiology	science	30
+physiology	biology	22
+physiology	plant biology	4
+physiology	zoology	4
+physiology	instrumentation	4
+physiology	medical science	2
+physiology	ecology	2
+physiology	horticulture	2
+physiology	microorganism	2
+physiology	biomedicine	2
+physiology	artificial intelligence	2
+physiology	forestry	2
+physiology	neuroscience	2
+physiology	prosthetics	2
+physiology	chemistry	2
+photochemistry	chemistry	2
+photochemistry	physical chemistry	2
+proxemics	communication	2
+economics	social sciences	76
+economics	economic theory	14
+economics	science	14
+economics	microeconomics	12
+economics	social science	8
+economics	humanities	6
+economics	religion	4
+economics	engineering	4
+economics	politics	4
+economics	sociology	2
+economics	statistics	2
+economics	language	2
+economics	public economics	2
+economics	natural science	2
+economics	communication	2
+economics	behavioural sciences	2
+economics	forestry	2
+economics	calculus	2
+economics	political science	2
+economics	analysis	2
+economics	chemistry	2
+medieval history	history	2
+contemporary history	political history	2
+nuclear medicine	physics	4
+topography	archeology	2
+computer architecture	engineering	6
+computer architecture	science	2
+computer architecture	computer engineering	2
+computer architecture	computer science	2
+earth science	science	6
+earth science	natural science	2
+ethnomusicology	performance studies	2
+genomics	life sciences	8
+genomics	science	6
+genomics	geography	2
+genomics	statistics	2
+genomics	genetics	2
+genomics	biology	2
+genomics	medicine	2
+genomics	plant science	2
+genomics	biotechnology	2
+neurobiology	language	4
+neurobiology	molecular biology	2
+neurobiology	neuroscience	2
+neurobiology	neurology	2
+electrostatics	magnetism	2
+electrostatics	electromagnetism	2
+quantum mechanics	physics	16
+quantum mechanics	quantum physics	2
+quantum mechanics	physical chemistry	2
+quantum mechanics	science	2
+quantum mechanics	chemistry	2
+music	communication	4
+music	humanities	4
+music	memory	4
+music	language	4
+music	theatre	2
+music	metaphysics	2
+music	religion	2
+music	world history	2
+music	composition	2
+music	philosophy	2
+music	analysis	2
+music	history	2
+music	performance studies	2
+music	science	2
+memory	psychology	12
+memory	cognitive psychology	12
+memory	personality	4
+memory	history	4
+memory	communication	2
+memory	cognitive science	2
+memory	statistics	2
+memory	science	2
+memory	analysis	2
+memory	algorithms	2
+group theory	mathematics	6
+group theory	algebra	4
+group theory	political science	2
+group theory	chemistry	2
+group theory	pure mathematics	2
+group theory	physical chemistry	2
+cardiology	medicine	6
+neurophysiology	neuroscience	6
+neurophysiology	neurology	2
+neurophysiology	physiology	2
+neurophysiology	science	2
+applied psychology	medicine	2
+political theory	humanities	2
+political theory	political science	2
+geophysics	science	8
+geophysics	earth sciences	6
+geophysics	physics	2
+industrial organization	economics	2
+industrial organization	microeconomics	2
+dentistry	science	10
+dentistry	medicine	6
+dentistry	medical science	4
+dentistry	health psychology	2
+classical mechanics	physics	4
+applied linguistics	linguistics	2
+science	life sciences	10
+science	natural science	8
+science	physical sciences	6
+science	ecology	6
+science	engineering	6
+science	psychology	4
+science	social sciences	4
+science	religion	4
+science	horticulture	4
+science	information science	4
+science	analysis	4
+science	performance studies	2
+science	materials science	2
+science	applied sciences	2
+science	world history	2
+science	sociology	2
+science	philosophy	2
+science	plant science	2
+science	genomics	2
+science	physical geography	2
+science	nutrition	2
+science	climate	2
+science	history	2
+science	politics	2
+science	forestry	2
+science	mathematics	2
+science	calculus	2
+science	theology	2
+science	information systems	2
+science	methodologies	2
+science	biotechnology	2
+science	chemistry	2
+physiological psychology	psychology	2
+electrochemistry	physical chemistry	6
+electrochemistry	chemistry	6
+electrochemistry	neurobiology	4
+electrochemistry	analysis	4
+electrochemistry	materials science	2
+electrochemistry	biophysics	2
+soil chemistry	analysis	2
+climatology	science	6
+climatology	physical geography	4
+climatology	social sciences	2
+climatology	geology	2
+catoptrics	optics	4
+history	social sciences	40
+history	humanities	40
+history	science	38
+history	economics	22
+history	language	12
+history	religion	6
+history	music	6
+history	nutrition	6
+history	cultural history	4
+history	philosophy	4
+history	anthropology	4
+history	social history	4
+history	psychology	4
+history	social science	2
+history	philosophy of science	2
+history	morphology	2
+history	linguistics	2
+history	set theory	2
+history	cognitive psychology	2
+history	biology	2
+history	geometry	2
+history	toxicology	2
+history	classics	2
+history	zoology	2
+history	statistics	2
+history	political history	2
+history	memory	2
+history	sexuality	2
+history	theology	2
+history	forestry	2
+history	theatre	2
+history	political science	2
+history	ethics	2
+history	fluid mechanics	2
+history	psychiatry	2
+history	physics	2
+medical science	science	4
+prehistory	humanities	4
+prehistory	history	2
+plane geometry	geometry	2
+plane geometry	mathematics	2
+volcanology	petrology	2
+cognitive science	science	6
+cognitive science	humanities	2
+cognitive science	communication	2
+cognitive science	philosophy of science	2
+continental philosophy	anthropology	2
+paleobiology	science	2
+paleobiology	environmental sciences	2
+social psychology	psychology	8
+social psychology	social sciences	2
+algebra	mathematics	42
+algebra	analysis	4
+algebra	mechanics	2
+algebra	social sciences	2
+algebra	quantum physics	2
+algebra	computer science	2
+algebra	economic theory	2
+algebra	calculus	2
+algebra	biology	2
+algebra	finance	2
+algebra	geometry	2
+algebra	science	2
+philosophy	humanities	26
+philosophy	social sciences	20
+philosophy	science	20
+philosophy	language	6
+philosophy	history of philosophy	4
+philosophy	cognitive science	4
+philosophy	philosophy of science	2
+philosophy	philosophy of mind	2
+philosophy	psychology	2
+philosophy	medicine	2
+philosophy	anthropology	2
+philosophy	economics	2
+philosophy	classics	2
+philosophy	political history	2
+philosophy	music	2
+philosophy	political theory	2
+philosophy	psychoanalysis	2
+philosophy	forestry	2
+philosophy	ethics	2
+biophysics	physics	8
+biophysics	science	4
+biophysics	biochemistry	2
+biophysics	chemistry	2
+partial differential equations	mathematics	6
+partial differential equations	applied mathematics	4
+partial differential equations	numerical analysis	2
+partial differential equations	finance	2
+partial differential equations	analysis	2
+partial differential equations	physics	2
+political science	social sciences	42
+political science	science	6
+political science	history	2
+political science	sociology	2
+political science	humanities	2
+political science	behavioural sciences	2
+political science	social science	2
+historical linguistics	science	2
+historical linguistics	linguistics	2
+sociolinguistics	linguistics	8
+sociolinguistics	language	2
+ethics	philosophy	30
+ethics	social sciences	6
+ethics	science	6
+ethics	religion	4
+ethics	medicine	4
+ethics	chemical engineering	4
+ethics	medical science	2
+ethics	engineering	2
+ethics	humanities	2
+ethics	pathology	2
+ethics	music	2
+ethics	biomedical	2
+ethics	geography	2
+ethics	neuroscience	2
+ethics	analysis	2
+fluid mechanics	physics	4
+fluid mechanics	engineering science	2
+industrial chemistry	applied sciences	4
+industrial chemistry	science	4
+cytogenetics	genetics	6
+cosmology	physics	6
+cosmology	science	6
+cosmology	astronomy	4
+cosmology	physical sciences	2
+cosmology	astronomy and astrophysics	2
+cosmology	philosophy of science	2
+cosmology	anthropology	2
+labor economics	microeconomics	4
+labor economics	economics	2
+algorithms	computer science	16
+algorithms	engineering	2
+algorithms	mathematics	2
+algorithms	language	2
+algorithms	geometry	2
+algorithms	science	2
+algorithms	applied mathematics	2
+correlation	statistics	12
+correlation	analysis	12
+correlation	stratigraphy	2
+correlation	quantum mechanics	2
+archaeology	science	18
+archaeology	anthropology	8
+archaeology	humanities	6
+archaeology	history	4
+archaeology	social sciences	2
+cultural anthropology	social sciences	4
+cultural anthropology	anthropology	4
+cultural anthropology	humanities	2
+cultural anthropology	sociology	2
+oncology	physics	4
+oncology	medicine	2
+oncology	biology	2
+behavioral ecology	communication	2
+behavioral ecology	religion	2
+social science	science	6
+social science	medical science	2
+taxonomy	science	6
+taxonomy	microbiology	2
+taxonomy	biology	2
+obstetrics	medicine	6
+physical science	natural science	2
+physical science	applied sciences	2
+linguistics	language	8
+linguistics	social sciences	6
+linguistics	science	4
+linguistics	cognitive science	4
+linguistics	humanities	4
+linguistics	performance studies	2
+linguistics	anthropology	2
+linguistics	communication	2
+neuroanatomy	anatomy	2
+neuroanatomy	neuroscience	2
+control theory	science	2
+control theory	engineering	2
+biomedical	science	2
+plant pathology	horticulture	2
+cultural history	history	2
+mechanics of materials	mechanics	2
+mechanics of materials	civil engineering	2
+mechanics of materials	applied mechanics	2
+finance	social sciences	4
+finance	science	4
+finance	economics	4
+developmental anatomy	horticulture	2
+malacology	zoology	2
+entomology	biology	6
+entomology	natural history	2
+entomology	zoology	2
+entomology	horticulture	2
+entomology	science	2
+grammar	language	32
+grammar	mechanics	6
+grammar	communication	4
+grammar	humanities	2
+grammar	phonology	2
+set theory	mathematics	6
+cancer biology	microbiology	2
+biomaterials	medical science	2
+biomaterials	chemistry	2
+biomaterials	materials science	2
+biomaterials	engineering	2
+cybernetics	information systems	2
+cybernetics	science	2
+cartography	geography	2
+cartography	methodologies	2
+cartography	social science	2
+cartography	analysis	2
+comparative politics	political science	2
+environmental sciences	life sciences	4
+environmental sciences	philosophy	2
+particle physics	physics	10
+particle physics	quantum mechanics	2
+particle physics	cosmology	2
+particle physics	science	2
+fluid dynamics	physics	2
+fluid dynamics	science	2
+psychology	science	68
+psychology	social sciences	52
+psychology	social science	8
+psychology	humanities	8
+psychology	medicine	6
+psychology	language	6
+psychology	engineering	4
+psychology	cognitive science	4
+psychology	philosophy	4
+psychology	methodologies	4
+psychology	biomedical	2
+psychology	biology	2
+psychology	statistics	2
+psychology	economics	2
+psychology	cultural history	2
+psychology	neuroscience	2
+psychology	ethics	2
+psychology	analysis	2
+psychology	physics	2
+abnormal psychology	psychology	6
+scientific computing	mathematics	2
+multilingualism	linguistics	2
+multilingualism	language	2
+medicine	science	74
+medicine	life sciences	10
+medicine	social sciences	6
+medicine	genetics	4
+medicine	microbiology	4
+medicine	biomedicine	4
+medicine	engineering	4
+medicine	medical science	2
+medicine	health psychology	2
+medicine	applied sciences	2
+medicine	public health	2
+medicine	religion	2
+medicine	pediatrics	2
+medicine	natural science	2
+medicine	neurology	2
+medicine	psychology	2
+medicine	analysis	2
+medicine	psychiatry	2
+electronics	science	6
+electronics	physical sciences	2
+electronics	materials science	2
+electronics	engineering	2
+electronics	manufacturing	2
+electronics	applied sciences	2
+electronics	biophysics	2
+electronics	electromagnetism	2
+electronics	circuits	2
+electronics	computer engineering	2
+macroeconomics	economics	10
+macroeconomics	economic theory	2
+physical chemistry	science	2
+physical chemistry	chemistry	2
+plant breeding	social sciences	2
+statistics	mathematics	18
+statistics	psychology	16
+statistics	analysis	16
+statistics	biology	8
+statistics	science	8
+statistics	social sciences	4
+statistics	social science	2
+statistics	sociology	2
+statistics	religion	2
+statistics	geometry	2
+statistics	natural science	2
+ethnology	science	6
+ethnology	anthropology	2
+ethnology	social sciences	2
+language	linguistics	10
+language	communication	10
+language	psychology	6
+language	applied linguistics	4
+language	cognitive psychology	4
+language	philosophy	4
+language	minority language	2
+language	kinematics	2
+language	history	2
+language	cognitive science	2
+language	politics	2
+language	humanities	2
+language	computer science	2
+language	behavioural sciences	2
+language	software engineering	2
+language	programming languages	2
+geometry	mathematics	52
+geometry	science	8
+geometry	analysis	4
+geometry	pure mathematics	2
+geometry	chemistry	2
+geometry	physics	2
+clinical nutrition	therapeutics	2
+public economics	microeconomics	4
+ethology	biology	2
+pharmacogenetics	genetics	2
+geomorphology	physical geography	2
+geomorphology	science	2
+geomorphology	physics	2
+botany	science	14
+botany	biology	12
+botany	natural science	4
+botany	genetics	4
+botany	taxonomy	2
+botany	religion	2
+botany	natural history	2
+botany	physical sciences	2
+natural science	science	12
+natural science	classics	2
+modern history	history	4
+probability	mathematics	12
+probability	statistics	6
+probability	science	4
+probability	analysis	4
+probability	numerical analysis	2
+probability	dynamics	2
+probability	life science	2
+probability	biology	2
+probability	public health	2
+probability	geometry	2
+probability	philosophy of science	2
+proteomics	life sciences	6
+proteomics	science	4
+proteomics	genomics	2
+proteomics	genetics	2
+proteomics	analysis	2
+proteomics	methodologies	2
+proteomics	plant science	2
+race and ethnicity	sociology	2
+phonetics	linguistics	6
+phonetics	language	6
+phonetics	grammar	4
+phonetics	natural science	2
+information science	science	2
+nutrition	science	10
+nutrition	instrumentation	8
+nutrition	therapeutics	2
+nutrition	public health	2
+nutrition	medicine	2
+nutrition	biology	2
+nutrition	economics	2
+nutrition	microorganism	2
+nutrition	animal science	2
+nutrition	food science	2
+nutrition	composition	2
+nutrition	analysis	2
+feminist philosophy	philosophy	2
+limnology	ecology	2
+limnology	information science	2
+stem cell	biology	2
+stem cell	cell biology	2
+stem cell	biochemistry	2
+stem cell	medicine	2
+stem cell	neuroscience	2
+enzymology	biochemistry	2
+semantics	language	18
+semantics	linguistics	6
+semantics	computer science	2
+semantics	calculus	2
+semantics	philosophy	2
+semantics	computational linguistics	2
+semantics	grammar	2
+semantics	history	2
+embryology	life sciences	2
+linear algebra	mathematics	10
+linear algebra	statistics	4
+linear algebra	geometry	4
+linear algebra	algebra	2
+linear algebra	applied statistics	2
+meteorology	science	20
+meteorology	natural science	6
+meteorology	social science	2
+meteorology	space science	2
+meteorology	earth sciences	2
+meteorology	physical sciences	2
+meteorology	atmospheric sciences	2
+meteorology	physics	2
+solid geometry	mathematics	2
+paleozoology	paleontology	2
+endocrinology	physiology	4
+endocrinology	biology	2
+endocrinology	molecular biology	2
+endocrinology	life sciences	2
+endocrinology	science	2
+analytical chemistry	science	2
+analytical chemistry	analysis	2
+analytical chemistry	chemistry	2
+ergonomics	medicine	2
+electromagnetism	physics	10
+social history	history	2
+orthopedics	medical science	4
+orthopedics	science	2
+agronomy	social sciences	2
+agronomy	science	2
+phrenology	science	4
+astrodynamics	astronautics	2
+instrumentation	engineering	6
+instrumentation	ocean engineering	4
+instrumentation	physics	2
+instrumentation	biology	2
+instrumentation	astronomy	2
+instrumentation	analysis	2
+ethics and political philosophy	philosophy	2
+food processing	food science	2
+calculus	mathematics	34
+calculus	physics	2
+calculus	life science	2
+calculus	analytic geometry	2
+calculus	algebra	2
+calculus	geometry	2
+calculus	economics	2
+calculus	science	2
+phytochemistry	science	2
+theatre	communication	2
+theatre	world history	2
+theatre	humanities	2
+theatre	music	2
+theatre	performance studies	2
+theatre	circuits	2
+algebraic geometry	geometry	4
+algebraic geometry	mathematics	4
+algebraic geometry	algebra	2
+earth sciences	science	2
+anatomy	science	16
+anatomy	neuroscience	4
+anatomy	medicine	2
+anatomy	surgery	2
+anatomy	horticulture	2
+anatomy	biology	2
+anatomy	anthropology	2
+anatomy	microorganism	2
+anatomy	zoology	2
+anatomy	biomedicine	2
+anatomy	forestry	2
+hydrostatics	ocean engineering	4
+hydrostatics	engineering	4
+hydrostatics	physics	2
+software engineering	computer science	10
+software engineering	engineering	2
+software engineering	science	2
+physics	science	246
+physics	physical sciences	34
+physics	natural science	34
+physics	physical science	12
+physics	condensed matter physics	6
+physics	engineering	6
+physics	social sciences	4
+physics	ecology	4
+physics	mathematics	4
+physics	earth sciences	4
+physics	networks	2
+physics	materials science	2
+physics	biology	2
+physics	philosophy	2
+physics	information science	2
+physics	memory	2
+physics	geophysics	2
+physics	humanities	2
+physics	computer science	2
+physics	astronomy	2
+physics	chemistry	2
+international relations	politics	6
+international relations	social sciences	2
+international relations	political science	2
+international relations	analysis	2
+computational linguistics	methodologies	2
+computational linguistics	clinical psychology	2
+syntax	language	28
+syntax	grammar	10
+syntax	linguistics	6
+syntax	memory	4
+syntax	calculus	2
+syntax	communication	2
+networks	electronics	2
+networks	science	2
+geography	science	12
+geography	social sciences	10
+geography	social science	2
+geography	sociology	2
+geography	geometry	2
+geography	natural science	2
+geography	life sciences	2
+geography	history	2
+geography	forestry	2
+geography	astronomy	2
+veterinary medicine	microbiology	2
+veterinary medicine	medicine	2
+veterinary medicine	life sciences	2
+gynecology	obstetrics	2
+enzyme	nutrition	2
+enzyme	dynamical systems	2
+enzyme	biochemistry	2
+enzyme	toxicology	2
+personality	developmental psychology	4
+personality	psychology	4
+personality	science	4
+personality	anthropology	2
+personality	analysis	2
+pharmacology	science	8
+pharmacology	medicine	4
+pharmacology	chemistry	4
+pharmacology	engineering	2
+pharmacology	biomedicine	2
+pharmacology	toxicology	2
+public health	science	6
+public health	environmental sciences	4
+public health	ecology	2
+public health	toxicology	2
+public health	humanities	2
+public health	social sciences	2
+public health	life sciences	2
+public health	dentistry	2
+medicinal chemistry	chemistry	2
+laser physics	science	6
+paleoanthropology	paleontology	2
+lexical semantics	semantics	2
+lexical semantics	language	2
+philosophy of religion	philosophy	6
+philosophy of religion	metaphysics	2
+pneumatics	electronics	2
+virology	microbiology	6
+virology	medicine	4
+virology	biology	2
+solar physics	geophysics	2
+philosophy of mind	philosophy	6
+philosophy of mind	cognitive science	2
+philosophy of mind	philosophy of language	2
+aquatic ecology	oceanography	2
+biogeography	biology	4
+developmental biology	biology	2
+surgery	medicine	14
+surgery	dentistry	2
+surgery	life sciences	2
+ichthyology	zoology	2
+programming languages	computer science	6
+programming languages	language	2
+genetic engineering	genetics	4
+genetic engineering	science	4
+genetic engineering	plant genetics	2
+genetic engineering	ethics	2
+genetic engineering	biotechnology	2
+geochemistry	chemistry	4
+geochemistry	natural science	2
+geochemistry	physical chemistry	2
+geochemistry	geology	2
+geochemistry	science	2
+biomechanics	mechanics	2
+economic theory	economics	6
+economic theory	physics	2
+paleobotany	biology	2
+paleobotany	paleontology	2
+paleobotany	plant biology	2
+molecular genetics	genetics	4
+molecular genetics	science	2
+ethnography	anthropology	6
+ethnography	science	4
+ethnography	social sciences	2
+ethnography	biomedicine	2
+ethnography	social anthropology	2
+ethnography	methodologies	2
+ethnography	cultural anthropology	2
+pragmatics	linguistics	8
+pragmatics	language	6
+pragmatics	philosophy	2
+pragmatics	computational linguistics	2
+pragmatics	grammar	2
+multidisciplinary design optimization	mathematics	2
+evolutionary ecology	anthropology	2
+climate	ecology	2
+climate	geography	2
+climate	public health	2
+climate	science	2
+climate	history	2
+hydrology	science	6
+hydrology	natural science	2
+hydrology	engineering	2
+hydrology	environmental sciences	2
+hydrology	environmental engineering	2
+magnetism	physics	18
+magnetism	physical science	2
+magnetism	solid state physics	2
+magnetism	electromagnetism	2
+magnetism	science	2
+magnetism	analysis	2
+magnetism	chemistry	2
+forest management	forestry	4
+forest management	economics	2
+toxicology	science	8
+toxicology	environmental sciences	4
+toxicology	medicine	4
+toxicology	biology	2
+toxicology	life sciences	2
+sociobiology	religion	2
+robotics	engineering	6
+robotics	computer science	2
+robotics	artificial intelligence	2
+robotics	manufacturing	2
+robotics	surgery	2
+robotics	science	2
+stratigraphy	geology	4
+audiology	communication	2
+audiology	science	2
+hygiene	public health	2
+horticulture	medicine	2
+horticulture	instrumentation	2
+horticulture	plant science	2
+epistemology	philosophy	22
+epistemology	medicine	2
+epistemology	mathematics	2
+epistemology	philosophy of language	2
+epistemology	geometry	2
+epistemology	science	2
+oceanography	science	12
+oceanography	engineering	2
+oceanography	geology	2
+oceanography	social sciences	2
+oceanography	earth sciences	2
+oceanography	atmospheric sciences	2
+oceanography	physics	2
+mechanical engineering	engineering	4
+topology	mathematics	12
+topology	analysis	4
+topology	calculus	2
+topology	economic theory	2
+topology	computer science	2
+topology	physics	2
+protozoology	microbiology	4
+history of philosophy	philosophy	16
+musicology	humanities	2
+musicology	performance studies	2
+molecular biology	biology	14
+molecular biology	genetics	6
+molecular biology	science	6
+molecular biology	life sciences	4
+molecular biology	biotechnology	4
+molecular biology	plant biology	2
+molecular biology	cell biology	2
+molecular biology	medicine	2
+molecular biology	natural science	2
+molecular biology	zoology	2
+molecular biology	chemistry	2
+graphics	communication	8
+graphics	computer science	4
+graphics	information systems	2
+psychotherapy	medicine	4
+physical geography	history	2
+number theory	mathematics	22
+number theory	geometry	4
+number theory	pure mathematics	2
+structuralism	psychology	2
+structuralism	language	2
+structuralism	religion	2
+food microbiology	microbiology	2
+cosmochemistry	chemistry	2
+cosmochemistry	physical chemistry	2
+music theory	music	2
+functional anatomy	anatomy	2
+pharmacokinetics	pharmacology	10
+pathology	science	8
+pathology	oncology	2
+pathology	biomedicine	2
+pathology	plant pathology	2
+pathology	biology	2
+pathology	linguistics	2
+pathology	dentistry	2
+soil science	natural science	2
+soil science	information science	2
+soil science	horticulture	2
+metrology	ionising radiation	2
+metrology	science	2
+vulcanology	atmospheric sciences	2
+vulcanology	science	2
+structural biology	biology	2
+structural biology	molecular biology	2
+metaphysics	philosophy	38
+metaphysics	science	6
+metaphysics	mathematics	2
+metaphysics	philosophy of language	2
+composition	nutrition	8
+composition	music	6
+composition	chemistry	4
+composition	microorganism	2
+composition	metaphysics	2
+composition	language	2
+composition	performance studies	2
+herpetology	zoology	4
+herpetology	analysis	2
+information systems	analysis	4
+information systems	science	2
+information systems	economics	2
+acoustics	physics	2
+analysis	mathematics	24
+analysis	science	18
+analysis	methodologies	14
+analysis	economics	10
+analysis	computer science	10
+analysis	genomics	8
+analysis	engineering	8
+analysis	genetics	6
+analysis	software engineering	6
+analysis	physics	6
+analysis	thermodynamics	4
+analysis	numerical analysis	4
+analysis	social sciences	4
+analysis	psychology	4
+analysis	economic theory	4
+analysis	statistics	4
+analysis	language	4
+analysis	communication	4
+analysis	astrophysics	4
+analysis	sexuality	4
+analysis	instrumentation	4
+analysis	ethics	4
+analysis	linguistics	2
+analysis	applied sciences	2
+analysis	linear algebra	2
+analysis	structural materials	2
+analysis	archeology	2
+analysis	statistical theory	2
+analysis	medicine	2
+analysis	climate	2
+analysis	hygiene	2
+analysis	astronautics	2
+analysis	phonetics	2
+analysis	music	2
+analysis	molecular biology	2
+analysis	political theory	2
+analysis	circuits	2
+analysis	food science	2
+analysis	mechanics	2
+analysis	analytical chemistry	2
+analysis	music theory	2
+analysis	politics	2
+analysis	pure mathematics	2
+analysis	dynamics	2
+analysis	computational biology	2
+analysis	philosophy	2
+analysis	information systems	2
+analysis	labor economics	2
+analysis	algorithms	2
+theology	science	8
+theology	religion	6
+theology	social sciences	4
+theology	humanities	4
+theology	methodologies	2
+economic geology	science	2
+behaviorism	psychotherapy	2
+behaviorism	psychology	2
+chemistry	science	174
+chemistry	natural science	34
+chemistry	physical sciences	20
+chemistry	physical science	10
+chemistry	applied sciences	8
+chemistry	biology	6
+chemistry	physics	4
+chemistry	mathematics	4
+chemistry	physical chemistry	2
+chemistry	networks	2
+chemistry	biomedical	2
+chemistry	ecology	2
+chemistry	dynamics	2
+chemistry	medicine	2
+chemistry	religion	2
+chemistry	soil chemistry	2
+chemistry	mineralogy	2
+chemistry	neuroscience	2
+chemistry	information science	2
+chemistry	history	2
+chemistry	engineering	2
+chemistry	instrumentation	2
+chemistry	humanities	2
+chemistry	biochemistry	2
+chemistry	social sciences	2
+chemistry	calculus	2
+chemistry	analysis	2
+experimental psychology	cognitive science	4
+philosophy of science	philosophy	14
+biostatistics	science	2
+mycology	microbiology	8
+mycology	botany	4
+glaciology	science	2
+public administration	social science	2
+pharmacy	history	4
+pharmacy	medicine	2
+pharmacy	science	2
+pharmacy	analysis	2
+thermodynamics	physics	18
+thermodynamics	science	6
+thermodynamics	physical chemistry	4
+thermodynamics	chemistry	4
+thermodynamics	natural science	2
+thermodynamics	engineering science	2
+thermodynamics	biophysics	2
+quantum physics	physics	6
+quantum physics	science	4
+computer science	science	16
+computer science	mathematics	8
+computer science	physical sciences	2
+computer science	applied sciences	2
+computer science	language	2
+computer science	cognitive science	2
+computer science	humanities	2
+computer science	genetics	2
+nuclear physics	science	4
+nuclear physics	natural science	2
+nuclear physics	engineering	2
+signal processing	engineering	2
+signal processing	mathematics	2
+signal processing	computer engineering	2
+paleontology	science	10
+paleontology	biology	2
+paleontology	life sciences	2
+applied sciences	science	2
+applied sciences	applied sciences	1
+matrix algebra	finance	2
+human geography	history	2
+immunology	biology	8
+immunology	medicine	4
+immunology	natural science	2
+immunology	microorganism	2
+immunology	pathology	2
+immunology	biochemistry	2
+immunology	microbiology	2
+demography	social science	6
+demography	social sciences	4
+demography	genetics	2
+demography	microeconomics	2
+bacteriology	microbiology	6
+bacteriology	science	2
+ecology	science	42
+ecology	biology	22
+ecology	environmental sciences	6
+ecology	social sciences	6
+ecology	forestry	6
+ecology	philosophy	4
+ecology	microorganism	4
+ecology	plant pathology	2
+ecology	plant biology	2
+ecology	environmental health	2
+ecology	microbiology	2
+ecology	religion	2
+ecology	plant science	2
+ecology	botany	2
+ecology	communication	2
+ecology	zoology	2
+ecology	horticulture	2
+ecology	oceanography	2
+ecology	information science	2
+ecology	life sciences	2
+ecology	engineering	2
+ecology	humanities	2
+ecology	genetics	2
+ancient philosophy	history of philosophy	2
+physical anthropology	anthropology	4
+histology	anatomy	4
+histology	microscopic anatomy	2
+histology	pathology	2
+histology	science	2
+histology	analysis	2
+public policy	politics	2
+econometrics	economics	10
+econometrics	analysis	2
+criminology	psychology	4
+criminology	social sciences	2
+rural sociology	sociology	2
+rural sociology	social sciences	2
+sociology	social sciences	62
+sociology	science	36
+sociology	social science	8
+sociology	humanities	6
+sociology	cultural history	4
+sociology	eugenics	2
+sociology	religion	2
+sociology	economics	2
+genetics	biology	28
+genetics	science	16
+genetics	life sciences	10
+genetics	evolutionary ecology	4
+genetics	microorganism	4
+genetics	microbiology	2
+genetics	plant science	2
+genetics	natural science	2
+genetics	zoology	2
+genetics	horticulture	2
+genetics	cytology	2
+genetics	methodologies	2
+cognitive psychology	engineering	2
+cognitive psychology	cognitive science	2
+cognitive psychology	psychology	2
+archeology	social sciences	6
+archeology	science	4
+archeology	humanities	2
+population biology	science	2
+religion	humanities	4
+religion	philosophy	4
+religion	world history	2
+religion	politics	2
+religion	sociology	2
+religion	ethics	2
+religion	history	2
+religion	physics	2
+parasitology	microbiology	4
+ancient history	history	2
+immunochemistry	biochemistry	2
+immunochemistry	cell biology	2
+dental surgery	surgery	2
+biology	science	174
+biology	natural science	38
+biology	life sciences	22
+biology	physical sciences	6
+biology	environmental sciences	6
+biology	social sciences	6
+biology	instrumentation	4
+biology	biophysics	4
+biology	oncology	2
+biology	biostatistics	2
+biology	biomedical	2
+biology	applied sciences	2
+biology	eugenics	2
+biology	behavioral neurobiology	2
+biology	medicine	2
+biology	ichthyology	2
+biology	cell biology	2
+biology	microbiology	2
+biology	physiology	2
+biology	neurobiology	2
+biology	language	2
+biology	geometry	2
+biology	ecology	2
+biology	zoology	2
+biology	information science	2
+biology	engineering	2
+biology	humanities	2
+biology	mathematics	2
+biology	calculus	2
+biology	earth sciences	2
+biology	behavioural sciences	2
+biology	physics	2
+biology	philosophy of science	2
+epidemiology	social sciences	4
+epidemiology	medicine	4
+epidemiology	psychiatry	4
+epidemiology	science	4
+epidemiology	oncology	2
+epidemiology	genetics	2
+epidemiology	emergency medicine	2
+epidemiology	plant pathology	2
+epidemiology	biology	2
+epidemiology	public health	2
+epidemiology	dentistry	2
+epidemiology	bacteriology	2
+plant science	life sciences	2
+manufacturing	mechanical engineering	4
+manufacturing	science	4
+manufacturing	dynamical systems	2
+manufacturing	engineering	2
+manufacturing	ergonomics	2
+organic chemistry	chemistry	14
+vector algebra	mechanics	2
+classics	humanities	4
+classics	music	4
+os	music	2
+microorganism	biology	2
+mineralogy	natural science	2
+mineralogy	information science	2
+mineralogy	geology	2
+mineralogy	chemistry	2
+mineralogy	soil chemistry	2
+communication	social sciences	4
+communication	electronics	4
+communication	humanities	4
+communication	networks	2
+communication	geography	2
+communication	computer engineering	2
+communication	dynamics	2
+communication	psychology	2
+communication	biology	2
+communication	language	2
+communication	networking	2
+communication	nutrition	2
+communication	science	2
+communication	sexuality	2
+communication	engineering	2
+communication	analysis	2
+communication	physics	2
+materials chemistry	science	2
+materials chemistry	physical chemistry	2
+problem solving	cognitive psychology	6
+problem solving	psychology	2
+problem solving	neuroscience	2
+problem solving	computer science	2
+problem solving	artificial intelligence	2
+zoology	biology	12
+zoology	science	8
+zoology	natural science	4
+zoology	religion	2
+zoology	information science	2
+pharmaceutics	chemistry	2
+biomedicine	biology	2
+networking	computer science	2
+networking	language	2
+networking	science	2
+gross anatomy	anatomy	2
+astrophysics	science	10
+astrophysics	astronomy and astrophysics	4
+astrophysics	cosmology	4
+astrophysics	plasma physics	2
+astrophysics	physics	2
+astrophysics	astronomy	2
+kinematics	mechanics	8
+kinematics	robotics	4
+kinematics	classical mechanics	2
+kinematics	fluid mechanics	2
+cryobiology	science	4
+psychopharmacology	science	2
+artificial intelligence	computer science	8
+artificial intelligence	cognitive science	6
+artificial intelligence	communication	2
+artificial intelligence	engineering	2
+artificial intelligence	computer engineering	2
+artificial intelligence	science	2
+systems engineering	computer science	2
+chemical engineering	engineering	2
+chemical engineering	life sciences	2
+chemical engineering	science	2
+chemical engineering	chemistry	2
+atom	quantum physics	4
+atom	instrumentation	2
+atom	physics	2
+life sciences	science	2
+cytology	microscopic anatomy	2
+cytology	anatomy	2
+condensed matter physics	physics	2
+condensed matter physics	condensed matter physics	1
+circuits	magnetism	4
+circuits	physics	2
+circuits	electrical engineering	2
+circuits	electronics	2
+circuits	science	2
+developmental psychology	cognitive science	2
+developmental psychology	psychology	2
+developmental psychology	communication	2
+systematics	biology	8
+systematics	plant science	2
+systematics	oceanography	2
+systematics	science	2
+systematics	plant biology	2
+paleoecology	science	2
+paleoecology	atmospheric sciences	2
+urban studies	social science	2
+neurology	medicine	6
+neurology	neuroscience	6
+neurology	cybernetics	2
+neurology	surgery	2
+electrical engineering	engineering	2
+spectrometry	analysis	4
+spectrometry	organic chemistry	2
+spectrometry	instrumentation	2
+trigonometry	mathematics	14
+trigonometry	geometry	2
+trigonometry	algebraic geometry	2
+trigonometry	analysis	2
+mechanics	physics	46
+mechanics	science	8
+mechanics	engineering science	4
+mechanics	physical chemistry	4
+mechanics	engineering	2
+mechanics	dynamics	2
+mechanics	quantum mechanics	2
+mechanics	biomechanics	2
+mechanics	biophysics	2
+engineering	science	48
+engineering	natural science	12
+engineering	applied sciences	6
+engineering	physical sciences	4
+engineering	medicine	2
+engineering	civil engineering	2
+engineering	ecology	2
+engineering	microbiology	2
+engineering	electronics	2
+engineering	manufacturing	2
+engineering	networking	2
+engineering	music	2
+engineering	life sciences	2
+engineering	food science	2
+engineering	astronomy and astrophysics	2
+engineering	structural biology	2
+engineering	fluid mechanics	2
+engineering	biotechnology	2
+politics	social sciences	10
+politics	religion	10
+politics	political science	6
+politics	science	6
+politics	sexuality	4
+politics	political sociology	2
+politics	international relations	2
+politics	world history	2
+politics	sociology	2
+politics	psychology	2
+politics	philosophy	2
+politics	race and ethnicity	2
+politics	theatre	2
+politics	humanities	2
+politics	ethics	2
+politics	engineering	2
+politics	analysis	2
+politics	physics	2
+politics	history	2
+psychoanalysis	psychology	6
+psychoanalysis	continental philosophy	2
+psychoanalysis	humanities	2
+psychoanalysis	religion	2
+psychoanalysis	psychotherapy	2
+polymer chemistry	physical chemistry	2
+endodontics	dentistry	2
+humanities	social sciences	4
+biochemistry	science	22
+biochemistry	life sciences	12
+biochemistry	chemistry	12
+biochemistry	biology	10
+biochemistry	biotechnology	4
+biochemistry	biomedical	2
+biochemistry	physical sciences	2
+biochemistry	cell biology	2
+biochemistry	dairy science	2
+biochemistry	natural science	2
+biochemistry	microorganism	2
+biochemistry	molecular biology	2
+biochemistry	medical science	2
+biochemistry	mathematics	2
+social sciences	science	16
+social sciences	humanities	2
+social sciences	medicine	2
+social sciences	astronomy	2
+forestry	finance	2
+forestry	science	2
+geodesy	science	10
+geodesy	applied sciences	4
+geodesy	physics	2
+geodesy	information science	2
+mathematics	science	62
+mathematics	natural science	14
+mathematics	physical sciences	8
+mathematics	biology	4
+mathematics	engineering	4
+mathematics	humanities	4
+mathematics	social sciences	4
+mathematics	physics	4
+mathematics	eugenics	2
+mathematics	set theory	2
+mathematics	religion	2
+mathematics	language	2
+mathematics	cybernetics	2
+mathematics	chemical engineering	2
+mathematics	computer science	2
+biogeochemistry	natural science	2
+biogeochemistry	science	2
+arithmetic	mathematics	14
+arithmetic	science	12
+arithmetic	analysis	4
+arithmetic	numerical analysis	2
+arithmetic	algebra	2
+arithmetic	language	2
+seismology	geophysics	2
+seismology	physics	2
+neuroscience	science	12
+neuroscience	psychology	12
+neuroscience	biology	6
+neuroscience	cognitive science	6
+neuroscience	cognitive neuroscience	2
+neuroscience	communication	2
+neuroscience	geometry	2
+neuroscience	life sciences	2
+astronomy	science	88
+astronomy	physical sciences	18
+astronomy	natural science	12
+astronomy	physics	8
+astronomy	mathematics	6
+astronomy	earth sciences	2
+astronomy	language	2
+astronomy	astronomy and astrophysics	2
+astronomy	cosmology	2
+cell biology	biology	10
+cell biology	genetics	4
+cell biology	anatomy	2
+cell biology	science	2
+methodologies	biochemistry	2
+methodologies	analysis	2
+methodologies	science	2
+photonics	science	4
+photonics	materials science	2
+photonics	physics	2
+environmental chemistry	medicine	2
+psychiatry	medicine	12
+psychiatry	social sciences	6
+psychiatry	neuroscience	6
+psychiatry	psychology	4
+psychiatry	humanities	2
+psychiatry	history	2
+biotechnology	microbiology	4
+biotechnology	life sciences	4
+biotechnology	science	4
+biotechnology	microorganism	2
+biotechnology	social sciences	2
+biotechnology	chemical engineering	2

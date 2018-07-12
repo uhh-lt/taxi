@@ -1,0 +1,1 @@
+Korrelation zwischen Häufigkeit von Wörtern und wie gut die i ndie Taxonomy eingeordnet werden können. Paar Graphen plotten, und gucken wie das alles so ist

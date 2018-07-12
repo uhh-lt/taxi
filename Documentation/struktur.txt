@@ -1,0 +1,6 @@
+Resources: Alle Candidaten die von Taxi generiert wurden, nach 3.1
+Vocabularies: die normalen *.csv daten sind input für das Taxonomy-erzeugen
+Die -relations.csv ist Schritt 3.2 und 3.3 (Kandidaten finden)
+Die -taxo.csv ist Schritt 3.4(wo ist 3.5)
+
+

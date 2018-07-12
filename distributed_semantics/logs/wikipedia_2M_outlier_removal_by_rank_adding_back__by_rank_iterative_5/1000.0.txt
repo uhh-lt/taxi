@@ -1,0 +1,5 @@
+Elements Taxonomy:336.0465.0
+Correct: 147
+Precision: 0.4375
+Recall: 0.3161290322580645
+F1: 0.36704119850187267

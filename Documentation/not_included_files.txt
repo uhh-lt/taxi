@@ -1,0 +1,5 @@
+isas-commoncrawl muss in property_analysis
+embeddings:
+wikipedia1M.-subwords-fasttext
+wikipedia2M-fasttext
+for own embeddings: wikipedia_dump from here https://blog.lateral.io/2015/06/the-unknown-perils-of-mining-wikipedia/
