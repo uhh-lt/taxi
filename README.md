@@ -1,7 +1,21 @@
-# TAXI
-TAXI: a Taxonomy Induction Method based on Lexico-Syntactic Patterns, Substrings and Focused Crawling
+# TAXI: a Taxonomy Induction Method based on Lexico-Syntactic Patterns, Substrings and Focused Crawling
 
-More information about the approach can be found at [the TAXI web site](http://tudarmstadt-lt.github.io/taxi).
+This page contains implementation of a method for taxonomy induction that reached the first place in the SemEval 2016 challenge on taxonomy extraction evaluation. The method builds a taxonomy from a domain vocabulary. It extracts hypernyms from substrings and large domain-specific corpora bootstrapped from the input vocabulary. Multiple evaluations based on the SemEval taxonomy extraction datasets of four languages and three domains show state-of-the-art performance of our approach. This page contains implementations of the method including all resources needed to reproduce experiment described in the [following paper](https://www.aclweb.org/anthology/S16-1206) presented in San Diego at SemEval co-located with the NAACL'2016:
+
+```
+@inproceedings{panchenko2016taxi,
+  title={TAXI at SemEval-2016 Task 13: a Taxonomy Induction Method based on Lexico-Syntactic Patterns,  Substrings and Focused Crawling},
+  author={Panchenko, Alexander and Faralli, Stefano and  Ruppert, Eugen and Remus, Steffen and  Naets, Hubert and  Fairon, Cedrick and Ponzetto, Simone Paolo and Biemann, Chris},
+  booktitle={Proceedings of the 10th International Workshop on Semantic Evaluation},
+  year={2016},
+  address={San Diego, CA, USA},
+  organization={Association for Computational Linguistics}
+}
+```
+
+If you would like to refer to the system please use this citation. More information about the approach can be found at [the TAXI web site](http://tudarmstadt-lt.github.io/taxi).
+
+![taxi](https://www.lt.informatik.tu-darmstadt.de/fileadmin/_processed_/csm_taxi_662272e466.jpg)
 
 # System Requirements
 
