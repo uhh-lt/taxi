@@ -1,8 +1,9 @@
 from pandas import read_csv
-import cPickle as pickle
-from jnt.common import exists, preprocess_pandas_csv
-from jnt.common import try_remove
+import _pickle as pickle
 from traceback import format_exc
+
+from .common import exists, preprocess_pandas_csv
+from .common import try_remove
 
 
 DEFAULT_FREQ = 1
@@ -29,10 +30,10 @@ class FreqDictionary(object):
             if preprocess:
                 freq_cln_fpath = freq_fpath + "-cln"
                 preprocess_pandas_csv(freq_fpath, freq_cln_fpath)
-                word_df = read_csv(freq_cln_fpath, sep, encoding='utf8', error_bad_lines=False)
+                word_df = read_csv(freq_cln_fpath, sep, encoding='utf-8', error_bad_lines=False)
                 try_remove(freq_cln_fpath)
             else:
-                word_df = read_csv(freq_fpath, sep, encoding='utf8', error_bad_lines=False)
+                word_df = read_csv(freq_fpath, sep, encoding='utf-8', error_bad_lines=False)
 
             # load from dataframe to dictionary
             word_df = word_df.drop(word_df[word_df["freq"] < min_freq].index)
@@ -40,22 +41,22 @@ class FreqDictionary(object):
                 voc = {}
                 for i, row in word_df.iterrows():
                     try:
-                        word = unicode(row["word"]).split("#")[0]
+                        word = str(row["word"]).split("#")[0]
                         freq = int(row["freq"])
                         if word not in voc or voc[word] < freq: voc[word] = freq
                     except:
-                        print "Bad row:", row
-                        print format_exc()
+                        print("Bad row:", row)
+                        print(format_exc())
             else:
                 voc = { row["word"]: row["freq"] for i, row in word_df.iterrows() }
 
-            print "dictionary is loaded:", len(voc)
+            print("dictionary is loaded:", len(voc))
 
             if use_pickle:
                 pickle.dump(voc, open(pkl_fpath, "wb"))
-                print "Pickled voc:", pkl_fpath
+                print("Pickled voc:", pkl_fpath)
 
-        print "Loaded %d words from: %s" % (len(voc), pkl_fpath if pkl_fpath else freq_fpath)
+        print("Loaded %d words from: %s" % (len(voc), pkl_fpath if pkl_fpath else freq_fpath))
 
         self._freq = voc
 

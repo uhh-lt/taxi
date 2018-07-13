@@ -16,7 +16,7 @@ for correct_index in [71237, 13854, 67805, 32292, 55046, 12818, 5686, 112564, 54
                       106097, 22975, 17444, 60375]:
     taxo_features.relations.loc[correct_index, "correct"] = 1
 taxo_features.relations.to_csv(fpath_relations, sep="\t", encoding="utf-8", float_format='%.5f', index=False)
-print fpath_relations
+print(fpath_relations)
 
 
 
@@ -37,13 +37,13 @@ isas3 = isas.copy()
 
 for hypo in isas:
     hypers = isas[hypo]
-    print hypo, hypers.keys()
+    print(hypo, list(hypers.keys()))
     for hyper in hypers:
         pass
-        print "\t", hypo, "-->", hyper , "-->", isas2[hyper].keys()
+        print("\t", hypo, "-->", hyper , "-->", list(isas2[hyper].keys()))
 
         hypers_hypers = isas3[hyper]
         for hyper_hyper in hypers_hypers:
-            print "\t\t", hyper_hyper, isas3[hyper_hyper]
+            print("\t\t", hyper_hyper, isas3[hyper_hyper])
 
 #r[hypo,hyper,correct,correct_new]

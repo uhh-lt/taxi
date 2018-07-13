@@ -50,7 +50,7 @@ class SuperTaxi:
             # load the model
             self._clf = joblib.load(clf_fpath)
             self._meta = json.load(open(self._meta_fpath, "r"))
-            print "Metadata were loaded from:", self._meta_fpath
+            print("Metadata were loaded from:", self._meta_fpath)
         else:
             # model doesn't exist, or must be overwritten create a new one
             ensure_dir(model_dir)
@@ -64,7 +64,7 @@ class SuperTaxi:
 
         try: params = self._clf.get_params()
         except: params = ""
-        return "Classifier:" + str(self._meta) + "\n" + unicode(params)
+        return "Classifier:" + str(self._meta) + "\n" + str(params)
 
     def init_preprocessors(self):
         self._clf = None
@@ -72,30 +72,30 @@ class SuperTaxi:
 
     def save_meta(self):
         json.dump(self._meta, open(self._meta_fpath, "w"))
-        print "Meta file saved to:", self._meta_fpath
+        print("Meta file saved to:", self._meta_fpath)
 
     def save_voc(self, X, output_fpath):
         with codecs.open(output_fpath, "w", "utf-8") as voc_file:
-            if D: print "\nfeatures weights:"
+            if D: print("\nfeatures weights:")
             f = self._vec.get_feature_names()
             w = np.asarray(X.sum(axis=0)).ravel()
-            pairs = zip(f, w)
+            pairs = list(zip(f, w))
             pairs.sort(key=lambda tup: tup[1],reverse=True)
             for x in pairs:
                 #print "%s;%s\n" % (x[0], x[1])
                 voc_file.write("%s;%s\n" % (x[0], x[1]))
-                if D: print x[0], x[1]
+                if D: print(x[0], x[1])
 
-            print "Saved vocabulary to:", output_fpath
+            print("Saved vocabulary to:", output_fpath)
 
     def save_features(self, output_fpath):
         tic = time()
-        print "Saving features to file %s..." % output_fpath
+        print("Saving features to file %s..." % output_fpath)
 
         bow_names = np.asarray(self._vec.get_feature_names())[self._kbest.get_support()]
         bow_names = [fn for fn in bow_names]
         feature_names = bow_names
-        print "feature names len:", len(feature_names)
+        print("feature names len:", len(feature_names))
 
         features = defaultdict(list)
         for k, c in enumerate(self._clf.classes_):
@@ -108,12 +108,12 @@ class SuperTaxi:
             for c in features:
                 for f in sorted(features[c], reverse=True):
                     try:
-                        print >> output_file, "%s;%s;%f" % (c, f[1], f[0])
+                        print("%s;%s;%f" % (c, f[1], f[0]), file=output_file)
                     except:
-                        print "Bad feature:", c, f
-                        print traceback.format_exc()
+                        print("Bad feature:", c, f)
+                        print(traceback.format_exc())
 
-        print "Features are saved to file %s in %d sec." % (output_fpath, time() - tic)
+        print("Features are saved to file %s in %d sec." % (output_fpath, time() - tic))
 
     @property
     def classifier_fpath(self):
@@ -128,7 +128,7 @@ class SuperTaxi:
 
         df_y = df[y_name]
         y = df_y.as_matrix()
-        print X.shape, y.shape
+        print(X.shape, y.shape)
 
         return X, y, X_names, y_name
 
@@ -137,25 +137,25 @@ class SuperTaxi:
         clf = self._create_classifier()
         for scoring in ["precision", "recall", "f1", "accuracy"]:
             s = cross_val_score(clf, X, y, cv=CV_NUM, scoring=scoring, n_jobs=CV_NUM)
-            print"\t%s: %.2f +- %.2f" % (scoring, s.mean(), s.std())
+            print("\t%s: %.2f +- %.2f" % (scoring, s.mean(), s.std()))
 
     def train(self, relations):
         self.X, self.y, self.X_names, self.y_name = self._relations2features(relations)
         self._clf = self._train_classifier(self.X, self.y)
         joblib.dump(self._clf, self.classifier_fpath)
-        print "Saved classifier to:", self.classifier_fpath
+        print("Saved classifier to:", self.classifier_fpath)
 
         return self._clf
 
     def _train_classifier(self, X, y):
-        print "Training classifier..."
+        print("Training classifier...")
         tic=time()
 
         clf = self._create_classifier()
         c = clf.fit(X, y)
 
         toc=time()
-        print "Traning classifier: %d sec." % (toc-tic)
+        print("Traning classifier: %d sec." % (toc-tic))
         return c
 
     def grid_search_svc(self, relations, test=False):
@@ -184,16 +184,16 @@ class SuperTaxi:
 
         self._clf = clf.fit(X, y)
 
-        print "Best score:", self._clf.best_score_
-        print "Best classifier:", self._clf.best_estimator_
+        print("Best score:", self._clf.best_score_)
+        print("Best classifier:", self._clf.best_estimator_)
         joblib.dump(self._clf, self.classifier_fpath)
-        print "Saved best classifier to:", self.classifier_fpath
+        print("Saved best classifier to:", self.classifier_fpath)
 
         return
 
     def predict(self, relations):
         if self._clf == None:
-            print "Error: classifier is not loaded."
+            print("Error: classifier is not loaded.")
             return relations
 
         X, y, X_names, y_name = self._relations2features(relations)
@@ -228,16 +228,16 @@ class SuperTaxi:
 
     def _print_clf_info(self):
         try:
-            print "parameters:", self._clf.get_params()
+            print("parameters:", self._clf.get_params())
             y_predict = self._clf.predict(self.X)
-            print "True:", self.y
-            print "Predicted:\n", y_predict
-            print "Data:\n", self.X
-            print classification_report(self.y, y_predict)
-            print "score:", self._clf.score(self.X, self.y)
+            print("True:", self.y)
+            print("Predicted:\n", y_predict)
+            print("Data:\n", self.X)
+            print(classification_report(self.y, y_predict))
+            print("score:", self._clf.score(self.X, self.y))
 
-            if hasattr(self._clf, 'coef_'): print "weights:", self._clf.coef_
-            if hasattr(self._clf, 'classes_'):  print "classes:", self._clf.classes_
-            if hasattr(self._clf, 'class_weights_'): print "class weights:", self._clf.class_weight
+            if hasattr(self._clf, 'coef_'): print("weights:", self._clf.coef_)
+            if hasattr(self._clf, 'classes_'):  print("classes:", self._clf.classes_)
+            if hasattr(self._clf, 'class_weights_'): print("class weights:", self._clf.class_weight)
         except:
-            print format_exc()
+            print(format_exc())

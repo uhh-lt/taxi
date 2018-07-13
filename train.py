@@ -40,7 +40,7 @@ def run(output_dir, feature_num, mode):
     for method in METHODS:
         try:
             classifier_dir = join(output_dir, method)
-            print "\n", method.upper(), "\n", "="*50
+            print("\n", method.upper(), "\n", "="*50)
             hc = SuperTaxi(classifier_dir, method=method, features=features, overwrite=True)
             if mode == "train":
                 clf = hc.train(taxo_features.relations)
@@ -48,9 +48,9 @@ def run(output_dir, feature_num, mode):
             elif mode == "cv":
                 hc.crossval(taxo_features.relations)
             else:
-                print "Error: unrecognised mode %s" % mode
+                print("Error: unrecognised mode %s" % mode)
         except:
-            print format_exc()
+            print(format_exc())
 
 
 def main():

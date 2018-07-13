@@ -48,8 +48,8 @@ L_INPUT="$(wc -l $OUTPUT_DIR/$FILE_CLEANED_OUT | grep -o -E '^[0-9]+').0"
 RECALL="$(tail -n 1 $OUTPUT_DIR/$FILE_EVAL_TOOL_RESULT | grep -o -E '[0-9]+[\.]?[0-9]*')"
 
 
-PRECISION=$(echo "print $RECALL * $L_GOLD / $L_INPUT" | python)
-F1=$(echo "print 2 * $RECALL * $PRECISION / ($PRECISION + $RECALL)" | python)
+PRECISION=$(echo "print($RECALL * $L_GOLD / $L_INPUT)" | python)
+F1=$(echo "print(2 * $RECALL * $PRECISION / ($PRECISION + $RECALL))" | python)
 
 echo "Recall: $RECALL"
 echo "Precision: $PRECISION"
