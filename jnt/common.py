@@ -1,6 +1,5 @@
-# coding=utf8
+# coding=utf-8
 
-from __future__ import print_function
 import os
 import argparse
 import numpy as np
@@ -12,15 +11,14 @@ import plumbum.cmd as cmd
 import pprint
 from os.path import splitext, join
 import codecs
-from patterns import re_escape, re_amp, re_quote_escape
 from pandas import read_csv
 from itertools import islice
-import cPickle as pickle
-import os
-from os.path import join, abspath, dirname
-import jnt
+import _pickle as pickle
+from os.path import join, abspath
 import gzip
 from ntpath import basename
+
+from .patterns import re_escape, re_amp, re_quote_escape
 
 """ This namespace contains a set of small common purpose functions and constants. """
 
@@ -35,13 +33,13 @@ def fpath2filename(fpath):
 
 
 def get_data_dir():
-    return abspath(join(join(dirname(jnt.__file__), os.pardir), "data"))
+    return abspath(join(join(os.getcwd(), os.pardir), "data"))
 
 
 def dt_scientific2fixed(dt_fpath, output_fpath):
     """ Convert similarity from scientific to normal format. """
 
-    dt = read_csv(dt_fpath, "\t", encoding='utf8', error_bad_lines=False)
+    dt = read_csv(dt_fpath, "\t", encoding='utf-8', error_bad_lines=False)
     dt = dt.sort_values(["sim"], ascending=[0])
     dt.to_csv(output_fpath, sep="\t", encoding="utf-8", float_format='%.12f', index=False)
 
@@ -91,7 +89,7 @@ def wc(fpath):
 def profiling(function):
     import cProfile
     import pstats
-    from cStringIO import StringIO
+    from io import StringIO
     pr = cProfile.Profile()
     pr.enable()
 
@@ -149,16 +147,16 @@ def random_ints():
     return str(int(math.floor(random.random() * 100000)))
 
 
-from patterns import re_newlines
+from .patterns import re_newlines
 def strip_newlines(input):
     return re_newlines.sub(" ", input)
 
 
-from patterns import re_whitespaces
+from .patterns import re_whitespaces
 def normalize_whitespaces(input):
     return re_whitespaces.sub(" ", input)
 
-from patterns import re_url
+from .patterns import re_url
 def get_urls(input):
     matches = re_url.findall(input)
     return matches
@@ -174,7 +172,7 @@ def findnth(haystack, needle, n):
 def whatisthis(s):
     if isinstance(s, str):
         return "str"
-    elif isinstance(s, unicode):
+    elif isinstance(s, str):
         return "unicode"
     else:
         return "not str"
@@ -204,7 +202,7 @@ def ensure_dir(f):
 def chunks(l, n):
     """ Yield successive n-sized chunks from l. """
 
-    for i in xrange(0, len(l), n):
+    for i in range(0, len(l), n):
         yield zip(range(i,i+n), l[i:i+n])
 
 
@@ -241,8 +239,8 @@ class readable_dir(argparse.Action):
 
 class PrettyPrinterUtf8(pprint.PrettyPrinter):
     def format(self, object, context, maxlevels, level):
-        if isinstance(object, unicode):
-            return (object.encode('utf8'), True, False)
+        if isinstance(object, str):
+            return (object.encode('utf-8'), True, False)
         return pprint.PrettyPrinter.format(self, object, context, maxlevels, level)
 
 
@@ -263,7 +261,7 @@ def load_voc(voc_fpath, preprocess=True, sep='\t', use_pickle=True, silent=False
         else:
             freq_cln_fpath = voc_fpath
 
-        word_df = read_csv(freq_cln_fpath, sep, encoding='utf8', error_bad_lines=False)
+        word_df = read_csv(freq_cln_fpath, sep, encoding='utf-8', error_bad_lines=False)
         voc = set(row["word"] for i, row in word_df.iterrows())
         print("vocabulary is loaded:", len(voc))
 

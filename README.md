@@ -21,13 +21,18 @@ The system was tested on Debian/Ubuntu Linux and Mac OS X. To load all resources
   cd taxi && wget http://panchenko.me/data/joint/taxi/res/resources.tgz && tar xzf resources.tgz
   ```
 
-3. Install dependencies:
+3. Install dependencies for using **pygraphviz**:  
+  ```
+  $ sudo apt-get install python-dev graphviz libgraphviz-dev pkg-config
+  ```
+
+4. Install project dependencies:
 
   ```
   pip install -r requirements.txt
   ```
 
-4. Setup spaCy. Download the language models for English, Dutch, French and Italian
+5. Setup spaCy. Download the language models for English, Dutch, French and Italian
   ```
   $ python -m spacy download en
   $ python -m spacy download nl
@@ -35,14 +40,10 @@ The system was tested on Debian/Ubuntu Linux and Mac OS X. To load all resources
   $ python -m spacy download it
   ```
 
-5. Setup NLTK
+6. Setup NLTK
   ```
   $ python -m nltk.downloader stopwords
   ```
-
-6. Install treetagger and treetagger-python
-  - [http://www.cis.uni-muenchen.de/~schmid/tools/TreeTagger/](http://www.cis.uni-muenchen.de/~schmid/tools/TreeTagger/)
-  - [https://github.com/miotto/treetagger-python](https://github.com/miotto/treetagger-python)
 
 # Induction of SemEval Taxonomies
 
@@ -65,3 +66,12 @@ Afterwards a noisy graph is being created. Clean the output by executing(this ex
 ```
    
 The ```vocabularies``` directory contains input terms for different domains and languages. The script lets you reproduce results in the SemEval 2016 Task 13 [Taxonomy Extraction Evaluation](http://alt.qcri.org/semeval2016/task13/) described in the [our paper](https://pdfs.semanticscholar.org/5719/932d8c194439dd08403bdb9df5ee30826e87.pdf). This script load hypernyms from the downloaded resources and constructs a taxonomy for every input vocabulary of the SemEval datasets, e.g. English Food domain. Generally, the TAXI approach takes as input a vocabulary and outputs a taxonomy for a linked subset of the terms from this vocabulary. Currently the main purpose of this repository is to ensure reproducibility of the SemEval results. The results taxonomies will be generated next to the corresponding input vocabulary file. If you need to adapt the script for your needs and require help do not hesitate to contact us.  
+
+
+# Visualizing taxonomies
+To visualize the taxonomy structures in a **.csv** file, you must have **Networkx** and **Pygraphviz** setup in your environment.  
+
+To construct a hierarchical taxonomy structure:  
+`$ python visualize_taxonomy.py --file <csv filename>`
+
+The images generated will be very large, so alternatively, the graph can be constructed inside the notebook **networkx_graph.ipynb**

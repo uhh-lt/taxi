@@ -17,9 +17,9 @@ def main():
     parser.add_argument('percent', help="Percent.")
     args = parser.parse_args()
 
-    print "Input: ", args.input
-    print "Output: ", args.output
-    print "Percent: ", args.percent
+    print("Input: ", args.input)
+    print("Output: ", args.output)
+    print("Percent: ", args.percent)
 
     sample(args.input, args.output, float(args.percent))
 

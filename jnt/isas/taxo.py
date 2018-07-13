@@ -1,26 +1,25 @@
-from jnt.morph import load_stoplist
 from re import split
-from jnt.common import try_remove, exists
 from collections import defaultdict
 import codecs
-from jnt.isas.isas import ISAs
-from jnt.freq import FreqDictionary
-from jnt.common import fpath2filename
-from jnt.isas.predictors import *
 from time import time
 import numpy as np
 from pandas import read_csv, Series, merge, concat
 from traceback import format_exc
 from numpy import mean
 import operator
-from jnt.morph import lemmatize
 import re
 from traceback import format_exc
+
+from .isas import ISAs
+from .predictors import *
+from jnt.freq import FreqDictionary
+from jnt.common import fpath2filename, try_remove, exists
+from jnt.morph import lemmatize, load_stoplist
 
 
 MAX_PROXY_ISAS = 10
 VERBOSE = False
-re_dash = re.compile(ur"\s*-\s*", re.U|re.I)
+re_dash = re.compile(r"\s*-\s*", re.U|re.I)
 
 
 class TaxonomyResources():
@@ -31,15 +30,15 @@ class TaxonomyResources():
         for fpath in freq_fpaths:
             fname = fpath2filename(fpath)
             self._freqs[fname] = FreqDictionary(fpath)
-            print "Loaded freq dictionary '%s': %s" % (fname, fpath)
+            print("Loaded freq dictionary '%s': %s" % (fname, fpath))
 
         self._isas = {}
         for fpath in isa_fpaths:
             fname = fpath2filename(fpath)
             self._isas[fname] = ISAs(fpath)
-            print "Loaded isa dictionary (%d words) '%s': %s" % (len(self._isas[fname].data), fname, fpath)
+            print("Loaded isa dictionary (%d words) '%s': %s" % (len(self._isas[fname].data), fname, fpath))
 
-        print "Loaded resources in %d sec." % (time() - tic)
+        print("Loaded resources in %d sec." % (time() - tic))
 
         # load ddts here as well
 
@@ -64,25 +63,25 @@ class TaxonomyFeatures():
         if exists(voc_fpath) and not exists(relations_fpath):
             self.voc = self._load_voc(voc_fpath) 
             relations_fpath = voc_fpath + "-relations.csv"
-            print "Generating new relations file:", relations_fpath
+            print("Generating new relations file:", relations_fpath)
             self._relations_fpath = voc_fpath + "-relations.csv"
             self._relations = self._generate_relations(self.voc, self._relations_fpath)
         elif exists(relations_fpath):
-            print "Loading relations file:", relations_fpath
+            print("Loading relations file:", relations_fpath)
             self._relations_fpath = relations_fpath
             self._relations = read_csv(relations_fpath, encoding='utf-8', delimiter="\t", error_bad_lines=False)
-            print "Loaded %d relations from: %s" % (len(self._relations), relations_fpath)
+            print("Loaded %d relations from: %s" % (len(self._relations), relations_fpath))
             hypos_voc = set(self._relations.hyponym.to_dict().values())
             hyper_voc = set(self._relations.hypernym.to_dict().values())
             self.voc = hypos_voc.union(hyper_voc)
-            print "Loaded %d voc from relations" % len(self.voc)
+            print("Loaded %d voc from relations" % len(self.voc))
         else:
             raise Exception("Error: cannot load relations or generate them. Specify either voc_fpath or relations_fpath.")
 
 
     def _str_in_str(self, substr, supstr):
-        substr = unicode(substr).lower()
-        supstr = unicode(supstr).lower()
+        substr = str(substr).lower()
+        supstr = str(supstr).lower()
 
         if len(substr) < 5: return 0
         
@@ -102,15 +101,15 @@ class TaxonomyFeatures():
         
     def _generate_relations(self, voc, relations_fpath):
         with codecs.open(relations_fpath, "w", "utf-8") as out:
-            print >> out, "relation_id\thyponym\thypernym\tcorrect"
+            print("relation_id\thyponym\thypernym\tcorrect", file=out)
             relation_id = 0
             for hypo in voc:
                 for hyper in voc:
                     if hypo == hyper: continue
-                    print >> out, "%d\t%s\t%s\t0" % (relation_id, hypo, hyper)
+                    print("%d\t%s\t%s\t0" % (relation_id, hypo, hyper), file=out)
                     relation_id += 1  
         
-        print "Generated %d relations out of %d words: %s" % (relation_id+1, len(voc), relations_fpath)
+        print("Generated %d relations out of %d words: %s" % (relation_id+1, len(voc), relations_fpath))
         return read_csv(relations_fpath, encoding='utf-8', delimiter="\t", error_bad_lines=False)
  
     def _load_voc(self, voc_fpath):
@@ -122,10 +121,10 @@ class TaxonomyFeatures():
             for i, row in voc_df.iterrows():
                 if "term" in row: voc.add(row.term)
                 elif "word" in row: voc.add(row.word)
-            print "Loaded %d words vocabulary"  % len(voc) 
+            print("Loaded %d words vocabulary"  % len(voc)) 
             return voc
         else:
-            print "Warning: vocabulary is not loaded. This means hypo2hyper features cannot be extracted."
+            print("Warning: vocabulary is not loaded. This means hypo2hyper features cannot be extracted.")
             return set()
 
     @property
@@ -137,7 +136,7 @@ class TaxonomyFeatures():
         """ Returns default freq dictionary. """
 
         if len(self._freqs) > 0:
-            first_freq = self._freqs.keys()[0]
+            first_freq = list(self._freqs.keys())[0]
             return self._freqs[first_freq]
 
     @property
@@ -145,7 +144,7 @@ class TaxonomyFeatures():
         """ Returns default isa dictionary. """
 
         if len(self._isas) > 0:
-            first_isa = self._isas.keys()[0]
+            first_isa = list(self._isas.keys())[0]
             return self._isas[first_isa]
     
     def fill_direct_isas_substrings_slow(self):
@@ -158,7 +157,7 @@ class TaxonomyFeatures():
         result = np.zeros(len(self._relations))
 
         for i, row in self._relations.iterrows():
-            if i != 0 and i % 100000 == 0: print i
+            if i != 0 and i % 100000 == 0: print(i)
             direct = row[direct_field]
             reverse = row[reverse_field]
             result[i] = direct - reverse
@@ -175,7 +174,7 @@ class TaxonomyFeatures():
         relations = self._fill_substrings(relations)
         relations = self._fill_frequencies(self.freq, relations)
         for isa_name in sorted(self._isas, reverse=True):
-            print isa_name
+            print(isa_name)
             relations = self._fill_isas(self._isas[isa_name], relations, field_name_postfix="_" + isa_name, subphrases=False)
             relations = self._fill_isas(self._isas[isa_name], relations, field_name_postfix="_" + isa_name + "_s", subphrases=True)
             relations = self._fill_isas(self._isas[isa_name], relations, field_name_postfix="_" + isa_name + "_2", subphrases=False, proxy=True)
@@ -184,8 +183,8 @@ class TaxonomyFeatures():
         relations = self._fill_average_isas(relations, field_name_postfix="_s")
 
         relations.to_csv(relations_fpath, sep="\t", encoding="utf-8", float_format='%.0f', index=False)
-        print "Updated relations:", relations_fpath
-        print "Features extracted in %d sec." % (time()-tic)
+        print("Updated relations:", relations_fpath)
+        print("Features extracted in %d sec." % (time()-tic))
 
         return relations
 
@@ -195,7 +194,7 @@ class TaxonomyFeatures():
 
     def _save_relations(self):
         self._relations.to_csv(self._relations_fpath, sep="\t", encoding="utf-8", float_format='%.5f', index=False)
-        print "Relations updated:", self._relations_fpath
+        print("Relations updated:", self._relations_fpath)
  
     def hypo2hyper_ratio(self):
         self._relations["hypo2hyper_substract"] = self._relations["hypo2hyper"] - self._relations["hyper2hypo"] 
@@ -207,12 +206,12 @@ class TaxonomyFeatures():
         
         for i, row in self._relations.iterrows():
             try: 
-                if i != 0 and i % 100000 == 0: print i
+                if i != 0 and i % 100000 == 0: print(i)
                 hypo_length[i] = len(row.hyponym)
                 hyper_length[i] = len(row.hypernym)
             except:
-                print "Error:", row.hyponym, row.hypernym
-                print format_exc()
+                print("Error:", row.hyponym, row.hypernym)
+                print(format_exc())
 
         self._relations["hypo_length"] = Series(hypo_length, index=self._relations.index)
         self._relations["hyper_length"] = Series(hyper_length, index=self._relations.index)
@@ -229,7 +228,7 @@ class TaxonomyFeatures():
         df = df[(df.hyper_in_hypo != 0) | (df.hypo_in_hyper != 0)]
         df = df.sort_values(["hyponym", "hypo_in_hyper"], ascending=[1,0])
         df.to_csv(debug_fpath, sep="\t", encoding="utf-8", float_format='%.3f', index=False)
-        print "Substrings:", debug_fpath
+        print("Substrings:", debug_fpath)
 
     def _fill_substrings(self, relations, must_have_space):
         hyper_in_hypo = np.zeros(len(relations))
@@ -238,7 +237,7 @@ class TaxonomyFeatures():
 
         for i, row in relations.iterrows():
             try: 
-                if i != 0 and i % 100000 == 0: print i
+                if i != 0 and i % 100000 == 0: print(i)
 
                 if (must_have_space and " " not in row.hypernym) or len(row.hyponym) < 5:
                     hypo_in_hyper[i] = 0 
@@ -250,8 +249,8 @@ class TaxonomyFeatures():
                 
                 hyper_in_hypo_i[i] = 1. / hyper_in_hypo[i] if hyper_in_hypo[i] > 0 and hypo_in_hyper[i] == 0 else 0
             except:
-                print "Error:", row.hyponym, row.hypernym
-                print format_exc()
+                print("Error:", row.hyponym, row.hypernym)
+                print(format_exc())
 
         relations["hyper_in_hypo"] = Series(hyper_in_hypo, index=relations.index)
         relations["hypo_in_hyper"] = Series(hypo_in_hyper, index=relations.index)
@@ -269,8 +268,8 @@ class TaxonomyFeatures():
         self._update_hypo_in_hyper_i(self._relations)
 
     def _is_identical(self, str1, str2):
-        str1 = re_dash.sub(u" ", str1)
-        str2 = re_dash.sub(u" ", str2)
+        str1 = re_dash.sub(" ", str1)
+        str2 = re_dash.sub(" ", str2)
         return lemmatize(str1) == lemmatize(str2)
 
     def _update_supstr_in_substr_en_nl(self, relations, supstr_field, substr_field, res_field):
@@ -296,7 +295,7 @@ class TaxonomyFeatures():
             else:
                 substr_in_supstr, subste_start_index = self._str_in_str(row[substr_field], row[supstr_field])
                 if len(row[supstr_field]) > subste_start_index + len(row[substr_field]) + 3: substr_in_supstr = 0  # must be in the end
-            if VERBOSE: print i, substr_in_supstr, row[supstr_field], "-->", row[substr_field]
+            if VERBOSE: print(i, substr_in_supstr, row[supstr_field], "-->", row[substr_field])
 
             relations.loc[i, res_field] = substr_in_supstr
 
@@ -312,7 +311,7 @@ class TaxonomyFeatures():
             substr_in_supstr, subste_start_index = self._str_in_str(row[substr_field], row[supstr_field])
             if subste_start_index != 0 and len(supstr_tokens) > 1: substr_in_supstr = 0  # must be in the beginning unless for single words
 
-            if VERBOSE: print i, substr_in_supstr, row[supstr_field], "-->", row[substr_field]
+            if VERBOSE: print(i, substr_in_supstr, row[supstr_field], "-->", row[substr_field])
 
             relations.loc[i, res_field] = substr_in_supstr
 
@@ -354,24 +353,24 @@ class TaxonomyFeatures():
             proxy2hyper.pop(hyper, None)
             hypo2hyper = {proxy: (hypo2proxy[proxy] + proxy2hyper[proxy])/2. 
                           for proxy in set(hypo2proxy.keys()).intersection(set(proxy2hyper.keys()))}
-            hypo2hyper_s = sorted(hypo2hyper.items(), key=operator.itemgetter(1), reverse=True)
+            hypo2hyper_s = sorted(list(hypo2hyper.items()), key=operator.itemgetter(1), reverse=True)
             hypo2hyper_s = [(proxy, weight) for proxy, weight in hypo2hyper_s if self.freq.freq(hypo) < self.freq.freq(proxy) and self.freq.freq(proxy) < self.freq.freq(hyper)] 
             # print proxy paths
             if VERBOSE:
                 for proxy in hypo2hyper_s:
-                    print "%.1f::: %s:%d --> %s:%d --> %s:%d" % (proxy[1], hypo, self.freq.freq(hypo), proxy[0], self.freq.freq(proxy[0]), hyper, self.freq.freq(hyper))
+                    print("%.1f::: %s:%d --> %s:%d --> %s:%d" % (proxy[1], hypo, self.freq.freq(hypo), proxy[0], self.freq.freq(proxy[0]), hyper, self.freq.freq(hyper)))
             
             if len(hypo2hyper_s) > 0:
                 if VERBOSE:
-                    print "proxy type:", proxy_type
-                    for proxy, freq in hypo2hyper_s: print hypo, "-->", proxy, ":", freq, "-->", hyper 
+                    print("proxy type:", proxy_type)
+                    for proxy, freq in hypo2hyper_s: print(hypo, "-->", proxy, ":", freq, "-->", hyper) 
                 max_proxy = hypo2hyper_s[0][0]
                 path = [(hypo, hypo2proxy[max_proxy]), max_proxy, (hyper, proxy2hyper[max_proxy])]
                 
                 if proxy_type == "max":
                     path_weight = hypo2hyper_s[0][1]
                 elif proxy_type == "mean":
-                    path_weight = mean(hypo2hyper.values())
+                    path_weight = mean(list(hypo2hyper.values()))
                 elif proxy_type == "num":
                     path_weight = len(hypo2hyper_s)
                 else:
@@ -383,7 +382,7 @@ class TaxonomyFeatures():
         return path, path_weight
 
     def fill_features(self):
-        print "Number of relations:", len(self._relations)
+        print("Number of relations:", len(self._relations))
         self.fill_frequencies()
         self.fill_substrings()
         self.fill_direct_isas(subphrases=False)
@@ -434,7 +433,7 @@ class TaxonomyFeatures():
 
     def fill_degrees(self):
         for isa_name in self._isas:
-            print isa_name
+            print(isa_name)
             p = "_"+isa_name
             self._relations = self._fill_in_degrees(self._isas[isa_name], self._relations, field_name_postfix=p)
             self._relations = self._fill_out_degrees(self._isas[isa_name], self._relations, field_name_postfix=p)
@@ -448,7 +447,7 @@ class TaxonomyFeatures():
         self._relations["hyper2hypo" + p] = Series(np.zeros(len(self._relations)), index=self._relations.index)
         isas_num = float(len(self._isas))
         for isa_name in self._isas:
-            print "Calculating proxy isas from:", isa_name
+            print("Calculating proxy isas from:", isa_name)
             postfix = "_" + isa_name + p
             self._relations = self._fill_isas(self._isas[isa_name], self._relations, 
                 field_name_postfix=postfix,max_top=max_top, 
@@ -470,7 +469,7 @@ class TaxonomyFeatures():
         df = df[(df["hypo2hyper" + p] != 0) | (df["hypo2hyper" + p] != 0)]
         df = df.sort_values(["hyponym", "hypo2hyper" + p], ascending=[1,0])
         df.to_csv(relations_fpath, sep="\t", encoding="utf-8", float_format='%.5f', index=False)
-        print "Proxy relations:", relations_fpath
+        print("Proxy relations:", relations_fpath)
         
     def fill_direct_isas(self, subphrases=False):
         # get direct hypernyms of different isas: model_name -> (hypo, hyper) -> weight
@@ -479,18 +478,18 @@ class TaxonomyFeatures():
         hypo2hyper_anorm = defaultdict(dict)  # absolute norm: divide by max frequency per word
 
         for isa_name in self._isas:
-            print isa_name, len(self._isas[isa_name].data)
+            print(isa_name, len(self._isas[isa_name].data))
             for hypo in self.voc:
                 # find hypernyms
                 hypers_list = self._isas[isa_name].all_hyper(hypo)
                 hypers_dict = {hyper: freq for hyper, freq in hypers_list}
                 invoc_hypers_dict = {w: hypers_dict[w] for w in set(hypers_dict.keys()).intersection(self.voc)}
                 invoc_hypers_dict.pop(hypo, None)
-                invoc_hypers_list = sorted(invoc_hypers_dict.items(), key=operator.itemgetter(1), reverse=True)
+                invoc_hypers_list = sorted(list(invoc_hypers_dict.items()), key=operator.itemgetter(1), reverse=True)
                 
                 if VERBOSE:
                     if len(invoc_hypers_list) > 0:
-                        print hypo, len(hypers_dict), len(invoc_hypers_list), ", ".join(w + ":" + unicode(freq) for w, freq in invoc_hypers_list)
+                        print(hypo, len(hypers_dict), len(invoc_hypers_list), ", ".join(w + ":" + str(freq) for w, freq in invoc_hypers_list))
                     # print len(invoc_hypers_list),
                 
                 # find hypernyms of subphrases
@@ -500,12 +499,12 @@ class TaxonomyFeatures():
                         hypers_dict = {hyper: freq for hyper, freq in hypers_list}
                         invoc_hypers_dict = {w: hypers_dict[w] for w in set(hypers_dict.keys()).intersection(self.voc)}
                         invoc_hypers_dict.pop(hypo_subphrase, None)
-                        invoc_hypers_list = sorted(invoc_hypers_dict.items(), key=operator.itemgetter(1), reverse=True)
+                        invoc_hypers_list = sorted(list(invoc_hypers_dict.items()), key=operator.itemgetter(1), reverse=True)
                         if (invoc_hypers_list) > 0: break
                     if len(invoc_hypers_list) == 0:
                         continue
                     elif VERBOSE:
-                        print hypo, "-->", hypo_subphrase, ":", invoc_hypers_list
+                        print(hypo, "-->", hypo_subphrase, ":", invoc_hypers_list)
                 elif len(invoc_hypers_list) == 0:
                     continue
                 
@@ -535,7 +534,7 @@ class TaxonomyFeatures():
 
         # fill the arrays
         for i, row in self._relations.iterrows():
-            if i != 0 and i % 100000 == 0: print i
+            if i != 0 and i % 100000 == 0: print(i)
             hypo2hyper_iavg_arr[i] = hypo2hyper_iavg.pop((row.hyponym, row.hypernym), 0)
             hyper2hypo_iavg_arr[i] = hypo2hyper_iavg.pop((row.hypernym, row.hyponym), 0)
             hypo2hyper_aavg_arr[i] = hypo2hyper_aavg.pop((row.hyponym, row.hypernym), 0)
@@ -567,13 +566,13 @@ class TaxonomyFeatures():
         debug_fpath = self._relations_fpath + "-direct-hypo2hyper" + s + ".csv"
         tmp_fpath = debug_fpath + ".tmp"
         with codecs.open(tmp_fpath, "w", "utf-8") as out:
-            print >> out, "hyponym\thypernym\tfreq"
-            for hypo, hyper in hypo2hyper_iavg: print >> out, "%s\t%s\t%.3f" % (hypo, hyper, hypo2hyper_iavg[(hypo, hyper)])
+            print("hyponym\thypernym\tfreq", file=out)
+            for hypo, hyper in hypo2hyper_iavg: print("%s\t%s\t%.3f" % (hypo, hyper, hypo2hyper_iavg[(hypo, hyper)]), file=out)
         df = read_csv(tmp_fpath, encoding='utf-8', delimiter="\t", error_bad_lines=False)
         df = df.sort_values(["hyponym","freq"], ascending=[1,0])
         df.to_csv(debug_fpath, sep="\t", encoding="utf-8", float_format='%.3f', index=False)
         try_remove(tmp_fpath)
-        print "Direct hypernyms:", debug_fpath
+        print("Direct hypernyms:", debug_fpath)
 
     def _average(self, hypo2hyper_inorm):
         hypo2hyper_iavg = {}
@@ -607,7 +606,7 @@ class TaxonomyFeatures():
         ais_freq = np.zeros(len(relations))
 
         for i, row in relations.iterrows():
-            if i != 0 and i % 10000 == 0: print i,
+            if i != 0 and i % 10000 == 0: print(i, end=' ')
             isa_freq[i] = isas.has_isa(row.hyponym, row.hypernym)
             ais_freq[i] = isas.has_isa(row.hypernym, row.hyponym)
                  
@@ -639,7 +638,7 @@ class TaxonomyFeatures():
         relations["isa_freq" + field_name_postfix] = Series(isa_freq, index=relations.index)
         relations["ais_freq" + field_name_postfix] = Series(ais_freq, index=relations.index)
 
-        print ""
+        print("")
         return relations
 
     def _proxy_path_mean(self, hypo, hyper, isas):
@@ -651,7 +650,7 @@ class TaxonomyFeatures():
             for proxy, _ in direct_isas:
                 proxy_isas_freqs = isas.all_hyper(proxy, MAX_PROXY_ISAS)
                 if len(proxy_isas_freqs) == 0: continue
-                proxy_isas, _ = zip(*proxy_isas_freqs)
+                proxy_isas, _ = list(zip(*proxy_isas_freqs))
                 proxy_isas = set(proxy_isas)
 
                 if hyper in proxy_isas:
@@ -673,7 +672,7 @@ class TaxonomyFeatures():
             for proxy, _ in direct_isas:
                 proxy_isas_freqs = isas.all_hyper(proxy, MAX_PROXY_ISAS)
                 if len(proxy_isas_freqs) == 0: continue
-                proxy_isas, _ = zip(*proxy_isas_freqs)
+                proxy_isas, _ = list(zip(*proxy_isas_freqs))
                 proxy_isas = set(proxy_isas)
 
                 if hyper in proxy_isas:
@@ -693,7 +692,7 @@ class TaxonomyFeatures():
         sum_aiss = Series(np.zeros(len(relations)), index=relations.index)
         for isa_name in self._isas:
             max_freq = max(relations["isa_freq_" + isa_name + p].max(), relations["ais_freq_" + isa_name + p].max())
-            print max_freq
+            print(max_freq)
             sum_isas += relations["isa_freq_" + isa_name + p] / max_freq
             sum_aiss += relations["ais_freq_" + isa_name + p] / max_freq
 
@@ -709,7 +708,7 @@ class TaxonomyFeatures():
         hyper_in_weight = np.zeros(len(relations))
 
         for i, row in relations.iterrows():
-            if i % 1000 == 0 and i != 0: print i,
+            if i % 1000 == 0 and i != 0: print(i, end=' ')
             hypo_hypos = isas.all_hypo(row.hyponym)
             hyper_hypos = isas.all_hypo(row.hypernym)
             hypo_in_num[i] = len(hypo_hypos)

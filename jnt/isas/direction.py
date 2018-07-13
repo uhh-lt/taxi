@@ -21,7 +21,7 @@ def taxo2csv_all_correct(taxo_fpath):
     output_fpath = taxo_fpath + ".csv"
     taxo.to_csv(output_fpath, sep="\t", encoding="utf-8", float_format='%.0f', index=False)
     
-    print output_fpath    
+    print(output_fpath)    
     return taxo
 
 
@@ -32,22 +32,22 @@ def taxo2csv_mixed(taxo_fpath, taxo_eval_fpath):
     taxo_eval = read_csv(taxo_eval_fpath, encoding='utf-8', delimiter="\t", error_bad_lines=False)
 
     result = merge(taxo, taxo_eval, on='relation_id')
-    print output_fpath + "-tmp.csv"
+    print(output_fpath + "-tmp.csv")
     result = result.fillna(1)
     result = result.replace("x", 0, regex=False)
     result.to_csv(output_fpath + "-tmp.csv", sep="\t", encoding="utf-8", float_format='%.0f', index=False)
     
     with codecs.open(output_fpath + "", "w", "utf-8") as output:
-        print >> output, "relation_id\thyponym\thypernym\tcorrect"
+        print("relation_id\thyponym\thypernym\tcorrect", file=output)
         for i, row in result.iterrows():
-            hyponyms = unicode(row.hyponym).split(",")
-            hypernyms = unicode(row.hypernym).split(",")
+            hyponyms = str(row.hyponym).split(",")
+            hypernyms = str(row.hypernym).split(",")
             for hyponym in hyponyms:
                 for hypernym in hypernyms:
-                    print >> output, "%s\t%s\t%s\t%s" % (row.relation_id, hyponym, hypernym, row.correct)
+                    print("%s\t%s\t%s\t%s" % (row.relation_id, hyponym, hypernym, row.correct), file=output)
     
     df = read_csv(output_fpath, encoding='utf-8', delimiter="\t", error_bad_lines=False)
-    print output_fpath
+    print(output_fpath)
     return df
 
     
@@ -68,13 +68,13 @@ def add_inverse_relations(relations):
 
 def add_cohypo_negatives(relations, isa_fpath):
     taxo_res = TaxonomyResources(freq_fpaths=[""], isa_fpaths=[isa_fpath])
-    isas = taxo_res.isas[taxo_res.isas.keys()[0]]
+    isas = taxo_res.isas[list(taxo_res.isas.keys())[0]]
 
     neg_num = 0
     for hyper in isas.data:
         hypos = [word for word, freq in isas.all_hypo(hyper)]
         if len(hypos) > 1:
-            print hyper.upper(), len(hypos)
+            print(hyper.upper(), len(hypos))
 
             for hypo1 in hypos:
                 for hypo2 in hypos:
@@ -82,7 +82,7 @@ def add_cohypo_negatives(relations, isa_fpath):
                     relations.loc[len(relations)] = [len(relations), hypo1, hypo2, 0,  "negative co-hypo"]
                     neg_num += 1
     relations = relations.sort_values(["hyponym", "correct"], ascending=[1,0])
-    print "Added %d negative co-hypo relations" % neg_num
+    print("Added %d negative co-hypo relations" % neg_num)
     return relations
 
 
@@ -283,7 +283,7 @@ def proxy_path_mean(hypo, hyper, isas):
         for proxy, _ in direct_isas:
             proxy_isas_freqs = isas.all_isas(proxy, MAX_PROXY_ISAS)
             if len(proxy_isas_freqs) == 0: continue
-            proxy_isas, _ = zip(*proxy_isas_freqs)
+            proxy_isas, _ = list(zip(*proxy_isas_freqs))
             proxy_isas = set(proxy_isas)
 
             if hyper in proxy_isas:
@@ -308,7 +308,7 @@ def proxy_path_max(hypo, hyper, isas):
         for proxy, _ in direct_isas:
             proxy_isas_freqs = isas.all_hyper(proxy, MAX_PROXY_ISAS)
             if len(proxy_isas_freqs) == 0: continue
-            proxy_isas, _ = zip(*proxy_isas_freqs)
+            proxy_isas, _ = list(zip(*proxy_isas_freqs))
             proxy_isas = set(proxy_isas)
 
             if hyper in proxy_isas:
@@ -331,7 +331,7 @@ def fill_isas(isas_fpath, relations, field_name_postfix="", subphrases=False, se
     ais_freq = np.zeros(len(relations))
 
     for i, row in relations.iterrows():
-        if i % 100 == 0: print i, isas_fpath
+        if i % 100 == 0: print(i, isas_fpath)
         isa_freq[i] = isas.has_isa(row.hyponym, row.hypernym)
         ais_freq[i] = isas.has_isa(row.hypernym, row.hyponym)
 
@@ -387,7 +387,7 @@ def fill_average_isas(relations, field_name_postfix=""):
     return relations
 
 def accuracy(relations, name=""):
-    print "Accuracy %s: %.3f" %(name, sum(relations.correct == relations.correct_predict)/float(len(relations)))
+    print("Accuracy %s: %.3f" %(name, sum(relations.correct == relations.correct_predict)/float(len(relations))))
 
    
 
@@ -395,35 +395,35 @@ def accuracy(relations, name=""):
 def load_relations(relations_fpath, taxo_en_plants_fpath="", taxo_en_vehicles_fpath="", taxo_en_ai_fpath="", taxo_eval_en_ai_fpath=""):
     if exists(relations_fpath):
         relations = read_csv(relations_fpath, encoding='utf-8', delimiter="\t", error_bad_lines=False)
-        print "Relations loaded from:", relations_fpath
+        print("Relations loaded from:", relations_fpath)
 
     elif exists(taxo_en_plants_fpath) and exists(taxo_en_vehicles_fpath) and exists(taxo_en_ai_fpath) and exists(taxo_eval_en_ai_fpath):
         tic = time()
         plants = taxo2csv_all_correct(taxo_en_plants_fpath)
         plants = insert_source(taxo_en_plants_fpath, plants)
-        print "plants:", len(plants)
+        print("plants:", len(plants))
 
         vehicles = taxo2csv_all_correct(taxo_en_vehicles_fpath)
         vehicles = insert_source(taxo_en_vehicles_fpath, vehicles)
-        print "vehicles:", len(vehicles)
+        print("vehicles:", len(vehicles))
 
         ai = taxo2csv_mixed(taxo_en_ai_fpath, taxo_eval_en_ai_fpath)
         ai = insert_source(taxo_en_ai_fpath, ai)
-        print "ai:", len(ai)
+        print("ai:", len(ai))
 
         relations = concat([plants, vehicles, ai], ignore_index=True)
-        print "all:", len(relations)
+        print("all:", len(relations))
 
         relations = remove_underscores(relations)
         relations = add_inverse_relations(relations)
         relations = relations.sort_values(["hyponym", "correct"], ascending=[1,0])
         relations.to_csv(relations_fpath, sep="\t", encoding="utf-8", float_format='%.0f', index=False)
         relations = read_csv(relations_fpath, encoding='utf-8', delimiter="\t", error_bad_lines=False)
-        print "Dataset:", relations_fpath
-        print "Relations generated and loaded in %.1f sec." % (time()-tic)
+        print("Dataset:", relations_fpath)
+        print("Relations generated and loaded in %.1f sec." % (time()-tic))
         
     else:
-        print "Error: cannot load relations. No input files found." 
+        print("Error: cannot load relations. No input files found.") 
         relations = None
 
     return relations
