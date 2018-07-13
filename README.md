@@ -1,5 +1,4 @@
-# TAXI
-TAXI: a Taxonomy Induction Method based on Lexico-Syntactic Patterns, Substrings and Focused Crawling
+# TAXI: a Taxonomy Induction Method based on Lexico-Syntactic Patterns, Substrings and Focused Crawling
 
 This page contains implementation of a method for taxonomy induction that reached the first place in the SemEval 2016 challenge on taxonomy extraction evaluation. The method builds a taxonomy from a domain vocabulary. It extracts hypernyms from substrings and large domain-specific corpora bootstrapped from the input vocabulary. Multiple evaluations based on the SemEval taxonomy extraction datasets of four languages and three domains show state-of-the-art performance of our approach. This page contains implementations of the method including all resources needed to reproduce experiment described in the [following paper](https://www.aclweb.org/anthology/S16-1206) presented in San Diego, USA at SemEval co-located with the NAACL'2016:
 
@@ -14,8 +13,9 @@ This page contains implementation of a method for taxonomy induction that reache
 }
 ```
 
-If you would like to refer to the system please use this citation.
-More information about the approach can be found at [the TAXI web site](http://tudarmstadt-lt.github.io/taxi).
+If you would like to refer to the system please use this citation. More information about the approach can be found at [the TAXI web site](http://tudarmstadt-lt.github.io/taxi).
+
+![taxi](https://www.lt.informatik.tu-darmstadt.de/fileadmin/_processed_/csm_taxi_662272e466.jpg)
 
 # System Requirements
 
