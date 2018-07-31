@@ -1,6 +1,7 @@
 # Custom Files
 resources/
 resources.tgz
+distributional_semantics/embeddings/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
