@@ -65,7 +65,7 @@ def load_vectors(embedding):
     return model
 
 
-def create_children_clusters(w2v_model, graph, embedding):
+def create_children_clusters(w2v_model, graph, embedding, depth):
     """ This function returns a dictionary where corresponding to each key(node) is a graph of its children """
 
     clustered_graph = {}
@@ -76,11 +76,11 @@ def create_children_clusters(w2v_model, graph, embedding):
         for successor in successors:
             try:
                 if embedding == "poincare":
-                    for word, score in w2v_model.kv.most_similar(successor, topn=100):
+                    for word, score in w2v_model.kv.most_similar(successor, topn=depth):
                         if word.lower() in successors:
                             clustered_graph[node].add_edge(successor, word.lower())
                 else:
-                    for word, score in w2v_model.most_similar(successor):
+                    for word, score in w2v_model.most_similar(successor, topn=depth):
                         if word.lower() in successors:
                             clustered_graph[node].add_edge(successor, word.lower())
             except KeyError:
@@ -144,49 +144,52 @@ def tune_result(g_improved):
     return g_improved
 
 
-def apply_distributional_semantics(graph, mode, embeddings):
+def apply_distributional_semantics(nx_graph, mode, embeddings, depth, iterations):
     # Load the pre-trained vectors
     print('Loading', embeddings, 'embeddings...')
     w2v_model = load_vectors(embeddings)
 
-    # Remove small clusters
-    print('Removing small clusters..')
-    g_clustered = create_children_clusters(w2v_model, graph, embeddings)
-    g_improved = graph.copy()
-    removed_clusters = []
+    g_improved = nx_graph.copy()
+    for i in range(iterations):
+        print('\n\nIteration %d/%d:' % (i, iterations))
 
-    for node, graph in g_clustered.items():
-        gc = chinese_whispers(graph, weighting='top', iterations=60)
-        try:
-            max_cluster_size = len(max(aggregate_clusters(gc).values(), key=len))
-        except ValueError:
-            continue
-        for label, cluster in aggregate_clusters(gc).items():  # detach all the clusters smaller than the maximum
-            if len(cluster) < max_cluster_size:
-                removed_clusters.append(cluster)
+        # Remove small clusters
+        print('Removing small clusters..')
+        g_clustered = create_children_clusters(w2v_model, g_improved, embeddings, depth)
+        removed_clusters = []
+
+        for node, graph in g_clustered.items():
+            gc = chinese_whispers(graph, weighting='top', iterations=60)
+            try:
+                max_cluster_size = len(max(aggregate_clusters(gc).values(), key=len))
+            except ValueError:
+                continue
+            for label, cluster in aggregate_clusters(gc).items():  # detach all the clusters smaller than the maximum
+                if len(cluster) < max_cluster_size:
+                    removed_clusters.append(cluster)
+                    for item in cluster:
+                        g_improved.remove_edge(node, item)
+
+        if mode == 'reattach':  # Reattach the removed clusters
+            print('Reattaching removed clusters...')
+            g_detached = create_children_clusters(w2v_model, g_improved, embeddings, depth)
+            for cluster in removed_clusters:
+                max_score = 0
+                max_score_node = ''
+                for node, graph in g_detached.items():
+                    gc = chinese_whispers(graph, weighting='top', iterations=60)
+                    for label, family in aggregate_clusters(gc).items():
+                        score = calculate_similarity(w2v_model, node, family, cluster, embeddings)
+                        if score > max_score:
+                            max_score = score
+                            max_score_node = node
                 for item in cluster:
-                    g_improved.remove_edge(node, item)
+                    g_improved.add_edge(max_score_node, item)
 
-    if mode == 'reattach':  # Reattach the removed clusters
-        print('Reattaching removed clusters...')
-        g_detached = create_children_clusters(w2v_model, g_improved, embeddings)
-        for cluster in removed_clusters:
-            max_score = 0
-            max_score_node = ''
-            for node, graph in g_detached.items():
-                gc = chinese_whispers(graph, weighting='top', iterations=60)
-                for label, family in aggregate_clusters(gc).items():
-                    score = calculate_similarity(w2v_model, node, family, cluster, embeddings)
-                    if score > max_score:
-                        max_score = score
-                        max_score_node = node
-            for item in cluster:
-                g_improved.add_edge(max_score_node, item)
+        # Tune the result
+        g_improved = tune_result(g_improved)
 
-    # Tune the result
-    g_tuned = tune_result(g_improved)
-
-    return g_tuned
+    return g_improved
 
 
 def save_result(result, path, mode):
@@ -208,13 +211,13 @@ def save_result(result, path, mode):
     print('Output saved at:', output_path)
 
 
-def main(taxonomy, mode, embeddings):
+def main(taxonomy, mode, embeddings, depth, iterations):
 
     # Read the input
     graph = process_input(taxonomy)
 
     # Distributional Semantics
-    g_improved = apply_distributional_semantics(graph, mode, embeddings)
+    g_improved = apply_distributional_semantics(graph, mode, embeddings, depth, iterations)
 
     # Save the results
     save_result(g_improved, taxonomy, mode)
@@ -229,9 +232,15 @@ if __name__ == '__main__':
         help='Classifier architecture of the system.'
     )
     parser.add_argument('-m', '--mode', default='reattach', choices=['only_removal', 'reattach'])
+    parser.add_argument(
+        '-d', '--depth', type=int, default=100,
+        help='Number of results to return while checking for most similar nodes of a term.'
+    )
+    parser.add_argument('-i', '--iterations', type=int, default=1, help='Number of iterations.')
     args = parser.parse_args()
 
     print('Input File:', args.taxonomy)
+    print('Embeddings:', args.embeddings)
     print('Mode:', args.mode)
 
-    main(args.taxonomy, args.mode, args.embeddings)
+    main(args.taxonomy, args.mode, args.embeddings, args.depth, args.iterations)
