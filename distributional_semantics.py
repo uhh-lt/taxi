@@ -7,6 +7,7 @@ import matplotlib.pyplot as plt
 
 from networkx.drawing.nx_agraph import graphviz_layout
 from chinese_whispers import chinese_whispers, aggregate_clusters
+from gensim.models.poincare import PoincareModel
 
 
 def process_input(taxonomy):
@@ -45,30 +46,26 @@ def display_taxonomy(graph):
     plt.show()
 
 
-def load_vectors(path, mode='own', save_binary=False):
-    """ Load word vectors.
-        Mode Types:
-            - 'fast': Load word vectors from pre-trained embeddings in FastText
-            - 'own': Load word vectors from own embeddings
+def load_vectors(embedding):
+    """ Load word vectors. """
 
-        To save the loaded vectors in binary format, set 'save_binary' to True
-    """
+    embedding_dir = '/home/5aly/taxi/distributed_semantics/embeddings/'
 
-    if mode == 'own':
-        model = gensim.models.KeyedVectors.load(path)
-    else:
-        if os.path.splitext(path)[-1] == '.vec':  # for pre-trained vectors in '.vec' format
-            model = gensim.models.KeyedVectors.load_word2vec_format(path, binary=False, unicode_errors='ignore')
-            if save_binary:
-                model.save_word2vec_format(os.path.splitext(path)[0] + '.bin', binary=True)
-        else:  # for pre-trained vectors in '.bin' format
-            model = gensim.models.KeyedVectors.load_word2vec_format(path, binary=True, unicode_errors='ignore')
-        model.init_sims(replace=True)
+    if embedding == "wiki2M":
+        model = gensim.models.KeyedVectors.load_word2vec_format(embedding_dir + 'crawl-300d-2M.vec', binary=False)
+    elif embedding == "wiki1M_subword":
+        model = gensim.models.KeyedVectors.load_word2vec_format(
+            embedding_dir + 'wiki-news-300d-1M-subword.vec', binary=False
+        )
+    elif embedding == "own_w2v":
+        model = gensim.models.KeyedVectors.load(embedding_dir + 'own_embeddings_w2v')
+    elif embedding == "poincare":
+        model = PoincareModel.load(embedding_dir + 'embeddings_poincare_wordnet')
 
     return model
 
 
-def create_children_clusters(w2v_model, graph):
+def create_children_clusters(w2v_model, graph, embedding):
     """ This function returns a dictionary where corresponding to each key(node) is a graph of its children """
 
     clustered_graph = {}
@@ -78,9 +75,14 @@ def create_children_clusters(w2v_model, graph):
 
         for successor in successors:
             try:
-                for word, score in w2v_model.most_similar(successor):
-                    if word.lower() in successors:
-                        clustered_graph[node].add_edge(successor, word.lower())
+                if embedding == "poincare":
+                    for word, score in w2v_model.kv.most_similar(successor, topn=100):
+                        if word.lower() in successors:
+                            clustered_graph[node].add_edge(successor, word.lower())
+                else:
+                    for word, score in w2v_model.most_similar(successor):
+                        if word.lower() in successors:
+                            clustered_graph[node].add_edge(successor, word.lower())
             except KeyError:
                 successor_terms = successor.split('_')
                 root_terms = [successor_terms[0], successor_terms[-1]]
@@ -90,12 +92,15 @@ def create_children_clusters(w2v_model, graph):
     return clustered_graph
 
 
-def calculate_similarity(w2v_model, parent, family, cluster):
+def calculate_similarity(w2v_model, parent, family, cluster, embedding):
     # Similarity between the parent and a cluster
     parent_similarity = 0
     for item in cluster:
         try:
-            parent_similarity += w2v_model.similarity(parent, item)
+            if embedding == "poincare":
+                parent_similarity += w2v_model.kv.similarity(parent, item)
+            else:
+                parent_similarity += w2v_model.similarity(parent, item)
         except KeyError:  # skip the terms not in vocabulary
             continue
     parent_similarity /= len(cluster)
@@ -105,7 +110,10 @@ def calculate_similarity(w2v_model, parent, family, cluster):
     for f_item in family:
         for c_item in cluster:
             try:
-                family_similarity += w2v_model.similarity(f_item, c_item)
+                if embedding == "poincare":
+                    family_similarity += w2v_model.kv.simsimilarity(f_item, c_item)
+                else:
+                    family_similarity += w2v_model.similarity(f_item, c_item)
             except KeyError:  # skip the terms not in vocabulary
                 continue
     family_similarity /= (len(family) * len(cluster))
@@ -138,12 +146,12 @@ def tune_result(g_improved):
 
 def apply_distributional_semantics(graph, mode, embeddings):
     # Load the pre-trained vectors
-    print('Loading embeddings:', embeddings, '...')
+    print('Loading', embeddings, 'embeddings...')
     w2v_model = load_vectors(embeddings)
 
     # Remove small clusters
     print('Removing small clusters..')
-    g_clustered = create_children_clusters(w2v_model, graph)
+    g_clustered = create_children_clusters(w2v_model, graph, embeddings)
     g_improved = graph.copy()
     removed_clusters = []
 
@@ -161,14 +169,14 @@ def apply_distributional_semantics(graph, mode, embeddings):
 
     if mode == 'reattach':  # Reattach the removed clusters
         print('Reattaching removed clusters...')
-        g_detached = create_children_clusters(w2v_model, g_improved)
+        g_detached = create_children_clusters(w2v_model, g_improved, embeddings)
         for cluster in removed_clusters:
             max_score = 0
             max_score_node = ''
             for node, graph in g_detached.items():
                 gc = chinese_whispers(graph, weighting='top', iterations=60)
                 for label, family in aggregate_clusters(gc).items():
-                    score = calculate_similarity(w2v_model, node, family, cluster)
+                    score = calculate_similarity(w2v_model, node, family, cluster, embeddings)
                     if score > max_score:
                         max_score = score
                         max_score_node = node
@@ -215,7 +223,11 @@ def main(taxonomy, mode, embeddings):
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Distributional Semantics for Taxonomy')
     parser.add_argument('-t', '--taxonomy', required=True, help='Input file containing the taxonomy')
-    parser.add_argument('-e', '--embeddings', required=True, help='Path to the word embeddings')
+    parser.add_argument(
+        '-e', '--embeddings', required=True, type=str,
+        choices=['poincare', 'wiki2M', 'wiki1M_subword', 'own_w2v'],
+        help='Classifier architecture of the system.'
+    )
     parser.add_argument('-m', '--mode', default='reattach', choices=['only_removal', 'reattach'])
     args = parser.parse_args()
 
