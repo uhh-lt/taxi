@@ -150,7 +150,7 @@ def apply_distributional_semantics(nx_graph, mode, embeddings, depth, iterations
     w2v_model = load_vectors(embeddings)
 
     g_improved = nx_graph.copy()
-    for i in range(iterations):
+    for i in range(1, iterations + 1):
         print('\n\nIteration %d/%d:' % (i, iterations))
 
         # Remove small clusters
