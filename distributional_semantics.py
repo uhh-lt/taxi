@@ -123,7 +123,7 @@ def calculate_similarity(w2v_model, parent, family, cluster, embedding):
         for c_item in cluster:
             try:
                 if embedding == "poincare":
-                    family_similarity += w2v_model.kv.simsimilarity(f_item, c_item)
+                    family_similarity += w2v_model.kv.similarity(f_item, c_item)
                 else:
                     family_similarity += w2v_model.similarity(f_item, c_item)
             except KeyError:  # skip the terms not in vocabulary
