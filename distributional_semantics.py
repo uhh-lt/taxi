@@ -66,7 +66,7 @@ def load_vectors(embedding):
     return model
 
 
-def create_children_clusters(w2v_model, graph, embedding, depth):
+def create_children_clusters(w2v_model, graph, embedding, depth=100):
     """ This function returns a dictionary where corresponding to each key(node) is a graph of its children """
     clustered_graph = {}
     for node in graph.nodes():
@@ -94,7 +94,7 @@ def create_children_clusters(w2v_model, graph, embedding, depth):
                             clustered_graph[node].add_edge(successor, word.lower())
                 except KeyError:
                     pass
-            
+
             if not word_in_vocab:  # If the word in not in vocabulary, check using the substring based method
                 successor_terms = successor.split('_')
                 root_terms = [successor_terms[0], successor_terms[-1]]
@@ -102,6 +102,37 @@ def create_children_clusters(w2v_model, graph, embedding, depth):
                     clustered_graph[node].add_node(successor)
     
     return clustered_graph
+
+
+def remove_clusters(model, nx_graph, embedding, depth=100):
+    """ Removes the less related and small clusters from the graph """
+
+    print('Removing small clusters..')
+    g_clustered = create_children_clusters(model, nx_graph, embedding, depth)
+    removed_clusters = []
+
+    for node, graph in g_clustered.items():
+        gc = chinese_whispers(graph, weighting='top', iterations=60)
+        try:
+            max_cluster_size = len(max(aggregate_clusters(gc).values(), key=len))
+        except ValueError:
+            continue
+
+        clusters, size_ratio = [], []
+        for label, cluster in aggregate_clusters(gc).items():
+            clusters.append(cluster)
+            size_ratio.append(len(cluster) / max_cluster_size)
+
+        sorted_clusters = [cluster for _, cluster in sorted(zip(size_ratio, clusters))]
+        if len(sorted_clusters) > 10:
+            sorted_clusters = sorted_clusters[:10]
+
+        for cluster in sorted_clusters:  # detach smallest 10 clusters
+            removed_clusters.append(cluster)
+            for item in cluster:
+                nx_graph.remove_edge(node, item)
+
+    return nx_graph, removed_clusters
 
 
 def calculate_similarity(w2v_model, parent, family, cluster, embedding):
@@ -166,21 +197,7 @@ def apply_distributional_semantics(nx_graph, mode, embeddings, depth, iterations
         print('\n\nIteration %d/%d:' % (i, iterations))
 
         # Remove small clusters
-        print('Removing small clusters..')
-        g_clustered = create_children_clusters(w2v_model, g_improved, embeddings, depth)
-        removed_clusters = []
-
-        for node, graph in g_clustered.items():
-            gc = chinese_whispers(graph, weighting='top', iterations=60)
-            try:
-                max_cluster_size = len(max(aggregate_clusters(gc).values(), key=len))
-            except ValueError:
-                continue
-            for label, cluster in aggregate_clusters(gc).items():  # detach all the clusters smaller than the maximum
-                if len(cluster) < max_cluster_size:
-                    removed_clusters.append(cluster)
-                    for item in cluster:
-                        g_improved.remove_edge(node, item)
+        g_improved, removed_clusters = remove_clusters(w2v_model, g_improved, embeddings, depth)
 
         if mode == 'reattach':  # Reattach the removed clusters
             print('Reattaching removed clusters...')
