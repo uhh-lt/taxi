@@ -104,7 +104,7 @@ def create_children_clusters(w2v_model, graph, embedding, depth=100):
     return clustered_graph
 
 
-def remove_clusters(model, nx_graph, embedding, depth=100):
+def remove_clusters(model, nx_graph, embedding, clusters_touched, depth=100):
     """ Removes the less related and small clusters from the graph """
 
     print('Removing small clusters..')
@@ -121,7 +121,7 @@ def remove_clusters(model, nx_graph, embedding, depth=100):
         
         # Calculate the size ratio of all the clusters which are smaller than the largest
         for _, cluster in aggregate_clusters(gc).items():
-            if len(cluster) < max_cluster_size:
+            if len(cluster) < max_cluster_size and cluster not in clusters_touched:
                 nodes.append(node)
                 clusters.append(cluster)
                 size_ratio.append(len(cluster) / max_cluster_size)
@@ -228,12 +228,15 @@ def apply_distributional_semantics(nx_graph, mode, embeddings, depth, iterations
 
     print('\n\nApplying distributional semantics...')
     g_improved = nx_graph.copy()
+    clusters_touched = []
     for i in range(1, iterations + 1):
         print('\nIteration %d/%d:' % (i, iterations))
 
         # Remove small clusters
-        g_improved, removed_clusters = remove_clusters(w2v_model, g_improved, embeddings, depth)
+        g_improved, removed_clusters = remove_clusters(w2v_model, g_improved, embeddings, clusters_touched, depth)
         print('Removed %d clusters.' % (len(removed_clusters)))
+        print('Clusters Removed:', removed_clusters)
+        clusters_touched.append(removed_clusters)  # To ensure that the same cluster does not get removed again
 
         # Reattach the removed clusters
         if mode == 'reattach':
