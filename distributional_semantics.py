@@ -123,7 +123,7 @@ def remove_clusters(model, nx_graph, embedding, depth=100):
             clusters.append(cluster)
             size_ratio.append(len(cluster) / max_cluster_size)
 
-        sorted_clusters = [cluster for _, cluster in sorted(zip(size_ratio, clusters))]
+        sorted_clusters = [cluster for _, cluster in sorted(zip(size_ratio, clusters)) if len(cluster) < max_cluster_size]
         if len(sorted_clusters) > 10:
             sorted_clusters = sorted_clusters[:10]
 
