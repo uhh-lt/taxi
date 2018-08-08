@@ -66,7 +66,7 @@ def load_vectors(embedding):
     return model
 
 
-def create_children_clusters(w2v_model, graph, embedding):
+def create_children_clusters(w2v_model, graph, embedding, depth):
     """ This function returns a dictionary where corresponding to each key(node) is a graph of its children """
     clustered_graph = {}
     for node in graph.nodes():
@@ -79,7 +79,7 @@ def create_children_clusters(w2v_model, graph, embedding):
                 word_senses = wn.synsets(successor)  # Get all the senses of the given node
                 for sense in word_senses:
                     try:
-                        for word, score in w2v_model.kv.most_similar(sense.name(), topn=100):
+                        for word, score in w2v_model.kv.most_similar(sense.name(), topn=depth):
                             word = word.split('.')[0]  # convert the word from poincare format to normal string
                             word_in_vocab = True
                             if word.lower() in successors:
@@ -88,7 +88,7 @@ def create_children_clusters(w2v_model, graph, embedding):
                         continue
             else:
                 try:
-                    for word, score in w2v_model.most_similar(successor):
+                    for word, score in w2v_model.most_similar(successor, topn=depth):
                         word_in_vocab = True
                         if word.lower() in successors:
                             clustered_graph[node].add_edge(successor, word.lower())

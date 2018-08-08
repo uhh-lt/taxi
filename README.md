@@ -57,6 +57,7 @@ The system was tested on Debian/Ubuntu Linux and Mac OS X. To load all resources
 6. Setup NLTK
   ```
   $ python -m nltk.downloader stopwords
+  $ python -m nltk.downloader wordnet
   ```
 
 # Induction of SemEval Taxonomies
