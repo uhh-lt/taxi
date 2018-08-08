@@ -8,6 +8,7 @@ import matplotlib.pyplot as plt
 from networkx.drawing.nx_agraph import graphviz_layout
 from chinese_whispers import chinese_whispers, aggregate_clusters
 from gensim.models.poincare import PoincareModel
+from nltk.corpus import wordnet as wn
 
 
 def process_input(taxonomy):
@@ -65,30 +66,41 @@ def load_vectors(embedding):
     return model
 
 
-def create_children_clusters(w2v_model, graph, embedding, depth):
+def create_children_clusters(w2v_model, graph, embedding):
     """ This function returns a dictionary where corresponding to each key(node) is a graph of its children """
-
     clustered_graph = {}
     for node in graph.nodes():
         clustered_graph[node] = nx.Graph()
         successors = [s.lower() for s in graph.successors(node)]
 
         for successor in successors:
-            try:
-                if embedding == "poincare":
-                    for word, score in w2v_model.kv.most_similar(successor, topn=depth):
+            word_in_vocab = False
+            if embedding == "poincare":
+                word_senses = wn.synsets(successor)  # Get all the senses of the given node
+                for sense in word_senses:
+                    try:
+                        for word, score in w2v_model.kv.most_similar(sense.name(), topn=100):
+                            word = word.split('.')[0]  # convert the word from poincare format to normal string
+                            word_in_vocab = True
+                            if word.lower() in successors:
+                                clustered_graph[node].add_edge(successor, word.lower())
+                    except KeyError:
+                        continue
+            else:
+                try:
+                    for word, score in w2v_model.most_similar(successor):
+                        word_in_vocab = True
                         if word.lower() in successors:
                             clustered_graph[node].add_edge(successor, word.lower())
-                else:
-                    for word, score in w2v_model.most_similar(successor, topn=depth):
-                        if word.lower() in successors:
-                            clustered_graph[node].add_edge(successor, word.lower())
-            except KeyError:
+                except KeyError:
+                    pass
+            
+            if not word_in_vocab:  # If the word in not in vocabulary, check using the substring based method
                 successor_terms = successor.split('_')
                 root_terms = [successor_terms[0], successor_terms[-1]]
                 if node in root_terms:
                     clustered_graph[node].add_node(successor)
-
+    
     return clustered_graph
 
 
