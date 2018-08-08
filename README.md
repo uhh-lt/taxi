@@ -90,3 +90,20 @@ To construct a hierarchical taxonomy structure:
 `$ python visualize_taxonomy.py --file <csv filename>`
 
 The images generated will be very large, so alternatively, the graph can be constructed inside the notebook **networkx_graph.ipynb**
+
+
+# Distributional Semantics
+To apply distributional semantics to the generated taxonomy, use the script **distributional_semantics.py** or the notebook **distributional_semantics.py.ipynb**
+
+The script can be used with following options:
+
+| Option | Alternate | Description | Default  | Choices  |
+|--------|-------------|---|---|---|
+| --taxonomy | -t | Input file containing the taxonomy | - | - |
+| --embeddings | -e | Classifier architecture of the system. | - | ['poincare', 'wiki2M', 'wiki1M_subword', 'own_w2v'] |
+| --mode | -m | Mode of the algorithm | reattach  | ['only_removal', 'reattach'] |
+| --depth | -d | Number of results to return while checking for most similar nodes of a term. | 100 | - |
+| --iterations | -i | Number of iterations | 1 | - |
+
+*Example:*  
+`$ python distributional_semantics.py -t taxi_output/simple_full/science_en.csv-relations.csv-taxo-knn1.csv -e poincare -i 5 -d 150`
