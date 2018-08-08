@@ -140,45 +140,60 @@ def remove_clusters(model, nx_graph, embedding, depth=100):
 
 
 def calculate_similarity(w2v_model, parent, family, cluster, embedding):
+    
     # Similarity between the parent and a cluster
     parent_similarity = 0
     for item in cluster:
         if embedding == "poincare":
+            max_similarity = 0
             item_senses = wn.synsets(item)
             parent_senses = wn.synsets(parent)
             for parent_sense in parent_senses:
                 for item_sense in item_senses:
                     try:
-                        parent_similarity += w2v_model.kv.similarity(parent_sense.name(), item_sense.name())
+                        similarity = w2v_model.kv.similarity(parent_sense.name(), item_sense.name())
+                        if similarity > max_similarity:
+                            max_similarity = similarity
                     except KeyError as e:
-                        continue
+                        if parent_sense.name() in e:
+                            break
+                        else:
+                            continue
+            parent_similarity += max_similarity
         else:
             try:
                 parent_similarity += w2v_model.similarity(parent, item)
             except KeyError:  # skip the terms not in vocabulary
                 continue
     parent_similarity /= len(cluster)
-
+    
     # Similarity between a family and a cluster
     family_similarity = 0
     for f_item in family:
         for c_item in cluster:
             if embedding == "poincare":
+                max_similarity = 0
                 f_senses = wn.synsets(f_item)
                 c_senses = wn.synsets(c_item)
                 for f_sense in f_senses:
                     for c_sense in c_senses:
                         try:
-                            family_similarity += w2v_model.kv.similarity(f_sense.name(), c_sense.name())
+                            similarity = w2v_model.kv.similarity(f_sense.name(), c_sense.name())
+                            if similarity > max_similarity:
+                                max_similarity = similarity
                         except KeyError as e:
-                            continue
+                            if f_sense.name() in e:
+                                break
+                            else:
+                                continue
+                family_similarity += max_similarity
             else:
                 try:
                     family_similarity += w2v_model.similarity(f_item, c_item)
                 except KeyError:  # skip the terms not in vocabulary
                     continue
     family_similarity /= (len(family) * len(cluster))
-
+    
     # Final score is the average of both the similarities
     return (parent_similarity + family_similarity) / 2
 
