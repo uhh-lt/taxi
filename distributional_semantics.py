@@ -224,15 +224,19 @@ def apply_distributional_semantics(nx_graph, mode, embeddings, depth, iterations
     # Load the pre-trained vectors
     print('Loading', embeddings, 'embeddings...')
     w2v_model = load_vectors(embeddings)
+    print('Loaded.')
 
+    print('\n\nApplying distributional semantics...')
     g_improved = nx_graph.copy()
     for i in range(1, iterations + 1):
-        print('\n\nIteration %d/%d:' % (i, iterations))
+        print('\nIteration %d/%d:' % (i, iterations))
 
         # Remove small clusters
         g_improved, removed_clusters = remove_clusters(w2v_model, g_improved, embeddings, depth)
+        print('Removed %d clusters.', % (len(removed_clusters)))
 
-        if mode == 'reattach':  # Reattach the removed clusters
+        # Reattach the removed clusters
+        if mode == 'reattach':
             print('Reattaching removed clusters...')
             g_detached = create_children_clusters(w2v_model, g_improved, embeddings, depth)
             for cluster in removed_clusters:
@@ -247,15 +251,17 @@ def apply_distributional_semantics(nx_graph, mode, embeddings, depth, iterations
                             max_score_node = node
                 for item in cluster:
                     g_improved.add_edge(max_score_node, item)
+        print('Done.')
 
         # Tune the result
         g_improved = tune_result(g_improved)
+        print('Tuned.')
 
     return g_improved
 
 
 def save_result(result, path, mode):
-    print('Saving the result...')
+    print('\n\nSaving the result...')
     df_improved = pd.DataFrame(list(result.edges()), columns=['hypernym', 'hyponym'])
     df_improved = df_improved[df_improved.columns.tolist()[::-1]]
 
