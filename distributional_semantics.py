@@ -155,7 +155,7 @@ def calculate_similarity(w2v_model, parent, family, cluster, embedding):
                         if similarity > max_similarity:
                             max_similarity = similarity
                     except KeyError as e:
-                        if parent_sense.name() in e:
+                        if parent_sense.name() in str(e):
                             break
                         else:
                             continue
@@ -182,7 +182,7 @@ def calculate_similarity(w2v_model, parent, family, cluster, embedding):
                             if similarity > max_similarity:
                                 max_similarity = similarity
                         except KeyError as e:
-                            if f_sense.name() in e:
+                            if f_sense.name() in str(e):
                                 break
                             else:
                                 continue
@@ -236,7 +236,7 @@ def apply_distributional_semantics(nx_graph, mode, embeddings, depth, iterations
         g_improved, removed_clusters = remove_clusters(w2v_model, g_improved, embeddings, clusters_touched, depth)
         print('Removed %d clusters.' % (len(removed_clusters)))
         print('Clusters Removed:', removed_clusters)
-        clusters_touched.append(removed_clusters)  # To ensure that the same cluster does not get removed again
+        clusters_touched.extend(removed_clusters)  # To ensure that the same cluster does not get removed again
 
         # Reattach the removed clusters
         if mode == 'reattach':
