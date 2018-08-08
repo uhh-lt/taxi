@@ -111,26 +111,30 @@ def remove_clusters(model, nx_graph, embedding, depth=100):
     g_clustered = create_children_clusters(model, nx_graph, embedding, depth)
     removed_clusters = []
 
+    nodes, clusters, size_ratio = [], [], []
     for node, graph in g_clustered.items():
         gc = chinese_whispers(graph, weighting='top', iterations=60)
-        try:
+        try:  # Get the length of the largest cluster
             max_cluster_size = len(max(aggregate_clusters(gc).values(), key=len))
         except ValueError:
             continue
+        
+        # Calculate the size ratio of all the clusters which are smaller than the largest
+        for _, cluster in aggregate_clusters(gc).items():
+            if len(cluster) < max_cluster_size:
+                nodes.append(node)
+                clusters.append(cluster)
+                size_ratio.append(len(cluster) / max_cluster_size)
+    
+    # Sort the small clusters according to their size_ratio
+    sorted_node_clusters = [(node, cluster) for _, cluster, node in sorted(zip(size_ratio, clusters, nodes))]
+    if len(sorted_node_clusters) > 10:
+        sorted_node_clusters = sorted_node_clusters[:10]
 
-        clusters, size_ratio = [], []
-        for label, cluster in aggregate_clusters(gc).items():
-            clusters.append(cluster)
-            size_ratio.append(len(cluster) / max_cluster_size)
-
-        sorted_clusters = [cluster for _, cluster in sorted(zip(size_ratio, clusters)) if len(cluster) < max_cluster_size]
-        if len(sorted_clusters) > 10:
-            sorted_clusters = sorted_clusters[:10]
-
-        for cluster in sorted_clusters:  # detach smallest 10 clusters
-            removed_clusters.append(cluster)
-            for item in cluster:
-                nx_graph.remove_edge(node, item)
+    for node, cluster in sorted_node_clusters:  # detach only the smallest 10 clusters in the entire taxonomy
+        removed_clusters.append(cluster)
+        for item in cluster:
+            nx_graph.remove_edge(node, item)
 
     return nx_graph, removed_clusters
 
