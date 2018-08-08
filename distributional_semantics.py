@@ -233,7 +233,7 @@ def apply_distributional_semantics(nx_graph, mode, embeddings, depth, iterations
 
         # Remove small clusters
         g_improved, removed_clusters = remove_clusters(w2v_model, g_improved, embeddings, depth)
-        print('Removed %d clusters.', % (len(removed_clusters)))
+        print('Removed %d clusters.' % (len(removed_clusters)))
 
         # Reattach the removed clusters
         if mode == 'reattach':
