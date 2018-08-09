@@ -292,6 +292,9 @@ def apply_distributional_semantics(nx_graph, taxonomy, mode, embeddings, depth, 
         g_improved, removed_clusters = remove_clusters(w2v_model, g_improved, embeddings, clusters_touched, depth)
         print('\nRemoved %d clusters.' % (len(removed_clusters)))
         print('Clusters Removed:', removed_clusters)
+        if len(removed_clusters) == 0:
+            print('No more clusters left to remove')
+            break
         clusters_touched.extend(removed_clusters)  # To ensure that the same cluster does not get removed again
 
         # Reattach the removed clusters
