@@ -1,6 +1,7 @@
 import gensim
 import os
 import argparse
+import subprocess
 import pandas as pd
 import networkx as nx
 import matplotlib.pyplot as plt
@@ -220,7 +221,63 @@ def tune_result(g_improved):
     return g_improved
 
 
-def apply_distributional_semantics(nx_graph, mode, embeddings, depth, iterations):
+def get_line_count(file_name):
+    """ Counts the number of lines in a file using bash """
+
+    return int(subprocess.check_output(
+        "wc -l {file_name} | grep -o -E '^[0-9]+'".format(file_name=file_name), shell=True
+    ).decode('utf-8').split('\n')[0])
+
+
+def calculate_f1_score(system_generated_taxo):
+    """ Calculate the F1 score of the re-generated taxonomies """
+
+    eval_tool = 'eval/taxi_eval_archive/TExEval.jar'
+    eval_gold_standard = 'eval/taxi_eval_archive/input/gold.taxo'
+    eval_root = 'science'
+    eval_jvm = '-Xmx9000m'
+    eval_tool_result = system_generated_taxo + 'evalresult.txt'
+
+    # Running the tool
+    tool_command = """java {eval_jvm} -jar {eval_tool}
+    {system_generated_taxo} {eval_gold_standard} {eval_root} {eval_tool_result}""".format(
+        eval_jvm=eval_jvm,
+        eval_tool=eval_tool,
+        system_generated_taxo=system_generated_taxo,
+        eval_gold_standard=eval_gold_standard,
+        eval_root=eval_root,
+        eval_tool_result=eval_tool_result
+    )
+    print('Running eval-tool:', tool_command)
+    subprocess.check_output(tool_command, shell=True)
+    print('Result of eval-tool written to:', eval_tool_result)
+
+    # Calculating Precision, F1 score and F&M Measure
+    l_gold = get_line_count(eval_gold_standard)
+    l_input = get_line_count(system_generated_taxo)
+
+    recall = float(subprocess.check_output(
+        "tail -n 1 {eval_tool_result} | grep -o -E '[0-9]+[\.]?[0-9]*')".format(
+            eval_tool_result=eval_tool_result
+        ), shell=True
+    ).decode('utf-8').split('\n')[0])
+    precision = recall * l_gold / l_input
+
+    f1 = 2 * recall * precision / (recall + precision)
+    f_m = float(subprocess.check_output(
+        "cat {eval_tool_result} | grep -o -E 'Cumulative Measure.*' | grep -o -E '0\.[0-9]+'".format(
+            eval_tool_result=eval_tool_result
+        ), shell=True
+    ).decode('utf-8').split('\n')[0])
+
+    # Display results
+    print('Recall:', recall)
+    print('Precision:', precision)
+    print('F1:', f1)
+    print('F&M:', f_m)
+
+
+def apply_distributional_semantics(nx_graph, taxonomy, mode, embeddings, depth, iterations):
     # Load the pre-trained vectors
     print('Loading', embeddings, 'embeddings...')
     w2v_model = load_vectors(embeddings)
@@ -260,7 +317,8 @@ def apply_distributional_semantics(nx_graph, mode, embeddings, depth, iterations
         g_improved = tune_result(g_improved)
         print('Tuned.')
 
-    return g_improved
+        # Save the results after each iteration and display the F1 score
+        save_result(g_improved, taxonomy, mode)
 
 
 def save_result(result, path, mode):
@@ -281,6 +339,9 @@ def save_result(result, path, mode):
     df_improved.to_csv(output_path, sep='\t', header=False)
     print('Output saved at:', output_path)
 
+    # Display the F1 score for the re-generated taxonomy
+    calculate_f1_score(output_path)
+
 
 def main(taxonomy, mode, embeddings, depth, iterations):
 
@@ -288,10 +349,7 @@ def main(taxonomy, mode, embeddings, depth, iterations):
     graph = process_input(taxonomy)
 
     # Distributional Semantics
-    g_improved = apply_distributional_semantics(graph, mode, embeddings, depth, iterations)
-
-    # Save the results
-    save_result(g_improved, taxonomy, mode)
+    apply_distributional_semantics(graph, taxonomy, mode, embeddings, depth, iterations)
 
 
 if __name__ == '__main__':
