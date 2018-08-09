@@ -256,7 +256,7 @@ def calculate_f1_score(system_generated_taxo):
     l_input = get_line_count(system_generated_taxo)
 
     recall = float(subprocess.check_output(
-        "tail -n 1 {eval_tool_result} | grep -o -E '[0-9]+[\.]?[0-9]*')".format(
+        "tail -n 1 {eval_tool_result} | grep -o -E '[0-9]+[\.]?[0-9]*'".format(
             eval_tool_result=eval_tool_result
         ), shell=True
     ).decode('utf-8').split('\n')[0])
