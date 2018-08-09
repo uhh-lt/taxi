@@ -202,7 +202,7 @@ def calculate_similarity(w2v_model, parent, family, cluster, embedding):
 def tune_result(g_improved):
     """ Filter the results i.e. remove all the isolated nodes and nodes with blank labels """
 
-    print('Tuning the result...')
+    print('\nTuning the result...')
 
     if '' in g_improved.nodes():
         g_improved.remove_node('')
@@ -236,11 +236,10 @@ def calculate_f1_score(system_generated_taxo):
     eval_gold_standard = 'eval/taxi_eval_archive/input/gold.taxo'
     eval_root = 'science'
     eval_jvm = '-Xmx9000m'
-    eval_tool_result = system_generated_taxo + 'evalresult.txt'
+    eval_tool_result = 'out/' + system_generated_taxo.split('/')[-1] + '.evalresult.txt'
 
     # Running the tool
-    tool_command = """java {eval_jvm} -jar {eval_tool}
-    {system_generated_taxo} {eval_gold_standard} {eval_root} {eval_tool_result}""".format(
+    tool_command = """java {eval_jvm} -jar {eval_tool} {system_generated_taxo} {eval_gold_standard} {eval_root} {eval_tool_result}""".format(
         eval_jvm=eval_jvm,
         eval_tool=eval_tool,
         system_generated_taxo=system_generated_taxo,
@@ -248,9 +247,9 @@ def calculate_f1_score(system_generated_taxo):
         eval_root=eval_root,
         eval_tool_result=eval_tool_result
     )
-    print('Running eval-tool:', tool_command)
+    print('\nRunning eval-tool:', tool_command)
     subprocess.check_output(tool_command, shell=True)
-    print('Result of eval-tool written to:', eval_tool_result)
+    print('\nResult of eval-tool written to:', eval_tool_result)
 
     # Calculating Precision, F1 score and F&M Measure
     l_gold = get_line_count(eval_gold_standard)
@@ -271,7 +270,7 @@ def calculate_f1_score(system_generated_taxo):
     ).decode('utf-8').split('\n')[0])
 
     # Display results
-    print('Recall:', recall)
+    print('\nRecall:', recall)
     print('Precision:', precision)
     print('F1:', f1)
     print('F&M:', f_m)
@@ -287,17 +286,17 @@ def apply_distributional_semantics(nx_graph, taxonomy, mode, embeddings, depth, 
     g_improved = nx_graph.copy()
     clusters_touched = []
     for i in range(1, iterations + 1):
-        print('\nIteration %d/%d:' % (i, iterations))
+        print('\n\nIteration %d/%d:' % (i, iterations))
 
         # Remove small clusters
         g_improved, removed_clusters = remove_clusters(w2v_model, g_improved, embeddings, clusters_touched, depth)
-        print('Removed %d clusters.' % (len(removed_clusters)))
+        print('\nRemoved %d clusters.' % (len(removed_clusters)))
         print('Clusters Removed:', removed_clusters)
         clusters_touched.extend(removed_clusters)  # To ensure that the same cluster does not get removed again
 
         # Reattach the removed clusters
         if mode == 'reattach':
-            print('Reattaching removed clusters...')
+            print('\nReattaching removed clusters...')
             g_detached = create_children_clusters(w2v_model, g_improved, embeddings, depth)
             for cluster in removed_clusters:
                 max_score = 0
@@ -322,7 +321,7 @@ def apply_distributional_semantics(nx_graph, taxonomy, mode, embeddings, depth, 
 
 
 def save_result(result, path, mode):
-    print('\n\nSaving the result...')
+    print('\nSaving the result...')
     df_improved = pd.DataFrame(list(result.edges()), columns=['hypernym', 'hyponym'])
     df_improved = df_improved[df_improved.columns.tolist()[::-1]]
 
