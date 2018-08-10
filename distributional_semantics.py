@@ -80,7 +80,7 @@ def create_children_clusters(own_model, graph, depth):
     return clustered_graph
 
 
-def remove_clusters(own_model, nx_graph, clusters_touched, depth):
+def remove_clusters(own_model, nx_graph, clusters_touched, depth, buffer):
     """ Removes the less related and small clusters from the graph """
 
     print('Removing small clusters..')
@@ -104,8 +104,8 @@ def remove_clusters(own_model, nx_graph, clusters_touched, depth):
     
     # Sort the small clusters according to their size_ratio
     sorted_node_clusters = [(node, cluster) for _, cluster, node in sorted(zip(size_ratio, clusters, nodes))]
-    if len(sorted_node_clusters) > 10:
-        sorted_node_clusters = sorted_node_clusters[:10]
+    if len(sorted_node_clusters) > buffer:
+        sorted_node_clusters = sorted_node_clusters[:buffer]
 
     for node, cluster in sorted_node_clusters:  # detach only the smallest 10 clusters in the entire taxonomy
         removed_clusters.append(cluster)
@@ -229,7 +229,7 @@ def calculate_f1_score(system_generated_taxo):
     print('F&M:', f_m)
 
 
-def apply_distributional_semantics(nx_graph, taxonomy, mode, depth, iterations):
+def apply_distributional_semantics(nx_graph, taxonomy, mode, depth, iterations, buffer):
     # Load the pre-trained vectors
     print('Loading embeddings...')
     poincare_w2v, own_w2v = load_vectors()
@@ -242,7 +242,7 @@ def apply_distributional_semantics(nx_graph, taxonomy, mode, depth, iterations):
         print('\n\nIteration %d/%d:' % (i, iterations))
 
         # Remove small clusters
-        g_improved, removed_clusters = remove_clusters(own_w2v, g_improved, clusters_touched, depth)
+        g_improved, removed_clusters = remove_clusters(own_w2v, g_improved, clusters_touched, depth, buffer)
         print('\nRemoved %d clusters.' % (len(removed_clusters)))
         print('Clusters Removed:', removed_clusters)
         if len(removed_clusters) == 0:
@@ -298,13 +298,13 @@ def save_result(result, path, mode):
     calculate_f1_score(output_path)
 
 
-def main(taxonomy, mode, depth, iterations):
+def main(taxonomy, mode, depth, iterations, buffer):
 
     # Read the input
     graph = process_input(taxonomy)
 
     # Distributional Semantics
-    apply_distributional_semantics(graph, taxonomy, mode, depth, iterations)
+    apply_distributional_semantics(graph, taxonomy, mode, depth, iterations, buffer)
 
 
 if __name__ == '__main__':
@@ -316,9 +316,10 @@ if __name__ == '__main__':
         help='Number of results to return while checking for most similar nodes of a term.'
     )
     parser.add_argument('-i', '--iterations', type=int, default=1, help='Number of iterations.')
+    parser.add_argument('-b', '--buffer', type=int, default=10, help='Number of clusters to remove per iteration')
     args = parser.parse_args()
 
     print('Input File:', args.taxonomy)
     print('Mode:', args.mode)
 
-    main(args.taxonomy, args.mode, args.depth, args.iterations)
+    main(args.taxonomy, args.mode, args.depth, args.iterations, args.buffer)
