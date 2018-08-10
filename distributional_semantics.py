@@ -119,6 +119,7 @@ def calculate_similarity(poincare_model, own_model, parent, family, cluster):
     
     # Similarity between the parent and a cluster
     parent_similarities = []
+    parent_similarity = 0
     for item in cluster:
         max_similarity = 0
         item_senses = wn.synsets(item)
@@ -136,17 +137,20 @@ def calculate_similarity(poincare_model, own_model, parent, family, cluster):
                         continue
         if max_similarity != 0:
             parent_similarities.append(max_similarity)
-    parent_similarity = sum(parent_similarities) / len(parent_similarities)
+    if len(parent_similarities) > 0:  # Happens when the cluster has only one item which is not in vocabulary
+        parent_similarity = sum(parent_similarities) / len(parent_similarities)
     
     # Similarity between a family and a cluster
     family_similarities = []
+    family_similarity = 0
     for f_item in family:
         for c_item in cluster:
             try:
                 family_similarities.append(own_model.similarity(f_item, c_item))
             except KeyError as e:  # skip the terms not in vocabulary
                 continue
-    family_similarity = sum(family_similarities) / len(family_similarities)
+    if len(family_similarities) > 0:
+        family_similarity = sum(family_similarities) / len(family_similarities)
     
     # Final score is the average of both the similarities
     return (parent_similarity + family_similarity) / 2
