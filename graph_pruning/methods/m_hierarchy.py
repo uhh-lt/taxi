@@ -1,9 +1,9 @@
 import networkx as nx
 import methods.util.write_graph as write_graph
 import methods.util.util as util
-from zhenv5.remove_cycle_edges_by_hierarchy_greedy import scc_based_to_remove_cycle_edges_iterately
-from zhenv5.remove_cycle_edges_by_hierarchy_BF import remove_cycle_edges_BF_iterately
-from zhenv5.remove_cycle_edges_by_hierarchy_voting import remove_cycle_edges_heuristic
+from .zhenv5.remove_cycle_edges_by_hierarchy_greedy import scc_based_to_remove_cycle_edges_iterately
+from .zhenv5.remove_cycle_edges_by_hierarchy_BF import remove_cycle_edges_BF_iterately
+from .zhenv5.remove_cycle_edges_by_hierarchy_voting import remove_cycle_edges_heuristic
 
 SUPPORTED_SCORE_METHODS = ["pagerank", "socialagony", "trueskill"]
 SUPPORTED_RANKING_METHODS = ["greedy", "forward", "backward", "voting"]

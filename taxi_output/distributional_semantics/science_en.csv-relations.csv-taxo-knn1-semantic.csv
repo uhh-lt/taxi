@@ -1,0 +1,354 @@
+0	aerodynamics	engineering
+1	aerospace engineering	engineering
+2	biological engineering	engineering
+3	biomaterials	engineering
+4	biomedical	engineering
+5	chemical engineering	engineering
+6	civil engineering	engineering
+7	cognitive psychology	engineering
+8	computer engineering	engineering
+9	condensed matter physics	engineering
+10	electrical and electronics	engineering
+11	electrical engineering	engineering
+12	engineering physics	engineering
+13	environmental engineering	engineering
+14	ergonomics	engineering
+15	geotechnical engineering	engineering
+16	industrial engineering	engineering
+17	instrumentation	engineering
+18	kinesiology	engineering
+19	manufacturing	engineering
+20	materials science	engineering
+21	mechanical engineering	engineering
+22	nuclear physics	engineering
+23	ocean engineering	engineering
+24	oceanography	engineering
+25	petroleum engineering	engineering
+26	polymer science	engineering
+27	robotics	engineering
+28	signal processing	engineering
+29	social science	engineering
+30	software engineering	engineering
+31	structural engineering	engineering
+32	systems engineering	engineering
+33	african history	history
+34	ancient history	history
+35	archaeological	history
+36	asian history	history
+37	cultural history	history
+38	diplomatic history	history
+39	economic history	history
+40	european history	history
+41	gender history	history
+42	history of philosophy	history
+43	history of religion	history
+44	intellectual history	history
+45	latin american history	history
+46	medieval history	history
+47	military history	history
+48	political history	history
+49	social history	history
+50	theatre history	history
+51	united states history	history
+52	contemporary art history	history
+53	history of science, technology, and medicine	history
+54	islamic world/near east history	history
+55	women’s history	history
+56	air traffic control	communication
+57	graphics	communication
+58	mass communication	communication
+59	music	communication
+60	networks	communication
+61	os	communication
+62	public affairs	communication
+63	syntax	communication
+64	theatre	communication
+65	communication technology and new media	communication
+66	interpersonal/small group communication	communication
+67	motor control	communication
+68	digital communications	communication
+69	communication	communication
+70	algebra	mathematics
+71	algebraic geometry	mathematics
+72	analysis	mathematics
+73	applied mathematics	mathematics
+74	chemistry	mathematics
+75	computer science	mathematics
+76	control theory	mathematics
+77	dynamical systems	mathematics
+78	fluid dynamics	mathematics
+79	geometry and topology	mathematics
+80	multidisciplinary design optimization	mathematics
+81	non-linear dynamics	mathematics
+82	number theory	mathematics
+83	numerical analysis	mathematics
+84	operational research	mathematics
+85	ordinary differential equations	mathematics
+86	partial differential equations	mathematics
+87	physics	mathematics
+88	probability	mathematics
+89	quantum physics	mathematics
+90	scientific computing	mathematics
+91	set theory	mathematics
+92	statistics and probability	mathematics
+93	algorithms	computer science
+94	artificial intelligence	computer science
+95	computational biology	computer science
+96	networking	computer science
+97	programming languages	computer science
+98	semantics	computer science
+99	software engineering	computer science
+100	american politics	political science
+101	political theory	political science
+102	energy systems	analysis
+103	information systems	analysis
+104	numerical analysis	analysis
+105	pathology	analysis
+106	phonetics	analysis
+107	race and ethnicity	analysis
+108	sociology of culture	analysis
+109	toxicology	analysis
+110	virology	analysis
+111	analytical chemistry	chemistry
+112	biochemistry	chemistry
+113	biogeochemistry	chemistry
+114	composition	chemistry
+115	cosmochemistry	chemistry
+116	environmental chemistry	chemistry
+117	food chemistry	chemistry
+118	geochemistry	chemistry
+119	inorganic chemistry	chemistry
+120	materials chemistry	chemistry
+121	medicinal chemistry	chemistry
+122	organic chemistry	chemistry
+123	pharmacology	chemistry
+124	physical chemistry	chemistry
+125	polymer chemistry	chemistry
+126	medicinal-pharmaceutical chemistry	chemistry
+127	ancient history	classics
+128	ancient philosophy	classics
+129	classical archaeology and art history	classics
+130	classical literature and philology	classics
+131	comparative literature	classics
+132	ancient philosophy	philosophy
+133	continental philosophy	philosophy
+134	feminist philosophy	philosophy
+135	philosophy of language	philosophy
+136	philosophy of mind	philosophy
+137	philosophy of religion	philosophy
+138	philosophy of science	philosophy
+139	animal science	science
+140	atmospheric sciences	science
+141	behavioral economics	science
+142	cellular neuroscience	science
+143	cognitive neuroscience	science
+144	computational neuroscience	science
+145	computer science	science
+146	crop sciences	science
+147	dairy science	science
+148	developmental neuroscience	science
+149	earth science	science
+150	electromagnetics	science
+151	engineering science	science
+152	environmental sciences	science
+153	food science	science
+154	forest sciences	science
+155	geographic information sciences	science
+156	geology	science
+157	geophysics	science
+158	life science	science
+159	materials science	science
+160	metallurgy	science
+161	microbiology	science
+162	molecular neuroscience	science
+163	neuroscience	science
+164	physical science	science
+165	physiology	science
+166	plant science	science
+167	political science	science
+168	poultry science	science
+169	social science	science
+170	soil science	science
+171	systems neuroscience	science
+172	wood science	science
+173	membrane science	science
+174	anthropological linguistics	linguistics
+175	applied linguistics	linguistics
+176	computational linguistics	linguistics
+177	german linguistics	linguistics
+178	neurolinguistics	linguistics
+179	psycholinguistics	linguistics
+180	sociolinguistics	linguistics
+181	discourse linguistics	linguistics
+182	french linguistics	linguistics
+183	spanish linguistics	linguistics
+184	typological linguistics	linguistics
+185	phonology	linguistics
+186	morphology	linguistics
+187	anthropology	social science
+188	economics	social science
+189	political science	social science
+190	cultural anthropology	anthropology
+191	linguistic anthropology	anthropology
+192	social anthropology	anthropology
+193	aquatic ecology	ecology
+194	behavioral ecology	ecology
+195	climate	ecology
+196	evolutionary ecology	ecology
+197	microbial ecology	ecology
+198	terrestrial ecology	ecology
+199	ecology	ecology
+200	astrodynamics	music
+201	ethnomusicology	music
+202	playwriting	music
+203	astrophysics and astronomy	physics
+204	biophysics	physics
+205	condensed matter physics	physics
+206	engineering physics	physics
+207	fluid mechanics	physics
+208	geophysics	physics
+209	mineral physics	physics
+210	nuclear physics	physics
+211	optics	physics
+212	quantum physics	physics
+213	behavioral ecology	physics
+214	physical science	physics
+215	atmospheric sciences	environmental sciences
+216	human nutrition	environmental sciences
+217	paleobiology	environmental sciences
+218	ethics	religion
+219	metaphysics	religion
+220	philosophy of religion	religion
+221	philosophy of science	religion
+222	behavioral economics	economics
+223	international economics	economics
+224	labor economics	economics
+225	macroeconomics	economics
+226	public economics	economics
+227	clinical nutrition	nutrition
+228	community nutrition	nutrition
+229	food science	nutrition
+230	human nutrition	nutrition
+231	biochemical nutrition	nutrition
+232	comparative nutrition	nutrition
+233	genetic nutrition	nutrition
+234	international nutrition	nutrition
+235	molecular nutrition	nutrition
+236	biochemistry	cell biology
+237	developmental biology	cell biology
+238	biophysics	biochemistry
+239	genetics	biochemistry
+240	immunology	biochemistry
+241	organic chemistry	biochemistry
+242	structural biology	biochemistry
+243	biogeochemistry	geochemistry
+244	biological psychology	psychology
+245	clinical psychology	psychology
+246	cognitive psychology	psychology
+247	community psychology	psychology
+248	developmental psychology	psychology
+249	health psychology	psychology
+250	social psychology	psychology
+251	psychology of movement	psychology
+252	organizational communication	psychology
+253	health communication	psychology
+254	public policy	psychology
+255	biomechanical engineering	mechanical engineering
+256	biomechanics	mechanical engineering
+257	biostatistics	epidemiology
+258	nutritional epidemiology	epidemiology
+259	botany	genetics
+260	comparative politics	genetics
+261	molecular biology	genetics
+262	molecular genetics	genetics
+263	plant genetics	genetics
+264	cancer biology	molecular biology
+265	cellular neuroscience	neuroscience
+266	cognitive neuroscience	neuroscience
+267	computational neuroscience	neuroscience
+268	developmental neuroscience	neuroscience
+269	epidemiology	neuroscience
+270	molecular neuroscience	neuroscience
+271	population biology	neuroscience
+272	systems neuroscience	neuroscience
+273	cellular physiology	physiology
+274	comparative physiology	physiology
+275	evolutionary physiology	physiology
+276	exercise physiology	physiology
+277	microbial physiology	physiology
+278	molecular physiology	physiology
+279	thermodynamics	chemical engineering
+280	circuits	electrical engineering
+281	digital circuits	electrical engineering
+282	digital circuits	circuits
+283	classics	humanities
+284	cultural anthropology	humanities
+285	english language and literature	humanities
+286	environmental sciences	humanities
+287	geography	humanities
+288	history	humanities
+289	human geography	humanities
+290	international relations	humanities
+291	linguistics	humanities
+292	mass communication	humanities
+293	musicology	humanities
+294	philosophy	humanities
+295	psychology	humanities
+296	religion	humanities
+297	sociology	humanities
+298	theology	humanities
+299	compilers	computer engineering
+300	computer architecture	computer engineering
+301	pragmatics	computational linguistics
+302	cosmology, relativity, and gravity	cosmology
+303	criminology	sociology
+304	rural sociology	sociology
+305	social anthropology	sociology
+306	social history	sociology
+307	sociology of culture	sociology
+308	regional sociology	sociology
+309	cultural history	public health
+310	environmental health	public health
+311	dynamics/dynamical systems	dynamical systems
+312	endocrinology	zoology
+313	paleontology	zoology
+314	parasitology	zoology
+315	engineering	methodologies
+316	statistical methodology	methodologies
+317	entomology	horticulture
+318	plant pathology	horticulture
+319	environmental microbiology	microbiology
+320	food microbiology	microbiology
+321	pathogenic microbiology	microbiology
+322	environmental microbiology	microbial ecology
+323	epistemology	metaphysics
+324	philosophy of mind	metaphysics
+325	cosmology	metaphysics
+326	metaphysics	metaphysics
+327	ethics and political philosophy	ethics
+328	ethnomusicology	musicology
+329	food processing	manufacturing
+330	genomics	plant science
+331	horticulture	plant science
+332	plant breeding	plant science
+333	human geography	geography
+334	history of philosophy	intellectual history
+335	history of religions of eastern origins	history of religion
+336	history of religions of western origin	history of religion
+337	history of religion	theology
+338	immunology of infectious disease	immunology
+339	immunopathology	pathology
+340	plant pathology	pathology
+341	inorganic chemistry	organic chemistry
+342	microbial ecology	organic chemistry
+343	nutrition	instrumentation
+344	literature in english, north america, ethnic and minority	literature in english, north america
+345	logic and foundations of mathematics	logic and foundations
+346	meteorology	oceanography
+347	transport phenomena	physical chemistry
+348	science	polymer science
+349	public administration	public policy
+350	public health	public affairs
+351	social psychology and interaction	social psychology
+352	theatre history	theatre
+353	tribology	applied mechanics

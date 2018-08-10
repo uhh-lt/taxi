@@ -1,6 +1,6 @@
 import networkx as nx
-from s_c_c import filter_big_scc
-from s_c_c import get_big_sccs
+from .s_c_c import filter_big_scc
+from .s_c_c import get_big_sccs
 import os.path
 import sys
 

@@ -1,6 +1,6 @@
 import networkx as nx
-from s_c_c import filter_big_scc
-from s_c_c import get_big_sccs
+from .s_c_c import filter_big_scc
+from .s_c_c import get_big_sccs
 #from network_functions import analysis_graph
 
 def remove_cycle_edges_by_ranking_score_iterately(sccs,players,edges_to_be_removed,is_Forward):
