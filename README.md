@@ -104,6 +104,8 @@ The script can be used with following options:
 | --depth | -d | Number of results to return while checking for most similar nodes of a term. | 100 | - |
 | --iterations | -i | Number of iterations | 1 | - |
 | --buffer | -b | Number of clusters to remove per iteration | 10 | - |
+| --parent | -p | Exculde parent while calculating cluster similarity | False | - |
+| --family | -f | Exculde family while calculating cluster similarity | False | - |
 
 *Example:*  
 `$ python distributional_semantics.py -t taxi_output/simple_full/science_en.csv-relations.csv-taxo-knn1.csv -e poincare -i 5 -d 150`
