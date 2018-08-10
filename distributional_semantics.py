@@ -115,42 +115,44 @@ def remove_clusters(own_model, nx_graph, clusters_touched, depth, buffer):
     return nx_graph, removed_clusters
 
 
-def calculate_similarity(poincare_model, own_model, parent, family, cluster):
+def calculate_similarity(poincare_model, own_model, parent, family, cluster, exclude_parent, exclude_family):
     
     # Similarity between the parent and a cluster
-    parent_similarities = []
     parent_similarity = 0
-    for item in cluster:
-        max_similarity = 0
-        item_senses = wn.synsets(item)
-        parent_senses = wn.synsets(parent)
-        for parent_sense in parent_senses:
-            for item_sense in item_senses:
-                try:
-                    similarity = poincare_model.kv.similarity(parent_sense.name(), item_sense.name())
-                    if similarity > max_similarity:
-                        max_similarity = similarity
-                except KeyError as e:
-                    if parent_sense.name() in str(e):
-                        break
-                    else:
-                        continue
-        if max_similarity != 0:
-            parent_similarities.append(max_similarity)
-    if len(parent_similarities) > 0:  # Happens when the cluster has only one item which is not in vocabulary
-        parent_similarity = sum(parent_similarities) / len(parent_similarities)
+    if not exclude_parent:
+        parent_similarities = []
+        for item in cluster:
+            max_similarity = 0
+            item_senses = wn.synsets(item)
+            parent_senses = wn.synsets(parent)
+            for parent_sense in parent_senses:
+                for item_sense in item_senses:
+                    try:
+                        similarity = poincare_model.kv.similarity(parent_sense.name(), item_sense.name())
+                        if similarity > max_similarity:
+                            max_similarity = similarity
+                    except KeyError as e:
+                        if parent_sense.name() in str(e):
+                            break
+                        else:
+                            continue
+            if max_similarity != 0:
+                parent_similarities.append(max_similarity)
+        if len(parent_similarities) > 0:  # Happens when the cluster has only one item which is not in vocabulary
+            parent_similarity = sum(parent_similarities) / len(parent_similarities)
     
     # Similarity between a family and a cluster
-    family_similarities = []
     family_similarity = 0
-    for f_item in family:
-        for c_item in cluster:
-            try:
-                family_similarities.append(own_model.similarity(f_item, c_item))
-            except KeyError as e:  # skip the terms not in vocabulary
-                continue
-    if len(family_similarities) > 0:
-        family_similarity = sum(family_similarities) / len(family_similarities)
+    if not exclude_family:
+        family_similarities = []
+        for f_item in family:
+            for c_item in cluster:
+                try:
+                    family_similarities.append(own_model.similarity(f_item, c_item))
+                except KeyError as e:  # skip the terms not in vocabulary
+                    continue
+        if len(family_similarities) > 0:
+            family_similarity = sum(family_similarities) / len(family_similarities)
     
     # Final score is the average of both the similarities
     return (parent_similarity + family_similarity) / 2
@@ -233,7 +235,7 @@ def calculate_f1_score(system_generated_taxo):
     print('F&M:', f_m)
 
 
-def apply_distributional_semantics(nx_graph, taxonomy, mode, depth, iterations, buffer):
+def apply_distributional_semantics(nx_graph, taxonomy, mode, depth, iterations, buffer, exclude_parent, exclude_family):
     # Load the pre-trained vectors
     print('Loading embeddings...')
     poincare_w2v, own_w2v = load_vectors()
@@ -264,7 +266,7 @@ def apply_distributional_semantics(nx_graph, taxonomy, mode, depth, iterations, 
                 for node, graph in g_detached.items():
                     gc = chinese_whispers(graph, weighting='top', iterations=60)
                     for _, family in aggregate_clusters(gc).items():
-                        score = calculate_similarity(poincare_w2v, own_w2v, node, family, cluster)
+                        score = calculate_similarity(poincare_w2v, own_w2v, node, family, cluster, exclude_parent, exclude_family)
                         if score > max_score:
                             max_score = score
                             max_score_node = node
@@ -302,28 +304,37 @@ def save_result(result, path, mode):
     calculate_f1_score(output_path)
 
 
-def main(taxonomy, mode, depth, iterations, buffer):
+def main(taxonomy, mode, depth, iterations, buffer, exclude_parent, exclude_family):
 
     # Read the input
     graph = process_input(taxonomy)
 
     # Distributional Semantics
-    apply_distributional_semantics(graph, taxonomy, mode, depth, iterations, buffer)
+    apply_distributional_semantics(graph, taxonomy, mode, depth, iterations, buffer, exclude_parent, exclude_family)
 
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Distributional Semantics for Taxonomy')
     parser.add_argument('-t', '--taxonomy', required=True, help='Input file containing the taxonomy')
-    parser.add_argument('-m', '--mode', default='reattach', choices=['only_removal', 'reattach'])
+    parser.add_argument(
+        '-m', '--mode', default='reattach', choices=['only_removal', 'reattach'],
+        help='Mode of execution: Only remove the nodes or reattach the removed nodes.'
+    )
     parser.add_argument(
         '-d', '--depth', type=int, default=100,
         help='Number of results to return while checking for most similar nodes of a term.'
     )
     parser.add_argument('-i', '--iterations', type=int, default=1, help='Number of iterations.')
     parser.add_argument('-b', '--buffer', type=int, default=10, help='Number of clusters to remove per iteration')
+    parser.add_argument('-p', '--parent', action='store_false', help='Exculde "parent" while calculating cluster similarity')
+    parser.add_argument('-f', '--family', action='store_false', help='Exclude "family" while calculating cluster similarity')
     args = parser.parse_args()
+
+    if not args.parent and not args.family:
+        parser.error("""Both --parent(-p) and --family(-f) cannot be set to False.
+        Run: 'python distributional_semantics.py --help' for more options.""")
 
     print('Input File:', args.taxonomy)
     print('Mode:', args.mode)
 
-    main(args.taxonomy, args.mode, args.depth, args.iterations, args.buffer)
+    main(args.taxonomy, args.mode, args.depth, args.iterations, args.buffer, args.parent, args.family)
