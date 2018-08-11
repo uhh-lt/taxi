@@ -188,6 +188,47 @@ def get_line_count(file_name):
     ).decode('utf-8').split('\n')[0])
 
 
+def graph_pruning(path):
+
+    cycle_removing_tool = "graph_pruning/graph_pruning.py"
+    cycle_removing_method = "tarjan"
+    cleaning_tool = "graph_pruning/cleaning.py"
+
+    output_dir = "out"
+    input_file = os.path.basename(path)
+    file_pruned_out = input_file + '-pruned.csv'
+    file_cleaned_out = file_pruned_out + '-cleaned.csv'
+
+    print('======================================================================================================================')
+    cycle_removing_cmd = 'python {cycle_removing_tool} {input_path} {output_dir}/{file_pruned_out} {cycle_removing_method} | tee /dev/tty'.format(
+        cycle_removing_tool=cycle_removing_tool,
+        input_path=path,
+        output_dir=output_dir,
+        file_pruned_out=file_pruned_out,
+        cycle_removing_method=cycle_removing_method
+    )
+    print('Cycle removing:', cycle_removing_cmd, sep='\n')
+    subprocess.check_output(cycle_removing_cmd, shell=True)
+    print('Cycle removing finished. Written to: {output_dir}/{file_pruned_out}\n'.format(
+        output_dir=output_dir, file_pruned_out=file_pruned_out
+    ))
+
+    print('======================================================================================================================')
+    cleaning_cmd = 'python {cleaning_tool} {output_dir}/{file_pruned_out} {output_dir}/{file_cleaned_out} science'.format(
+        cleaning_tool=cleaning_tool,
+        output_dir=output_dir,
+        file_pruned_out=file_pruned_out,
+        file_cleaned_out=file_cleaned_out
+    )
+    print('Cleaning:', cleaning_cmd, sep='\n')
+    subprocess.check_output(cleaning_cmd, shell=True)
+    print('Finished cleaning. Write output to: {output_dir}/{file_cleaned_out}\n'.format(
+        output_dir=output_dir, file_cleaned_out=file_cleaned_out
+    ))
+
+    return os.path.join(output_dir, file_cleaned_out)
+
+
 def calculate_f1_score(system_generated_taxo):
     """ Calculate the F1 score of the re-generated taxonomies """
 
@@ -195,20 +236,21 @@ def calculate_f1_score(system_generated_taxo):
     eval_gold_standard = 'eval/taxi_eval_archive/input/gold.taxo'
     eval_root = 'science'
     eval_jvm = '-Xmx9000m'
-    eval_tool_result = 'out/' + system_generated_taxo.split('/')[-1] + '.evalresult.txt'
+    eval_tool_result = 'out/' + os.path.basename(system_generated_taxo) + '-evalresult.txt'
 
     # Running the tool
+    print('======================================================================================================================')
     tool_command = """java {eval_jvm} -jar {eval_tool} {system_generated_taxo} {eval_gold_standard} {eval_root} {eval_tool_result}""".format(
         eval_jvm=eval_jvm,
         eval_tool=eval_tool,
-        system_generated_taxo=system_generated_taxo,
+        system_generated_taxo=a,
         eval_gold_standard=eval_gold_standard,
         eval_root=eval_root,
         eval_tool_result=eval_tool_result
     )
-    print('\nRunning eval-tool:', tool_command)
+    print('Running eval-tool:', tool_command, sep='\n')
     subprocess.check_output(tool_command, shell=True)
-    print('\nResult of eval-tool written to:', eval_tool_result)
+    print('Result of eval-tool written to:', eval_tool_result)
 
     # Calculating Precision, F1 score and F&M Measure
     l_gold = get_line_count(eval_gold_standard)
@@ -279,7 +321,13 @@ def apply_distributional_semantics(nx_graph, taxonomy, mode, depth, iterations, 
         print('Tuned.')
 
         # Save the results after each iteration and display the F1 score
-        save_result(g_improved, taxonomy, mode)
+        output_path = save_result(g_improved, taxonomy, mode)
+
+        # Prune and clean the generated taxonomy
+        pruned_output = graph_pruning(output_path)
+
+        # Display the F1 score for the generated taxonomy
+        calculate_f1_score(pruned_output)
 
 
 def save_result(result, path, mode):
@@ -291,17 +339,15 @@ def save_result(result, path, mode):
     df_improved['hyponym'] = df_improved['hyponym'].apply(lambda x: x.replace('_', ' '))
     df_improved['hypernym'] = df_improved['hypernym'].apply(lambda x: x.replace('_', ' '))
 
-    result_path = os.path.splitext(path)
-    output_path = 'taxi_output/distributional_semantics/' + str(result_path[0].split('/')[-1]) + '-semantic'
-    if mode == 'only_removal':
-        output_path += '-removal'
-    output_path += result_path[1]
-
+    # Store the result
+    output_path = os.path.join(
+        'taxi_output', 'distributional_semantics',
+        os.path.basename(path) + '-' + mode + os.path.splitext(path)[-1]
+    )
     df_improved.to_csv(output_path, sep='\t', header=False)
     print('Output saved at:', output_path)
 
-    # Display the F1 score for the re-generated taxonomy
-    calculate_f1_score(output_path)
+    return output_path
 
 
 def main(taxonomy, mode, depth, iterations, buffer, exclude_parent, exclude_family):
