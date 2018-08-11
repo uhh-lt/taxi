@@ -243,7 +243,7 @@ def calculate_f1_score(system_generated_taxo):
     tool_command = """java {eval_jvm} -jar {eval_tool} {system_generated_taxo} {eval_gold_standard} {eval_root} {eval_tool_result}""".format(
         eval_jvm=eval_jvm,
         eval_tool=eval_tool,
-        system_generated_taxo=a,
+        system_generated_taxo=system_generated_taxo,
         eval_gold_standard=eval_gold_standard,
         eval_root=eval_root,
         eval_tool_result=eval_tool_result
