@@ -335,11 +335,17 @@ def apply_distributional_semantics(nx_graph, taxonomy, mode, depth, iterations, 
     
     # Write the scores of each iteration in a CSV file
     with open(os.path.join(output_dir, os.path.basename(taxonomy)) + '-iter-records.csv', 'w') as f:
-        f.write(','.join(['iteration', 'recall', 'precision', 'f1', 'f_m']) + '\n')
+        f.write('iteration,recall,precision,f1,f_m\n')
         for iter in scores:
-            f.write(','.join(
-                [iter, scores[iter]['recall'], scores[iter]['precision'], scores[iter]['f1'], scores[iter]['f_m']]
-            ) + '\n')
+            f.write(
+                '{iter},{recall},{precision},{f1},{f_m}\n'.format(
+                    iter=iter,
+                    recall=scores[iter][recall],
+                    precision=scores[iter]['precision'],
+                    f1=scores[iter]['f1'],
+                    f_m=scores[iter]['f_m']
+                )
+            )
 
 
 def save_result(result, path, mode):
