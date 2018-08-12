@@ -188,13 +188,12 @@ def get_line_count(file_name):
     ).decode('utf-8').split('\n')[0])
 
 
-def graph_pruning(path):
+def graph_pruning(path, output_dir):
 
     cycle_removing_tool = "graph_pruning/graph_pruning.py"
     cycle_removing_method = "tarjan"
     cleaning_tool = "graph_pruning/cleaning.py"
 
-    output_dir = "out"
     input_file = os.path.basename(path)
     file_pruned_out = input_file + '-pruned.csv'
     file_cleaned_out = file_pruned_out + '-cleaned.csv'
@@ -229,14 +228,14 @@ def graph_pruning(path):
     return os.path.join(output_dir, file_cleaned_out)
 
 
-def calculate_f1_score(system_generated_taxo):
+def calculate_f1_score(system_generated_taxo, output_dir, iteration):
     """ Calculate the F1 score of the re-generated taxonomies """
 
     eval_tool = 'eval/taxi_eval_archive/TExEval.jar'
     eval_gold_standard = 'eval/taxi_eval_archive/input/gold.taxo'
     eval_root = 'science'
     eval_jvm = '-Xmx9000m'
-    eval_tool_result = 'out/' + os.path.basename(system_generated_taxo) + '-evalresult.txt'
+    eval_tool_result = os.path.join(output_dir, os.path.basename(system_generated_taxo)) + '-evalresult.txt'
 
     # Running the tool
     print('======================================================================================================================')
@@ -253,28 +252,31 @@ def calculate_f1_score(system_generated_taxo):
     print('Result of eval-tool written to:', eval_tool_result)
 
     # Calculating Precision, F1 score and F&M Measure
+    scores = {}
     l_gold = get_line_count(eval_gold_standard)
     l_input = get_line_count(system_generated_taxo)
 
-    recall = float(subprocess.check_output(
+    scores['recall'] = float(subprocess.check_output(
         "tail -n 1 {eval_tool_result} | grep -o -E '[0-9]+[\.]?[0-9]*'".format(
             eval_tool_result=eval_tool_result
         ), shell=True
     ).decode('utf-8').split('\n')[0])
-    precision = recall * l_gold / l_input
+    scores['precision'] = scores['recall'] * l_gold / l_input
 
-    f1 = 2 * recall * precision / (recall + precision)
-    f_m = float(subprocess.check_output(
+    scores['f1'] = 2 * scores['recall'] * scores['precision'] / (scores['recall'] + scores['precision'])
+    scores['f_m'] = float(subprocess.check_output(
         "cat {eval_tool_result} | grep -o -E 'Cumulative Measure.*' | grep -o -E '0\.[0-9]+'".format(
             eval_tool_result=eval_tool_result
         ), shell=True
     ).decode('utf-8').split('\n')[0])
 
     # Display results
-    print('\nRecall:', recall)
-    print('Precision:', precision)
-    print('F1:', f1)
-    print('F&M:', f_m)
+    print('\nRecall:', scores['recall'])
+    print('Precision:', scores['precision'])
+    print('F1:', scores['f1'])
+    print('F&M:', scores['f_m'])
+
+    return scores
 
 
 def apply_distributional_semantics(nx_graph, taxonomy, mode, depth, iterations, buffer, exclude_parent, exclude_family):
@@ -284,6 +286,8 @@ def apply_distributional_semantics(nx_graph, taxonomy, mode, depth, iterations, 
     print('Loaded.')
 
     print('\n\nApplying distributional semantics...')
+    scores = {}
+    output_dir = 'out'
     g_improved = nx_graph.copy()
     clusters_touched = []
     for i in range(1, iterations + 1):
@@ -324,10 +328,24 @@ def apply_distributional_semantics(nx_graph, taxonomy, mode, depth, iterations, 
         output_path = save_result(g_improved, taxonomy, mode)
 
         # Prune and clean the generated taxonomy
-        pruned_output = graph_pruning(output_path)
+        pruned_output = graph_pruning(output_path, output_dir)
 
         # Display the F1 score for the generated taxonomy
-        calculate_f1_score(pruned_output)
+        scores[i] = calculate_f1_score(pruned_output, output_dir, i)
+    
+    # Write the scores of each iteration in a CSV file
+    with open(os.path.join(output_dir, os.path.basename(taxonomy)) + '-iter-records.csv', 'w') as f:
+        f.write('iteration,recall,precision,f1,f_m\n')
+        for iter in scores:
+            f.write(
+                '{iter},{recall},{precision},{f1},{f_m}\n'.format(
+                    iter=iter,
+                    recall=scores[iter]['recall'],
+                    precision=scores[iter]['precision'],
+                    f1=scores[iter]['f1'],
+                    f_m=scores[iter]['f_m']
+                )
+            )
 
 
 def save_result(result, path, mode):

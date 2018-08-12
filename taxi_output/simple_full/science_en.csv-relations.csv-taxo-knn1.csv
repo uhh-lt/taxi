@@ -1,360 +1,349 @@
-67623	aerodynamics	engineering
-51838	aerospace engineering	engineering
-112838	african history	history
-146518	air traffic control	communication
-70791	algebra	mathematics
-95596	algebraic geometry	mathematics
-51396	algorithms	computer science
-19046	american politics	political science
-145206	analysis	mathematics
-85564	analytical chemistry	chemistry
-171771	ancient history	classics
-171468	ancient history	history
-164555	ancient philosophy	classics
-164265	ancient philosophy	philosophy
-28046	animal science	science
-7335	anthropological linguistics	linguistics
-19959	anthropology	social science
-2374	applied linguistics	linguistics
-11259	applied mathematics	mathematics
-111758	aquatic ecology	ecology
-111821	aquatic ecology	engineering
-29402	archaeological	history
-184441	artificial intelligence	computer science
-103818	asian history	history
-13603	astrodynamics	music
-68771	astrophysics and astronomy	physics
-7751	atmospheric sciences	science
-7817	atmospheric sciences	environmental sciences
-52226	behavioral ecology	ecology
-52242	behavioral ecology	religion
-14485	behavioral economics	economics
-14516	behavioral economics	science
-74141	biochemical nutrition	nutrition
-195724	biochemistry	cell biology
-195609	biochemistry	chemistry
-197413	biogeochemistry	chemistry
-197343	biogeochemistry	geochemistry
-113625	biological engineering	engineering
-127337	biological psychology	psychology
-64917	biomaterials	engineering
-82957	biomechanical engineering	engineering
-82811	biomechanical engineering	mechanical engineering
-117087	biomechanics	mechanical engineering
-57250	biomedical	engineering
-46221	biophysics	physics
-46434	biophysics	biochemistry
-149665	biostatistics	epidemiology
-76140	botany	genetics
-63881	cancer biology	molecular biology
-30206	cellular neuroscience	neuroscience
-29850	cellular neuroscience	science
-128134	cellular physiology	physiology
-186236	chemical engineering	engineering
-147461	chemistry	mathematics
-188035	circuits	electrical engineering
-9895	civil engineering	engineering
-126671	classical archaeology and art history	classics
-116298	classical literature and philology	classics
-177223	classics	humanities
-120327	climate	ecology
-74592	clinical nutrition	nutrition
-122376	clinical psychology	psychology
-1437	cognitive neuroscience	science
-1793	cognitive neuroscience	neuroscience
-169280	cognitive psychology	psychology
-169549	cognitive psychology	engineering
-178569	communication	engineering
-192521	communication technology and new media	communication
-72337	community nutrition	nutrition
-108846	community psychology	psychology
-21137	comparative literature	classics
-150361	comparative nutrition	nutrition
-83936	comparative physiology	physiology
-67120	comparative politics	genetics
-18283	compilers	computer engineering
-142390	composition	chemistry
-45082	computational biology	computer science
-203521	computational linguistics	linguistics
-24343	computational neuroscience	neuroscience
-23987	computational neuroscience	science
-27303	computer architecture	computer engineering
-110468	computer engineering	engineering
-196169	computer science	mathematics
-195819	computer science	science
-187385	condensed matter physics	physics
-187589	condensed matter physics	engineering
-55110	contemporary art history	history
-138558	continental philosophy	philosophy
-56810	control theory	mathematics
-105859	cosmochemistry	chemistry
-50280	cosmology	physics
-197649	cosmology, relativity, and gravity	cosmology
-167241	criminology	sociology
-203035	crop sciences	science
-146619	cultural anthropology	anthropology
-147006	cultural anthropology	humanities
-59169	cultural history	history
-59316	cultural history	public health
-172367	dairy science	science
-112740	developmental biology	cell biology
-97856	developmental neuroscience	neuroscience
-97501	developmental neuroscience	science
-188673	developmental psychology	psychology
-112267	digital circuits	electrical engineering
-112263	digital circuits	circuits
-180373	digital communications	engineering
-180344	digital communications	communication
-5048	diplomatic history	history
-30787	discourse linguistics	linguistics
-41025	dynamical systems	mathematics
-113742	dynamics/dynamical systems	dynamical systems
-31203	earth science	science
-163686	ecology	engineering
-183645	economic history	history
-24469	economics	social science
-25229	electrical and electronics	engineering
-189844	electrical engineering	engineering
-28497	electromagnetics	science
-129383	endocrinology	zoology
-44067	energy systems	analysis
-192118	engineering	methodologies
-127853	engineering physics	physics
-128057	engineering physics	engineering
-40224	engineering science	science
-134378	english language and literature	humanities
-61159	entomology	horticulture
-202374	environmental chemistry	chemistry
-147901	environmental engineering	engineering
-88180	environmental health	public health
-35663	environmental microbiology	microbiology
-35974	environmental microbiology	microbial ecology
-68186	environmental sciences	science
-68532	environmental sciences	humanities
-174075	epidemiology	neuroscience
-124788	epistemology	metaphysics
-86114	ergonomics	engineering
-49085	ethics	religion
-91661	ethics and political philosophy	ethics
-31859	ethnomusicology	musicology
-31643	ethnomusicology	music
-185449	european history	history
-130249	evolutionary ecology	ecology
-64994	evolutionary physiology	physiology
-38836	exercise physiology	physiology
-80830	feminist philosophy	philosophy
-69889	fluid dynamics	mathematics
-49378	fluid mechanics	physics
-30542	food chemistry	chemistry
-17623	food microbiology	microbiology
-92841	food processing	manufacturing
-39322	food science	science
-39414	food science	nutrition
-81716	forest sciences	science
-52886	french linguistics	linguistics
-56012	gender history	history
-163891	genetic nutrition	nutrition
-168655	genetics	biochemistry
-173118	genomics	plant science
-115781	geochemistry	chemistry
-133581	geographic information sciences	science
-103710	geography	humanities
-4594	geology	science
-144304	geometry and topology	mathematics
-36615	geophysics	science
-36750	geophysics	physics
-27033	geotechnical engineering	engineering
-161127	german linguistics	linguistics
-133439	graphics	communication
-155989	health communication	communication
-57882	health psychology	psychology
-40119	history	humanities
-130639	history of philosophy	intellectual history
-130427	history of philosophy	history
-73150	history of religion	history
-73383	history of religion	theology
-114265	history of religions of eastern origins	history of religion
-114191	history of religions of eastern origins	history
-18578	history of religions of western origin	history
-18652	history of religions of western origin	history of religion
-89386	history of science, technology, and medicine	history
-124410	horticulture	plant science
-158530	human geography	geography
-158732	human geography	humanities
-67800	human nutrition	environmental sciences
-67827	human nutrition	nutrition
-161890	immunology	biochemistry
-123029	immunology of infectious disease	immunology
-191316	immunopathology	pathology
-170000	industrial engineering	engineering
-144640	information systems	analysis
-109918	inorganic chemistry	chemistry
-109981	inorganic chemistry	organic chemistry
-89271	instrumentation	engineering
-135839	intellectual history	history
-188121	international economics	economics
-15060	international nutrition	nutrition
-100553	international relations	humanities
-79770	interpersonal/small group communication	communication
-79013	islamic world/near east history	history
-83859	kinesiology	engineering
-50566	labor economics	economics
-42482	latin american history	history
-17222	life science	science
-20339	linguistic anthropology	anthropology
-54551	linguistics	humanities
-178899	literature in english, north america, ethnic and minority	literature in english, north america
-159165	logic and foundations of mathematics	logic and foundations
-181807	macroeconomics	economics
-174961	manufacturing	engineering
-136633	mass communication	humanities
-136596	mass communication	communication
-179373	materials chemistry	chemistry
-3692	materials science	science
-4032	materials science	engineering
-126253	mechanical engineering	engineering
-107663	medicinal chemistry	chemistry
-6639	medicinal-pharmaceutical chemistry	chemistry
-25794	medieval history	history
-32105	membrane science	science
-1888	metallurgy	science
-141383	metaphysics	physics
-141540	metaphysics	religion
-83261	meteorology	oceanography
-156434	microbial ecology	organic chemistry
-156407	microbial ecology	ecology
-45150	microbial physiology	physiology
-15418	microbiology	science
-84425	military history	history
-126951	mineral physics	physics
-131613	molecular biology	genetics
-118083	molecular genetics	genetics
-34716	molecular neuroscience	neuroscience
-34360	molecular neuroscience	science
-120595	molecular nutrition	nutrition
-37483	molecular physiology	physiology
-119	morphology	linguistics
-123517	motor control	communication
-119499	multidisciplinary design optimization	mathematics
-33768	music	communication
-131221	musicology	humanities
-183088	networking	computer science
-102771	networks	communication
-110615	neurolinguistics	linguistics
-198976	neuroscience	science
-160540	non-linear dynamics	mathematics
-156921	nuclear physics	engineering
-156717	nuclear physics	physics
-134833	number theory	mathematics
-11595	numerical analysis	analysis
-11710	numerical analysis	mathematics
-80474	nutrition	instrumentation
-193413	nutritional epidemiology	epidemiology
-143842	ocean engineering	engineering
-125802	oceanography	engineering
-66281	operational research	mathematics
-10592	optics	physics
-95145	ordinary differential equations	mathematics
-175871	organic chemistry	biochemistry
-175765	organic chemistry	chemistry
-62181	organizational communication	communication
-177637	os	communication
-42995	paleobiology	environmental sciences
-158247	paleontology	zoology
-171326	parasitology	zoology
-46888	partial differential equations	mathematics
-58664	pathogenic microbiology	microbiology
-41812	pathology	analysis
-193002	petroleum engineering	engineering
-106310	pharmacology	chemistry
-45982	philosophy	humanities
-5963	philosophy of language	philosophy
-109454	philosophy of mind	metaphysics
-109243	philosophy of mind	philosophy
-107890	philosophy of religion	philosophy
-108166	philosophy of religion	religion
-148029	philosophy of science	philosophy
-148305	philosophy of science	religion
-78794	phonetics	analysis
-9139	phonology	linguistics
-105408	physical chemistry	chemistry
-54046	physical science	religion
-53754	physical science	science
-99655	physics	mathematics
-22634	physiology	science
-73898	plant breeding	plant science
-41413	plant genetics	genetics
-57369	plant pathology	pathology
-57551	plant pathology	horticulture
-174171	plant science	science
-22172	playwriting	music
-33010	political history	history
-47470	political science	social science
-47440	political science	science
-36184	political theory	political science
-194707	polymer chemistry	chemistry
-111370	polymer science	engineering
-111031	polymer science	science
-170467	population biology	neuroscience
-65480	poultry science	science
-119063	pragmatics	computational linguistics
-76654	probability	mathematics
-114987	programming languages	computer science
-11845	psycholinguistics	linguistics
-70336	psychology	humanities
-25410	psychology of movement	psychology
-153254	public administration	public policy
-154185	public affairs	communication
-74920	public economics	economics
-106776	public health	public affairs
-165460	public policy	communication
-155579	quantum physics	mathematics
-155364	quantum physics	physics
-78343	race and ethnicity	analysis
-8489	regional sociology	sociology
-170909	religion	humanities
-122194	robotics	engineering
-167692	rural sociology	sociology
-38580	science	polymer science
-71693	scientific computing	mathematics
-105065	semantics	computer science
-63124	set theory	mathematics
-157823	signal processing	engineering
-71178	social anthropology	sociology
-70851	social anthropology	anthropology
-86963	social history	sociology
-86680	social history	history
-44352	social psychology	psychology
-60081	social psychology and interaction	social psychology
-52401	social science	science
-52740	social science	engineering
-48376	sociolinguistics	linguistics
-168203	sociology	humanities
-10293	sociology of culture	sociology
-10242	sociology of culture	analysis
-96938	software engineering	engineering
-96947	software engineering	computer science
-139444	soil science	science
-33944	spanish linguistics	linguistics
-90643	statistical methodology	methodologies
-60869	statistics and probability	mathematics
-141144	structural biology	biochemistry
-107311	structural engineering	engineering
-101418	syntax	communication
-184883	systems engineering	engineering
-157033	systems neuroscience	science
-157388	systems neuroscience	neuroscience
-165879	terrestrial ecology	ecology
-94653	theatre	communication
-55681	theatre history	theatre
-55561	theatre history	history
-145653	theology	humanities
-155104	thermodynamics	chemical engineering
-121639	toxicology	analysis
-5644	transport phenomena	physical chemistry
-3203	tribology	applied mechanics
-86261	typological linguistics	linguistics
-151624	united states history	history
-108560	virology	analysis
-175978	women’s history	history
-152523	wood science	science
+92222	aerodynamics	aerospace engineering
+99092	aerospace engineering	engineering
+66301	african history	history
+23577	agronomy	science
+141493	air traffic control	communication
+110856	algebra	mathematics
+15244	algebraic geometry	mathematics
+156407	algorithms	mathematics
+901	american politics	political science
+81572	american studies	ethnic studies
+5773	analysis	mathematics
+144302	analytical chemistry	chemistry
+181306	ancient history	history
+45282	ancient philosophy	philosophy
+45257	ancient philosophy	history of philosophy
+58756	animal science	science
+58812	animal science	philosophy
+184508	anthropological linguistics	linguistics
+171315	anthropology	humanities
+109642	applied linguistics	linguistics
+157309	applied mathematics	mathematics
+13575	aquatic ecology	ecology
+13853	aquatic ecology	engineering
+167766	artificial intelligence	software engineering
+137108	asian history	history
+96731	astronomy and astrophysics	physics
+10139	astrophysics and astronomy	physics
+10047	astrophysics and astronomy	science
+178271	atmospheric sciences	science
+103071	bacteriology	microbiology
+74010	behavioral ecology	ecology
+74294	behavioral ecology	communication
+89309	behavioral economics	economics
+89646	behavioral economics	economic theory
+106563	biochemical nutrition	nutrition
+37107	biochemistry	science
+37415	biochemistry	chemistry
+181860	biogeochemistry	geochemistry
+182186	biogeochemistry	chemistry
+130662	biological engineering	engineering
+127118	biological psychology	psychology
+89170	biomaterials	engineering
+145448	biomechanical engineering	mechanical engineering
+145545	biomechanical engineering	engineering
+169794	biophysics	physics
+170009	biophysics	chemistry
+98206	botany	genetics
+66991	cancer biology	microbiology
+105873	cell biology	genetics
+28538	cellular neuroscience	science
+28421	cellular neuroscience	neuroscience
+137731	cellular physiology	physiology
+203274	chemical engineering	engineering
+196180	chemistry	geography
+10696	civil engineering	engineering
+125834	classical archaeology and art history	classics
+27516	classical literature and philology	classics
+2288	classics	music
+151531	climate	geography
+166997	clinical nutrition	nutrition
+79312	clinical psychology	psychology
+134406	cognitive neuroscience	neuroscience
+134785	cognitive neuroscience	psychology
+134524	cognitive neuroscience	science
+84273	cognitive psychology	psychology
+149727	communication	geography
+93687	communication technology and new media	communication
+70483	community nutrition	nutrition
+104568	community psychology	psychology
+200822	comparative nutrition	nutrition
+130064	comparative physiology	physiology
+181301	comparative politics	political science
+46736	compilers	computer engineering
+177225	composition	chemistry
+133857	computational biology	mathematics
+32521	computational linguistics	linguistics
+32646	computational linguistics	clinical psychology
+85247	computational neuroscience	neuroscience
+85562	computational neuroscience	engineering
+85365	computational neuroscience	science
+22833	computer architecture	computer engineering
+128407	computer engineering	engineering
+129798	computer science	mathematics
+129563	computer science	science
+154460	condensed matter physics	physics
+154675	condensed matter physics	chemistry
+197993	contemporary art history	history
+24536	continental philosophy	philosophy
+126713	cosmochemistry	chemistry
+65612	cosmology	physics
+179192	cosmology, relativity, and gravity	cosmology
+17263	crop sciences	science
+39164	cultural anthropology	anthropology
+192130	cultural history	history
+162035	dairy science	science
+87276	developmental biology	cell biology
+75776	developmental neuroscience	neuroscience
+75894	developmental neuroscience	science
+202436	developmental psychology	psychology
+199692	digital circuits	circuits
+14755	digital communications	engineering
+14762	digital communications	communication
+186267	diplomatic history	history
+39286	discourse linguistics	linguistics
+1263	dynamical systems	mathematics
+182657	dynamics/dynamical systems	dynamical systems
+11851	earth science	science
+20871	ecology	science
+26157	econometrics	political science
+63011	economic history	social science
+62693	economic history	history
+5283	economics	social science
+91425	electrical engineering	engineering
+101354	electromagnetics	communication
+55677	endocrinology	zoology
+146481	engineering	methodologies
+16361	engineering physics	science
+16453	engineering physics	physics
+120994	engineering science	science
+160040	english language and literature	humanities
+200678	environmental chemistry	chemistry
+117583	environmental engineering	engineering
+99543	environmental health	engineering
+108483	environmental microbiology	microbiology
+107464	environmental sciences	science
+107724	environmental sciences	humanities
+128857	epidemiology	social science
+29948	epistemology	philosophy
+25381	ergonomics	science
+171778	ethics	religion
+192055	ethics and political philosophy	ethics
+35402	ethnomusicology	performance studies
+35253	ethnomusicology	musicology
+31123	european history	history
+31441	european history	social science
+60812	evolutionary ecology	anthropology
+60480	evolutionary ecology	ecology
+158928	evolutionary physiology	physiology
+18616	exercise physiology	science
+18666	exercise physiology	physiology
+113835	feminist philosophy	philosophy
+40951	fluid dynamics	mathematics
+122219	fluid mechanics	chemical engineering
+124458	food chemistry	chemistry
+150878	food microbiology	microbiology
+2831	food science	science
+147152	forest sciences	science
+190371	french linguistics	linguistics
+144775	gender history	history
+45677	genetic nutrition	nutrition
+153747	genetics	plant science
+168179	genomics	plant science
+48382	geochemistry	science
+48690	geochemistry	chemistry
+135877	geographic information sciences	science
+127505	geology	engineering
+117090	geophysics	geology
+117027	geophysics	physics
+44521	geotechnical engineering	engineering
+20343	german linguistics	linguistics
+143301	glaciology	climate
+150093	graphics	mathematics
+20019	growth and development	physiology
+75647	health communication	communication
+75639	health communication	social science
+78861	health psychology	psychology
+2190	history	humanities
+71262	history of philosophy	history
+71440	history of philosophy	philosophy
+168609	history of religion	humanities
+168227	history of religion	history
+60889	history of religions of eastern origins	history
+61257	history of religions of eastern origins	history of religion
+102381	history of religions of western origin	history
+102749	history of religions of western origin	history of religion
+142069	history of science, technology, and medicine	history
+36656	horticulture	science
+33696	human geography	social science
+33820	human geography	geography
+189096	human nutrition	nutrition
+83227	immunology	microbiology
+183290	immunology of infectious disease	immunology
+87891	immunopathology	pathology
+109465	industrial engineering	engineering
+108159	information systems	artificial intelligence
+69436	inorganic chemistry	chemistry
+69258	inorganic chemistry	organic chemistry
+191657	instrumentation	chemistry
+99675	intellectual history	history
+73524	international economics	economics
+73839	international economics	international relations
+140388	international nutrition	nutrition
+147927	international relations	political science
+78353	interpersonal/small group communication	communication
+178600	islamic world/near east history	history
+114877	kinesiology	engineering
+131252	labor economics	economics
+35871	language description	applied linguistics
+21652	latin american history	history
+9596	life science	science
+47282	linguistic anthropology	anthropology
+22224	linguistics	science
+94583	literature in english, north america, ethnic and minority	literature in english, north america
+17798	logic and foundations of mathematics	logic and foundations
+5874	macroeconomics	economics
+5988	macroeconomics	science
+44972	manufacturing	engineering
+150569	mass communication	humanities
+150514	mass communication	communication
+174519	materials chemistry	chemistry
+100896	materials science	engineering
+100699	materials science	science
+163648	mathematics	humanities
+102249	mechanical engineering	engineering
+62671	medicinal chemistry	chemistry
+71240	medicinal-pharmaceutical chemistry	chemistry
+95616	medieval history	history
+28989	membrane science	science
+1478	metallurgy	science
+56106	metaphysics	philosophy
+56141	metaphysics	physics
+54245	meteorology	science
+118659	microbial ecology	ecology
+185537	microbial physiology	physiology
+110477	microbiology	chemistry
+153795	military history	history
+103497	mineral physics	physics
+38009	molecular biology	science
+70244	molecular genetics	genetics
+34852	molecular neuroscience	science
+34735	molecular neuroscience	neuroscience
+50638	molecular nutrition	nutrition
+67825	molecular physiology	physiology
+127963	morphology	communication
+53794	motor control	science
+122582	multidisciplinary design optimization	mathematics
+15664	music	communication
+34211	musicology	humanities
+174021	networking	humanities
+88726	networks	communication
+80778	neurolinguistics	linguistics
+3733	neuroscience	science
+27421	non-linear dynamics	mathematics
+152871	nuclear physics	chemistry
+152656	nuclear physics	physics
+132955	number theory	mathematics
+171843	numerical analysis	analysis
+57452	nutrition	physiology
+8402	nutritional epidemiology	epidemiology
+43619	ocean engineering	engineering
+68424	oceanography	engineering
+120778	operational research	mathematics
+170901	optics	instrumentation
+26970	ordinary differential equations	mathematics
+115889	organic chemistry	chemistry
+96393	organizational communication	communication
+59256	os	physiology
+30793	paleontology	science
+29558	parasitology	microbiology
+163172	partial differential equations	mathematics
+56618	pathogenic microbiology	microbiology
+179907	pathology	criminology
+148252	petroleum engineering	engineering
+115438	pharmaceutics	chemistry
+155577	pharmacology	chemistry
+82919	philosophy	humanities
+3339	philosophy of language	philosophy
+47537	philosophy of mind	philosophy
+196819	philosophy of religion	philosophy
+180583	philosophy of science	philosophy
+180833	philosophy of science	chemistry
+112607	phonetics	probability
+59862	phonology	communication
+84554	photonics	physics
+200011	physical and environmental geography	physics
+86123	physical chemistry	chemistry
+21322	physical science	science
+98679	physics	mathematics
+79783	physiology	plant science
+42068	plant biology	science
+32146	plant breeding	science
+12967	plant genetics	genetics
+80675	plant pathology	pathology
+80685	plant pathology	plant science
+184134	plant science	science
+132147	political history	history
+203527	political science	science
+75188	political theory	social science
+76408	polymer chemistry	physical chemistry
+76652	polymer chemistry	chemistry
+76796	polymer science	science
+76993	polymer science	engineering
+81757	poultry science	science
+18088	pragmatics	linguistics
+139720	probability	mathematics
+198489	psycholinguistics	linguistics
+175386	psychology	religion
+166806	psychology of movement	psychology
+131112	public administration	social science
+90211	public economics	economics
+12302	public health	science
+100444	public policy	social science
+192795	quantum physics	physics
+193010	quantum physics	chemistry
+129017	regional sociology	sociology
+38460	robotics	science
+52798	rural sociology	sociology
+53089	rural sociology	social science
+57050	science	performance studies
+53579	scientific computing	mathematics
+49284	seismology	science
+19441	semantics	linguistics
+11185	set theory	mathematics
+41815	signal processing	engineering
+64420	social anthropology	anthropology
+64364	social anthropology	social science
+87949	social history	history
+88267	social history	social science
+165904	social psychology	psychology
+113116	social psychology and interaction	social psychology
+145996	social science	engineering
+145799	social science	science
+68794	sociolinguistics	applied linguistics
+68601	sociolinguistics	linguistics
+14303	sociology	social science
+6344	sociology of culture	sociology
+201470	software engineering	engineering
+176467	soil science	science
+47855	spanish linguistics	linguistics
+42751	statistical methodology	methodologies
+33284	statistics and probability	mathematics
+148703	structural engineering	engineering
+31900	syntax	communication
+11598	systems engineering	engineering
+125053	systems neuroscience	science
+124935	systems neuroscience	neuroscience
+39734	terrestrial ecology	ecology
+51744	theatre	communication
+168678	theatre history	history
+64879	theology	humanities
+124925	thermodynamics	chemical engineering
+58422	toxicology	microbiology
+15860	tribology	applied mechanics
+54620	typological linguistics	linguistics
+67203	united states history	history
+6890	virology	science
+7671	women’s history	history
+195409	wood science	science
+92852	zoology	pathology
