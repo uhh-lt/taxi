@@ -340,7 +340,7 @@ def apply_distributional_semantics(nx_graph, taxonomy, mode, depth, iterations, 
             f.write(
                 '{iter},{recall},{precision},{f1},{f_m}\n'.format(
                     iter=iter,
-                    recall=scores[iter][recall],
+                    recall=scores[iter]['recall'],
                     precision=scores[iter]['precision'],
                     f1=scores[iter]['f1'],
                     f_m=scores[iter]['f_m']
