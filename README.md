@@ -100,8 +100,8 @@ The script can be used with following options:
 | Option | Alternate | Description | Default  | Choices  |
 |--------|-------------|---|---|---|
 | --taxonomy | -t | Input file containing the taxonomy | - | - |
-| --mode | -m | Mode of the algorithm | reattach  | ['only_removal', 'reattach'] |
-| --depth | -d | Number of results to return while checking for most similar nodes of a term. | 100 | - |
+| --mode | -m | Mode of the algorithm | reattach  | only_removal, reattach |
+| --domain | -d | Domain of the taxonomy | science | science, science_wordnet, science_eurovoc, food, food_wordnet, environment_eurovoc |
 | --iterations | -i | Number of iterations | 1 | - |
 | --buffer | -b | Number of clusters to remove per iteration | 10 | - |
 | --parent | -p | Exculde parent while calculating cluster similarity | False | - |

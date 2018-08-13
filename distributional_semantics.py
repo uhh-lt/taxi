@@ -59,7 +59,7 @@ def load_vectors():
     return poincare_model, own_model
 
 
-def create_children_clusters(own_model, graph, depth):
+def create_children_clusters(own_model, graph):
     """ This function returns a dictionary where corresponding to each key(node) is a graph of its children """
     clustered_graph = {}
     for node in graph.nodes():
@@ -68,7 +68,7 @@ def create_children_clusters(own_model, graph, depth):
 
         for successor in successors:
             try:
-                for word, score in own_model.most_similar(successor, topn=depth):
+                for word, score in own_model.most_similar(successor, topn=100):
                     if word.lower() in successors:
                         clustered_graph[node].add_edge(successor, word.lower())
             except KeyError:  # If the word in not in vocabulary, check using the substring based method
@@ -80,11 +80,11 @@ def create_children_clusters(own_model, graph, depth):
     return clustered_graph
 
 
-def remove_clusters(own_model, nx_graph, clusters_touched, depth, buffer):
+def remove_clusters(own_model, nx_graph, clusters_touched, buffer):
     """ Removes the less related and small clusters from the graph """
 
     print('Removing small clusters..')
-    g_clustered = create_children_clusters(own_model, nx_graph, depth)
+    g_clustered = create_children_clusters(own_model, nx_graph)
     removed_clusters = []
 
     nodes, clusters, size_ratio = [], [], []
@@ -188,16 +188,58 @@ def get_line_count(file_name):
     ).decode('utf-8').split('\n')[0])
 
 
-def calculate_f1_score(system_generated_taxo):
+def graph_pruning(path, output_dir, domain):
+
+    cycle_removing_tool = "graph_pruning/graph_pruning.py"
+    cycle_removing_method = "tarjan"
+    cleaning_tool = "graph_pruning/cleaning.py"
+
+    input_file = os.path.basename(path)
+    file_pruned_out = input_file + '-pruned.csv'
+    file_cleaned_out = file_pruned_out + '-cleaned.csv'
+
+    print('======================================================================================================================')
+    cycle_removing_cmd = 'python {cycle_removing_tool} {input_path} {output_dir}/{file_pruned_out} {cycle_removing_method} | tee /dev/tty'.format(
+        cycle_removing_tool=cycle_removing_tool,
+        input_path=path,
+        output_dir=output_dir,
+        file_pruned_out=file_pruned_out,
+        cycle_removing_method=cycle_removing_method
+    )
+    print('Cycle removing:', cycle_removing_cmd, sep='\n')
+    subprocess.check_output(cycle_removing_cmd, shell=True)
+    print('Cycle removing finished. Written to: {output_dir}/{file_pruned_out}\n'.format(
+        output_dir=output_dir, file_pruned_out=file_pruned_out
+    ))
+
+    print('======================================================================================================================')
+    cleaning_cmd = 'python {cleaning_tool} {output_dir}/{file_pruned_out} {output_dir}/{file_cleaned_out} {domain}'.format(
+        cleaning_tool=cleaning_tool,
+        output_dir=output_dir,
+        file_pruned_out=file_pruned_out,
+        file_cleaned_out=file_cleaned_out,
+        domain=domain
+    )
+    print('Cleaning:', cleaning_cmd, sep='\n')
+    subprocess.check_output(cleaning_cmd, shell=True)
+    print('Finished cleaning. Write output to: {output_dir}/{file_cleaned_out}\n'.format(
+        output_dir=output_dir, file_cleaned_out=file_cleaned_out
+    ))
+
+    return os.path.join(output_dir, file_cleaned_out)
+
+
+def calculate_f1_score(system_generated_taxo, output_dir, domain, iteration):
     """ Calculate the F1 score of the re-generated taxonomies """
 
     eval_tool = 'eval/taxi_eval_archive/TExEval.jar'
-    eval_gold_standard = 'eval/taxi_eval_archive/input/gold.taxo'
-    eval_root = 'science'
+    eval_gold_standard = 'eval/taxi_eval_archive/gold_standard/{domain}.taxo'.format(domain=domain)
+    eval_root = domain
     eval_jvm = '-Xmx9000m'
-    eval_tool_result = 'out/' + system_generated_taxo.split('/')[-1] + '.evalresult.txt'
+    eval_tool_result = os.path.join(output_dir, os.path.basename(system_generated_taxo)) + '-evalresult.txt'
 
     # Running the tool
+    print('======================================================================================================================')
     tool_command = """java {eval_jvm} -jar {eval_tool} {system_generated_taxo} {eval_gold_standard} {eval_root} {eval_tool_result}""".format(
         eval_jvm=eval_jvm,
         eval_tool=eval_tool,
@@ -206,49 +248,54 @@ def calculate_f1_score(system_generated_taxo):
         eval_root=eval_root,
         eval_tool_result=eval_tool_result
     )
-    print('\nRunning eval-tool:', tool_command)
+    print('Running eval-tool:', tool_command, sep='\n')
     subprocess.check_output(tool_command, shell=True)
-    print('\nResult of eval-tool written to:', eval_tool_result)
+    print('Result of eval-tool written to:', eval_tool_result)
 
     # Calculating Precision, F1 score and F&M Measure
+    scores = {}
     l_gold = get_line_count(eval_gold_standard)
     l_input = get_line_count(system_generated_taxo)
 
-    recall = float(subprocess.check_output(
+    scores['recall'] = float(subprocess.check_output(
         "tail -n 1 {eval_tool_result} | grep -o -E '[0-9]+[\.]?[0-9]*'".format(
             eval_tool_result=eval_tool_result
         ), shell=True
     ).decode('utf-8').split('\n')[0])
-    precision = recall * l_gold / l_input
+    scores['precision'] = scores['recall'] * l_gold / l_input
 
-    f1 = 2 * recall * precision / (recall + precision)
-    f_m = float(subprocess.check_output(
+    scores['f1'] = 2 * scores['recall'] * scores['precision'] / (scores['recall'] + scores['precision'])
+    scores['f_m'] = float(subprocess.check_output(
         "cat {eval_tool_result} | grep -o -E 'Cumulative Measure.*' | grep -o -E '0\.[0-9]+'".format(
             eval_tool_result=eval_tool_result
         ), shell=True
     ).decode('utf-8').split('\n')[0])
 
     # Display results
-    print('\nRecall:', recall)
-    print('Precision:', precision)
-    print('F1:', f1)
-    print('F&M:', f_m)
+    print('\nPrecision:', scores['precision'])
+    print('Recall:', scores['recall'])
+    print('F1:', scores['f1'])
+    print('F&M:', scores['f_m'])
+
+    return scores
 
 
-def apply_distributional_semantics(nx_graph, taxonomy, mode, depth, iterations, buffer, exclude_parent, exclude_family):
+def apply_distributional_semantics(nx_graph, taxonomy, mode, domain, iterations, buffer, exclude_parent, exclude_family):
     # Load the pre-trained vectors
     print('Loading embeddings...')
     poincare_w2v, own_w2v = load_vectors()
     print('Loaded.')
 
     print('\n\nApplying distributional semantics...')
+    scores = {}
+    output_dir = 'out'
     g_improved = nx_graph.copy()
     clusters_touched = []
     for i in range(1, iterations + 1):
         print('\n\nIteration %d/%d:' % (i, iterations))
 
         # Remove small clusters
-        g_improved, removed_clusters = remove_clusters(own_w2v, g_improved, clusters_touched, depth, buffer)
+        g_improved, removed_clusters = remove_clusters(own_w2v, g_improved, clusters_touched, buffer)
         print('\nRemoved %d clusters.' % (len(removed_clusters)))
         print('Clusters Removed:', removed_clusters)
         if len(removed_clusters) == 0:
@@ -259,7 +306,7 @@ def apply_distributional_semantics(nx_graph, taxonomy, mode, depth, iterations, 
         # Reattach the removed clusters
         if mode == 'reattach':
             print('\nReattaching removed clusters...')
-            g_detached = create_children_clusters(own_w2v, g_improved, depth)
+            g_detached = create_children_clusters(own_w2v, g_improved)
             for cluster in removed_clusters:
                 max_score = 0
                 max_score_node = ''
@@ -279,7 +326,27 @@ def apply_distributional_semantics(nx_graph, taxonomy, mode, depth, iterations, 
         print('Tuned.')
 
         # Save the results after each iteration and display the F1 score
-        save_result(g_improved, taxonomy, mode)
+        output_path = save_result(g_improved, taxonomy, mode)
+
+        # Prune and clean the generated taxonomy
+        pruned_output = graph_pruning(output_path, output_dir, domain)
+
+        # Display the F1 score for the generated taxonomy
+        scores[i] = calculate_f1_score(pruned_output, output_dir, domain, i)
+    
+    # Write the scores of each iteration in a CSV file
+    with open(os.path.join(output_dir, os.path.basename(taxonomy)) + '-iter-records.csv', 'w') as f:
+        f.write('iteration,precision,recall,f1,f_m\n')
+        for iter in scores:
+            f.write(
+                '{iter},{precision},{recall},{f1},{f_m}\n'.format(
+                    iter=iter,
+                    precision=scores[iter]['precision'],
+                    recall=scores[iter]['recall'],
+                    f1=scores[iter]['f1'],
+                    f_m=scores[iter]['f_m']
+                )
+            )
 
 
 def save_result(result, path, mode):
@@ -291,26 +358,24 @@ def save_result(result, path, mode):
     df_improved['hyponym'] = df_improved['hyponym'].apply(lambda x: x.replace('_', ' '))
     df_improved['hypernym'] = df_improved['hypernym'].apply(lambda x: x.replace('_', ' '))
 
-    result_path = os.path.splitext(path)
-    output_path = 'taxi_output/distributional_semantics/' + str(result_path[0].split('/')[-1]) + '-semantic'
-    if mode == 'only_removal':
-        output_path += '-removal'
-    output_path += result_path[1]
-
+    # Store the result
+    output_path = os.path.join(
+        'taxi_output', 'distributional_semantics',
+        os.path.basename(path) + '-' + mode + os.path.splitext(path)[-1]
+    )
     df_improved.to_csv(output_path, sep='\t', header=False)
     print('Output saved at:', output_path)
 
-    # Display the F1 score for the re-generated taxonomy
-    calculate_f1_score(output_path)
+    return output_path
 
 
-def main(taxonomy, mode, depth, iterations, buffer, exclude_parent, exclude_family):
+def main(taxonomy, mode, domain, iterations, buffer, exclude_parent, exclude_family):
 
     # Read the input
     graph = process_input(taxonomy)
 
     # Distributional Semantics
-    apply_distributional_semantics(graph, taxonomy, mode, depth, iterations, buffer, exclude_parent, exclude_family)
+    apply_distributional_semantics(graph, taxonomy, mode, domain, iterations, buffer, exclude_parent, exclude_family)
 
 
 if __name__ == '__main__':
@@ -321,8 +386,9 @@ if __name__ == '__main__':
         help='Mode of execution: Only remove the nodes or reattach the removed nodes.'
     )
     parser.add_argument(
-        '-d', '--depth', type=int, default=100,
-        help='Number of results to return while checking for most similar nodes of a term.'
+        '-d', '--domain', default='science',
+        choices=['science', 'science_wordnet', 'science_eurovoc', 'food', 'food_wordnet', 'environment_eurovoc'],
+        help='Domain of the taxonomy'
     )
     parser.add_argument('-i', '--iterations', type=int, default=1, help='Number of iterations.')
     parser.add_argument('-b', '--buffer', type=int, default=10, help='Number of clusters to remove per iteration')
@@ -333,8 +399,9 @@ if __name__ == '__main__':
     if not args.parent and not args.family:
         parser.error("""Both --parent(-p) and --family(-f) cannot be set to False.
         Run: 'python distributional_semantics.py --help' for more options.""")
-
+    
+    print('Domain:', args.domain)
     print('Input File:', args.taxonomy)
     print('Mode:', args.mode)
 
-    main(args.taxonomy, args.mode, args.depth, args.iterations, args.buffer, args.parent, args.family)
+    main(args.taxonomy, args.mode, args.domain, args.iterations, args.buffer, args.parent, args.family)
