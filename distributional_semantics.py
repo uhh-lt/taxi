@@ -53,7 +53,7 @@ def load_vectors():
 
     embedding_dir = '/home/5aly/taxi/distributed_semantics/embeddings/'
 
-    poincare_model = model = PoincareModel.load(embedding_dir + 'embeddings_poincare_wordnet')  # parent-cluster relationship
+    poincare_model = PoincareModel.load(embedding_dir + 'embeddings_poincare_wordnet')  # parent-cluster relationship
     own_model = gensim.models.KeyedVectors.load(embedding_dir + 'own_embeddings_w2v')  # family-cluster relationship
 
     return poincare_model, own_model
@@ -258,7 +258,7 @@ def calculate_f1_score(system_generated_taxo, output_dir, domain, iteration):
     l_input = get_line_count(system_generated_taxo)
 
     scores['recall'] = float(subprocess.check_output(
-        "tail -n 1 {eval_tool_result} | grep -o -E '[0-9]+[\.]?[0-9]*'".format(
+        r"tail -n 1 {eval_tool_result} | grep -o -E '[0-9]+[\.]?[0-9]*'".format(
             eval_tool_result=eval_tool_result
         ), shell=True
     ).decode('utf-8').split('\n')[0])
@@ -266,7 +266,7 @@ def calculate_f1_score(system_generated_taxo, output_dir, domain, iteration):
 
     scores['f1'] = 2 * scores['recall'] * scores['precision'] / (scores['recall'] + scores['precision'])
     scores['f_m'] = float(subprocess.check_output(
-        "cat {eval_tool_result} | grep -o -E 'Cumulative Measure.*' | grep -o -E '0\.[0-9]+'".format(
+        r"cat {eval_tool_result} | grep -o -E 'Cumulative Measure.*' | grep -o -E '0\.[0-9]+'".format(
             eval_tool_result=eval_tool_result
         ), shell=True
     ).decode('utf-8').split('\n')[0])
@@ -392,16 +392,16 @@ if __name__ == '__main__':
     )
     parser.add_argument('-i', '--iterations', type=int, default=1, help='Number of iterations.')
     parser.add_argument('-b', '--buffer', type=int, default=10, help='Number of clusters to remove per iteration')
-    parser.add_argument('-p', '--parent', action='store_false', help='Exculde "parent" while calculating cluster similarity')
-    parser.add_argument('-f', '--family', action='store_false', help='Exclude "family" while calculating cluster similarity')
+    parser.add_argument('-ep', '--exparent', action='store_true', help='Exculde "parent" while calculating cluster similarity')
+    parser.add_argument('-ef', '--exfamily', action='store_true', help='Exclude "family" while calculating cluster similarity')
     args = parser.parse_args()
 
-    if not args.parent and not args.family:
-        parser.error("""Both --parent(-p) and --family(-f) cannot be set to False.
+    if args.exparent and args.exfamily:
+        parser.error("""Both --exparent(-ep) and --exfamily(-ef) cannot be set to True at the same time.
         Run: 'python distributional_semantics.py --help' for more options.""")
     
     print('Domain:', args.domain)
     print('Input File:', args.taxonomy)
     print('Mode:', args.mode)
 
-    main(args.taxonomy, args.mode, args.domain, args.iterations, args.buffer, args.parent, args.family)
+    main(args.taxonomy, args.mode, args.domain, args.iterations, args.buffer, args.exparent, args.exfamily)
