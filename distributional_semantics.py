@@ -68,13 +68,12 @@ def create_children_clusters(own_model, graph):
 
         for successor in successors:
             try:
-                for word, score in own_model.most_similar(successor, topn=100):
+                for word, _ in own_model.most_similar(successor, topn=100):
                     if word.lower() in successors:
                         clustered_graph[node].add_edge(successor, word.lower())
             except KeyError:  # If the word in not in vocabulary, check using the substring based method
                 successor_terms = successor.split('_')
-                root_terms = [successor_terms[0], successor_terms[-1]]
-                if node in root_terms:
+                if node in successor_terms:
                     clustered_graph[node].add_node(successor)
     
     return clustered_graph
@@ -123,12 +122,12 @@ def calculate_similarity(poincare_model, own_model, parent, family, cluster, exc
         parent_similarities = []
         for item in cluster:
             max_similarity = 0
-            item_senses = wn.synsets(item)
-            parent_senses = wn.synsets(parent)
+            item_senses = [i_sense.name() for i_sense in wn.synsets(item) if item in i_sense.name()]
+            parent_senses = [p_sense.name() for p_sense in wn.synsets(parent) if parent in p_sense.name()]
             for parent_sense in parent_senses:
                 for item_sense in item_senses:
                     try:
-                        similarity = poincare_model.kv.similarity(parent_sense.name(), item_sense.name())
+                        similarity = poincare_model.kv.similarity(parent_sense, item_sense)
                         if similarity > max_similarity:
                             max_similarity = similarity
                     except KeyError as e:
@@ -150,7 +149,10 @@ def calculate_similarity(poincare_model, own_model, parent, family, cluster, exc
                 try:
                     family_similarities.append(own_model.similarity(f_item, c_item))
                 except KeyError as e:  # skip the terms not in vocabulary
-                    continue
+                    if f_item in str(e):
+                        break
+                    else:
+                        continue
         if len(family_similarities) > 0:
             family_similarity = sum(family_similarities) / len(family_similarities)
     
@@ -229,7 +231,7 @@ def graph_pruning(path, output_dir, domain):
     return os.path.join(output_dir, file_cleaned_out)
 
 
-def calculate_f1_score(system_generated_taxo, output_dir, domain, iteration):
+def calculate_f1_score(system_generated_taxo, output_dir, domain):
     """ Calculate the F1 score of the re-generated taxonomies """
 
     eval_tool = 'eval/taxi_eval_archive/TExEval.jar'
@@ -332,7 +334,7 @@ def apply_distributional_semantics(nx_graph, taxonomy, mode, domain, iterations,
         pruned_output = graph_pruning(output_path, output_dir, domain)
 
         # Display the F1 score for the generated taxonomy
-        scores[i] = calculate_f1_score(pruned_output, output_dir, domain, i)
+        scores[i] = calculate_f1_score(pruned_output, output_dir, domain)
     
     # Write the scores of each iteration in a CSV file
     with open(os.path.join(output_dir, os.path.basename(taxonomy)) + '-iter-records.csv', 'w') as f:
