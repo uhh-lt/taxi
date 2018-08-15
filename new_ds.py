@@ -280,15 +280,14 @@ def apply_distributional_semantics(nx_graph, taxonomy, domain, new_nodes, exclud
     # Write the scores of each iteration in a CSV file
     with open(os.path.join(output_dir, os.path.basename(taxonomy)) + '-iter-records.csv', 'w') as f:
         f.write('precision,recall,f1,f_m\n')
-        for iter in scores:
-            f.write(
-                '{precision},{recall},{f1},{f_m}\n'.format(
-                    precision=scores[iter]['precision'],
-                    recall=scores[iter]['recall'],
-                    f1=scores[iter]['f1'],
-                    f_m=scores[iter]['f_m']
-                )
+        f.write(
+            '{precision},{recall},{f1},{f_m}\n'.format(
+                precision=scores['precision'],
+                recall=scores['recall'],
+                f1=scores['f1'],
+                f_m=scores['f_m']
             )
+        )
 
 
 def save_result(result, path):
