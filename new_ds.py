@@ -332,6 +332,9 @@ def main(taxonomy, domain, mode, exclude_parent, exclude_family):
     # Distributional Semantics
     apply_distributional_semantics(graph, taxonomy, domain, mode, new_nodes, exclude_parent, exclude_family)
 
+    if mode != 'remove':
+        print('New nodes added:', len(new_nodes))
+
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Distributional Semantics for Taxonomy')
