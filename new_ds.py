@@ -239,7 +239,7 @@ def calculate_f1_score(system_generated_taxo, output_dir, domain):
     return scores
 
 
-def apply_distributional_semantics(nx_graph, taxonomy, domain, new_nodes, exclude_parent, exclude_family):
+def apply_distributional_semantics(nx_graph, taxonomy, domain, mode, new_nodes, exclude_parent, exclude_family):
     # Load the pre-trained vectors
     print('Loading embeddings...')
     poincare_w2v, own_w2v = load_vectors()
@@ -249,20 +249,25 @@ def apply_distributional_semantics(nx_graph, taxonomy, domain, new_nodes, exclud
     output_dir = 'out'
     g_improved = nx_graph.copy()
 
-    print('\nReattaching new nodes...')
-    g_cluster = create_children_clusters(own_w2v, g_improved)
-    for node in new_nodes:
-        max_score = 0
-        max_score_node = ''
-        for p_node, graph in g_cluster.items():
-            gc = chinese_whispers(graph, weighting='top', iterations=60)
-            for label, family in aggregate_clusters(gc).items():
-                score = calculate_similarity(poincare_w2v, own_w2v, p_node, family, node, exclude_parent, exclude_family)
-                if score > max_score:
-                    max_score = score
-                    max_score_node = p_node
-        g_improved.add_edge(max_score_node, node)
-    print('Done.')
+    if mode == 'ds':
+        print('\nReattaching new nodes...')
+        g_cluster = create_children_clusters(own_w2v, g_improved)
+        for node in new_nodes:
+            max_score = 0
+            max_score_node = ''
+            for p_node, graph in g_cluster.items():
+                gc = chinese_whispers(graph, weighting='top', iterations=60)
+                for _, family in aggregate_clusters(gc).items():
+                    score = calculate_similarity(poincare_w2v, own_w2v, p_node, family, node, exclude_parent, exclude_family)
+                    if score > max_score:
+                        max_score = score
+                        max_score_node = p_node
+            g_improved.add_edge(max_score_node, node)
+        print('Done.')
+    elif mode == 'root':
+        root = domain.split('_')[0]
+        for node in new_nodes:
+            g_improved.add_edge(root, node)
 
     # Tune the result
     g_improved = tune_result(g_improved)
@@ -316,7 +321,7 @@ def get_new_nodes(g_taxo, domain):
     return set(g_gold.nodes()) - set(g_taxo.nodes())
 
 
-def main(taxonomy, domain, exclude_parent, exclude_family):
+def main(taxonomy, domain, mode, exclude_parent, exclude_family):
 
     # Read the input
     graph = process_input(taxonomy)
@@ -325,7 +330,7 @@ def main(taxonomy, domain, exclude_parent, exclude_family):
     new_nodes = get_new_nodes(graph, domain)
 
     # Distributional Semantics
-    apply_distributional_semantics(graph, taxonomy, domain, new_nodes, exclude_parent, exclude_family)
+    apply_distributional_semantics(graph, taxonomy, domain, mode, new_nodes, exclude_parent, exclude_family)
 
 
 if __name__ == '__main__':
@@ -336,6 +341,7 @@ if __name__ == '__main__':
         choices=['science', 'science_wordnet', 'science_eurovoc', 'food', 'food_wordnet', 'environment_eurovoc'],
         help='Domain of the taxonomy'
     )
+    parser.add_argument('-m', '--mode', default='ds', choices=['ds', 'root', 'remove'], help='Execution mode')
     parser.add_argument('-ep', '--exparent', action='store_true', help='Exculde "parent" while calculating cluster similarity')
     parser.add_argument('-ef', '--exfamily', action='store_true', help='Exclude "family" while calculating cluster similarity')
     args = parser.parse_args()
@@ -346,5 +352,6 @@ if __name__ == '__main__':
     
     print('Domain:', args.domain)
     print('Input File:', args.taxonomy)
+    print('Mode:', args.mode)
 
-    main(args.taxonomy, args.domain, args.exparent, args.exfamily)
+    main(args.taxonomy, args.domain, args.mode, args.exparent, args.exfamily)
