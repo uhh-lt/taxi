@@ -1,6 +1,11 @@
 # Custom Files
 resources/
 resources.tgz
+taxi_output/simple_full/food/
+taxi_output/simple_full/food_wordnet/
+taxi_output/simple_full/environment_eurovoc/
+taxi_output/simple_full/science_wordnet/
+taxi_output/simple_full/science_eurovoc/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
