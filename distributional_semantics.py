@@ -131,7 +131,7 @@ def calculate_similarity(poincare_model, own_model, parent, family, cluster, exc
                         if similarity > max_similarity:
                             max_similarity = similarity
                     except KeyError as e:
-                        if parent_sense.name() in str(e):
+                        if parent_sense in str(e):
                             break
                         else:
                             continue
@@ -236,7 +236,7 @@ def calculate_f1_score(system_generated_taxo, output_dir, domain):
 
     eval_tool = 'eval/taxi_eval_archive/TExEval.jar'
     eval_gold_standard = 'eval/taxi_eval_archive/gold_standard/{domain}.taxo'.format(domain=domain)
-    eval_root = domain
+    eval_root = domain.split('_')[0]
     eval_jvm = '-Xmx9000m'
     eval_tool_result = os.path.join(output_dir, os.path.basename(system_generated_taxo)) + '-evalresult.txt'
 
