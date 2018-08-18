@@ -83,15 +83,6 @@ Afterwards a noisy graph is being created. Clean the output by executing(this ex
 The ```vocabularies``` directory contains input terms for different domains and languages. The script lets you reproduce results in the SemEval 2016 Task 13 [Taxonomy Extraction Evaluation](http://alt.qcri.org/semeval2016/task13/) described in the [our paper](https://pdfs.semanticscholar.org/5719/932d8c194439dd08403bdb9df5ee30826e87.pdf). This script load hypernyms from the downloaded resources and constructs a taxonomy for every input vocabulary of the SemEval datasets, e.g. English Food domain. Generally, the TAXI approach takes as input a vocabulary and outputs a taxonomy for a linked subset of the terms from this vocabulary. Currently the main purpose of this repository is to ensure reproducibility of the SemEval results. The results taxonomies will be generated next to the corresponding input vocabulary file. If you need to adapt the script for your needs and require help do not hesitate to contact us.  
 
 
-# Visualizing taxonomies
-To visualize the taxonomy structures in a **.csv** file, you must have **Networkx** and **Pygraphviz** setup in your environment.  
-
-To construct a hierarchical taxonomy structure:  
-`$ python visualize_taxonomy.py --file <csv filename>`
-
-The images generated will be very large, so alternatively, the graph can be constructed inside the notebook **networkx_graph.ipynb**
-
-
 # Distributional Semantics
 To apply distributional semantics to the generated taxonomy, use the script **distributional_semantics.py** or the notebook **distributional_semantics.py.ipynb**
 
@@ -100,12 +91,19 @@ The script can be used with following options:
 | Option | Alternate | Description | Default  | Choices  |
 |--------|-------------|---|---|---|
 | --taxonomy | -t | Input file containing the taxonomy | - | - |
-| --mode | -m | Mode of the algorithm | reattach  | only_removal, reattach |
-| --domain | -d | Domain of the taxonomy | science | science, science_wordnet, science_eurovoc, food, food_wordnet, environment_eurovoc |
-| --iterations | -i | Number of iterations | 1 | - |
-| --buffer | -b | Number of clusters to remove per iteration | 10 | - |
+| --mode | -m | Mode of the algorithm | ds  | ds, root, remove |
+| --domain | -d | Domain of the taxonomy | science | science, science_wordnet, food, environment_eurovoc |
 | --exparent | -ep | Exculde parent while calculating cluster similarity | False | - |
 | --exfamily | -ef | Exculde family while calculating cluster similarity | False | - |
 
 *Example:*  
-`$ python distributional_semantics.py -t taxi_output/simple_full/science_en.csv-relations.csv-taxo-knn1.csv -e poincare -i 5 -d 150`
+`$ python distributional_semantics.py -t taxi_output/simple_full/science_en.csv-relations.csv-taxo-knn1.csv -d food -ep`
+
+
+# Visualizing taxonomies
+To visualize the taxonomy structures in a **.csv** file, you must have **Networkx** and **Pygraphviz** setup in your environment.  
+
+To construct a hierarchical taxonomy structure:  
+`$ python visualize_taxonomy.py --file <csv filename>`
+
+The images generated will be very large, so alternatively, the graph can be constructed inside the notebook **networkx_graph.ipynb**
