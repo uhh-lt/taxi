@@ -84,7 +84,16 @@ The ```vocabularies``` directory contains input terms for different domains and 
 
 
 # Distributional Semantics
-To apply distributional semantics to the generated taxonomy, use the script **distributional_semantics.py** or the notebook **distributional_semantics.py.ipynb**
+
+1. Download the required embeddings:  
+  - `$ wget http://ltdata1.informatik.uni-hamburg.de/taxi/embeddings/embeddings_poincare_wordnet`
+  - `$ wget http://ltdata1.informatik.uni-hamburg.de/taxi/embeddings/own_embeddings_w2v`
+  - `$ wget http://ltdata1.informatik.uni-hamburg.de/taxi/embeddings/own_embeddings_w2v.trainables.syn1neg.npy`
+  - `$ wget http://ltdata1.informatik.uni-hamburg.de/taxi/embeddings/own_embeddings_w2v.wv.vectors.npy`
+
+2. Set the directory path in **line 45** of `distributional_semantics.py` to the directory containing the embeddings download above.
+
+3. To apply distributional semantics to the generated taxonomy, use the script **distributional_semantics.py** or the notebook **distributional_semantics.py.ipynb**
 
 The script can be used with following options:
 
