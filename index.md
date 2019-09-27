@@ -25,7 +25,6 @@ Our approach is characterized by scalability and simplicity, assuming that being
 - [Input of the TAXI](http://panchenko.me/data/joint/taxi/terms/): domain vocabularies of the three domains (Food, Science and Environment)
 - [Output of the TAXI](http://panchenko.me/data/joint/taxi/release-final/): taxonomies of the three domains submitted to SemEval 2016 Task 13
 - [Resources used by TAXI](http://panchenko.me/data/joint/taxi/res/resources/): collections of extracted hypernyms for English, French, Italian and Dutch for the three domains (Food, Science and Environment). Below you can find separate collections of hypernyms for each language domain-pair, where language is English, French, Dutch or Italian and domain is Environment, Food or Science. The following table sizes of these hypernym relation databases (see more details in the original publication mentioned above). 
-  ![Hypernym collections](http://panchenko.me/images/table2.png)
 
   * [English General Domain Hypernyms (WebISA)](http://panchenko.me/data/joint/taxi/res/resources/en_cc.csv.gz)
   * [English General Domain Hypernyms (PattenSim)](http://panchenko.me/data/joint/taxi/res/resources/en_ps.csv.gz)
