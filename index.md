@@ -15,7 +15,7 @@ If you would like to refer to the system please use this citation.
 ### Motivation
 TAXI is a taxonomy induction method first presented at the SemEval 2016 challenge on Taxonomy Extraction Evaluation. We consider taxonomy induction as a process that should -- as much as possible -- be driven solely on the basis of raw text processing. While some labeled examples might be utilized to tune the extraction and induction process, we avoid relying on structured lexical resources such as WordNet or BabelNet. We rather envision a situation where a taxonomy shall be induced in a new domain or a new language for which such resources do not exist. Otherwise, there is little need for induction,  and in application-based scenarios it is still possible to merge induced and existing taxonomies. In this paper, we demonstrate our methodology by executing hyponymy pattern extraction on general-domain and domain-specific corpora for four languages.
 
-![TAXI](https://www.lt.informatik.tu-darmstadt.de/fileadmin/_processed_/csm_taxi_662272e466.jpg)
+![TAXI](https://upload.wikimedia.org/wikipedia/commons/3/37/Car_rapide.jpg)
 
 ### Taxonomy Induction Method
 
