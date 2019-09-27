@@ -13,7 +13,7 @@ This page contains implementation of a method for taxonomy induction that reache
 }
 ```
 
-If you would like to refer to the system please use this citation. More information about the approach can be found at [the TAXI web site](http://tudarmstadt-lt.github.io/taxi).
+If you would like to refer to the system please use this citation. More information about the approach can be found at [the TAXI web site](https://uhh-lt.github.io/taxi/).
 
 ![taxi](https://upload.wikimedia.org/wikipedia/commons/3/37/Car_rapide.jpg)
 
